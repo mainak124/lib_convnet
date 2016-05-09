@@ -1,0 +1,28 @@
+step 0, training loss 10.4746
+Epoch 0, testing loss 10.7408
+step 500, training loss 0.280655
+Epoch 1, testing loss 0.177946
+step 1000, training loss 0.13935
+Epoch 2, testing loss 0.109164
+step 1500, training loss 0.160473
+Epoch 3, testing loss 0.0859522
+step 2000, training loss 0.100642
+Epoch 4, testing loss 0.0694815
+step 2500, training loss 0.0315429
+Epoch 5, testing loss 0.0591249
+step 3000, training loss 0.0245445
+Epoch 6, testing loss 0.0524438
+step 3500, training loss 0.0405492
+Epoch 7, testing loss 0.0476146
+step 4000, training loss 0.015094
+Epoch 8, testing loss 0.0444154
+step 4500, training loss 0.0160508
+Epoch 9, testing loss 0.0393429
+step 5000, training loss 0.00534766
+Epoch 10, testing loss 0.0424588
+step 5500, training loss 0.00451214
+Epoch 11, testing loss 0.0360055
+step 6000, training loss 0.0115867
+Epoch 12, testing loss 0.0344095
+test accuracy 0.9902
+Average Inference Time:  24.9963611538
