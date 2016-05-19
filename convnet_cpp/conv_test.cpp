@@ -10,6 +10,6 @@ int main() {
 
     // Load values
 
-    conv2d(x_in, W, conv_out, stride, zeropad);
+    conv2d<10,10,1,5,5,6,6,2>(x_in, W, conv_out, stride, zeropad);
 
 }
