@@ -36,7 +36,7 @@ template
     int n_out_r,
     int n_filter
 >    
-void conv2d(float x[n_row_in][n_col_in][n_in], float W[n_row_filter][n_col_filter][n_in][n_filter], float out_feature[n_out_r][n_out_c][n_filter], int stride, int zero_pad) {
+void conv2d(float x[n_row_in][n_col_in][n_in], float W[n_row_filter][n_col_filter][n_in][n_filter], float b[n_out_r][n_out_c][n_filter], float out_feature[n_out_r][n_out_c][n_filter], int stride, int zero_pad) {
     
     float in_val, out;
     int slide_in_r_idx, slide_in_c_idx, out_r_idx, out_c_idx;
@@ -53,7 +53,7 @@ void conv2d(float x[n_row_in][n_col_in][n_in], float W[n_row_filter][n_col_filte
                     for(int r_idx=0; r_idx<n_row_filter; r_idx++) {
                         for(int c_idx=0; c_idx<n_col_filter; c_idx++) {
                             slide_in_r_idx = in_r_idx+r_idx - zero_pad;
-                            slide_in_c_idx = in_c_idx+r_idx - zero_pad;
+                            slide_in_c_idx = in_c_idx+c_idx - zero_pad;
                             // zero padding
                             if ((slide_in_r_idx < 0) || (slide_in_r_idx >= n_row_in) || (slide_in_c_idx < 0) || (slide_in_c_idx >= n_col_in))
                                 in_val = 0;
@@ -69,4 +69,12 @@ void conv2d(float x[n_row_in][n_col_in][n_in], float W[n_row_filter][n_col_filte
             }    
         }    
     }    
+
+    for (int r_idx=0; r_idx<n_out_r; r_idx++) {
+        for (int c_idx=0; c_idx<n_out_c; c_idx++) {
+            for (int f_idx=0; f_idx<n_filter; f_idx++) {
+                out_feature[out_r_idx][out_c_idx][filter_idx] += b[out_r_idx][out_c_idx][filter_idx];
+            }
+        }
+    }            
 }        
