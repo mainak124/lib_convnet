@@ -58,9 +58,9 @@ void inference(
     conv2d<P1_H,P1_W,P1_C,F2_H,F2_W,O2_H,O2_W,F2_N>(poolOut1, f2, b2, convOutput2, F2_S, F2_Z);
     maxPoolNxN<O2_H,O2_W,O2_C,P2_H,P2_W,P2_C,P2_F,P2_F>(convOutput2,poolOut2);
 
-    for (int i = 0; i< P1_H; i++)
-    	for (int j = 0; j< P1_W; j++)
-    		for (int k = 0; k< P1_C; k++)
+    for (int i = 0; i< P2_H; i++)
+    	for (int j = 0; j< P2_W; j++)
+    		for (int k = 0; k< P2_C; k++)
     			poolOutput2[i][j][k] = poolOut2[i][j][k];//static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
 }
