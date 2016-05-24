@@ -1,0 +1,15 @@
+1. Test LRN
+2. Test conv
+3. Get Numpy Array from caffemodel
+4. Get ImageNet dataset, do train-test split, resize
+5. Get it running in python tensorflow
+6. Integrate in C++
+7. Synthesize in HLS   
+8. Keep optimizing // Target for this weekend
+
+9. Check gate counts
+10.Port in FPGA
+11.RIFFA related work
+12.Get the images on FPGA BRAM and test
+13.Interface camera
+14.Clssify scenes in real-time // Target for next weekend
