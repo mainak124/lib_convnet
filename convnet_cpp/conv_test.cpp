@@ -16,8 +16,8 @@ int main() {
     DTYPE_T conv_out2[O2_H][O2_W][O2_C];
     DTYPE_T pool_out2[P2_H][P2_W][P2_C];
     DTYPE_T poolOut[P2_H][P2_W][P2_C];
-    int zeropad = 0;
-    int stride = 1;
+//    int zeropad = 0;
+//    int stride = 1;
 
     int init_cnt = 0;
 
@@ -66,7 +66,7 @@ int main() {
 
     inference(x_in,W1,b1,W2,b2,poolOut);
 
-    conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,F1_N>(x_in, W1, b1, conv_out1, stride, zeropad);
+    conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,F1_N>(x_in, W1, b1, conv_out1, F1_S, F1_Z);
     maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_F>(conv_out1,pool_out1);
     conv2d<P1_H,P1_W,P1_C,F2_H,F2_W,O2_H,O2_W,F2_N>(pool_out1, W2, b2, conv_out2, F2_S, F2_Z);
     maxPoolNxN<O2_H,O2_W,O2_C,P2_H,P2_W,P2_C,P2_F,P2_F>(conv_out2,pool_out2);
