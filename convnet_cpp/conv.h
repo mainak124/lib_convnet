@@ -16,7 +16,7 @@ int n_filter
 >    
 void conv2d(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T W[n_row_filter][n_col_filter][n_in][n_filter], DTYPE_T b[n_out_r][n_out_c][n_out_ch], DTYPE_T out_feature[n_out_r][n_out_c][n_out_ch], int stride, int zero_pad) {
 
-	assert(n_filter==n_out_ch);
+//	assert(n_filter==n_out_ch);
 	DTYPE_T in_val, out;
 	int slide_in_r_idx, slide_in_c_idx, out_r_idx, out_c_idx;
 
@@ -62,7 +62,7 @@ int n_pool_f,
 int n_pool_s
 >    
 void maxPoolNxN(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T out_feature[n_out_r][n_out_c][n_out]) {
-	assert(n_in == n_out);
+//	assert(n_in == n_out);
 
 	DTYPE_T out;
 
@@ -97,38 +97,38 @@ int n_in
 >    
 void lrn(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T out_feature[n_row_in][n_col_in][n_in], int k, int n, float alpha, float beta) {
 
-    int j_start, j_end, prev_j_start, prev_j_end;
-    DTYPE sum=0, prev_sum=0;
-    DTYPE den;
+	int j_start, j_end, prev_j_start, prev_j_end;
+	DTYPE_T sum=0, prev_sum=0;
+	DTYPE_T den;
 
-    for (int r_idx=0; r_idx<n_row_in; r_idx++) {
-        for (int c_idx=0; c_idx<n_col_in; c_idx++) {
-            for (int ch_idx=0; ch_idx<n_in; ch_idx++) {
-                // Find the summation first
-                sum = 0;
-                j_start = max(0, ch_idx-(n/2));  // FIXME: what is the max function in C++?
-                j_end = min(n_in-1, ch_idx+(n/2));
-                if (ch_idx == 0) {
-                    for (int sum_ch_idx=j_start; sum_ch_idx<=j_end; sum_ch_idx++) {
-                        sum += x[r_idx][c_idx][sum_ch_idx] * x[r_idx][c_idx][sum_ch_idx];  // FIXME: What is the square function in C++?
-                    }    
-                }        
-                else {
-                    if (j_start==prev_j_start+1) // Previus fisrt element from previous sum should be removed
-                        sum = prev_sum - x[r_idx][c_idx][prev_j_start];
-                    if (j_end==prev_j_end+1) // Current last element should be added to the previous sum
-                        sum = sum + x[r_idx][c_idx][j_end];
-                }    
+	for (int r_idx=0; r_idx<n_row_in; r_idx++) {
+		for (int c_idx=0; c_idx<n_col_in; c_idx++) {
+			for (int ch_idx=0; ch_idx<n_in; ch_idx++) {
+				// Find the summation first
+				sum = 0;
+				j_start = std::max(0, ch_idx-(n/2));
+				j_end = std::min(n_in-1, ch_idx+(n/2));
+				if (ch_idx == 0) {
+					for (int sum_ch_idx=j_start; sum_ch_idx<=j_end; sum_ch_idx++) {
+						sum += x[r_idx][c_idx][sum_ch_idx] * x[r_idx][c_idx][sum_ch_idx];
+					}    
+				}        
+				else {
+					if (j_start==prev_j_start+1) // Previus fisrt element from previous sum should be removed
+						sum = prev_sum - x[r_idx][c_idx][prev_j_start];
+					if (j_end==prev_j_end+1) // Current last element should be added to the previous sum
+						sum = sum + x[r_idx][c_idx][j_end];
+				}    
 
-                // Find the new element based on the sum
-                den = power((k + (alpha * sum)), beta);  // FIXME: what is the power function in C++?
-                out_feature[r_idx][c_idx][ch_idx] = x[r_idx][c_idx][ch_idx] / den;
+				// Find the new element based on the sum
+				den = pow((k + (alpha * sum)), beta);
+				out_feature[r_idx][c_idx][ch_idx] = x[r_idx][c_idx][ch_idx] / den;
 
-                // Assign the current quantities to the previous quantities
-                prev_j_start = j_start;
-                prev_j_end = j_end;
-                prev_sum = sum;
-            }    
-        }    
-    }    
+				// Assign the current quantities to the previous quantities
+				prev_j_start = j_start;
+				prev_j_end = j_end;
+				prev_sum = sum;
+			}    
+		}    
+	}    
 }    
