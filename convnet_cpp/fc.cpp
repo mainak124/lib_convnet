@@ -1,8 +1,8 @@
 #include <iostream>
 #include <math.h>
 #include "matrixTemplate.h"
-#include "sm.h"
-#include "fc.h"
+#include "sm_module.cpp"
+#include "fc_module.cpp"
 
 using namespace std;
 
