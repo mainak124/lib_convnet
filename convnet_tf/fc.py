@@ -51,18 +51,18 @@ def show(p):
 #b2 = np.array([[0.5,0.2]])
 
 e = np.array([])
-#x = np.append(e, [random.random() for _ in range(784)]).reshape(1,784)
-#w1= np.append(e, [random.random() for _ in range(784*100)]).reshape(784,100)
-#w2= np.append(e, [random.random() for _ in range(100*10)]).reshape(100,10)
-#b1= np.append(e, [random.random() for _ in range(100)]).reshape(1,100)
-#b2= np.append(e, [random.random() for _ in range(10)]).reshape(1,10)
-#
-#
-#np.save('FC_I.npy',x)
-#np.save('FC_W.npy',w1)
-#np.save('FC_B.npy',b1)
-#np.save('SM_W.npy',w2)
-#np.save('SM_B.npy',b2)
+x = np.append(e, [random.random() for _ in range(120)]).reshape(1,120)
+w1= np.append(e, [random.random() for _ in range(120*84)]).reshape(120,84)
+w2= np.append(e, [random.random() for _ in range(84*10)]).reshape(84,10)
+b1= np.append(e, [random.random() for _ in range(84)]).reshape(1,84)
+b2= np.append(e, [random.random() for _ in range(10)]).reshape(1,10)
+
+
+np.save('FC_I.npy',x)
+np.save('FC_W.npy',w1)
+np.save('FC_B.npy',b1)
+np.save('SM_W.npy',w2)
+np.save('SM_B.npy',b2)
 
 
 x  = np.load('FC_I.npy')
