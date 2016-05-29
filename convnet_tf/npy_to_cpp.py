@@ -28,3 +28,8 @@ file_from_1Darray.form_file_from_1Darray('b2',b2)
 file_from_1Darray.form_file_from_1Darray('b3',b3)
 file_from_1Darray.form_file_from_1Darray('B4',B4)
 file_from_1Darray.form_file_from_1Darray('B5',B5)
+
+x_in = np.load('mnist_npy/mnist_data.npy')
+y_labels = np.load('mnist_npy/mnist_labels.npy')
+file_from_4Darray.form_file_from_4Darray('x_in',x_in)
+file_from_2Darray.form_file_from_2Darray('y_labels',y_labels)
