@@ -6,11 +6,11 @@
 void inference(
 	const DTYPE_T inputImage[IN_H][IN_W][IN_C],
 	const DTYPE_T Filter1[F1_H][F1_W][F1_C][F1_N],
-	const DTYPE_T bias1[O1_H][O1_W][O1_C],
+	const DTYPE_T bias1[O1_C],
 	const DTYPE_T Filter2[F2_H][F2_W][F2_C][F2_N],
-	const DTYPE_T bias2[O2_H][O2_W][O2_C],
+	const DTYPE_T bias2[O2_C],
 	const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
-	const DTYPE_T bias3[O3_H][O3_W][O3_C],
+	const DTYPE_T bias3[O3_C],
 	const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
 	const DTYPE_T fcBias[FC_B_H][FC_B_W],
 	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
@@ -21,21 +21,21 @@ void inference(
 
 	DTYPE_T x_in[IN_H][IN_W][IN_C];
 	DTYPE_T f1[F1_H][F1_W][F1_C][F1_N];
-	DTYPE_T b1[O1_H][O1_W][O1_C];
+	DTYPE_T b1[O1_C];
 	DTYPE_T convOutput1[O1_H][O1_W][O1_C];
 	DTYPE_T lrnOutput1[O1_H][O1_W][O1_C];
 
 	DTYPE_T poolOut1[P1_H][P1_W][P1_C];
 
 	DTYPE_T f2[F2_H][F2_W][F2_C][F2_N];
-	DTYPE_T b2[O2_H][O2_W][O2_C];
+	DTYPE_T b2[O2_C];
 	DTYPE_T convOutput2[O2_H][O2_W][O2_C];
 	DTYPE_T lrnOutput2[O2_H][O2_W][O2_C];
 
 	DTYPE_T poolOut2[P2_H][P2_W][P2_C];
 
 	DTYPE_T f3[F3_H][F3_W][F3_C][F3_N];
-	DTYPE_T b3[O3_H][O3_W][O3_C];
+	DTYPE_T b3[O3_C];
 	DTYPE_T convOutput3[O3_H][O3_W][O3_C];
 	DTYPE_T lrnOutput3[O3_H][O3_W][O3_C];
 
@@ -62,10 +62,8 @@ void inference(
 				for (int l = 0; l< F1_N; l++)
 					f1[i][j][k][l] = Filter1[i][j][k][l];
 
-	for (int i = 0; i< O1_H; i++)
-		for (int j = 0; j< O1_W; j++)
 			for (int k = 0; k< O1_C; k++)
-				b1[i][j][k] = bias1[i][j][k];
+				b1[k] = bias1[k];
 
 	for (int i = 0; i< F2_H; i++)
 		for (int j = 0; j< F2_W; j++)
@@ -73,10 +71,8 @@ void inference(
 				for (int l = 0; l< F2_N; l++)
 					f2[i][j][k][l] = Filter2[i][j][k][l];
 
-	for (int i = 0; i< O2_H; i++)
-		for (int j = 0; j< O2_W; j++)
 			for (int k = 0; k< O2_C; k++)
-				b2[i][j][k] = bias2[i][j][k];
+				b2[k] = bias2[k];
 			
 	for (int i = 0; i< F3_H; i++)
 		for (int j = 0; j< F3_W; j++)
@@ -84,10 +80,8 @@ void inference(
 				for (int l = 0; l< F3_N; l++)
 					f3[i][j][k][l] = Filter3[i][j][k][l];
 
-	for (int i = 0; i< O3_H; i++)
-		for (int j = 0; j< O3_W; j++)
 			for (int k = 0; k< O3_C; k++)
-				b3[i][j][k] = bias3[i][j][k];
+				b3[k] = bias3[k];
 
 	for (int i = 0; i< FC_WT_H; i++)
 		for (int j = 0; j< FC_WT_W; j++)

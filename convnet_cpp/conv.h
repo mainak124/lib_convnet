@@ -15,7 +15,7 @@ int n_out_r,
 int n_out_ch,
 int n_filter
 >    
-void conv2d(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T W[n_row_filter][n_col_filter][n_in][n_filter], DTYPE_T b[n_out_r][n_out_c][n_out_ch], DTYPE_T out_feature[n_out_r][n_out_c][n_out_ch], int stride, int zero_pad) {
+void conv2d(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T W[n_row_filter][n_col_filter][n_in][n_filter], DTYPE_T b[n_out_ch], DTYPE_T out_feature[n_out_r][n_out_c][n_out_ch], int stride, int zero_pad) {
 
 	assert(n_filter==n_out_ch);
 	DTYPE_T in_val, out;
@@ -45,7 +45,7 @@ void conv2d(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T W[n_row_filter][n_col_f
 				}
 				out_r_idx = in_r_idx/stride;
 				out_c_idx = in_c_idx/stride;
-				out_feature[out_r_idx][out_c_idx][filter_idx] = out + b[out_r_idx][out_c_idx][filter_idx];
+				out_feature[out_r_idx][out_c_idx][filter_idx] = relu(out + b[filter_idx]);
 			}
 		}
 	}
