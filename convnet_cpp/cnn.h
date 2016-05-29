@@ -1,5 +1,3 @@
-
-
 typedef float DTYPE_T;
 
 #define IN_H 28
@@ -66,6 +64,24 @@ typedef float DTYPE_T;
 #define P3_W ((O3_W-P3_F)/P3_S)+1
 #define P3_C O3_C
 
+#define FC_IN_H 1
+#define FC_IN_W 120
+#define FC_WT_H 120
+#define FC_WT_W 84
+#define FC_B_H  1
+#define FC_B_W  84
+#define FC_OUT_H 1
+#define FC_OUT_W 84
+
+#define SM_IN_H 1
+#define SM_IN_W 84
+#define SM_WT_H 84
+#define SM_WT_W 10
+#define SM_B_H  1
+#define SM_B_W  10
+#define SM_OUT_H 1
+#define SM_OUT_W 10
+
 // #define F4_H 3
 // #define F4_W 3
 // #define F4_C P3_C
@@ -114,7 +130,11 @@ void inference(
 		const DTYPE_T bias2[O2_H][O2_W][O2_C],
 		const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
 		const DTYPE_T bias3[O3_H][O3_W][O3_C],
-		DTYPE_T poolOut[P3_H][P3_W][P3_C]
+		const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
+		const DTYPE_T fcBias[FC_B_H][FC_B_W],
+		const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
+		const DTYPE_T smBias[SM_B_H][SM_B_W],
+		DTYPE_T smOut[SM_OUT_H][SM_OUT_W]
 );
 
 

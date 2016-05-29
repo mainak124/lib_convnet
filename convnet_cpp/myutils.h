@@ -7,7 +7,7 @@
 
 
 
-DTYPE_T sigmoid(DTYPE_T x);
+//DTYPE_T sigmoid(DTYPE_T x);
 DTYPE_T relu(DTYPE_T x);
 
 //DTYPE_T sigmoid(DTYPE_T x) {
