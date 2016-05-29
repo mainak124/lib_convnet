@@ -1,5 +1,7 @@
 #include "cnn.h"
 #include "conv.h"
+#include "fc_module.h"
+#include "sm_module.h"
 
 void inference(
 	const DTYPE_T inputImage[IN_H][IN_W][IN_C],
@@ -9,11 +11,11 @@ void inference(
 	const DTYPE_T bias2[O2_H][O2_W][O2_C],
 	const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
 	const DTYPE_T bias3[O3_H][O3_W][O3_C],
-	const DTYPE_T Filter4[F4_H][F4_W][F4_C][F4_N],
-	const DTYPE_T bias4[O4_H][O4_W][O4_C],
-	const DTYPE_T Filter5[F5_H][F5_W][F5_C][F5_N],
-	const DTYPE_T bias5[O5_H][O5_W][O5_C],
-	DTYPE_T poolOutput5[P5_H][P5_W][P5_C]
+	const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
+	const DTYPE_T fcBias[FC_B_H][FC_B_W],
+	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
+	const DTYPE_T smBias[SM_B_H][SM_B_W],
+	DTYPE_T smOut[SM_OUT_H][SM_OUT_W]
 	){
 //#pragma HLS DATAFLOW
 
@@ -38,21 +40,16 @@ void inference(
 	DTYPE_T lrnOutput3[O3_H][O3_W][O3_C];
 
 	DTYPE_T poolOut3[P3_H][P3_W][P3_C];
+	
+	DTYPE_T fcIn[FC_IN_H][FC_IN_W];
+	DTYPE_T fcOut4[FC_OUT_H][FC_OUT_W];
 
-	DTYPE_T f4[F4_H][F4_W][F4_C][F4_N];
-	DTYPE_T b4[O4_H][O4_W][O4_C];
-	DTYPE_T convOutput4[O4_H][O4_W][O4_C];
-	DTYPE_T lrnOutput4[O4_H][O4_W][O4_C];
+	DTYPE_T W4[FC_WT_H][FC_WT_W];
+	DTYPE_T B4[FC_B_H][FC_B_W];
 
-	DTYPE_T poolOut4[P4_H][P4_W][P4_C];
-
-	DTYPE_T f5[F5_H][F5_W][F5_C][F5_N];
-	DTYPE_T b5[O5_H][O5_W][O5_C];
-	DTYPE_T convOutput5[O5_H][O5_W][O5_C];
-	DTYPE_T lrnOutput5[O5_H][O5_W][O5_C];
-
-	DTYPE_T poolOut5[P5_H][P5_W][P5_C];
-
+	DTYPE_T W5[SM_WT_H][SM_WT_W];
+	DTYPE_T B5[SM_B_H][SM_B_W];
+	DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
 
 	for (int i = 0; i< IN_H; i++)
 		for (int j = 0; j< IN_W; j++)
@@ -80,7 +77,7 @@ void inference(
 		for (int j = 0; j< O2_W; j++)
 			for (int k = 0; k< O2_C; k++)
 				b2[i][j][k] = bias2[i][j][k];
-
+			
 	for (int i = 0; i< F3_H; i++)
 		for (int j = 0; j< F3_W; j++)
 			for (int k = 0; k< F3_C; k++)
@@ -92,46 +89,40 @@ void inference(
 			for (int k = 0; k< O3_C; k++)
 				b3[i][j][k] = bias3[i][j][k];
 
-	for (int i = 0; i< F4_H; i++)
-		for (int j = 0; j< F4_W; j++)
-			for (int k = 0; k< F4_C; k++)
-				for (int l = 0; l< F4_N; l++)
-					f4[i][j][k][l] = Filter4[i][j][k][l];
+	for (int i = 0; i< FC_WT_H; i++)
+		for (int j = 0; j< FC_WT_W; j++)
+				W4[i][j] = fcWeight[i][j];
 
-	for (int i = 0; i< O4_H; i++)
-		for (int j = 0; j< O4_W; j++)
-			for (int k = 0; k< O4_C; k++)
-				b4[i][j][k] = bias4[i][j][k];
+	for (int i = 0; i< FC_B_H; i++)
+		for (int j = 0; j< FC_B_W; j++)
+				B4[i][j] = fcBias[i][j];
 
-	for (int i = 0; i< F5_H; i++)
-		for (int j = 0; j< F5_W; j++)
-			for (int k = 0; k< F5_C; k++)
-				for (int l = 0; l< F5_N; l++)
-					f5[i][j][k][l] = Filter5[i][j][k][l];
+	for (int i = 0; i< SM_WT_H; i++)
+		for (int j = 0; j< SM_WT_W; j++)
+				W5[i][j] = smWeight[i][j];
 
-	for (int i = 0; i< O5_H; i++)
-		for (int j = 0; j< O5_W; j++)
-			for (int k = 0; k< O5_C; k++)
-				b5[i][j][k] = bias5[i][j][k];
-
+	for (int i = 0; i< SM_B_H; i++)
+		for (int j = 0; j< SM_B_W; j++)
+				B5[i][j] = smBias[i][j];
 
 
 	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x_in, f1, b1, convOutput1, F1_S, F1_Z);
-	lrn<O1_H,O1_W,O1_C>(convOutput1,lrnOutput1,L1_K,L1_N,L1_A,L1_B);
-	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(lrnOutput1,poolOut1);
+	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);
 
 	conv2d<P1_H,P1_W,P1_C,F2_H,F2_W,O2_H,O2_W,O2_C,F2_N>(poolOut1, f2, b2, convOutput2, F2_S, F2_Z);
-	lrn<O2_H,O2_W,O2_C>(convOutput2,lrnOutput2,L2_K,L2_N,L2_A,L2_B);
-	maxPoolNxN<O2_H,O2_W,O2_C,P2_H,P2_W,P2_C,P2_F,P2_S>(lrnOutput2,poolOut2);
+	maxPoolNxN<O2_H,O2_W,O2_C,P2_H,P2_W,P2_C,P2_F,P2_S>(convOutput2,poolOut2);
 
 	conv2d<P2_H,P2_W,P2_C,F3_H,F3_W,O3_H,O3_W,O3_C,F3_N>(poolOut2, f3, b3, convOutput3, F3_S, F3_Z);
-	conv2d<P3_H,P3_W,P3_C,F4_H,F4_W,O4_H,O4_W,O4_C,F4_N>(convOutput3, f4, b4, convOutput4, F4_S, F4_Z);
 
-	conv2d<P4_H,P4_W,P4_C,F5_H,F5_W,O5_H,O5_W,O5_C,F5_N>(convOutput4, f5, b5, convOutput5, F5_S, F5_Z);
-	maxPoolNxN<O5_H,O5_W,O5_C,P5_H,P5_W,P5_C,P5_F,P5_S>(convOutput5,poolOut5);
+	for(int i=0; i<O3_H; i++)
+		for(int j=0; j<O3_W; j++)
+			for(int k=0; k<O3_C; k++)
+				fcIn[0][i*O3_H+j*O3_W+k] = convOutput3[i][j][k];
 
-	for (int i = 0; i< P5_H; i++)
-		for (int j = 0; j< P5_W; j++)
-			for (int k = 0; k< P5_C; k++)
-				poolOutput5[i][j][k] = poolOut5[i][j][k];
+    fc<FC_IN_H, FC_IN_W, FC_WT_H, FC_WT_W, FC_B_H, FC_B_W, FC_OUT_H, FC_OUT_W>(fcIn,W4,B4,fcOut4);
+    sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,smOut5);
+
+	for (int i = 0; i< SM_OUT_H; i++)
+		for (int j = 0; j< SM_OUT_W; j++)
+				smOut[i][j] = smOut5[i][j];
 }
