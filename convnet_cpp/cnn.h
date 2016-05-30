@@ -29,7 +29,7 @@ typedef float DTYPE_T;
 #define F2_C P1_C
 #define F2_N 16
 #define F2_S 1
-#define F2_Z 2
+#define F2_Z 0
 #define F2_G 2
 #define O2_H (((P1_H-F2_H+(2*F2_Z))/F2_S)+1)
 #define O2_W (((P1_W-F2_W+(2*F2_Z))/F2_S)+1)
@@ -49,7 +49,7 @@ typedef float DTYPE_T;
 #define F3_C P2_C
 #define F3_N 120
 #define F3_S 1
-#define F3_Z 1
+#define F3_Z 0
 #define F3_G 1
 #define O3_H (((P2_H-F3_H+(2*F3_Z))/F3_S)+1)
 #define O3_W (((P2_W-F3_W+(2*F3_Z))/F3_S)+1)
@@ -134,7 +134,7 @@ void inference(
 		const DTYPE_T fcBias[FC_B_H][FC_B_W],
 		const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
 		const DTYPE_T smBias[SM_B_H][SM_B_W],
-		DTYPE_T smOut[SM_OUT_H][SM_OUT_W]
+		int& outDigit
 );
 
 

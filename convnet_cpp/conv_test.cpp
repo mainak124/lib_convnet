@@ -8,9 +8,9 @@
 
 int main() {
 
-DTYPE_T x_in[IN_H][IN_W][IN_C];
+DTYPE_T x[IN_H][IN_W][IN_C];
 DTYPE_T poolOut[P3_H][P3_W][P3_C];
-DTYPE_T smOut[SM_OUT_H][SM_OUT_W];
+int smOut;
 
 //DTYPE_T f1[F1_H][F1_W][F1_C][F1_N];
 //DTYPE_T b1[O1_H][O1_W][O1_C];
@@ -41,15 +41,15 @@ DTYPE_T fcOut4[FC_OUT_H][FC_OUT_W];
 
 //DTYPE_T W5[SM_WT_H][SM_WT_W];
 //DTYPE_T B5[SM_B_H][SM_B_W];
-DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
+int smOut5;
 
-//    float init_cnt = 0;
+    float init_cnt = 0;
 
     // Load values
-//	for (int i = 0; i< IN_H; i++)
-//		for (int j = 0; j< IN_W; j++)
-//			for (int k = 0; k< IN_C; k++)
-//				x_in[i][j][k] = init_cnt+0.01;
+	for (int i = 0; i< IN_H; i++)
+		for (int j = 0; j< IN_W; j++)
+			for (int k = 0; k< IN_C; k++)
+				x[i][j][k] = x_in[0][i][j][k];
 //    init_cnt = 2;
 //	for (int i = 0; i< F1_H; i++)
 //		for (int j = 0; j< F1_W; j++)
@@ -98,9 +98,9 @@ DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
 //		for (int j = 0; j< SM_B_W; j++)
 //				B5[i][j] = 0;
 
-	inference(x_in,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
+	inference(x,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
       
-	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x_in, f1, b1, convOutput1, F1_S, F1_Z);
+	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x, f1, b1, convOutput1, F1_S, F1_Z);
 	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);
 
 	conv2d<P1_H,P1_W,P1_C,F2_H,F2_W,O2_H,O2_W,O2_C,F2_N>(poolOut1, f2, b2, convOutput2, F2_S, F2_Z);
@@ -116,9 +116,9 @@ DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
     fc<FC_IN_H, FC_IN_W, FC_WT_H, FC_WT_W, FC_B_H, FC_B_W, FC_OUT_H, FC_OUT_W>(fcIn,W4,B4,fcOut4);
     sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,smOut5);
 
-	for (int i = 0; i< SM_OUT_H; i++)
-		for (int j = 0; j< SM_OUT_W; j++)
-			if(smOut[i][j] != smOut5[i][j]){printf("O/P differs at %d,%d\n",i,j);}
+//	for (int i = 0; i< SM_OUT_H; i++)
+//		for (int j = 0; j< SM_OUT_W; j++)
+			/*if(smOut != smOut5)*/{printf("O/P: %d HW, %d SW\n",smOut,smOut5);}
 
 //	for (int i = 0; i< P2_H; i++){
 //		for (int j = 0; j< P2_W; j++){

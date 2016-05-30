@@ -42,7 +42,7 @@ void sigmoid(const DTYPE_T A[sizeAH][sizeAW], DTYPE_T B[sizeAH][sizeAW]){
 
 	for(int i=0;i<sizeAH;i++)
 		sigmoid_label8:for(int j=0;j<sizeAW;j++)
-			B[i][j]=1.0/(1.0+expf(-1.0*A[i][j]));
+			B[i][j]=(DTYPE_T)1.0/((DTYPE_T)1.0+expf(-1.0*A[i][j]));
 }
 
 template<int sizeAH,int sizeAW>

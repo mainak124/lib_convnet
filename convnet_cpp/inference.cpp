@@ -15,7 +15,7 @@ void inference(
 	const DTYPE_T fcBias[FC_B_H][FC_B_W],
 	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
 	const DTYPE_T smBias[SM_B_H][SM_B_W],
-	DTYPE_T smOut[SM_OUT_H][SM_OUT_W]
+	int& outDigit
 	){
 //#pragma HLS DATAFLOW
 
@@ -114,9 +114,6 @@ void inference(
 				fcIn[0][i*O3_H+j*O3_W+k] = convOutput3[i][j][k];
 
     fc<FC_IN_H, FC_IN_W, FC_WT_H, FC_WT_W, FC_B_H, FC_B_W, FC_OUT_H, FC_OUT_W>(fcIn,W4,B4,fcOut4);
-    sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,smOut5);
+    sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,outDigit);
 
-	for (int i = 0; i< SM_OUT_H; i++)
-		for (int j = 0; j< SM_OUT_W; j++)
-				smOut[i][j] = smOut5[i][j];
 }
