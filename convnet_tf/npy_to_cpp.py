@@ -29,15 +29,19 @@ file_from_1Darray.form_file_from_1Darray('b3',b3)
 file_from_1Darray.form_file_from_1Darray('B4',B4)
 file_from_1Darray.form_file_from_1Darray('B5',B5)
 
-x_in = np.load('mnist_npy/mnist_data.npy')
+x_in_10k = np.load('mnist_npy/mnist_data.npy')
 y_labels_onehot = np.load('mnist_npy/mnist_labels.npy')
+x_in = np.array([])
 y_labels = np.array([])
+x_in = x_in_10k[:10]
 
-for i in range(len(y_labels_onehot)):
+for i in range(10):
 	for j in range(10):
 		if (y_labels_onehot[i][j] == 1):
 			y_labels = np.append(y_labels, j)
 
+print np.shape(x_in_10k)
+print np.shape(x_in)
 # for i in range(10):
 # 	print y_labels[i]
 
