@@ -98,20 +98,22 @@ DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
 //		for (int j = 0; j< SM_B_W; j++)
 //				B5[i][j] = 0;
 
-	inference(x_in,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
-      
+//	inference(x_in,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
+ 
+	inference(x_in,f1,b1,f2,b2,W4,B4,W5,B5,smOut);
+     
 	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x_in, f1, b1, convOutput1, F1_S, F1_Z);
 	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);
 
 	conv2d<P1_H,P1_W,P1_C,F2_H,F2_W,O2_H,O2_W,O2_C,F2_N>(poolOut1, f2, b2, convOutput2, F2_S, F2_Z);
 	maxPoolNxN<O2_H,O2_W,O2_C,P2_H,P2_W,P2_C,P2_F,P2_S>(convOutput2,poolOut2);
 
-	conv2d<P2_H,P2_W,P2_C,F3_H,F3_W,O3_H,O3_W,O3_C,F3_N>(poolOut2, f3, b3, convOutput3, F3_S, F3_Z);
+//	conv2d<P2_H,P2_W,P2_C,F3_H,F3_W,O3_H,O3_W,O3_C,F3_N>(poolOut2, f3, b3, convOutput3, F3_S, F3_Z);
 
-	for(int i=0; i<O3_H; i++)
-		for(int j=0; j<O3_W; j++)
-			for(int k=0; k<O3_C; k++)
-				fcIn[0][i*O3_H+j*O3_W+k] = convOutput3[i][j][k];
+	for(int i=0; i<O2_H; i++)
+		for(int j=0; j<O2_W; j++)
+			for(int k=0; k<O2_C; k++)
+				fcIn[0][i*O2_H+j*O2_W+k] = convOutput2[i][j][k];
 
     fc<FC_IN_H, FC_IN_W, FC_WT_H, FC_WT_W, FC_B_H, FC_B_W, FC_OUT_H, FC_OUT_W>(fcIn,W4,B4,fcOut4);
     sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,smOut5);

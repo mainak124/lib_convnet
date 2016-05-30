@@ -1,13 +1,13 @@
 typedef float DTYPE_T;
 
-#define IN_H 28
-#define IN_W 28
-#define IN_C 1
+#define IN_H 32
+#define IN_W 32
+#define IN_C 3
 
 #define F1_H 5
 #define F1_W 5
-#define F1_C 1
-#define F1_N 6
+#define F1_C 3
+#define F1_N 64
 #define F1_S 1
 #define F1_Z 2
 #define F1_G 1
@@ -15,10 +15,10 @@ typedef float DTYPE_T;
 #define O1_W (((IN_W-F1_W+(2*F1_Z))/F1_S)+1)
 #define O1_C F1_N
 #define L1_K 1
-#define L1_N 5
+#define L1_N 4
 #define L1_A 0.0001
 #define L1_B 0.75
-#define P1_F 2
+#define P1_F 3
 #define P1_S 2
 #define P1_H ((O1_H-P1_F)/P1_S)+1
 #define P1_W ((O1_W-P1_F)/P1_S)+1
@@ -27,7 +27,7 @@ typedef float DTYPE_T;
 #define F2_H 5
 #define F2_W 5
 #define F2_C P1_C
-#define F2_N 16
+#define F2_N 64
 #define F2_S 1
 #define F2_Z 2
 #define F2_G 2
@@ -35,47 +35,56 @@ typedef float DTYPE_T;
 #define O2_W (((P1_W-F2_W+(2*F2_Z))/F2_S)+1)
 #define O2_C F2_N
 #define L2_K 1
-#define L2_N 5
+#define L2_N 4
 #define L2_A 0.0001
 #define L2_B 0.75
-#define P2_F 2
+#define P2_F 3
 #define P2_S 2
 #define P2_H ((O2_H-P2_F)/P2_S)+1
 #define P2_W ((O2_W-P2_F)/P2_S)+1
 #define P2_C O2_C
 
-#define F3_H 5
-#define F3_W 5
-#define F3_C P2_C
-#define F3_N 120
-#define F3_S 1
-#define F3_Z 1
-#define F3_G 1
-#define O3_H (((P2_H-F3_H+(2*F3_Z))/F3_S)+1)
-#define O3_W (((P2_W-F3_W+(2*F3_Z))/F3_S)+1)
-#define O3_C F3_N
-#define L3_K 1
-#define L3_N 5
-#define L3_A 0.0001
-#define L3_B 0.75
-#define P3_F 1
-#define P3_S 1
-#define P3_H ((O3_H-P3_F)/P3_S)+1
-#define P3_W ((O3_W-P3_F)/P3_S)+1
-#define P3_C O3_C
+// #define F3_H 5
+// #define F3_W 5
+// #define F3_C P2_C
+// #define F3_N 120
+// #define F3_S 1
+// #define F3_Z 1
+// #define F3_G 1
+// #define O3_H (((P2_H-F3_H+(2*F3_Z))/F3_S)+1)
+// #define O3_W (((P2_W-F3_W+(2*F3_Z))/F3_S)+1)
+// #define O3_C F3_N
+// #define L3_K 1
+// #define L3_N 5
+// #define L3_A 0.0001
+// #define L3_B 0.75
+// #define P3_F 1
+// #define P3_S 1
+// #define P3_H ((O3_H-P3_F)/P3_S)+1
+// #define P3_W ((O3_W-P3_F)/P3_S)+1
+// #define P3_C O3_C
 
 #define FC_IN_H 1
-#define FC_IN_W 120
-#define FC_WT_H 120
-#define FC_WT_W 84
+#define FC_IN_W 4096
+#define FC_WT_H 4096
+#define FC_WT_W 384
 #define FC_B_H  1
-#define FC_B_W  84
+#define FC_B_W  384
 #define FC_OUT_H 1
-#define FC_OUT_W 84
+#define FC_OUT_W 384
+
+#define FC1_IN_H 1
+#define FC1_IN_W 384
+#define FC1_WT_H 384
+#define FC1_WT_W 192
+#define FC1_B_H 1
+#define FC1_B_W 192
+#define FC1_OUT_H 1
+#define FC1_OUT_W 192
 
 #define SM_IN_H 1
-#define SM_IN_W 84
-#define SM_WT_H 84
+#define SM_IN_W 192
+#define SM_WT_H 192
 #define SM_WT_W 10
 #define SM_B_H  1
 #define SM_B_W  10
@@ -128,8 +137,8 @@ void inference(
 		const DTYPE_T bias1[O1_C],
 		const DTYPE_T Filter2[F2_H][F2_W][F2_C][F2_N],
 		const DTYPE_T bias2[O2_C],
-		const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
-		const DTYPE_T bias3[O3_C],
+//		const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
+//		const DTYPE_T bias3[O3_C],
 		const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
 		const DTYPE_T fcBias[FC_B_H][FC_B_W],
 		const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
