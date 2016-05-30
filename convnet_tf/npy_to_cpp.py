@@ -30,6 +30,16 @@ file_from_1Darray.form_file_from_1Darray('B4',B4)
 file_from_1Darray.form_file_from_1Darray('B5',B5)
 
 x_in = np.load('mnist_npy/mnist_data.npy')
-y_labels = np.load('mnist_npy/mnist_labels.npy')
+y_labels_onehot = np.load('mnist_npy/mnist_labels.npy')
+y_labels = np.array([])
+
+for i in range(len(y_labels_onehot)):
+	for j in range(10):
+		if (y_labels_onehot[i][j] == 1):
+			y_labels = np.append(y_labels, j)
+
+# for i in range(10):
+# 	print y_labels[i]
+
 file_from_4Darray.form_file_from_4Darray('x_in',x_in)
-file_from_2Darray.form_file_from_2Darray('y_labels',y_labels)
+file_from_1Darray.form_file_from_1Darray('y_labels',y_labels)
