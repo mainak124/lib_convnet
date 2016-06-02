@@ -118,7 +118,7 @@ int smOut5;
 
 //	for (int i = 0; i< SM_OUT_H; i++)
 //		for (int j = 0; j< SM_OUT_W; j++)
-			/*if(smOut != smOut5)*/{printf("O/P: %d HW, %d SW\n",smOut,smOut5);}
+			/*if(smOut != smOut5)*/{printf("O/P: %d TRUE %d HW, %d SW\n",(int)y_labels[0],smOut,smOut5);}
 
 //	for (int i = 0; i< P2_H; i++){
 //		for (int j = 0; j< P2_W; j++){

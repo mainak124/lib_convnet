@@ -21,11 +21,12 @@ void conv2d(DTYPE_T x[n_row_in][n_col_in][n_in], DTYPE_T W[n_row_filter][n_col_f
 	DTYPE_T in_val, out;
 	int slide_in_r_idx, slide_in_c_idx, out_r_idx, out_c_idx;
 
+	for (int filter_idx=0; filter_idx<n_filter; filter_idx++) {
 	// Traversing through spatial dimensions of the input
 	for (int in_r_idx=0; in_r_idx<n_row_in-n_row_filter+2*zero_pad+1; in_r_idx+=stride) {
 		conv2d_label0:for (int in_c_idx=0; in_c_idx<n_col_in-n_col_filter+2*zero_pad+1; in_c_idx+=stride) {
 			// Traversing through all output filters
-			for (int filter_idx=0; filter_idx<n_filter; filter_idx++) {
+
 				out = 0;
 				// Traversing through all input channels
 				for (int in_ch_idx=0; in_ch_idx<n_in; in_ch_idx++) {

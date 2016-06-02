@@ -5,6 +5,7 @@
 //}
 
 DTYPE_T relu(DTYPE_T x) {
+#pragma HLS INLINE
     if (x>0)
         return x;
     else
