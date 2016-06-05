@@ -1,0 +1,11 @@
+@I [HLS-10] Running 'C:/Xilinx/Vivado_HLS/2015.4/bin/unwrapped/win64.o/vivado_hls.exe'
+            for user 'sakthi' on host 'sakthi' (Windows NT_amd64 version 6.2) on Thu Jun 02 16:40:03 -0700 2016
+            in directory 'C:/Users/Vikasini/Desktop/EmbeddedImageProccessing/RIFFA_BUILDER/user/HLS/hls_loopback'
+@I [HLS-10] Opening project 'C:/Users/Vikasini/Desktop/EmbeddedImageProccessing/RIFFA_BUILDER/user/HLS/hls_loopback/hls_loopback'.
+@I [HLS-10] Opening solution 'C:/Users/Vikasini/Desktop/EmbeddedImageProccessing/RIFFA_BUILDER/user/HLS/hls_loopback/hls_loopback/solution1'.
+@I [SYN-201] Setting up clock 'default' with a period of 10ns.
+@I [HLS-10] Setting target device to 'xc7vx690tffg1761-2'
+   Compiling ../../../Loopback_test.cpp in debug mode
+   Compiling ../../../Loopback.cpp in debug mode
+   Generating csim.exe
+@I [SIM-1] CSim done with 0 errors.

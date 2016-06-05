@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="Loopback.cpp" path="C:\Users\Vikasini\Desktop\EmbeddedImageProccessing\RIFFA_BUILDER\user\HLS\hls_loopback\hls_loopback\Loopback.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="Loopback_test.cpp" path="C:\Users\Vikasini\Desktop\EmbeddedImageProccessing\RIFFA_BUILDER\user\HLS\hls_loopback\hls_loopback\Loopback_test.cpp"/>
+    <originFiles name="Loopback.h" path="C:\Users\Vikasini\Desktop\EmbeddedImageProccessing\RIFFA_BUILDER\user\HLS\hls_loopback\hls_loopback\Loopback.h"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

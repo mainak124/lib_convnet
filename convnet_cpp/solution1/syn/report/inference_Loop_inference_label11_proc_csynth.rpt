@@ -1,0 +1,397 @@
+
+
+================================================================
+== Vivado HLS Report for 'inference_Loop_inference_label11_proc'
+================================================================
+* Date:           Sat Jun 04 19:36:07 2016
+
+* Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
+* Project:        convnet_cpp
+* Solution:       solution1
+* Product family: virtex7
+* Target device:  xc7vx690tffg1761-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      3.28|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  122|  122|  122|  122|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |                     |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      | min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+        |- inference_label11  |  120|  120|         2|          1|          1|   120|    yes   |
+        +---------------------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  |
++-----------------+---------+-------+--------+--------+
+|DSP              |        -|      -|       -|       -|
+|Expression       |        -|      -|       0|      11|
+|FIFO             |        -|      -|       -|       -|
+|Instance         |        -|      -|       0|      32|
+|Memory           |        -|      -|       -|       -|
+|Multiplexer      |        -|      -|       -|      15|
+|Register         |        -|      -|    3863|       -|
++-----------------+---------+-------+--------+--------+
+|Total            |        0|      0|    3863|      58|
++-----------------+---------+-------+--------+--------+
+|Available        |     2940|   3600|  866400|  433200|
++-----------------+---------+-------+--------+--------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0   |
++-----------------+---------+-------+--------+--------+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------+------------------------------+---------+-------+---+----+
+    |              Instance              |            Module            | BRAM_18K| DSP48E| FF| LUT|
+    +------------------------------------+------------------------------+---------+-------+---+----+
+    |inference_mux_4to1_sel2_32_1_U1175  |inference_mux_4to1_sel2_32_1  |        0|      0|  0|  32|
+    +------------------------------------+------------------------------+---------+-------+---+----+
+    |Total                               |                              |        0|      0|  0|  32|
+    +------------------------------------+------------------------------+---------+-------+---+----+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |k_fu_826_p2         |     +    |      0|  0|   7|           7|           1|
+    |exitcond_fu_820_p2  |   icmp   |      0|  0|   3|           7|           5|
+    |ap_sig_bdd_208      |    or    |      0|  0|   1|           1|           1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |Total               |          |      0|  0|  11|          15|           7|
+    +--------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |   1|          4|    1|          4|
+    |k3_phi_fu_812_p4  |   7|          2|    7|         14|
+    |k3_reg_808        |   7|          2|    7|         14|
+    +------------------+----+-----------+-----+-----------+
+    |Total             |  15|          8|   15|         32|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------+----+----+-----+-----------+
+    |          Name         | FF | LUT| Bits| Const Bits|
+    +-----------------------+----+----+-----+-----------+
+    |ap_CS_fsm              |   3|   0|    3|          0|
+    |ap_done_reg            |   1|   0|    1|          0|
+    |ap_reg_ppiten_pp0_it0  |   1|   0|    1|          0|
+    |ap_reg_ppiten_pp0_it1  |   1|   0|    1|          0|
+    |exitcond_reg_3267      |   1|   0|    1|          0|
+    |fcIn_0_119_100_fu_680  |  32|   0|   32|          0|
+    |fcIn_0_119_101_fu_684  |  32|   0|   32|          0|
+    |fcIn_0_119_102_fu_688  |  32|   0|   32|          0|
+    |fcIn_0_119_103_fu_692  |  32|   0|   32|          0|
+    |fcIn_0_119_104_fu_696  |  32|   0|   32|          0|
+    |fcIn_0_119_105_fu_700  |  32|   0|   32|          0|
+    |fcIn_0_119_106_fu_704  |  32|   0|   32|          0|
+    |fcIn_0_119_107_fu_708  |  32|   0|   32|          0|
+    |fcIn_0_119_108_fu_712  |  32|   0|   32|          0|
+    |fcIn_0_119_109_fu_716  |  32|   0|   32|          0|
+    |fcIn_0_119_10_fu_320   |  32|   0|   32|          0|
+    |fcIn_0_119_110_fu_720  |  32|   0|   32|          0|
+    |fcIn_0_119_111_fu_724  |  32|   0|   32|          0|
+    |fcIn_0_119_112_fu_728  |  32|   0|   32|          0|
+    |fcIn_0_119_113_fu_732  |  32|   0|   32|          0|
+    |fcIn_0_119_114_fu_736  |  32|   0|   32|          0|
+    |fcIn_0_119_115_fu_740  |  32|   0|   32|          0|
+    |fcIn_0_119_116_fu_744  |  32|   0|   32|          0|
+    |fcIn_0_119_117_fu_748  |  32|   0|   32|          0|
+    |fcIn_0_119_118_fu_752  |  32|   0|   32|          0|
+    |fcIn_0_119_119_fu_756  |  32|   0|   32|          0|
+    |fcIn_0_119_11_fu_324   |  32|   0|   32|          0|
+    |fcIn_0_119_12_fu_328   |  32|   0|   32|          0|
+    |fcIn_0_119_13_fu_332   |  32|   0|   32|          0|
+    |fcIn_0_119_14_fu_336   |  32|   0|   32|          0|
+    |fcIn_0_119_15_fu_340   |  32|   0|   32|          0|
+    |fcIn_0_119_16_fu_344   |  32|   0|   32|          0|
+    |fcIn_0_119_17_fu_348   |  32|   0|   32|          0|
+    |fcIn_0_119_18_fu_352   |  32|   0|   32|          0|
+    |fcIn_0_119_19_fu_356   |  32|   0|   32|          0|
+    |fcIn_0_119_1_fu_284    |  32|   0|   32|          0|
+    |fcIn_0_119_20_fu_360   |  32|   0|   32|          0|
+    |fcIn_0_119_21_fu_364   |  32|   0|   32|          0|
+    |fcIn_0_119_22_fu_368   |  32|   0|   32|          0|
+    |fcIn_0_119_23_fu_372   |  32|   0|   32|          0|
+    |fcIn_0_119_24_fu_376   |  32|   0|   32|          0|
+    |fcIn_0_119_25_fu_380   |  32|   0|   32|          0|
+    |fcIn_0_119_26_fu_384   |  32|   0|   32|          0|
+    |fcIn_0_119_27_fu_388   |  32|   0|   32|          0|
+    |fcIn_0_119_28_fu_392   |  32|   0|   32|          0|
+    |fcIn_0_119_29_fu_396   |  32|   0|   32|          0|
+    |fcIn_0_119_2_fu_288    |  32|   0|   32|          0|
+    |fcIn_0_119_30_fu_400   |  32|   0|   32|          0|
+    |fcIn_0_119_31_fu_404   |  32|   0|   32|          0|
+    |fcIn_0_119_32_fu_408   |  32|   0|   32|          0|
+    |fcIn_0_119_33_fu_412   |  32|   0|   32|          0|
+    |fcIn_0_119_34_fu_416   |  32|   0|   32|          0|
+    |fcIn_0_119_35_fu_420   |  32|   0|   32|          0|
+    |fcIn_0_119_36_fu_424   |  32|   0|   32|          0|
+    |fcIn_0_119_37_fu_428   |  32|   0|   32|          0|
+    |fcIn_0_119_38_fu_432   |  32|   0|   32|          0|
+    |fcIn_0_119_39_fu_436   |  32|   0|   32|          0|
+    |fcIn_0_119_3_fu_292    |  32|   0|   32|          0|
+    |fcIn_0_119_40_fu_440   |  32|   0|   32|          0|
+    |fcIn_0_119_41_fu_444   |  32|   0|   32|          0|
+    |fcIn_0_119_42_fu_448   |  32|   0|   32|          0|
+    |fcIn_0_119_43_fu_452   |  32|   0|   32|          0|
+    |fcIn_0_119_44_fu_456   |  32|   0|   32|          0|
+    |fcIn_0_119_45_fu_460   |  32|   0|   32|          0|
+    |fcIn_0_119_46_fu_464   |  32|   0|   32|          0|
+    |fcIn_0_119_47_fu_468   |  32|   0|   32|          0|
+    |fcIn_0_119_48_fu_472   |  32|   0|   32|          0|
+    |fcIn_0_119_49_fu_476   |  32|   0|   32|          0|
+    |fcIn_0_119_4_fu_296    |  32|   0|   32|          0|
+    |fcIn_0_119_50_fu_480   |  32|   0|   32|          0|
+    |fcIn_0_119_51_fu_484   |  32|   0|   32|          0|
+    |fcIn_0_119_52_fu_488   |  32|   0|   32|          0|
+    |fcIn_0_119_53_fu_492   |  32|   0|   32|          0|
+    |fcIn_0_119_54_fu_496   |  32|   0|   32|          0|
+    |fcIn_0_119_55_fu_500   |  32|   0|   32|          0|
+    |fcIn_0_119_56_fu_504   |  32|   0|   32|          0|
+    |fcIn_0_119_57_fu_508   |  32|   0|   32|          0|
+    |fcIn_0_119_58_fu_512   |  32|   0|   32|          0|
+    |fcIn_0_119_59_fu_516   |  32|   0|   32|          0|
+    |fcIn_0_119_5_fu_300    |  32|   0|   32|          0|
+    |fcIn_0_119_60_fu_520   |  32|   0|   32|          0|
+    |fcIn_0_119_61_fu_524   |  32|   0|   32|          0|
+    |fcIn_0_119_62_fu_528   |  32|   0|   32|          0|
+    |fcIn_0_119_63_fu_532   |  32|   0|   32|          0|
+    |fcIn_0_119_64_fu_536   |  32|   0|   32|          0|
+    |fcIn_0_119_65_fu_540   |  32|   0|   32|          0|
+    |fcIn_0_119_66_fu_544   |  32|   0|   32|          0|
+    |fcIn_0_119_67_fu_548   |  32|   0|   32|          0|
+    |fcIn_0_119_68_fu_552   |  32|   0|   32|          0|
+    |fcIn_0_119_69_fu_556   |  32|   0|   32|          0|
+    |fcIn_0_119_6_fu_304    |  32|   0|   32|          0|
+    |fcIn_0_119_70_fu_560   |  32|   0|   32|          0|
+    |fcIn_0_119_71_fu_564   |  32|   0|   32|          0|
+    |fcIn_0_119_72_fu_568   |  32|   0|   32|          0|
+    |fcIn_0_119_73_fu_572   |  32|   0|   32|          0|
+    |fcIn_0_119_74_fu_576   |  32|   0|   32|          0|
+    |fcIn_0_119_75_fu_580   |  32|   0|   32|          0|
+    |fcIn_0_119_76_fu_584   |  32|   0|   32|          0|
+    |fcIn_0_119_77_fu_588   |  32|   0|   32|          0|
+    |fcIn_0_119_78_fu_592   |  32|   0|   32|          0|
+    |fcIn_0_119_79_fu_596   |  32|   0|   32|          0|
+    |fcIn_0_119_7_fu_308    |  32|   0|   32|          0|
+    |fcIn_0_119_80_fu_600   |  32|   0|   32|          0|
+    |fcIn_0_119_81_fu_604   |  32|   0|   32|          0|
+    |fcIn_0_119_82_fu_608   |  32|   0|   32|          0|
+    |fcIn_0_119_83_fu_612   |  32|   0|   32|          0|
+    |fcIn_0_119_84_fu_616   |  32|   0|   32|          0|
+    |fcIn_0_119_85_fu_620   |  32|   0|   32|          0|
+    |fcIn_0_119_86_fu_624   |  32|   0|   32|          0|
+    |fcIn_0_119_87_fu_628   |  32|   0|   32|          0|
+    |fcIn_0_119_88_fu_632   |  32|   0|   32|          0|
+    |fcIn_0_119_89_fu_636   |  32|   0|   32|          0|
+    |fcIn_0_119_8_fu_312    |  32|   0|   32|          0|
+    |fcIn_0_119_90_fu_640   |  32|   0|   32|          0|
+    |fcIn_0_119_91_fu_644   |  32|   0|   32|          0|
+    |fcIn_0_119_92_fu_648   |  32|   0|   32|          0|
+    |fcIn_0_119_93_fu_652   |  32|   0|   32|          0|
+    |fcIn_0_119_94_fu_656   |  32|   0|   32|          0|
+    |fcIn_0_119_95_fu_660   |  32|   0|   32|          0|
+    |fcIn_0_119_96_fu_664   |  32|   0|   32|          0|
+    |fcIn_0_119_97_fu_668   |  32|   0|   32|          0|
+    |fcIn_0_119_98_fu_672   |  32|   0|   32|          0|
+    |fcIn_0_119_99_fu_676   |  32|   0|   32|          0|
+    |fcIn_0_119_9_fu_316    |  32|   0|   32|          0|
+    |fcIn_0_119_fu_280      |  32|   0|   32|          0|
+    |k3_reg_808             |   7|   0|    7|          0|
+    |k_reg_3271             |   7|   0|    7|          0|
+    |tmp_reg_3296           |   2|   0|    2|          0|
+    +-----------------------+----+----+-----+-----------+
+    |Total                  |3863|   0| 3863|          0|
+    +-----------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+---------------------------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |             Source Object             |    C Type    |
++------------------------+-----+-----+------------+---------------------------------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_start                |  in |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_done                 | out |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_continue             |  in |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_ready                | out |    1| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_0             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_1             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_2             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_3             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_4             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_5             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_6             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_7             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_8             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_9             | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_10            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_11            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_12            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_13            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_14            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_15            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_16            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_17            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_18            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_19            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_20            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_21            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_22            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_23            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_24            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_25            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_26            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_27            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_28            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_29            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_30            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_31            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_32            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_33            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_34            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_35            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_36            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_37            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_38            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_39            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_40            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_41            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_42            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_43            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_44            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_45            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_46            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_47            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_48            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_49            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_50            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_51            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_52            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_53            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_54            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_55            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_56            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_57            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_58            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_59            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_60            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_61            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_62            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_63            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_64            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_65            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_66            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_67            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_68            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_69            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_70            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_71            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_72            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_73            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_74            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_75            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_76            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_77            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_78            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_79            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_80            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_81            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_82            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_83            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_84            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_85            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_86            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_87            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_88            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_89            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_90            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_91            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_92            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_93            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_94            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_95            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_96            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_97            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_98            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_99            | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_100           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_101           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_102           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_103           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_104           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_105           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_106           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_107           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_108           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_109           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_110           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_111           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_112           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_113           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_114           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_115           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_116           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_117           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_118           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|ap_return_119           | out |   32| ap_ctrl_hs | inference_Loop_inference_label11_proc | return value |
+|convOutput3_0_address0  | out |    5|  ap_memory |             convOutput3_0             |     array    |
+|convOutput3_0_ce0       | out |    1|  ap_memory |             convOutput3_0             |     array    |
+|convOutput3_0_q0        |  in |   32|  ap_memory |             convOutput3_0             |     array    |
+|convOutput3_1_address0  | out |    5|  ap_memory |             convOutput3_1             |     array    |
+|convOutput3_1_ce0       | out |    1|  ap_memory |             convOutput3_1             |     array    |
+|convOutput3_1_q0        |  in |   32|  ap_memory |             convOutput3_1             |     array    |
+|convOutput3_2_address0  | out |    5|  ap_memory |             convOutput3_2             |     array    |
+|convOutput3_2_ce0       | out |    1|  ap_memory |             convOutput3_2             |     array    |
+|convOutput3_2_q0        |  in |   32|  ap_memory |             convOutput3_2             |     array    |
+|convOutput3_3_address0  | out |    5|  ap_memory |             convOutput3_3             |     array    |
+|convOutput3_3_ce0       | out |    1|  ap_memory |             convOutput3_3             |     array    |
+|convOutput3_3_q0        |  in |   32|  ap_memory |             convOutput3_3             |     array    |
++------------------------+-----+-----+------------+---------------------------------------+--------------+
+
