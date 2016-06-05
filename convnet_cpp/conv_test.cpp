@@ -5,6 +5,7 @@
 #include "fc_module.h"
 #include "sm_module.h"
 #include "weights.h"
+#include "tb_params.h"
 
 int main() {
 
@@ -15,21 +16,21 @@ int smOut;
 //DTYPE_T f1[F1_H][F1_W][F1_C][F1_N];
 //DTYPE_T b1[O1_H][O1_W][O1_C];
 DTYPE_T convOutput1[O1_H][O1_W][O1_C];
-DTYPE_T lrnOutput1[O1_H][O1_W][O1_C];
+//DTYPE_T lrnOutput1[O1_H][O1_W][O1_C];
 
 DTYPE_T poolOut1[P1_H][P1_W][P1_C];
 
 //DTYPE_T f2[F2_H][F2_W][F2_C][F2_N];
 //DTYPE_T b2[O2_H][O2_W][O2_C];
 DTYPE_T convOutput2[O2_H][O2_W][O2_C];
-DTYPE_T lrnOutput2[O2_H][O2_W][O2_C];
+//DTYPE_T lrnOutput2[O2_H][O2_W][O2_C];
 
 DTYPE_T poolOut2[P2_H][P2_W][P2_C];
 
 //DTYPE_T f3[F3_H][F3_W][F3_C][F3_N];
 //DTYPE_T b3[O3_H][O3_W][O3_C];
 DTYPE_T convOutput3[O3_H][O3_W][O3_C];
-DTYPE_T lrnOutput3[O3_H][O3_W][O3_C];
+//DTYPE_T lrnOutput3[O3_H][O3_W][O3_C];
 
 DTYPE_T poolOut3[P3_H][P3_W][P3_C];
 
@@ -98,7 +99,7 @@ int smOut5;
 //		for (int j = 0; j< SM_B_W; j++)
 //				B5[i][j] = 0;
 
-	inference(x,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
+	inference(x,smOut);
       
 	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x, f1, b1, convOutput1, F1_S, F1_Z);
 	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);

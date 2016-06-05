@@ -29,7 +29,7 @@ set_directive_array_partition -type cyclic -factor 4 -dim 2 "inference" convOutp
 set_directive_array_partition -type cyclic -factor 5 -dim 2 "inference" poolOut1
 set_directive_array_partition -type complete -dim 2 "inference" f2
 set_directive_array_partition -type cyclic -factor 2 -dim 2 "inference" convOutput2
-set_directive_array_partition -type complete -dim 0 "inference" poolOut2
+set_directive_array_partition -type complete -dim 2 "inference" poolOut2
 set_directive_array_partition -type complete -dim 2 "inference" f3
 set_directive_array_partition -type complete -dim 1 "inference" W4
 set_directive_array_partition -type complete -dim 1 "inference" W5
