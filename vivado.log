@@ -9102,3 +9102,6 @@ INFO: [HDL 9-1061] Parsing VHDL file "/home/sakthi/lib_convnet/convnet_cpp/solut
 [Sun Jun  5 17:42:49 2016] Launched synth_1...
 Run output will be captured here: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/synth_1/runme.log
 launch_runs: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 6043.930 ; gain = 36.746 ; free physical = 16123 ; free virtual = 62943
+launch_runs impl_1 -jobs 6
+[Mon Jun  6 02:34:54 2016] Launched impl_1...
+Run output will be captured here: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/impl_1/runme.log

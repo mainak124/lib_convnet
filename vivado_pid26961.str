@@ -2619,3 +2619,47 @@ selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 156, 411); // F:bl (JPanel:J
 selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 156, 411); // F:bl (JPanel:JComponent, cq:JFrame)
 // X:G (cq:JFrame): Synthesis Completed: addNotify
 // [GUI Memory]: 270 MB (+1231kb) [09:08:47]
+// Elapsed time: 525 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, X:G)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// bF:g (cq:JFrame):  Starting Design Runs : addNotify
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Jun  6 02:34:54 2016] Launched impl_1... Run output will be captured here: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/impl_1/runme.log 
+// 'c' command handler elapsed time: 5 seconds
+dismissDialog("Starting Design Runs"); // bF:g (cq:JFrame)
+// [GUI Memory]: 284 MB (+260kb) [09:18:09]
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 414 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 508); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 508); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 239, 507); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 273, 509); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 273, 509); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 273, 509); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 345, 484); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 2:42:49 AM PDT
