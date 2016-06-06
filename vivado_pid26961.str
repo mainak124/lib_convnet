@@ -2663,3 +2663,120 @@ selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:J
 selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
 selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 315, 452); // F:bl (JPanel:JComponent, cq:JFrame)
 // HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 2:42:49 AM PDT
+// Elapsed time: 305 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 344, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 344, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 343, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 342, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 342, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 342, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 342, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 342, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+// Elapsed time: 13 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 341, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 341, 465); // F:bl (JPanel:JComponent, cq:JFrame)
+// Elapsed time: 56 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 159, 471, false, false, false, true, false); // F:bl (JPanel:JComponent, cq:JFrame) - Popup Trigger
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 22, true); // w:Y (v:I, cq:JFrame) - Node
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 141, 435); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 141, 435); // F:bl (JPanel:JComponent, cq:JFrame)
+// Elapsed time: 15 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 188, 423); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 188, 423); // F:bl (JPanel:JComponent, cq:JFrame)
+// Elapsed time: 501 seconds
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor(PAResourceItoN.LogMonitor_MONITOR, 332, 392); // F:bl (JPanel:JComponent, cq:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 3:12:49 AM PDT
+// TclEventType: RUN_COMPLETED
+// X:G (cq:JFrame): Implementation Completed: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 82 MB. Current time: 6/6/16 3:42:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 4:12:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 4:42:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 5:12:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 5:42:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 6:12:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 6:42:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 7:12:49 AM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 80 MB. Current time: 6/6/16 7:42:49 AM PDT
+// Elapsed time: 18860 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_RUN_BITGEN, "Generate Bitstream"); // a:JRadioButton (JPanel:JComponent, X:G)
+// Elapsed time: 12 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, X:G)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+dismissDialog("Implementation Completed"); // X:G (cq:JFrame)
+// bF:g (cq:JFrame):  Generate Bitstream : addNotify
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Mon Jun  6 08:12:04 2016] Launched impl_1... Run output will be captured here: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/impl_1/runme.log 
+dismissDialog("Generate Bitstream"); // bF:g (cq:JFrame)
+// HMemoryUtils.trashcanNow. Engine heap size: 5,180 MB. GUI used memory: 81 MB. Current time: 6/6/16 8:12:49 AM PDT
+// TclEventType: RUN_COMPLETED
+// X:G (cq:JFrame): Bitstream Generation Completed: addNotify
+// Elapsed time: 559 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a:JRadioButton (JPanel:JComponent, X:G)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a:JButton (JPanel:JComponent, X:G)
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Bitstream Generation Completed"); // X:G (cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "DRC Report ; Mon Jun 06 03:17:13 PDT 2016 ; 5924999 ; ", 27, "DRC Report", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
+// Elapsed time: 119 seconds
+selectTreeTableHeader(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Modified", 1); // z:aw (JViewport:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Vivado Implementation Log ; Mon Jun 06 08:21:14 PDT 2016 ; 208791 ; ", 36, "Vivado Implementation Log", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Vivado Implementation Log ; Mon Jun 06 08:21:14 PDT 2016 ; 208791 ; ", 36); // z:aw (JViewport:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Vivado Implementation Log ; Mon Jun 06 08:21:14 PDT 2016 ; 208791 ; ", 36, "Vivado Implementation Log", 0, false, false, false, false, false, true); // z:aw (JViewport:JComponent, cq:JFrame) - Double Click
+selectCodeEditor("Vivado Implementation Log - impl_1", 180, 178); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectCodeEditor("Vivado Implementation Log - impl_1", 179, 180); // F:bl (JPanel:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization Report ; Mon Jun 06 02:25:56 PDT 2016 ; 8438 ; ", 3, "Utilization Report", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Utilization Report ; Mon Jun 06 02:25:56 PDT 2016 ; 8438 ; ", 3, "Utilization Report", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Incremental Reuse Report ;  ;  ; ", 21, "Incremental Reuse Report", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Timing Summary Report ; Mon Jun 06 03:18:21 PDT 2016 ; 1403062 ; Open", 30, "Timing Summary Report", 0, false); // z:aw (JViewport:JComponent, cq:JFrame)
