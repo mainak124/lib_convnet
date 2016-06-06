@@ -135,13 +135,13 @@ reg    ap_reg_ppiten_pp0_it4 = 1'b0;
 reg    ap_reg_ppiten_pp0_it5 = 1'b0;
 reg    ap_reg_ppiten_pp0_it6 = 1'b0;
 wire   [3:0] j_4_fu_185_p2;
-wire   [1:0] tmp_751_fu_196_p1;
-reg   [1:0] tmp_751_reg_270;
-reg   [1:0] ap_reg_ppstg_tmp_751_reg_270_pp0_it1;
-reg   [1:0] ap_reg_ppstg_tmp_751_reg_270_pp0_it2;
-reg   [1:0] ap_reg_ppstg_tmp_751_reg_270_pp0_it3;
-reg   [1:0] ap_reg_ppstg_tmp_751_reg_270_pp0_it4;
-reg   [1:0] ap_reg_ppstg_tmp_751_reg_270_pp0_it5;
+wire   [1:0] tmp_806_fu_196_p1;
+reg   [1:0] tmp_806_reg_270;
+reg   [1:0] ap_reg_ppstg_tmp_806_reg_270_pp0_it1;
+reg   [1:0] ap_reg_ppstg_tmp_806_reg_270_pp0_it2;
+reg   [1:0] ap_reg_ppstg_tmp_806_reg_270_pp0_it3;
+reg   [1:0] ap_reg_ppstg_tmp_806_reg_270_pp0_it4;
+reg   [1:0] ap_reg_ppstg_tmp_806_reg_270_pp0_it5;
 reg   [1:0] C_0_0_addr_reg_302;
 reg   [1:0] ap_reg_ppstg_C_0_0_addr_reg_302_pp0_it1;
 reg   [1:0] ap_reg_ppstg_C_0_0_addr_reg_302_pp0_it2;
@@ -290,7 +290,7 @@ always @ (posedge ap_clk) begin
         ap_reg_ppstg_C_1_0_addr_reg_307_pp0_it1 <= C_1_0_addr_reg_307;
         ap_reg_ppstg_C_2_0_addr_reg_312_pp0_it1 <= C_2_0_addr_reg_312;
         ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it1 <= C_3_0_addr_reg_317;
-        ap_reg_ppstg_tmp_751_reg_270_pp0_it1 <= tmp_751_reg_270;
+        ap_reg_ppstg_tmp_806_reg_270_pp0_it1 <= tmp_806_reg_270;
     end
 end
 
@@ -300,7 +300,7 @@ always @ (posedge ap_clk) begin
         C_1_0_addr_reg_307 <= newIndex7_fu_210_p1;
         C_2_0_addr_reg_312 <= newIndex7_fu_210_p1;
         C_3_0_addr_reg_317 <= newIndex7_fu_210_p1;
-        tmp_751_reg_270 <= tmp_751_fu_196_p1;
+        tmp_806_reg_270 <= tmp_806_fu_196_p1;
     end
 end
 
@@ -322,10 +322,10 @@ always @ (posedge ap_clk) begin
         ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it3 <= ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it2;
         ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it4 <= ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it3;
         ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it5 <= ap_reg_ppstg_C_3_0_addr_reg_317_pp0_it4;
-        ap_reg_ppstg_tmp_751_reg_270_pp0_it2 <= ap_reg_ppstg_tmp_751_reg_270_pp0_it1;
-        ap_reg_ppstg_tmp_751_reg_270_pp0_it3 <= ap_reg_ppstg_tmp_751_reg_270_pp0_it2;
-        ap_reg_ppstg_tmp_751_reg_270_pp0_it4 <= ap_reg_ppstg_tmp_751_reg_270_pp0_it3;
-        ap_reg_ppstg_tmp_751_reg_270_pp0_it5 <= ap_reg_ppstg_tmp_751_reg_270_pp0_it4;
+        ap_reg_ppstg_tmp_806_reg_270_pp0_it2 <= ap_reg_ppstg_tmp_806_reg_270_pp0_it1;
+        ap_reg_ppstg_tmp_806_reg_270_pp0_it3 <= ap_reg_ppstg_tmp_806_reg_270_pp0_it2;
+        ap_reg_ppstg_tmp_806_reg_270_pp0_it4 <= ap_reg_ppstg_tmp_806_reg_270_pp0_it3;
+        ap_reg_ppstg_tmp_806_reg_270_pp0_it5 <= ap_reg_ppstg_tmp_806_reg_270_pp0_it4;
         tmp_19_reg_332 <= grp_fu_175_p2;
     end
 end
@@ -378,8 +378,8 @@ always @ (ap_reg_ppiten_pp0_it6) begin
     end
 end
 
-always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_751_reg_270_pp0_it5) begin
-    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_0))) begin
+always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_806_reg_270_pp0_it5) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_0))) begin
         C_0_0_we0 = ap_const_logic_1;
     end else begin
         C_0_0_we0 = ap_const_logic_0;
@@ -394,8 +394,8 @@ always @ (ap_reg_ppiten_pp0_it6) begin
     end
 end
 
-always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_751_reg_270_pp0_it5) begin
-    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_1))) begin
+always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_806_reg_270_pp0_it5) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_1))) begin
         C_1_0_we0 = ap_const_logic_1;
     end else begin
         C_1_0_we0 = ap_const_logic_0;
@@ -410,8 +410,8 @@ always @ (ap_reg_ppiten_pp0_it6) begin
     end
 end
 
-always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_751_reg_270_pp0_it5) begin
-    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_2))) begin
+always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_806_reg_270_pp0_it5) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & (ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_2))) begin
         C_2_0_we0 = ap_const_logic_1;
     end else begin
         C_2_0_we0 = ap_const_logic_0;
@@ -426,8 +426,8 @@ always @ (ap_reg_ppiten_pp0_it6) begin
     end
 end
 
-always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_751_reg_270_pp0_it5) begin
-    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & ~(ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_2) & ~(ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_1) & ~(ap_reg_ppstg_tmp_751_reg_270_pp0_it5 == ap_const_lv2_0))) begin
+always @ (ap_reg_ppiten_pp0_it6 or ap_reg_ppstg_tmp_806_reg_270_pp0_it5) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it6) & ~(ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_2) & ~(ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_1) & ~(ap_reg_ppstg_tmp_806_reg_270_pp0_it5 == ap_const_lv2_0))) begin
         C_3_0_we0 = ap_const_logic_1;
     end else begin
         C_3_0_we0 = ap_const_logic_0;
@@ -568,15 +568,15 @@ assign newIndex_fu_200_p4 = {{j_reg_164[ap_const_lv32_3 : ap_const_lv32_2]}};
 
 assign sel_tmp1_fu_227_p3 = ((sel_tmp_fu_222_p2[0:0] === 1'b1) ? A_0_0_q0 : A_3_0_q0);
 
-assign sel_tmp2_fu_235_p2 = (tmp_751_reg_270 == ap_const_lv2_1? 1'b1: 1'b0);
+assign sel_tmp2_fu_235_p2 = (tmp_806_reg_270 == ap_const_lv2_1? 1'b1: 1'b0);
 
 assign sel_tmp3_fu_240_p3 = ((sel_tmp2_fu_235_p2[0:0] === 1'b1) ? A_1_0_q0 : sel_tmp1_fu_227_p3);
 
-assign sel_tmp4_fu_248_p2 = (tmp_751_reg_270 == ap_const_lv2_2? 1'b1: 1'b0);
+assign sel_tmp4_fu_248_p2 = (tmp_806_reg_270 == ap_const_lv2_2? 1'b1: 1'b0);
 
-assign sel_tmp_fu_222_p2 = (tmp_751_reg_270 == ap_const_lv2_0? 1'b1: 1'b0);
+assign sel_tmp_fu_222_p2 = (tmp_806_reg_270 == ap_const_lv2_0? 1'b1: 1'b0);
 
-assign tmp_751_fu_196_p1 = j_reg_164[1:0];
+assign tmp_806_fu_196_p1 = j_reg_164[1:0];
 
 assign tmp_s_fu_191_p1 = j_reg_164;
 

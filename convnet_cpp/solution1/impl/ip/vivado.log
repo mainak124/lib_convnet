@@ -2,8 +2,8 @@
 # Vivado v2015.4 (64-bit)
 # SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Mon Jun  6 01:28:33 2016
-# Process ID: 3500
+# Start of session at: Mon Jun  6 01:55:33 2016
+# Process ID: 4021
 # Current directory: /home/sakthi/lenet_multi_input/lib_convnet/convnet_cpp/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /home/sakthi/lenet_multi_input/lib_convnet/convnet_cpp/solution1/impl/ip/vivado.log
@@ -29,9 +29,8 @@ INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fmul
     ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 
 source /home/sakthi/lenet_multi_input/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Mon Jun  6 01:28:44 2016...
+INFO: [Common 17-206] Exiting Webtalk at Mon Jun  6 01:55:46 2016...
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
-ipx::archive_core: Time (s): cpu = 00:00:00.47 ; elapsed = 00:00:21 . Memory (MB): peak = 1056.805 ; gain = 0.004 ; free physical = 234 ; free virtual = 36479
-INFO: [Common 17-206] Exiting Vivado at Mon Jun  6 01:29:26 2016...
+INFO: [Common 17-206] Exiting Vivado at Mon Jun  6 01:55:54 2016...

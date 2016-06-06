@@ -49,19 +49,19 @@ architecture behav of inference_Loop_inference_label4_proc is
     attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_sig_cseq_ST_st1_fsm_0 : STD_LOGIC;
     signal ap_sig_bdd_22 : BOOLEAN;
-    signal k9_reg_57 : STD_LOGIC_VECTOR (4 downto 0);
-    signal exitcond_fu_68_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal exitcond_reg_85 : STD_LOGIC_VECTOR (0 downto 0);
+    signal k9_reg_63 : STD_LOGIC_VECTOR (4 downto 0);
+    signal exitcond_fu_74_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal exitcond_reg_91 : STD_LOGIC_VECTOR (0 downto 0);
     signal ap_sig_cseq_ST_pp0_stg0_fsm_1 : STD_LOGIC;
-    signal ap_sig_bdd_51 : BOOLEAN;
+    signal ap_sig_bdd_50 : BOOLEAN;
     signal ap_reg_ppiten_pp0_it0 : STD_LOGIC := '0';
     signal ap_reg_ppiten_pp0_it1 : STD_LOGIC := '0';
-    signal k_fu_74_p2 : STD_LOGIC_VECTOR (4 downto 0);
-    signal tmp_4_fu_80_p1 : STD_LOGIC_VECTOR (63 downto 0);
-    signal tmp_4_reg_94 : STD_LOGIC_VECTOR (63 downto 0);
-    signal ap_sig_bdd_70 : BOOLEAN;
+    signal k_fu_80_p2 : STD_LOGIC_VECTOR (4 downto 0);
+    signal tmp_4_fu_86_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal tmp_4_reg_100 : STD_LOGIC_VECTOR (63 downto 0);
+    signal ap_sig_bdd_69 : BOOLEAN;
     signal ap_sig_cseq_ST_st4_fsm_2 : STD_LOGIC;
-    signal ap_sig_bdd_99 : BOOLEAN;
+    signal ap_sig_bdd_98 : BOOLEAN;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
 
 
@@ -107,9 +107,9 @@ begin
             if (ap_rst = '1') then
                 ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
             else
-                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and not((exitcond_fu_68_p2 = ap_const_lv1_0)))) then 
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and not((exitcond_fu_74_p2 = ap_const_lv1_0)))) then 
                     ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
-                elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_70))) then 
+                elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_69))) then 
                     ap_reg_ppiten_pp0_it0 <= ap_const_logic_1;
                 end if; 
             end if;
@@ -124,9 +124,9 @@ begin
             if (ap_rst = '1') then
                 ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
             else
-                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (exitcond_fu_68_p2 = ap_const_lv1_0))) then 
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (exitcond_fu_74_p2 = ap_const_lv1_0))) then 
                     ap_reg_ppiten_pp0_it1 <= ap_const_logic_1;
-                elsif ((((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_70)) or ((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and not((exitcond_fu_68_p2 = ap_const_lv1_0))))) then 
+                elsif ((((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_69)) or ((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and not((exitcond_fu_74_p2 = ap_const_lv1_0))))) then 
                     ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
                 end if; 
             end if;
@@ -134,14 +134,14 @@ begin
     end process;
 
 
-    -- k9_reg_57 assign process. --
-    k9_reg_57_assign_proc : process (ap_clk)
+    -- k9_reg_63 assign process. --
+    k9_reg_63_assign_proc : process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_70))) then 
-                k9_reg_57 <= ap_const_lv5_0;
-            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_fu_68_p2 = ap_const_lv1_0))) then 
-                k9_reg_57 <= k_fu_74_p2;
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_69))) then 
+                k9_reg_63 <= ap_const_lv5_0;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_fu_74_p2 = ap_const_lv1_0))) then 
+                k9_reg_63 <= k_fu_80_p2;
             end if; 
         end if;
     end process;
@@ -151,7 +151,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if ((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1)) then
-                exitcond_reg_85 <= exitcond_fu_68_p2;
+                exitcond_reg_91 <= exitcond_fu_74_p2;
             end if;
         end if;
     end process;
@@ -160,25 +160,25 @@ begin
     process (ap_clk)
     begin
         if (ap_clk'event and ap_clk = '1') then
-            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (exitcond_fu_68_p2 = ap_const_lv1_0))) then
-                    tmp_4_reg_94(4 downto 0) <= tmp_4_fu_80_p1(4 downto 0);
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (exitcond_fu_74_p2 = ap_const_lv1_0))) then
+                    tmp_4_reg_100(4 downto 0) <= tmp_4_fu_86_p1(4 downto 0);
             end if;
         end if;
     end process;
-    tmp_4_reg_94(63 downto 5) <= "00000000000000000000000000000000000000000000000000000000000";
+    tmp_4_reg_100(63 downto 5) <= "00000000000000000000000000000000000000000000000000000000000";
 
     -- the next state (ap_NS_fsm) of the state machine. --
-    ap_NS_fsm_assign_proc : process (ap_CS_fsm, exitcond_fu_68_p2, ap_reg_ppiten_pp0_it0, ap_sig_bdd_70)
+    ap_NS_fsm_assign_proc : process (ap_CS_fsm, exitcond_fu_74_p2, ap_reg_ppiten_pp0_it0, ap_sig_bdd_69)
     begin
         case ap_CS_fsm is
             when ap_ST_st1_fsm_0 => 
-                if (not(ap_sig_bdd_70)) then
+                if (not(ap_sig_bdd_69)) then
                     ap_NS_fsm <= ap_ST_pp0_stg0_fsm_1;
                 else
                     ap_NS_fsm <= ap_ST_st1_fsm_0;
                 end if;
             when ap_ST_pp0_stg0_fsm_1 => 
-                if (not(((ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and not((exitcond_fu_68_p2 = ap_const_lv1_0))))) then
+                if (not(((ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and not((exitcond_fu_74_p2 = ap_const_lv1_0))))) then
                     ap_NS_fsm <= ap_ST_pp0_stg0_fsm_1;
                 else
                     ap_NS_fsm <= ap_ST_st4_fsm_2;
@@ -230,31 +230,31 @@ begin
     end process;
 
 
-    -- ap_sig_bdd_51 assign process. --
-    ap_sig_bdd_51_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_bdd_50 assign process. --
+    ap_sig_bdd_50_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_bdd_51 <= (ap_const_lv1_1 = ap_CS_fsm(1 downto 1));
+                ap_sig_bdd_50 <= (ap_const_lv1_1 = ap_CS_fsm(1 downto 1));
     end process;
 
 
-    -- ap_sig_bdd_70 assign process. --
-    ap_sig_bdd_70_assign_proc : process(ap_start, ap_done_reg)
+    -- ap_sig_bdd_69 assign process. --
+    ap_sig_bdd_69_assign_proc : process(ap_start, ap_done_reg)
     begin
-                ap_sig_bdd_70 <= ((ap_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
+                ap_sig_bdd_69 <= ((ap_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
     end process;
 
 
-    -- ap_sig_bdd_99 assign process. --
-    ap_sig_bdd_99_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_bdd_98 assign process. --
+    ap_sig_bdd_98_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_bdd_99 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
+                ap_sig_bdd_98 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
     end process;
 
 
     -- ap_sig_cseq_ST_pp0_stg0_fsm_1 assign process. --
-    ap_sig_cseq_ST_pp0_stg0_fsm_1_assign_proc : process(ap_sig_bdd_51)
+    ap_sig_cseq_ST_pp0_stg0_fsm_1_assign_proc : process(ap_sig_bdd_50)
     begin
-        if (ap_sig_bdd_51) then 
+        if (ap_sig_bdd_50) then 
             ap_sig_cseq_ST_pp0_stg0_fsm_1 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_pp0_stg0_fsm_1 <= ap_const_logic_0;
@@ -274,16 +274,16 @@ begin
 
 
     -- ap_sig_cseq_ST_st4_fsm_2 assign process. --
-    ap_sig_cseq_ST_st4_fsm_2_assign_proc : process(ap_sig_bdd_99)
+    ap_sig_cseq_ST_st4_fsm_2_assign_proc : process(ap_sig_bdd_98)
     begin
-        if (ap_sig_bdd_99) then 
+        if (ap_sig_bdd_98) then 
             ap_sig_cseq_ST_st4_fsm_2 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st4_fsm_2 <= ap_const_logic_0;
         end if; 
     end process;
 
-    b2_address0 <= tmp_4_reg_94(4 - 1 downto 0);
+    b2_address0 <= tmp_4_reg_100(4 - 1 downto 0);
 
     -- b2_ce0 assign process. --
     b2_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_1, ap_reg_ppiten_pp0_it1)
@@ -298,16 +298,16 @@ begin
     b2_d0 <= bias2_q0;
 
     -- b2_we0 assign process. --
-    b2_we0_assign_proc : process(exitcond_reg_85, ap_sig_cseq_ST_pp0_stg0_fsm_1, ap_reg_ppiten_pp0_it1)
+    b2_we0_assign_proc : process(exitcond_reg_91, ap_sig_cseq_ST_pp0_stg0_fsm_1, ap_reg_ppiten_pp0_it1)
     begin
-        if ((((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it1) and (exitcond_reg_85 = ap_const_lv1_0)))) then 
+        if ((((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it1) and (exitcond_reg_91 = ap_const_lv1_0)))) then 
             b2_we0 <= ap_const_logic_1;
         else 
             b2_we0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    bias2_address0 <= tmp_4_fu_80_p1(4 - 1 downto 0);
+    bias2_address0 <= tmp_4_fu_86_p1(4 - 1 downto 0);
 
     -- bias2_ce0 assign process. --
     bias2_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_1, ap_reg_ppiten_pp0_it0)
@@ -319,7 +319,7 @@ begin
         end if; 
     end process;
 
-    exitcond_fu_68_p2 <= "1" when (k9_reg_57 = ap_const_lv5_10) else "0";
-    k_fu_74_p2 <= std_logic_vector(unsigned(k9_reg_57) + unsigned(ap_const_lv5_1));
-    tmp_4_fu_80_p1 <= std_logic_vector(resize(unsigned(k9_reg_57),64));
+    exitcond_fu_74_p2 <= "1" when (k9_reg_63 = ap_const_lv5_10) else "0";
+    k_fu_80_p2 <= std_logic_vector(unsigned(k9_reg_63) + unsigned(ap_const_lv5_1));
+    tmp_4_fu_86_p1 <= std_logic_vector(resize(unsigned(k9_reg_63),64));
 end behav;

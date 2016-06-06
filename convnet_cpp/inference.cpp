@@ -30,6 +30,18 @@ void inference(
 // #pragma HLS INTERFACE axis port=smWeight
 // #pragma HLS INTERFACE axis port=smBias
 
+#pragma HLS resource variable=inputImage core=RAM_1P
+#pragma HLS resource variable=Filter1 core=RAM_1P
+#pragma HLS resource variable=bias1 core=RAM_1P
+#pragma HLS resource variable=Filter2 core=RAM_1P
+#pragma HLS resource variable=bias2 core=RAM_1P
+#pragma HLS resource variable=Filter3 core=RAM_1P
+#pragma HLS resource variable=bias3 core=RAM_1P
+#pragma HLS resource variable=fcWeight core=RAM_1P
+#pragma HLS resource variable=fcBias core=RAM_1P
+#pragma HLS resource variable=smWeight core=RAM_1P
+#pragma HLS resource variable=smBias core=RAM_1P
+
 	DTYPE_T x_in[IN_H][IN_W][IN_C];
 	DTYPE_T f1[F1_H][F1_W][F1_C][F1_N];
 	DTYPE_T b1[O1_C];

@@ -64,19 +64,19 @@ reg    ap_done_reg = 1'b0;
 (* fsm_encoding = "none" *) reg   [2:0] ap_CS_fsm = 3'b1;
 reg    ap_sig_cseq_ST_st1_fsm_0;
 reg    ap_sig_bdd_22;
-reg   [3:0] j_reg_57;
-wire   [0:0] exitcond3_fu_68_p2;
-reg   [0:0] exitcond3_reg_85;
+reg   [3:0] j_reg_63;
+wire   [0:0] exitcond3_fu_74_p2;
+reg   [0:0] exitcond3_reg_91;
 reg    ap_sig_cseq_ST_pp0_stg0_fsm_1;
-reg    ap_sig_bdd_51;
+reg    ap_sig_bdd_50;
 reg    ap_reg_ppiten_pp0_it0 = 1'b0;
 reg    ap_reg_ppiten_pp0_it1 = 1'b0;
-wire   [3:0] j_5_fu_74_p2;
-wire   [63:0] tmp_21_fu_80_p1;
-reg   [63:0] tmp_21_reg_94;
-reg    ap_sig_bdd_70;
+wire   [3:0] j_5_fu_80_p2;
+wire   [63:0] tmp_21_fu_86_p1;
+reg   [63:0] tmp_21_reg_100;
+reg    ap_sig_bdd_69;
 reg    ap_sig_cseq_ST_st4_fsm_2;
-reg    ap_sig_bdd_99;
+reg    ap_sig_bdd_98;
 reg   [2:0] ap_NS_fsm;
 
 
@@ -106,9 +106,9 @@ always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it0
     if (ap_rst == 1'b1) begin
         ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
     end else begin
-        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond3_fu_68_p2 == ap_const_lv1_0))) begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond3_fu_74_p2 == ap_const_lv1_0))) begin
             ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
-        end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70)) begin
+        end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_69)) begin
             ap_reg_ppiten_pp0_it0 <= ap_const_logic_1;
         end
     end
@@ -118,31 +118,31 @@ always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it1
     if (ap_rst == 1'b1) begin
         ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
     end else begin
-        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond3_fu_68_p2 == ap_const_lv1_0))) begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond3_fu_74_p2 == ap_const_lv1_0))) begin
             ap_reg_ppiten_pp0_it1 <= ap_const_logic_1;
-        end else if ((((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70) | ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond3_fu_68_p2 == ap_const_lv1_0)))) begin
+        end else if ((((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_69) | ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond3_fu_74_p2 == ap_const_lv1_0)))) begin
             ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70)) begin
-        j_reg_57 <= ap_const_lv4_0;
-    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond3_fu_68_p2 == ap_const_lv1_0))) begin
-        j_reg_57 <= j_5_fu_74_p2;
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_69)) begin
+        j_reg_63 <= ap_const_lv4_0;
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond3_fu_74_p2 == ap_const_lv1_0))) begin
+        j_reg_63 <= j_5_fu_80_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1)) begin
-        exitcond3_reg_85 <= exitcond3_fu_68_p2;
+        exitcond3_reg_91 <= exitcond3_fu_74_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond3_fu_68_p2 == ap_const_lv1_0))) begin
-        tmp_21_reg_94[3 : 0] <= tmp_21_fu_80_p1[3 : 0];
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond3_fu_74_p2 == ap_const_lv1_0))) begin
+        tmp_21_reg_100[3 : 0] <= tmp_21_fu_86_p1[3 : 0];
     end
 end
 
@@ -154,8 +154,8 @@ always @ (ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it1) begin
     end
 end
 
-always @ (exitcond3_reg_85 or ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it1) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1) & (exitcond3_reg_85 == ap_const_lv1_0))) begin
+always @ (exitcond3_reg_91 or ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1) & (exitcond3_reg_91 == ap_const_lv1_0))) begin
         B5_0_we0 = ap_const_logic_1;
     end else begin
         B5_0_we0 = ap_const_logic_0;
@@ -186,8 +186,8 @@ always @ (ap_sig_cseq_ST_st4_fsm_2) begin
     end
 end
 
-always @ (ap_sig_bdd_51) begin
-    if (ap_sig_bdd_51) begin
+always @ (ap_sig_bdd_50) begin
+    if (ap_sig_bdd_50) begin
         ap_sig_cseq_ST_pp0_stg0_fsm_1 = ap_const_logic_1;
     end else begin
         ap_sig_cseq_ST_pp0_stg0_fsm_1 = ap_const_logic_0;
@@ -202,8 +202,8 @@ always @ (ap_sig_bdd_22) begin
     end
 end
 
-always @ (ap_sig_bdd_99) begin
-    if (ap_sig_bdd_99) begin
+always @ (ap_sig_bdd_98) begin
+    if (ap_sig_bdd_98) begin
         ap_sig_cseq_ST_st4_fsm_2 = ap_const_logic_1;
     end else begin
         ap_sig_cseq_ST_st4_fsm_2 = ap_const_logic_0;
@@ -217,11 +217,11 @@ always @ (ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it0) begin
         smBias_ce0 = ap_const_logic_0;
     end
 end
-always @ (ap_CS_fsm or exitcond3_fu_68_p2 or ap_reg_ppiten_pp0_it0 or ap_sig_bdd_70) begin
+always @ (ap_CS_fsm or exitcond3_fu_74_p2 or ap_reg_ppiten_pp0_it0 or ap_sig_bdd_69) begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : 
         begin
-            if (~ap_sig_bdd_70) begin
+            if (~ap_sig_bdd_69) begin
                 ap_NS_fsm = ap_ST_pp0_stg0_fsm_1;
             end else begin
                 ap_NS_fsm = ap_ST_st1_fsm_0;
@@ -229,7 +229,7 @@ always @ (ap_CS_fsm or exitcond3_fu_68_p2 or ap_reg_ppiten_pp0_it0 or ap_sig_bdd
         end
         ap_ST_pp0_stg0_fsm_1 : 
         begin
-            if (~((ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & ~(exitcond3_fu_68_p2 == ap_const_lv1_0))) begin
+            if (~((ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & ~(exitcond3_fu_74_p2 == ap_const_lv1_0))) begin
                 ap_NS_fsm = ap_ST_pp0_stg0_fsm_1;
             end else begin
                 ap_NS_fsm = ap_ST_st4_fsm_2;
@@ -247,7 +247,7 @@ always @ (ap_CS_fsm or exitcond3_fu_68_p2 or ap_reg_ppiten_pp0_it0 or ap_sig_bdd
 end
 
 
-assign B5_0_address0 = tmp_21_reg_94;
+assign B5_0_address0 = tmp_21_reg_100;
 
 assign B5_0_d0 = smBias_q0;
 
@@ -258,28 +258,28 @@ end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_51 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
+    ap_sig_bdd_50 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
 end
 
 
 always @ (ap_start or ap_done_reg) begin
-    ap_sig_bdd_70 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
+    ap_sig_bdd_69 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
 end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_99 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
+    ap_sig_bdd_98 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
 end
 
-assign exitcond3_fu_68_p2 = (j_reg_57 == ap_const_lv4_A? 1'b1: 1'b0);
+assign exitcond3_fu_74_p2 = (j_reg_63 == ap_const_lv4_A? 1'b1: 1'b0);
 
-assign j_5_fu_74_p2 = (j_reg_57 + ap_const_lv4_1);
+assign j_5_fu_80_p2 = (j_reg_63 + ap_const_lv4_1);
 
-assign smBias_address0 = tmp_21_fu_80_p1;
+assign smBias_address0 = tmp_21_fu_86_p1;
 
-assign tmp_21_fu_80_p1 = j_reg_57;
+assign tmp_21_fu_86_p1 = j_reg_63;
 always @ (posedge ap_clk) begin
-    tmp_21_reg_94[63:4] <= 60'b000000000000000000000000000000000000000000000000000000000000;
+    tmp_21_reg_100[63:4] <= 60'b000000000000000000000000000000000000000000000000000000000000;
 end
 
 
