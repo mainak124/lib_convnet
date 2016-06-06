@@ -20,6 +20,6 @@ set_part {xc7vx690tffg1761-2}
 create_clock -period 10 -name default
 source "convnet_cpp/directives.tcl"
 #csim_design -clean
-#csynth_design
+csynth_design
 #cosim_design
 export_design -format ip_catalog

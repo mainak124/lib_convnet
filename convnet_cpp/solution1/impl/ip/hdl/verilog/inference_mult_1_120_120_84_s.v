@@ -1657,7 +1657,7 @@ reg    ap_reg_ppiten_pp0_it481 = 1'b0;
 reg    ap_reg_ppiten_pp0_it482 = 1'b0;
 reg    ap_reg_ppiten_pp0_it483 = 1'b0;
 reg    ap_reg_ppiten_pp0_it484 = 1'b0;
-wire   [6:0] j_3_fu_3720_p2;
+wire   [6:0] j_2_fu_3720_p2;
 wire   [63:0] tmp_s_fu_3726_p1;
 reg   [63:0] tmp_s_reg_4361;
 reg   [63:0] ap_reg_ppstg_tmp_s_reg_4361_pp0_it1;
@@ -11456,7 +11456,7 @@ always @ (posedge ap_clk) begin
     if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~(ap_start == ap_const_logic_0))) begin
         j_reg_2742 <= ap_const_lv7_0;
     end else if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond1_fu_3714_p2 == ap_const_lv1_0))) begin
-        j_reg_2742 <= j_3_fu_3720_p2;
+        j_reg_2742 <= j_2_fu_3720_p2;
     end
 end
 
@@ -15139,7 +15139,7 @@ assign grp_fu_3706_ce = ap_const_logic_1;
 
 assign grp_fu_3710_ce = ap_const_logic_1;
 
-assign j_3_fu_3720_p2 = (j_reg_2742 + ap_const_lv7_1);
+assign j_2_fu_3720_p2 = (j_reg_2742 + ap_const_lv7_1);
 
 assign newIndex3_fu_3745_p1 = ap_reg_ppstg_newIndex_reg_4493_pp0_it483;
 

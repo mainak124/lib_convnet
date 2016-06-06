@@ -15,9 +15,9 @@ module inference_Loop_inference_label6_proc (
         ap_continue,
         ap_idle,
         ap_ready,
-        bias3_TDATA,
-        bias3_TVALID,
-        bias3_TREADY,
+        bias3_address0,
+        bias3_ce0,
+        bias3_q0,
         b3_address0,
         b3_ce0,
         b3_we0,
@@ -27,8 +27,8 @@ module inference_Loop_inference_label6_proc (
 parameter    ap_const_logic_1 = 1'b1;
 parameter    ap_const_logic_0 = 1'b0;
 parameter    ap_ST_st1_fsm_0 = 3'b1;
-parameter    ap_ST_st2_fsm_1 = 3'b10;
-parameter    ap_ST_st3_fsm_2 = 3'b100;
+parameter    ap_ST_pp0_stg0_fsm_1 = 3'b10;
+parameter    ap_ST_st4_fsm_2 = 3'b100;
 parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
 parameter    ap_const_lv1_1 = 1'b1;
 parameter    ap_const_lv32_1 = 32'b1;
@@ -46,9 +46,9 @@ output   ap_done;
 input   ap_continue;
 output   ap_idle;
 output   ap_ready;
-input  [31:0] bias3_TDATA;
-input   bias3_TVALID;
-output   bias3_TREADY;
+output  [6:0] bias3_address0;
+output   bias3_ce0;
+input  [31:0] bias3_q0;
 output  [6:0] b3_address0;
 output   b3_ce0;
 output   b3_we0;
@@ -57,23 +57,26 @@ output  [31:0] b3_d0;
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
-reg bias3_TREADY;
+reg bias3_ce0;
 reg b3_ce0;
 reg b3_we0;
 reg    ap_done_reg = 1'b0;
 (* fsm_encoding = "none" *) reg   [2:0] ap_CS_fsm = 3'b1;
 reg    ap_sig_cseq_ST_st1_fsm_0;
 reg    ap_sig_bdd_22;
-wire   [6:0] k_fu_74_p2;
-reg    ap_sig_cseq_ST_st2_fsm_1;
-reg    ap_sig_bdd_46;
-wire   [0:0] exitcond_fu_68_p2;
-reg    ap_sig_bdd_53;
 reg   [6:0] k6_reg_57;
-reg    ap_sig_bdd_63;
+wire   [0:0] exitcond_fu_68_p2;
+reg   [0:0] exitcond_reg_85;
+reg    ap_sig_cseq_ST_pp0_stg0_fsm_1;
+reg    ap_sig_bdd_51;
+reg    ap_reg_ppiten_pp0_it0 = 1'b0;
+reg    ap_reg_ppiten_pp0_it1 = 1'b0;
+wire   [6:0] k_fu_74_p2;
 wire   [63:0] tmp_8_fu_80_p1;
-reg    ap_sig_cseq_ST_st3_fsm_2;
-reg    ap_sig_bdd_86;
+reg   [63:0] tmp_8_reg_94;
+reg    ap_sig_bdd_70;
+reg    ap_sig_cseq_ST_st4_fsm_2;
+reg    ap_sig_bdd_99;
 reg   [2:0] ap_NS_fsm;
 
 
@@ -93,22 +96,58 @@ always @ (posedge ap_clk) begin : ap_ret_ap_done_reg
     end else begin
         if ((ap_const_logic_1 == ap_continue)) begin
             ap_done_reg <= ap_const_logic_0;
-        end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+        end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_2)) begin
             ap_done_reg <= ap_const_logic_1;
         end
     end
 end
 
+always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it0
+    if (ap_rst == 1'b1) begin
+        ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+    end else begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond_fu_68_p2 == ap_const_lv1_0))) begin
+            ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+        end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70)) begin
+            ap_reg_ppiten_pp0_it0 <= ap_const_logic_1;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it1
+    if (ap_rst == 1'b1) begin
+        ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+    end else begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond_fu_68_p2 == ap_const_lv1_0))) begin
+            ap_reg_ppiten_pp0_it1 <= ap_const_logic_1;
+        end else if ((((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70) | ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & ~(exitcond_fu_68_p2 == ap_const_lv1_0)))) begin
+            ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+        end
+    end
+end
+
 always @ (posedge ap_clk) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_63)) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_70)) begin
         k6_reg_57 <= ap_const_lv7_0;
-    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond_fu_68_p2 == ap_const_lv1_0) & ~ap_sig_bdd_53)) begin
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond_fu_68_p2 == ap_const_lv1_0))) begin
         k6_reg_57 <= k_fu_74_p2;
     end
 end
 
-always @ (ap_done_reg or ap_sig_cseq_ST_st3_fsm_2) begin
-    if (((ap_const_logic_1 == ap_done_reg) | (ap_const_logic_1 == ap_sig_cseq_ST_st3_fsm_2))) begin
+always @ (posedge ap_clk) begin
+    if ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1)) begin
+        exitcond_reg_85 <= exitcond_fu_68_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (exitcond_fu_68_p2 == ap_const_lv1_0))) begin
+        tmp_8_reg_94[6 : 0] <= tmp_8_fu_80_p1[6 : 0];
+    end
+end
+
+always @ (ap_done_reg or ap_sig_cseq_ST_st4_fsm_2) begin
+    if (((ap_const_logic_1 == ap_done_reg) | (ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_2))) begin
         ap_done = ap_const_logic_1;
     end else begin
         ap_done = ap_const_logic_0;
@@ -123,11 +162,19 @@ always @ (ap_start or ap_sig_cseq_ST_st1_fsm_0) begin
     end
 end
 
-always @ (ap_sig_cseq_ST_st3_fsm_2) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st3_fsm_2)) begin
+always @ (ap_sig_cseq_ST_st4_fsm_2) begin
+    if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_2)) begin
         ap_ready = ap_const_logic_1;
     end else begin
         ap_ready = ap_const_logic_0;
+    end
+end
+
+always @ (ap_sig_bdd_51) begin
+    if (ap_sig_bdd_51) begin
+        ap_sig_cseq_ST_pp0_stg0_fsm_1 = ap_const_logic_1;
+    end else begin
+        ap_sig_cseq_ST_pp0_stg0_fsm_1 = ap_const_logic_0;
     end
 end
 
@@ -139,66 +186,56 @@ always @ (ap_sig_bdd_22) begin
     end
 end
 
-always @ (ap_sig_bdd_46) begin
-    if (ap_sig_bdd_46) begin
-        ap_sig_cseq_ST_st2_fsm_1 = ap_const_logic_1;
+always @ (ap_sig_bdd_99) begin
+    if (ap_sig_bdd_99) begin
+        ap_sig_cseq_ST_st4_fsm_2 = ap_const_logic_1;
     end else begin
-        ap_sig_cseq_ST_st2_fsm_1 = ap_const_logic_0;
+        ap_sig_cseq_ST_st4_fsm_2 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_bdd_86) begin
-    if (ap_sig_bdd_86) begin
-        ap_sig_cseq_ST_st3_fsm_2 = ap_const_logic_1;
-    end else begin
-        ap_sig_cseq_ST_st3_fsm_2 = ap_const_logic_0;
-    end
-end
-
-always @ (ap_sig_cseq_ST_st2_fsm_1 or ap_sig_bdd_53) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1) & ~ap_sig_bdd_53)) begin
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1))) begin
         b3_ce0 = ap_const_logic_1;
     end else begin
         b3_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_cseq_ST_st2_fsm_1 or exitcond_fu_68_p2 or ap_sig_bdd_53) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond_fu_68_p2 == ap_const_lv1_0) & ~ap_sig_bdd_53)) begin
+always @ (exitcond_reg_85 or ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1) & (exitcond_reg_85 == ap_const_lv1_0))) begin
         b3_we0 = ap_const_logic_1;
     end else begin
         b3_we0 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_cseq_ST_st2_fsm_1 or exitcond_fu_68_p2 or ap_sig_bdd_53) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1) & (exitcond_fu_68_p2 == ap_const_lv1_0) & ~ap_sig_bdd_53)) begin
-        bias3_TREADY = ap_const_logic_1;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_1 or ap_reg_ppiten_pp0_it0) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_1) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        bias3_ce0 = ap_const_logic_1;
     end else begin
-        bias3_TREADY = ap_const_logic_0;
+        bias3_ce0 = ap_const_logic_0;
     end
 end
-always @ (ap_CS_fsm or exitcond_fu_68_p2 or ap_sig_bdd_53 or ap_sig_bdd_63) begin
+always @ (ap_CS_fsm or exitcond_fu_68_p2 or ap_reg_ppiten_pp0_it0 or ap_sig_bdd_70) begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : 
         begin
-            if (~ap_sig_bdd_63) begin
-                ap_NS_fsm = ap_ST_st2_fsm_1;
+            if (~ap_sig_bdd_70) begin
+                ap_NS_fsm = ap_ST_pp0_stg0_fsm_1;
             end else begin
                 ap_NS_fsm = ap_ST_st1_fsm_0;
             end
         end
-        ap_ST_st2_fsm_1 : 
+        ap_ST_pp0_stg0_fsm_1 : 
         begin
-            if (((exitcond_fu_68_p2 == ap_const_lv1_0) & ~ap_sig_bdd_53)) begin
-                ap_NS_fsm = ap_ST_st2_fsm_1;
-            end else if ((~ap_sig_bdd_53 & ~(exitcond_fu_68_p2 == ap_const_lv1_0))) begin
-                ap_NS_fsm = ap_ST_st3_fsm_2;
+            if (~((ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & ~(exitcond_fu_68_p2 == ap_const_lv1_0))) begin
+                ap_NS_fsm = ap_ST_pp0_stg0_fsm_1;
             end else begin
-                ap_NS_fsm = ap_ST_st2_fsm_1;
+                ap_NS_fsm = ap_ST_st4_fsm_2;
             end
         end
-        ap_ST_st3_fsm_2 : 
+        ap_ST_st4_fsm_2 : 
         begin
             ap_NS_fsm = ap_ST_st1_fsm_0;
         end
@@ -217,33 +254,34 @@ end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_46 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
-end
-
-
-always @ (bias3_TVALID or exitcond_fu_68_p2) begin
-    ap_sig_bdd_53 = ((bias3_TVALID == ap_const_logic_0) & (exitcond_fu_68_p2 == ap_const_lv1_0));
+    ap_sig_bdd_51 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
 end
 
 
 always @ (ap_start or ap_done_reg) begin
-    ap_sig_bdd_63 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
+    ap_sig_bdd_70 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
 end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_86 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
+    ap_sig_bdd_99 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
 end
 
-assign b3_address0 = tmp_8_fu_80_p1;
+assign b3_address0 = tmp_8_reg_94;
 
-assign b3_d0 = bias3_TDATA;
+assign b3_d0 = bias3_q0;
+
+assign bias3_address0 = tmp_8_fu_80_p1;
 
 assign exitcond_fu_68_p2 = (k6_reg_57 == ap_const_lv7_78? 1'b1: 1'b0);
 
 assign k_fu_74_p2 = (k6_reg_57 + ap_const_lv7_1);
 
 assign tmp_8_fu_80_p1 = k6_reg_57;
+always @ (posedge ap_clk) begin
+    tmp_8_reg_94[63:7] <= 57'b000000000000000000000000000000000000000000000000000000000;
+end
+
 
 
 endmodule //inference_Loop_inference_label6_proc

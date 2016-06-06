@@ -294,9 +294,8 @@ module inference_sm (
         B_0_address0,
         B_0_ce0,
         B_0_q0,
-        argmax_TDATA,
-        argmax_TVALID,
-        argmax_TREADY
+        argmax,
+        argmax_ap_vld
 );
 
 parameter    ap_const_logic_1 = 1'b1;
@@ -305,16 +304,29 @@ parameter    ap_ST_st1_fsm_0 = 6'b1;
 parameter    ap_ST_st2_fsm_1 = 6'b10;
 parameter    ap_ST_st3_fsm_2 = 6'b100;
 parameter    ap_ST_st4_fsm_3 = 6'b1000;
-parameter    ap_ST_st5_fsm_4 = 6'b10000;
-parameter    ap_ST_st6_fsm_5 = 6'b100000;
+parameter    ap_ST_pp0_stg0_fsm_4 = 6'b10000;
+parameter    ap_ST_st8_fsm_5 = 6'b100000;
 parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
 parameter    ap_const_lv1_1 = 1'b1;
+parameter    ap_true = 1'b1;
+parameter    ap_const_lv32_4 = 32'b100;
+parameter    ap_const_lv1_0 = 1'b0;
+parameter    ap_const_lv32_3 = 32'b11;
+parameter    ap_const_lv4_0 = 4'b0000;
 parameter    ap_const_lv32_1 = 32'b1;
 parameter    ap_const_lv32_2 = 32'b10;
-parameter    ap_const_lv32_3 = 32'b11;
-parameter    ap_const_lv32_4 = 32'b100;
+parameter    ap_const_lv32_CF000000 = 32'b11001111000000000000000000000000;
+parameter    ap_const_lv4_A = 4'b1010;
+parameter    ap_const_lv4_1 = 4'b1;
+parameter    ap_const_lv2_0 = 2'b00;
+parameter    ap_const_lv2_1 = 2'b1;
+parameter    ap_const_lv2_2 = 2'b10;
+parameter    ap_const_lv32_17 = 32'b10111;
+parameter    ap_const_lv32_1E = 32'b11110;
+parameter    ap_const_lv8_FF = 8'b11111111;
+parameter    ap_const_lv23_0 = 23'b00000000000000000000000;
+parameter    ap_const_lv5_2 = 5'b10;
 parameter    ap_const_lv32_5 = 32'b101;
-parameter    ap_true = 1'b1;
 
 input   ap_clk;
 input   ap_rst;
@@ -602,9 +614,8 @@ input  [31:0] W_83_q0;
 output  [3:0] B_0_address0;
 output   B_0_ce0;
 input  [31:0] B_0_q0;
-output  [31:0] argmax_TDATA;
-output   argmax_TVALID;
-input   argmax_TREADY;
+output  [31:0] argmax;
+output   argmax_ap_vld;
 
 reg ap_done;
 reg ap_idle;
@@ -702,10 +713,37 @@ reg W_81_ce0;
 reg W_82_ce0;
 reg W_83_ce0;
 reg B_0_ce0;
+reg argmax_ap_vld;
 reg    ap_done_reg = 1'b0;
 (* fsm_encoding = "none" *) reg   [5:0] ap_CS_fsm = 6'b1;
 reg    ap_sig_cseq_ST_st1_fsm_0;
 reg    ap_sig_bdd_25;
+reg   [3:0] indvar_flatten_reg_331;
+reg   [0:0] i_i_reg_342;
+reg   [3:0] j_i_reg_353;
+wire   [0:0] exitcond_flatten_fu_575_p2;
+reg   [0:0] exitcond_flatten_reg_785;
+reg    ap_sig_cseq_ST_pp0_stg0_fsm_4;
+reg    ap_sig_bdd_593;
+reg    ap_reg_ppiten_pp0_it0 = 1'b0;
+reg    ap_reg_ppiten_pp0_it1 = 1'b0;
+reg    ap_reg_ppiten_pp0_it2 = 1'b0;
+reg   [0:0] ap_reg_ppstg_exitcond_flatten_reg_785_pp0_it1;
+wire   [3:0] indvar_flatten_next_fu_581_p2;
+wire   [3:0] j_i_mid2_fu_593_p3;
+reg   [3:0] j_i_mid2_reg_794;
+reg   [3:0] ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1;
+wire   [0:0] i_i_mid2_fu_601_p2;
+reg   [0:0] i_i_mid2_reg_799;
+reg   [0:0] ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1;
+wire   [1:0] tmp_1_fu_607_p1;
+reg   [1:0] tmp_1_reg_805;
+wire   [3:0] j_fu_629_p2;
+wire   [31:0] max_val_fu_666_p3;
+reg   [31:0] max_val_reg_837;
+reg    ap_sig_cseq_ST_st4_fsm_3;
+reg    ap_sig_bdd_639;
+wire    grp_inference_add_1_10_s_fu_552_ap_done;
 reg   [1:0] T_0_0_address0;
 reg    T_0_0_ce0;
 reg    T_0_0_we0;
@@ -746,370 +784,373 @@ reg    S_3_0_ce0;
 reg    S_3_0_we0;
 wire   [31:0] S_3_0_d0;
 wire   [31:0] S_3_0_q0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_ap_start;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_ap_done;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_ap_idle;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_ap_ready;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0;
-wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_0_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_0_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_1_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_1_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_1_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_2_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_2_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_2_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_3_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_3_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_3_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_4_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_4_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_4_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_5_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_5_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_5_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_6_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_6_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_6_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_7_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_7_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_7_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_8_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_8_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_8_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_9_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_9_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_9_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_10_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_10_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_10_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_11_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_11_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_11_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_12_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_12_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_12_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_13_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_13_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_13_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_14_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_14_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_14_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_15_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_15_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_15_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_16_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_16_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_16_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_17_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_17_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_17_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_18_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_18_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_18_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_19_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_19_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_19_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_20_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_20_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_20_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_21_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_21_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_21_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_22_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_22_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_22_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_23_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_23_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_23_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_24_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_24_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_24_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_25_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_25_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_25_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_26_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_26_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_26_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_27_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_27_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_27_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_28_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_28_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_28_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_29_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_29_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_29_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_30_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_30_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_30_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_31_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_31_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_31_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_32_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_32_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_32_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_33_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_33_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_33_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_34_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_34_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_34_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_35_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_35_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_35_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_36_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_36_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_36_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_37_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_37_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_37_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_38_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_38_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_38_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_39_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_39_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_39_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_40_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_40_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_40_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_41_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_41_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_41_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_42_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_42_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_42_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_43_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_43_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_43_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_44_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_44_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_44_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_45_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_45_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_45_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_46_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_46_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_46_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_47_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_47_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_47_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_48_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_48_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_48_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_49_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_49_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_49_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_50_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_50_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_50_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_51_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_51_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_51_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_52_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_52_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_52_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_53_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_53_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_53_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_54_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_54_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_54_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_55_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_55_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_55_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_56_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_56_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_56_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_57_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_57_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_57_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_58_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_58_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_58_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_59_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_59_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_59_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_60_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_60_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_60_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_61_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_61_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_61_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_62_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_62_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_62_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_63_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_63_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_63_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_64_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_64_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_64_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_65_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_65_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_65_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_66_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_66_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_66_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_67_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_67_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_67_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_68_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_68_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_68_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_69_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_69_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_69_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_70_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_70_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_70_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_71_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_71_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_71_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_72_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_72_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_72_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_73_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_73_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_73_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_74_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_74_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_74_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_75_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_75_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_75_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_76_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_76_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_76_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_77_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_77_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_77_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_78_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_78_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_78_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_79_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_79_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_79_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_80_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_80_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_80_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_81_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_81_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_81_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_82_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_82_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_82_q0;
-wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_228_B_83_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_B_83_ce0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_B_83_q0;
-wire   [1:0] grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0;
-wire   [1:0] grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0;
-wire   [0:0] grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0;
-wire   [0:0] grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0;
-wire    grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0;
-wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0;
-wire    grp_inference_add_1_10_s_fu_416_ap_start;
-wire    grp_inference_add_1_10_s_fu_416_ap_done;
-wire    grp_inference_add_1_10_s_fu_416_ap_idle;
-wire    grp_inference_add_1_10_s_fu_416_ap_ready;
-wire   [1:0] grp_inference_add_1_10_s_fu_416_A_0_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_A_0_0_ce0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_A_0_0_q0;
-wire   [1:0] grp_inference_add_1_10_s_fu_416_A_1_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_A_1_0_ce0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_A_1_0_q0;
-wire   [0:0] grp_inference_add_1_10_s_fu_416_A_2_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_A_2_0_ce0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_A_2_0_q0;
-wire   [0:0] grp_inference_add_1_10_s_fu_416_A_3_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_A_3_0_ce0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_A_3_0_q0;
-wire   [3:0] grp_inference_add_1_10_s_fu_416_B_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_B_0_ce0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_B_0_q0;
-wire   [1:0] grp_inference_add_1_10_s_fu_416_C_0_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_C_0_0_ce0;
-wire    grp_inference_add_1_10_s_fu_416_C_0_0_we0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_C_0_0_d0;
-wire   [1:0] grp_inference_add_1_10_s_fu_416_C_1_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_C_1_0_ce0;
-wire    grp_inference_add_1_10_s_fu_416_C_1_0_we0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_C_1_0_d0;
-wire   [0:0] grp_inference_add_1_10_s_fu_416_C_2_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_C_2_0_ce0;
-wire    grp_inference_add_1_10_s_fu_416_C_2_0_we0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_C_2_0_d0;
-wire   [0:0] grp_inference_add_1_10_s_fu_416_C_3_0_address0;
-wire    grp_inference_add_1_10_s_fu_416_C_3_0_ce0;
-wire    grp_inference_add_1_10_s_fu_416_C_3_0_we0;
-wire   [31:0] grp_inference_add_1_10_s_fu_416_C_3_0_d0;
-wire    grp_inference_softmax_1_10_s_fu_430_ap_start;
-wire    grp_inference_softmax_1_10_s_fu_430_ap_done;
-wire    grp_inference_softmax_1_10_s_fu_430_ap_idle;
-wire    grp_inference_softmax_1_10_s_fu_430_ap_ready;
-wire   [1:0] grp_inference_softmax_1_10_s_fu_430_A_0_0_address0;
-wire    grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0;
-wire   [31:0] grp_inference_softmax_1_10_s_fu_430_A_0_0_q0;
-wire   [1:0] grp_inference_softmax_1_10_s_fu_430_A_1_0_address0;
-wire    grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0;
-wire   [31:0] grp_inference_softmax_1_10_s_fu_430_A_1_0_q0;
-wire   [0:0] grp_inference_softmax_1_10_s_fu_430_A_2_0_address0;
-wire    grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0;
-wire   [31:0] grp_inference_softmax_1_10_s_fu_430_A_2_0_q0;
-wire   [0:0] grp_inference_softmax_1_10_s_fu_430_A_3_0_address0;
-wire    grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0;
-wire   [31:0] grp_inference_softmax_1_10_s_fu_430_A_3_0_q0;
-wire   [31:0] grp_inference_softmax_1_10_s_fu_430_argmax_TDATA;
-wire    grp_inference_softmax_1_10_s_fu_430_argmax_TVALID;
-wire    grp_inference_softmax_1_10_s_fu_430_argmax_TREADY;
-reg    grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg = 1'b0;
-reg    ap_sig_bdd_1016;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_ap_start;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_ap_done;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_ap_idle;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_ap_ready;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0;
+wire   [4:0] grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_0_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_0_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_1_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_1_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_1_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_2_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_2_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_2_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_3_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_3_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_3_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_4_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_4_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_4_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_5_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_5_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_5_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_6_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_6_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_6_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_7_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_7_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_7_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_8_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_8_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_8_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_9_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_9_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_9_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_10_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_10_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_10_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_11_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_11_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_11_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_12_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_12_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_12_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_13_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_13_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_13_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_14_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_14_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_14_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_15_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_15_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_15_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_16_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_16_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_16_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_17_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_17_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_17_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_18_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_18_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_18_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_19_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_19_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_19_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_20_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_20_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_20_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_21_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_21_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_21_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_22_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_22_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_22_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_23_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_23_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_23_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_24_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_24_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_24_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_25_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_25_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_25_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_26_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_26_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_26_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_27_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_27_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_27_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_28_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_28_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_28_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_29_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_29_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_29_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_30_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_30_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_30_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_31_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_31_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_31_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_32_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_32_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_32_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_33_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_33_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_33_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_34_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_34_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_34_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_35_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_35_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_35_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_36_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_36_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_36_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_37_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_37_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_37_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_38_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_38_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_38_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_39_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_39_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_39_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_40_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_40_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_40_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_41_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_41_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_41_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_42_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_42_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_42_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_43_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_43_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_43_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_44_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_44_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_44_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_45_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_45_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_45_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_46_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_46_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_46_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_47_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_47_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_47_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_48_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_48_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_48_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_49_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_49_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_49_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_50_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_50_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_50_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_51_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_51_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_51_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_52_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_52_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_52_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_53_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_53_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_53_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_54_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_54_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_54_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_55_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_55_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_55_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_56_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_56_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_56_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_57_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_57_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_57_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_58_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_58_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_58_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_59_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_59_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_59_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_60_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_60_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_60_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_61_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_61_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_61_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_62_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_62_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_62_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_63_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_63_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_63_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_64_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_64_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_64_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_65_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_65_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_65_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_66_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_66_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_66_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_67_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_67_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_67_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_68_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_68_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_68_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_69_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_69_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_69_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_70_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_70_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_70_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_71_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_71_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_71_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_72_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_72_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_72_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_73_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_73_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_73_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_74_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_74_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_74_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_75_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_75_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_75_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_76_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_76_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_76_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_77_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_77_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_77_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_78_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_78_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_78_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_79_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_79_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_79_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_80_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_80_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_80_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_81_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_81_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_81_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_82_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_82_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_82_q0;
+wire   [3:0] grp_inference_mult_1_84_84_10_s_fu_364_B_83_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_B_83_ce0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_B_83_q0;
+wire   [1:0] grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0;
+wire   [1:0] grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0;
+wire   [0:0] grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0;
+wire   [0:0] grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0;
+wire    grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0;
+wire   [31:0] grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0;
+wire    grp_inference_add_1_10_s_fu_552_ap_start;
+wire    grp_inference_add_1_10_s_fu_552_ap_idle;
+wire    grp_inference_add_1_10_s_fu_552_ap_ready;
+wire   [1:0] grp_inference_add_1_10_s_fu_552_A_0_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_A_0_0_ce0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_A_0_0_q0;
+wire   [1:0] grp_inference_add_1_10_s_fu_552_A_1_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_A_1_0_ce0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_A_1_0_q0;
+wire   [0:0] grp_inference_add_1_10_s_fu_552_A_2_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_A_2_0_ce0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_A_2_0_q0;
+wire   [0:0] grp_inference_add_1_10_s_fu_552_A_3_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_A_3_0_ce0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_A_3_0_q0;
+wire   [3:0] grp_inference_add_1_10_s_fu_552_B_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_B_0_ce0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_B_0_q0;
+wire   [1:0] grp_inference_add_1_10_s_fu_552_C_0_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_C_0_0_ce0;
+wire    grp_inference_add_1_10_s_fu_552_C_0_0_we0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_C_0_0_d0;
+wire   [1:0] grp_inference_add_1_10_s_fu_552_C_1_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_C_1_0_ce0;
+wire    grp_inference_add_1_10_s_fu_552_C_1_0_we0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_C_1_0_d0;
+wire   [0:0] grp_inference_add_1_10_s_fu_552_C_2_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_C_2_0_ce0;
+wire    grp_inference_add_1_10_s_fu_552_C_2_0_we0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_C_2_0_d0;
+wire   [0:0] grp_inference_add_1_10_s_fu_552_C_3_0_address0;
+wire    grp_inference_add_1_10_s_fu_552_C_3_0_ce0;
+wire    grp_inference_add_1_10_s_fu_552_C_3_0_we0;
+wire   [31:0] grp_inference_add_1_10_s_fu_552_C_3_0_d0;
+reg   [0:0] i_i_phi_fu_346_p4;
+reg    grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg = 1'b0;
+reg    ap_sig_bdd_1067;
 reg    ap_sig_cseq_ST_st2_fsm_1;
-reg    ap_sig_bdd_1024;
-reg    grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg = 1'b0;
+reg    ap_sig_bdd_1075;
+reg    grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg = 1'b0;
 reg    ap_sig_cseq_ST_st3_fsm_2;
-reg    ap_sig_bdd_1033;
-reg    ap_sig_cseq_ST_st4_fsm_3;
-reg    ap_sig_bdd_1040;
-reg    grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg = 1'b0;
-reg    ap_sig_cseq_ST_st5_fsm_4;
-reg    ap_sig_bdd_1049;
-reg    ap_sig_cseq_ST_st6_fsm_5;
-reg    ap_sig_bdd_1056;
+reg    ap_sig_bdd_1084;
+wire   [63:0] newIndex4_i_fu_621_p1;
+reg   [31:0] max_val_1_fu_244;
+wire   [0:0] tmp_8_fu_758_p2;
+wire   [0:0] exitcond_i_fu_587_p2;
+wire   [1:0] newIndex_i_fu_611_p4;
+wire   [0:0] sel_tmp_i_fu_635_p2;
+wire   [0:0] sel_tmp2_i_fu_648_p2;
+wire   [31:0] sel_tmp1_i_fu_640_p3;
+wire   [0:0] sel_tmp4_i_fu_661_p2;
+wire   [31:0] sel_tmp3_i_fu_653_p3;
+wire   [31:0] max_val_3_i_to_int_fu_681_p1;
+wire   [31:0] max_val_1_i_to_int_fu_698_p1;
+wire   [7:0] tmp_fu_684_p4;
+wire   [22:0] tmp_3_fu_694_p1;
+wire   [0:0] notrhs_fu_722_p2;
+wire   [0:0] notlhs_fu_716_p2;
+wire   [7:0] tmp_2_fu_702_p4;
+wire   [22:0] tmp_9_fu_712_p1;
+wire   [0:0] notrhs2_fu_740_p2;
+wire   [0:0] notlhs1_fu_734_p2;
+wire   [0:0] tmp_4_fu_728_p2;
+wire   [0:0] tmp_5_fu_746_p2;
+wire   [0:0] tmp_6_fu_752_p2;
+wire   [0:0] tmp_7_fu_566_p2;
+wire   [3:0] i_cast6_i_fu_678_p1;
+wire   [3:0] tmp_4_i_fu_764_p2;
+wire   [4:0] tmp_7_fu_566_opcode;
+reg    ap_sig_cseq_ST_st8_fsm_5;
+reg    ap_sig_bdd_1237;
 reg   [5:0] ap_NS_fsm;
 
 
@@ -1225,369 +1266,358 @@ S_3_0_U(
     .q0( S_3_0_q0 )
 );
 
-inference_mult_1_84_84_10_s grp_inference_mult_1_84_84_10_s_fu_228(
+inference_mult_1_84_84_10_s grp_inference_mult_1_84_84_10_s_fu_364(
     .ap_clk( ap_clk ),
     .ap_rst( ap_rst ),
-    .ap_start( grp_inference_mult_1_84_84_10_s_fu_228_ap_start ),
-    .ap_done( grp_inference_mult_1_84_84_10_s_fu_228_ap_done ),
-    .ap_idle( grp_inference_mult_1_84_84_10_s_fu_228_ap_idle ),
-    .ap_ready( grp_inference_mult_1_84_84_10_s_fu_228_ap_ready ),
-    .A_0_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0 ),
-    .A_0_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0 ),
-    .A_0_0_q0( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0 ),
-    .A_0_0_address1( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1 ),
-    .A_0_0_ce1( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1 ),
-    .A_0_0_q1( grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1 ),
-    .A_1_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0 ),
-    .A_1_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0 ),
-    .A_1_0_q0( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0 ),
-    .A_1_0_address1( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1 ),
-    .A_1_0_ce1( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1 ),
-    .A_1_0_q1( grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1 ),
-    .A_2_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0 ),
-    .A_2_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0 ),
-    .A_2_0_q0( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0 ),
-    .A_2_0_address1( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1 ),
-    .A_2_0_ce1( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1 ),
-    .A_2_0_q1( grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1 ),
-    .A_3_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0 ),
-    .A_3_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0 ),
-    .A_3_0_q0( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0 ),
-    .A_3_0_address1( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1 ),
-    .A_3_0_ce1( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1 ),
-    .A_3_0_q1( grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1 ),
-    .B_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_0_address0 ),
-    .B_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_0_ce0 ),
-    .B_0_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_0_q0 ),
-    .B_1_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_1_address0 ),
-    .B_1_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_1_ce0 ),
-    .B_1_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_1_q0 ),
-    .B_2_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_2_address0 ),
-    .B_2_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_2_ce0 ),
-    .B_2_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_2_q0 ),
-    .B_3_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_3_address0 ),
-    .B_3_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_3_ce0 ),
-    .B_3_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_3_q0 ),
-    .B_4_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_4_address0 ),
-    .B_4_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_4_ce0 ),
-    .B_4_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_4_q0 ),
-    .B_5_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_5_address0 ),
-    .B_5_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_5_ce0 ),
-    .B_5_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_5_q0 ),
-    .B_6_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_6_address0 ),
-    .B_6_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_6_ce0 ),
-    .B_6_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_6_q0 ),
-    .B_7_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_7_address0 ),
-    .B_7_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_7_ce0 ),
-    .B_7_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_7_q0 ),
-    .B_8_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_8_address0 ),
-    .B_8_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_8_ce0 ),
-    .B_8_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_8_q0 ),
-    .B_9_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_9_address0 ),
-    .B_9_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_9_ce0 ),
-    .B_9_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_9_q0 ),
-    .B_10_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_10_address0 ),
-    .B_10_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_10_ce0 ),
-    .B_10_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_10_q0 ),
-    .B_11_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_11_address0 ),
-    .B_11_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_11_ce0 ),
-    .B_11_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_11_q0 ),
-    .B_12_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_12_address0 ),
-    .B_12_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_12_ce0 ),
-    .B_12_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_12_q0 ),
-    .B_13_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_13_address0 ),
-    .B_13_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_13_ce0 ),
-    .B_13_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_13_q0 ),
-    .B_14_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_14_address0 ),
-    .B_14_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_14_ce0 ),
-    .B_14_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_14_q0 ),
-    .B_15_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_15_address0 ),
-    .B_15_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_15_ce0 ),
-    .B_15_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_15_q0 ),
-    .B_16_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_16_address0 ),
-    .B_16_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_16_ce0 ),
-    .B_16_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_16_q0 ),
-    .B_17_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_17_address0 ),
-    .B_17_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_17_ce0 ),
-    .B_17_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_17_q0 ),
-    .B_18_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_18_address0 ),
-    .B_18_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_18_ce0 ),
-    .B_18_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_18_q0 ),
-    .B_19_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_19_address0 ),
-    .B_19_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_19_ce0 ),
-    .B_19_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_19_q0 ),
-    .B_20_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_20_address0 ),
-    .B_20_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_20_ce0 ),
-    .B_20_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_20_q0 ),
-    .B_21_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_21_address0 ),
-    .B_21_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_21_ce0 ),
-    .B_21_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_21_q0 ),
-    .B_22_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_22_address0 ),
-    .B_22_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_22_ce0 ),
-    .B_22_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_22_q0 ),
-    .B_23_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_23_address0 ),
-    .B_23_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_23_ce0 ),
-    .B_23_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_23_q0 ),
-    .B_24_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_24_address0 ),
-    .B_24_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_24_ce0 ),
-    .B_24_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_24_q0 ),
-    .B_25_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_25_address0 ),
-    .B_25_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_25_ce0 ),
-    .B_25_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_25_q0 ),
-    .B_26_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_26_address0 ),
-    .B_26_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_26_ce0 ),
-    .B_26_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_26_q0 ),
-    .B_27_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_27_address0 ),
-    .B_27_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_27_ce0 ),
-    .B_27_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_27_q0 ),
-    .B_28_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_28_address0 ),
-    .B_28_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_28_ce0 ),
-    .B_28_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_28_q0 ),
-    .B_29_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_29_address0 ),
-    .B_29_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_29_ce0 ),
-    .B_29_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_29_q0 ),
-    .B_30_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_30_address0 ),
-    .B_30_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_30_ce0 ),
-    .B_30_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_30_q0 ),
-    .B_31_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_31_address0 ),
-    .B_31_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_31_ce0 ),
-    .B_31_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_31_q0 ),
-    .B_32_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_32_address0 ),
-    .B_32_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_32_ce0 ),
-    .B_32_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_32_q0 ),
-    .B_33_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_33_address0 ),
-    .B_33_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_33_ce0 ),
-    .B_33_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_33_q0 ),
-    .B_34_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_34_address0 ),
-    .B_34_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_34_ce0 ),
-    .B_34_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_34_q0 ),
-    .B_35_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_35_address0 ),
-    .B_35_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_35_ce0 ),
-    .B_35_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_35_q0 ),
-    .B_36_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_36_address0 ),
-    .B_36_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_36_ce0 ),
-    .B_36_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_36_q0 ),
-    .B_37_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_37_address0 ),
-    .B_37_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_37_ce0 ),
-    .B_37_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_37_q0 ),
-    .B_38_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_38_address0 ),
-    .B_38_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_38_ce0 ),
-    .B_38_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_38_q0 ),
-    .B_39_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_39_address0 ),
-    .B_39_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_39_ce0 ),
-    .B_39_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_39_q0 ),
-    .B_40_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_40_address0 ),
-    .B_40_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_40_ce0 ),
-    .B_40_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_40_q0 ),
-    .B_41_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_41_address0 ),
-    .B_41_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_41_ce0 ),
-    .B_41_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_41_q0 ),
-    .B_42_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_42_address0 ),
-    .B_42_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_42_ce0 ),
-    .B_42_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_42_q0 ),
-    .B_43_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_43_address0 ),
-    .B_43_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_43_ce0 ),
-    .B_43_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_43_q0 ),
-    .B_44_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_44_address0 ),
-    .B_44_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_44_ce0 ),
-    .B_44_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_44_q0 ),
-    .B_45_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_45_address0 ),
-    .B_45_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_45_ce0 ),
-    .B_45_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_45_q0 ),
-    .B_46_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_46_address0 ),
-    .B_46_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_46_ce0 ),
-    .B_46_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_46_q0 ),
-    .B_47_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_47_address0 ),
-    .B_47_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_47_ce0 ),
-    .B_47_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_47_q0 ),
-    .B_48_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_48_address0 ),
-    .B_48_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_48_ce0 ),
-    .B_48_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_48_q0 ),
-    .B_49_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_49_address0 ),
-    .B_49_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_49_ce0 ),
-    .B_49_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_49_q0 ),
-    .B_50_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_50_address0 ),
-    .B_50_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_50_ce0 ),
-    .B_50_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_50_q0 ),
-    .B_51_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_51_address0 ),
-    .B_51_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_51_ce0 ),
-    .B_51_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_51_q0 ),
-    .B_52_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_52_address0 ),
-    .B_52_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_52_ce0 ),
-    .B_52_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_52_q0 ),
-    .B_53_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_53_address0 ),
-    .B_53_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_53_ce0 ),
-    .B_53_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_53_q0 ),
-    .B_54_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_54_address0 ),
-    .B_54_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_54_ce0 ),
-    .B_54_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_54_q0 ),
-    .B_55_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_55_address0 ),
-    .B_55_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_55_ce0 ),
-    .B_55_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_55_q0 ),
-    .B_56_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_56_address0 ),
-    .B_56_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_56_ce0 ),
-    .B_56_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_56_q0 ),
-    .B_57_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_57_address0 ),
-    .B_57_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_57_ce0 ),
-    .B_57_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_57_q0 ),
-    .B_58_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_58_address0 ),
-    .B_58_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_58_ce0 ),
-    .B_58_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_58_q0 ),
-    .B_59_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_59_address0 ),
-    .B_59_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_59_ce0 ),
-    .B_59_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_59_q0 ),
-    .B_60_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_60_address0 ),
-    .B_60_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_60_ce0 ),
-    .B_60_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_60_q0 ),
-    .B_61_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_61_address0 ),
-    .B_61_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_61_ce0 ),
-    .B_61_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_61_q0 ),
-    .B_62_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_62_address0 ),
-    .B_62_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_62_ce0 ),
-    .B_62_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_62_q0 ),
-    .B_63_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_63_address0 ),
-    .B_63_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_63_ce0 ),
-    .B_63_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_63_q0 ),
-    .B_64_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_64_address0 ),
-    .B_64_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_64_ce0 ),
-    .B_64_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_64_q0 ),
-    .B_65_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_65_address0 ),
-    .B_65_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_65_ce0 ),
-    .B_65_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_65_q0 ),
-    .B_66_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_66_address0 ),
-    .B_66_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_66_ce0 ),
-    .B_66_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_66_q0 ),
-    .B_67_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_67_address0 ),
-    .B_67_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_67_ce0 ),
-    .B_67_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_67_q0 ),
-    .B_68_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_68_address0 ),
-    .B_68_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_68_ce0 ),
-    .B_68_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_68_q0 ),
-    .B_69_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_69_address0 ),
-    .B_69_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_69_ce0 ),
-    .B_69_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_69_q0 ),
-    .B_70_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_70_address0 ),
-    .B_70_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_70_ce0 ),
-    .B_70_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_70_q0 ),
-    .B_71_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_71_address0 ),
-    .B_71_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_71_ce0 ),
-    .B_71_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_71_q0 ),
-    .B_72_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_72_address0 ),
-    .B_72_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_72_ce0 ),
-    .B_72_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_72_q0 ),
-    .B_73_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_73_address0 ),
-    .B_73_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_73_ce0 ),
-    .B_73_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_73_q0 ),
-    .B_74_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_74_address0 ),
-    .B_74_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_74_ce0 ),
-    .B_74_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_74_q0 ),
-    .B_75_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_75_address0 ),
-    .B_75_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_75_ce0 ),
-    .B_75_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_75_q0 ),
-    .B_76_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_76_address0 ),
-    .B_76_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_76_ce0 ),
-    .B_76_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_76_q0 ),
-    .B_77_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_77_address0 ),
-    .B_77_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_77_ce0 ),
-    .B_77_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_77_q0 ),
-    .B_78_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_78_address0 ),
-    .B_78_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_78_ce0 ),
-    .B_78_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_78_q0 ),
-    .B_79_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_79_address0 ),
-    .B_79_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_79_ce0 ),
-    .B_79_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_79_q0 ),
-    .B_80_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_80_address0 ),
-    .B_80_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_80_ce0 ),
-    .B_80_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_80_q0 ),
-    .B_81_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_81_address0 ),
-    .B_81_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_81_ce0 ),
-    .B_81_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_81_q0 ),
-    .B_82_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_82_address0 ),
-    .B_82_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_82_ce0 ),
-    .B_82_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_82_q0 ),
-    .B_83_address0( grp_inference_mult_1_84_84_10_s_fu_228_B_83_address0 ),
-    .B_83_ce0( grp_inference_mult_1_84_84_10_s_fu_228_B_83_ce0 ),
-    .B_83_q0( grp_inference_mult_1_84_84_10_s_fu_228_B_83_q0 ),
-    .C_0_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0 ),
-    .C_0_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0 ),
-    .C_0_0_we0( grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0 ),
-    .C_0_0_d0( grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0 ),
-    .C_1_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0 ),
-    .C_1_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0 ),
-    .C_1_0_we0( grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0 ),
-    .C_1_0_d0( grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0 ),
-    .C_2_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0 ),
-    .C_2_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0 ),
-    .C_2_0_we0( grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0 ),
-    .C_2_0_d0( grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0 ),
-    .C_3_0_address0( grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0 ),
-    .C_3_0_ce0( grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0 ),
-    .C_3_0_we0( grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0 ),
-    .C_3_0_d0( grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0 )
+    .ap_start( grp_inference_mult_1_84_84_10_s_fu_364_ap_start ),
+    .ap_done( grp_inference_mult_1_84_84_10_s_fu_364_ap_done ),
+    .ap_idle( grp_inference_mult_1_84_84_10_s_fu_364_ap_idle ),
+    .ap_ready( grp_inference_mult_1_84_84_10_s_fu_364_ap_ready ),
+    .A_0_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0 ),
+    .A_0_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0 ),
+    .A_0_0_q0( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0 ),
+    .A_0_0_address1( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1 ),
+    .A_0_0_ce1( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1 ),
+    .A_0_0_q1( grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1 ),
+    .A_1_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0 ),
+    .A_1_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0 ),
+    .A_1_0_q0( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0 ),
+    .A_1_0_address1( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1 ),
+    .A_1_0_ce1( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1 ),
+    .A_1_0_q1( grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1 ),
+    .A_2_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0 ),
+    .A_2_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0 ),
+    .A_2_0_q0( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0 ),
+    .A_2_0_address1( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1 ),
+    .A_2_0_ce1( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1 ),
+    .A_2_0_q1( grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1 ),
+    .A_3_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0 ),
+    .A_3_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0 ),
+    .A_3_0_q0( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0 ),
+    .A_3_0_address1( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1 ),
+    .A_3_0_ce1( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1 ),
+    .A_3_0_q1( grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1 ),
+    .B_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_0_address0 ),
+    .B_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_0_ce0 ),
+    .B_0_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_0_q0 ),
+    .B_1_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_1_address0 ),
+    .B_1_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_1_ce0 ),
+    .B_1_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_1_q0 ),
+    .B_2_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_2_address0 ),
+    .B_2_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_2_ce0 ),
+    .B_2_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_2_q0 ),
+    .B_3_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_3_address0 ),
+    .B_3_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_3_ce0 ),
+    .B_3_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_3_q0 ),
+    .B_4_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_4_address0 ),
+    .B_4_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_4_ce0 ),
+    .B_4_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_4_q0 ),
+    .B_5_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_5_address0 ),
+    .B_5_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_5_ce0 ),
+    .B_5_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_5_q0 ),
+    .B_6_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_6_address0 ),
+    .B_6_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_6_ce0 ),
+    .B_6_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_6_q0 ),
+    .B_7_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_7_address0 ),
+    .B_7_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_7_ce0 ),
+    .B_7_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_7_q0 ),
+    .B_8_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_8_address0 ),
+    .B_8_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_8_ce0 ),
+    .B_8_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_8_q0 ),
+    .B_9_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_9_address0 ),
+    .B_9_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_9_ce0 ),
+    .B_9_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_9_q0 ),
+    .B_10_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_10_address0 ),
+    .B_10_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_10_ce0 ),
+    .B_10_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_10_q0 ),
+    .B_11_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_11_address0 ),
+    .B_11_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_11_ce0 ),
+    .B_11_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_11_q0 ),
+    .B_12_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_12_address0 ),
+    .B_12_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_12_ce0 ),
+    .B_12_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_12_q0 ),
+    .B_13_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_13_address0 ),
+    .B_13_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_13_ce0 ),
+    .B_13_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_13_q0 ),
+    .B_14_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_14_address0 ),
+    .B_14_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_14_ce0 ),
+    .B_14_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_14_q0 ),
+    .B_15_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_15_address0 ),
+    .B_15_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_15_ce0 ),
+    .B_15_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_15_q0 ),
+    .B_16_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_16_address0 ),
+    .B_16_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_16_ce0 ),
+    .B_16_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_16_q0 ),
+    .B_17_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_17_address0 ),
+    .B_17_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_17_ce0 ),
+    .B_17_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_17_q0 ),
+    .B_18_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_18_address0 ),
+    .B_18_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_18_ce0 ),
+    .B_18_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_18_q0 ),
+    .B_19_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_19_address0 ),
+    .B_19_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_19_ce0 ),
+    .B_19_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_19_q0 ),
+    .B_20_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_20_address0 ),
+    .B_20_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_20_ce0 ),
+    .B_20_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_20_q0 ),
+    .B_21_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_21_address0 ),
+    .B_21_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_21_ce0 ),
+    .B_21_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_21_q0 ),
+    .B_22_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_22_address0 ),
+    .B_22_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_22_ce0 ),
+    .B_22_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_22_q0 ),
+    .B_23_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_23_address0 ),
+    .B_23_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_23_ce0 ),
+    .B_23_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_23_q0 ),
+    .B_24_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_24_address0 ),
+    .B_24_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_24_ce0 ),
+    .B_24_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_24_q0 ),
+    .B_25_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_25_address0 ),
+    .B_25_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_25_ce0 ),
+    .B_25_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_25_q0 ),
+    .B_26_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_26_address0 ),
+    .B_26_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_26_ce0 ),
+    .B_26_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_26_q0 ),
+    .B_27_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_27_address0 ),
+    .B_27_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_27_ce0 ),
+    .B_27_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_27_q0 ),
+    .B_28_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_28_address0 ),
+    .B_28_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_28_ce0 ),
+    .B_28_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_28_q0 ),
+    .B_29_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_29_address0 ),
+    .B_29_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_29_ce0 ),
+    .B_29_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_29_q0 ),
+    .B_30_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_30_address0 ),
+    .B_30_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_30_ce0 ),
+    .B_30_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_30_q0 ),
+    .B_31_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_31_address0 ),
+    .B_31_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_31_ce0 ),
+    .B_31_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_31_q0 ),
+    .B_32_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_32_address0 ),
+    .B_32_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_32_ce0 ),
+    .B_32_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_32_q0 ),
+    .B_33_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_33_address0 ),
+    .B_33_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_33_ce0 ),
+    .B_33_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_33_q0 ),
+    .B_34_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_34_address0 ),
+    .B_34_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_34_ce0 ),
+    .B_34_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_34_q0 ),
+    .B_35_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_35_address0 ),
+    .B_35_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_35_ce0 ),
+    .B_35_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_35_q0 ),
+    .B_36_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_36_address0 ),
+    .B_36_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_36_ce0 ),
+    .B_36_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_36_q0 ),
+    .B_37_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_37_address0 ),
+    .B_37_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_37_ce0 ),
+    .B_37_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_37_q0 ),
+    .B_38_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_38_address0 ),
+    .B_38_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_38_ce0 ),
+    .B_38_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_38_q0 ),
+    .B_39_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_39_address0 ),
+    .B_39_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_39_ce0 ),
+    .B_39_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_39_q0 ),
+    .B_40_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_40_address0 ),
+    .B_40_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_40_ce0 ),
+    .B_40_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_40_q0 ),
+    .B_41_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_41_address0 ),
+    .B_41_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_41_ce0 ),
+    .B_41_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_41_q0 ),
+    .B_42_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_42_address0 ),
+    .B_42_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_42_ce0 ),
+    .B_42_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_42_q0 ),
+    .B_43_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_43_address0 ),
+    .B_43_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_43_ce0 ),
+    .B_43_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_43_q0 ),
+    .B_44_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_44_address0 ),
+    .B_44_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_44_ce0 ),
+    .B_44_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_44_q0 ),
+    .B_45_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_45_address0 ),
+    .B_45_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_45_ce0 ),
+    .B_45_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_45_q0 ),
+    .B_46_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_46_address0 ),
+    .B_46_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_46_ce0 ),
+    .B_46_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_46_q0 ),
+    .B_47_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_47_address0 ),
+    .B_47_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_47_ce0 ),
+    .B_47_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_47_q0 ),
+    .B_48_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_48_address0 ),
+    .B_48_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_48_ce0 ),
+    .B_48_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_48_q0 ),
+    .B_49_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_49_address0 ),
+    .B_49_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_49_ce0 ),
+    .B_49_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_49_q0 ),
+    .B_50_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_50_address0 ),
+    .B_50_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_50_ce0 ),
+    .B_50_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_50_q0 ),
+    .B_51_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_51_address0 ),
+    .B_51_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_51_ce0 ),
+    .B_51_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_51_q0 ),
+    .B_52_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_52_address0 ),
+    .B_52_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_52_ce0 ),
+    .B_52_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_52_q0 ),
+    .B_53_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_53_address0 ),
+    .B_53_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_53_ce0 ),
+    .B_53_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_53_q0 ),
+    .B_54_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_54_address0 ),
+    .B_54_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_54_ce0 ),
+    .B_54_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_54_q0 ),
+    .B_55_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_55_address0 ),
+    .B_55_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_55_ce0 ),
+    .B_55_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_55_q0 ),
+    .B_56_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_56_address0 ),
+    .B_56_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_56_ce0 ),
+    .B_56_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_56_q0 ),
+    .B_57_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_57_address0 ),
+    .B_57_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_57_ce0 ),
+    .B_57_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_57_q0 ),
+    .B_58_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_58_address0 ),
+    .B_58_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_58_ce0 ),
+    .B_58_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_58_q0 ),
+    .B_59_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_59_address0 ),
+    .B_59_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_59_ce0 ),
+    .B_59_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_59_q0 ),
+    .B_60_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_60_address0 ),
+    .B_60_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_60_ce0 ),
+    .B_60_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_60_q0 ),
+    .B_61_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_61_address0 ),
+    .B_61_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_61_ce0 ),
+    .B_61_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_61_q0 ),
+    .B_62_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_62_address0 ),
+    .B_62_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_62_ce0 ),
+    .B_62_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_62_q0 ),
+    .B_63_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_63_address0 ),
+    .B_63_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_63_ce0 ),
+    .B_63_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_63_q0 ),
+    .B_64_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_64_address0 ),
+    .B_64_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_64_ce0 ),
+    .B_64_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_64_q0 ),
+    .B_65_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_65_address0 ),
+    .B_65_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_65_ce0 ),
+    .B_65_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_65_q0 ),
+    .B_66_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_66_address0 ),
+    .B_66_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_66_ce0 ),
+    .B_66_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_66_q0 ),
+    .B_67_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_67_address0 ),
+    .B_67_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_67_ce0 ),
+    .B_67_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_67_q0 ),
+    .B_68_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_68_address0 ),
+    .B_68_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_68_ce0 ),
+    .B_68_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_68_q0 ),
+    .B_69_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_69_address0 ),
+    .B_69_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_69_ce0 ),
+    .B_69_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_69_q0 ),
+    .B_70_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_70_address0 ),
+    .B_70_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_70_ce0 ),
+    .B_70_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_70_q0 ),
+    .B_71_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_71_address0 ),
+    .B_71_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_71_ce0 ),
+    .B_71_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_71_q0 ),
+    .B_72_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_72_address0 ),
+    .B_72_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_72_ce0 ),
+    .B_72_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_72_q0 ),
+    .B_73_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_73_address0 ),
+    .B_73_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_73_ce0 ),
+    .B_73_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_73_q0 ),
+    .B_74_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_74_address0 ),
+    .B_74_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_74_ce0 ),
+    .B_74_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_74_q0 ),
+    .B_75_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_75_address0 ),
+    .B_75_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_75_ce0 ),
+    .B_75_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_75_q0 ),
+    .B_76_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_76_address0 ),
+    .B_76_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_76_ce0 ),
+    .B_76_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_76_q0 ),
+    .B_77_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_77_address0 ),
+    .B_77_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_77_ce0 ),
+    .B_77_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_77_q0 ),
+    .B_78_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_78_address0 ),
+    .B_78_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_78_ce0 ),
+    .B_78_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_78_q0 ),
+    .B_79_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_79_address0 ),
+    .B_79_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_79_ce0 ),
+    .B_79_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_79_q0 ),
+    .B_80_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_80_address0 ),
+    .B_80_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_80_ce0 ),
+    .B_80_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_80_q0 ),
+    .B_81_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_81_address0 ),
+    .B_81_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_81_ce0 ),
+    .B_81_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_81_q0 ),
+    .B_82_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_82_address0 ),
+    .B_82_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_82_ce0 ),
+    .B_82_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_82_q0 ),
+    .B_83_address0( grp_inference_mult_1_84_84_10_s_fu_364_B_83_address0 ),
+    .B_83_ce0( grp_inference_mult_1_84_84_10_s_fu_364_B_83_ce0 ),
+    .B_83_q0( grp_inference_mult_1_84_84_10_s_fu_364_B_83_q0 ),
+    .C_0_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0 ),
+    .C_0_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0 ),
+    .C_0_0_we0( grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0 ),
+    .C_0_0_d0( grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0 ),
+    .C_1_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0 ),
+    .C_1_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0 ),
+    .C_1_0_we0( grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0 ),
+    .C_1_0_d0( grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0 ),
+    .C_2_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0 ),
+    .C_2_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0 ),
+    .C_2_0_we0( grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0 ),
+    .C_2_0_d0( grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0 ),
+    .C_3_0_address0( grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0 ),
+    .C_3_0_ce0( grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0 ),
+    .C_3_0_we0( grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0 ),
+    .C_3_0_d0( grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0 )
 );
 
-inference_add_1_10_s grp_inference_add_1_10_s_fu_416(
+inference_add_1_10_s grp_inference_add_1_10_s_fu_552(
     .ap_clk( ap_clk ),
     .ap_rst( ap_rst ),
-    .ap_start( grp_inference_add_1_10_s_fu_416_ap_start ),
-    .ap_done( grp_inference_add_1_10_s_fu_416_ap_done ),
-    .ap_idle( grp_inference_add_1_10_s_fu_416_ap_idle ),
-    .ap_ready( grp_inference_add_1_10_s_fu_416_ap_ready ),
-    .A_0_0_address0( grp_inference_add_1_10_s_fu_416_A_0_0_address0 ),
-    .A_0_0_ce0( grp_inference_add_1_10_s_fu_416_A_0_0_ce0 ),
-    .A_0_0_q0( grp_inference_add_1_10_s_fu_416_A_0_0_q0 ),
-    .A_1_0_address0( grp_inference_add_1_10_s_fu_416_A_1_0_address0 ),
-    .A_1_0_ce0( grp_inference_add_1_10_s_fu_416_A_1_0_ce0 ),
-    .A_1_0_q0( grp_inference_add_1_10_s_fu_416_A_1_0_q0 ),
-    .A_2_0_address0( grp_inference_add_1_10_s_fu_416_A_2_0_address0 ),
-    .A_2_0_ce0( grp_inference_add_1_10_s_fu_416_A_2_0_ce0 ),
-    .A_2_0_q0( grp_inference_add_1_10_s_fu_416_A_2_0_q0 ),
-    .A_3_0_address0( grp_inference_add_1_10_s_fu_416_A_3_0_address0 ),
-    .A_3_0_ce0( grp_inference_add_1_10_s_fu_416_A_3_0_ce0 ),
-    .A_3_0_q0( grp_inference_add_1_10_s_fu_416_A_3_0_q0 ),
-    .B_0_address0( grp_inference_add_1_10_s_fu_416_B_0_address0 ),
-    .B_0_ce0( grp_inference_add_1_10_s_fu_416_B_0_ce0 ),
-    .B_0_q0( grp_inference_add_1_10_s_fu_416_B_0_q0 ),
-    .C_0_0_address0( grp_inference_add_1_10_s_fu_416_C_0_0_address0 ),
-    .C_0_0_ce0( grp_inference_add_1_10_s_fu_416_C_0_0_ce0 ),
-    .C_0_0_we0( grp_inference_add_1_10_s_fu_416_C_0_0_we0 ),
-    .C_0_0_d0( grp_inference_add_1_10_s_fu_416_C_0_0_d0 ),
-    .C_1_0_address0( grp_inference_add_1_10_s_fu_416_C_1_0_address0 ),
-    .C_1_0_ce0( grp_inference_add_1_10_s_fu_416_C_1_0_ce0 ),
-    .C_1_0_we0( grp_inference_add_1_10_s_fu_416_C_1_0_we0 ),
-    .C_1_0_d0( grp_inference_add_1_10_s_fu_416_C_1_0_d0 ),
-    .C_2_0_address0( grp_inference_add_1_10_s_fu_416_C_2_0_address0 ),
-    .C_2_0_ce0( grp_inference_add_1_10_s_fu_416_C_2_0_ce0 ),
-    .C_2_0_we0( grp_inference_add_1_10_s_fu_416_C_2_0_we0 ),
-    .C_2_0_d0( grp_inference_add_1_10_s_fu_416_C_2_0_d0 ),
-    .C_3_0_address0( grp_inference_add_1_10_s_fu_416_C_3_0_address0 ),
-    .C_3_0_ce0( grp_inference_add_1_10_s_fu_416_C_3_0_ce0 ),
-    .C_3_0_we0( grp_inference_add_1_10_s_fu_416_C_3_0_we0 ),
-    .C_3_0_d0( grp_inference_add_1_10_s_fu_416_C_3_0_d0 )
+    .ap_start( grp_inference_add_1_10_s_fu_552_ap_start ),
+    .ap_done( grp_inference_add_1_10_s_fu_552_ap_done ),
+    .ap_idle( grp_inference_add_1_10_s_fu_552_ap_idle ),
+    .ap_ready( grp_inference_add_1_10_s_fu_552_ap_ready ),
+    .A_0_0_address0( grp_inference_add_1_10_s_fu_552_A_0_0_address0 ),
+    .A_0_0_ce0( grp_inference_add_1_10_s_fu_552_A_0_0_ce0 ),
+    .A_0_0_q0( grp_inference_add_1_10_s_fu_552_A_0_0_q0 ),
+    .A_1_0_address0( grp_inference_add_1_10_s_fu_552_A_1_0_address0 ),
+    .A_1_0_ce0( grp_inference_add_1_10_s_fu_552_A_1_0_ce0 ),
+    .A_1_0_q0( grp_inference_add_1_10_s_fu_552_A_1_0_q0 ),
+    .A_2_0_address0( grp_inference_add_1_10_s_fu_552_A_2_0_address0 ),
+    .A_2_0_ce0( grp_inference_add_1_10_s_fu_552_A_2_0_ce0 ),
+    .A_2_0_q0( grp_inference_add_1_10_s_fu_552_A_2_0_q0 ),
+    .A_3_0_address0( grp_inference_add_1_10_s_fu_552_A_3_0_address0 ),
+    .A_3_0_ce0( grp_inference_add_1_10_s_fu_552_A_3_0_ce0 ),
+    .A_3_0_q0( grp_inference_add_1_10_s_fu_552_A_3_0_q0 ),
+    .B_0_address0( grp_inference_add_1_10_s_fu_552_B_0_address0 ),
+    .B_0_ce0( grp_inference_add_1_10_s_fu_552_B_0_ce0 ),
+    .B_0_q0( grp_inference_add_1_10_s_fu_552_B_0_q0 ),
+    .C_0_0_address0( grp_inference_add_1_10_s_fu_552_C_0_0_address0 ),
+    .C_0_0_ce0( grp_inference_add_1_10_s_fu_552_C_0_0_ce0 ),
+    .C_0_0_we0( grp_inference_add_1_10_s_fu_552_C_0_0_we0 ),
+    .C_0_0_d0( grp_inference_add_1_10_s_fu_552_C_0_0_d0 ),
+    .C_1_0_address0( grp_inference_add_1_10_s_fu_552_C_1_0_address0 ),
+    .C_1_0_ce0( grp_inference_add_1_10_s_fu_552_C_1_0_ce0 ),
+    .C_1_0_we0( grp_inference_add_1_10_s_fu_552_C_1_0_we0 ),
+    .C_1_0_d0( grp_inference_add_1_10_s_fu_552_C_1_0_d0 ),
+    .C_2_0_address0( grp_inference_add_1_10_s_fu_552_C_2_0_address0 ),
+    .C_2_0_ce0( grp_inference_add_1_10_s_fu_552_C_2_0_ce0 ),
+    .C_2_0_we0( grp_inference_add_1_10_s_fu_552_C_2_0_we0 ),
+    .C_2_0_d0( grp_inference_add_1_10_s_fu_552_C_2_0_d0 ),
+    .C_3_0_address0( grp_inference_add_1_10_s_fu_552_C_3_0_address0 ),
+    .C_3_0_ce0( grp_inference_add_1_10_s_fu_552_C_3_0_ce0 ),
+    .C_3_0_we0( grp_inference_add_1_10_s_fu_552_C_3_0_we0 ),
+    .C_3_0_d0( grp_inference_add_1_10_s_fu_552_C_3_0_d0 )
 );
 
-inference_softmax_1_10_s grp_inference_softmax_1_10_s_fu_430(
-    .ap_clk( ap_clk ),
-    .ap_rst( ap_rst ),
-    .ap_start( grp_inference_softmax_1_10_s_fu_430_ap_start ),
-    .ap_done( grp_inference_softmax_1_10_s_fu_430_ap_done ),
-    .ap_idle( grp_inference_softmax_1_10_s_fu_430_ap_idle ),
-    .ap_ready( grp_inference_softmax_1_10_s_fu_430_ap_ready ),
-    .A_0_0_address0( grp_inference_softmax_1_10_s_fu_430_A_0_0_address0 ),
-    .A_0_0_ce0( grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0 ),
-    .A_0_0_q0( grp_inference_softmax_1_10_s_fu_430_A_0_0_q0 ),
-    .A_1_0_address0( grp_inference_softmax_1_10_s_fu_430_A_1_0_address0 ),
-    .A_1_0_ce0( grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0 ),
-    .A_1_0_q0( grp_inference_softmax_1_10_s_fu_430_A_1_0_q0 ),
-    .A_2_0_address0( grp_inference_softmax_1_10_s_fu_430_A_2_0_address0 ),
-    .A_2_0_ce0( grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0 ),
-    .A_2_0_q0( grp_inference_softmax_1_10_s_fu_430_A_2_0_q0 ),
-    .A_3_0_address0( grp_inference_softmax_1_10_s_fu_430_A_3_0_address0 ),
-    .A_3_0_ce0( grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0 ),
-    .A_3_0_q0( grp_inference_softmax_1_10_s_fu_430_A_3_0_q0 ),
-    .argmax_TDATA( grp_inference_softmax_1_10_s_fu_430_argmax_TDATA ),
-    .argmax_TVALID( grp_inference_softmax_1_10_s_fu_430_argmax_TVALID ),
-    .argmax_TREADY( grp_inference_softmax_1_10_s_fu_430_argmax_TREADY )
+inference_fcmp_32ns_32ns_1_1 #(
+    .ID( 1 ),
+    .NUM_STAGE( 1 ),
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 1 ))
+inference_fcmp_32ns_32ns_1_1_U2039(
+    .din0( max_val_reg_837 ),
+    .din1( max_val_1_fu_244 ),
+    .opcode( tmp_7_fu_566_opcode ),
+    .dout( tmp_7_fu_566_p2 )
 );
 
 
@@ -1606,1018 +1636,1098 @@ always @ (posedge ap_clk) begin : ap_ret_ap_done_reg
     end else begin
         if ((ap_const_logic_1 == ap_continue)) begin
             ap_done_reg <= ap_const_logic_0;
-        end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5) & ~(ap_const_logic_0 == grp_inference_softmax_1_10_s_fu_430_ap_done))) begin
+        end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st8_fsm_5)) begin
             ap_done_reg <= ap_const_logic_1;
         end
     end
 end
 
-always @ (posedge ap_clk) begin : ap_ret_grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg
+always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it0
     if (ap_rst == 1'b1) begin
-        grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_0;
+        ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+    end else begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & ~(exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+            ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+        end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3) & ~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done))) begin
+            ap_reg_ppiten_pp0_it0 <= ap_const_logic_1;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it1
+    if (ap_rst == 1'b1) begin
+        ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+    end else begin
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+            ap_reg_ppiten_pp0_it1 <= ap_const_logic_1;
+        end else if ((((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3) & ~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done)) | ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & ~(exitcond_flatten_fu_575_p2 == ap_const_lv1_0)))) begin
+            ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+        end
+    end
+end
+
+always @ (posedge ap_clk) begin : ap_ret_ap_reg_ppiten_pp0_it2
+    if (ap_rst == 1'b1) begin
+        ap_reg_ppiten_pp0_it2 <= ap_const_logic_0;
+    end else begin
+        ap_reg_ppiten_pp0_it2 <= ap_reg_ppiten_pp0_it1;
+    end
+end
+
+always @ (posedge ap_clk) begin : ap_ret_grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg
+    if (ap_rst == 1'b1) begin
+        grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_0;
     end else begin
         if ((ap_const_logic_1 == ap_sig_cseq_ST_st3_fsm_2)) begin
-            grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_1;
-        end else if ((ap_const_logic_1 == grp_inference_add_1_10_s_fu_416_ap_ready)) begin
-            grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_0;
+            grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_1;
+        end else if ((ap_const_logic_1 == grp_inference_add_1_10_s_fu_552_ap_ready)) begin
+            grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_0;
         end
     end
 end
 
-always @ (posedge ap_clk) begin : ap_ret_grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg
+always @ (posedge ap_clk) begin : ap_ret_grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg
     if (ap_rst == 1'b1) begin
-        grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_0;
+        grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_0;
     end else begin
-        if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_1016)) begin
-            grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_1;
-        end else if ((ap_const_logic_1 == grp_inference_mult_1_84_84_10_s_fu_228_ap_ready)) begin
-            grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_0;
+        if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_1067)) begin
+            grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_1;
+        end else if ((ap_const_logic_1 == grp_inference_mult_1_84_84_10_s_fu_364_ap_ready)) begin
+            grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_0;
         end
     end
 end
 
-always @ (posedge ap_clk) begin : ap_ret_grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg
-    if (ap_rst == 1'b1) begin
-        grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_0;
-    end else begin
-        if ((ap_const_logic_1 == ap_sig_cseq_ST_st5_fsm_4)) begin
-            grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_1;
-        end else if ((ap_const_logic_1 == grp_inference_softmax_1_10_s_fu_430_ap_ready)) begin
-            grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_0;
-        end
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1) & (exitcond_flatten_reg_785 == ap_const_lv1_0))) begin
+        i_i_reg_342 <= i_i_mid2_reg_799;
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3) & ~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done))) begin
+        i_i_reg_342 <= ap_const_lv1_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_B_0_ce0 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+        indvar_flatten_reg_331 <= indvar_flatten_next_fu_581_p2;
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3) & ~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done))) begin
+        indvar_flatten_reg_331 <= ap_const_lv4_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+        j_i_reg_353 <= j_fu_629_p2;
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3) & ~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done))) begin
+        j_i_reg_353 <= ap_const_lv4_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it2) & ~(ap_const_lv1_0 == tmp_8_fu_758_p2))) begin
+        max_val_1_fu_244 <= max_val_reg_837;
+    end else if (((ap_const_logic_1 == ap_sig_cseq_ST_st1_fsm_0) & ~ap_sig_bdd_1067)) begin
+        max_val_1_fu_244 <= ap_const_lv32_CF000000;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4)) begin
+        ap_reg_ppstg_exitcond_flatten_reg_785_pp0_it1 <= exitcond_flatten_reg_785;
+        ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1 <= i_i_mid2_reg_799;
+        ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1 <= j_i_mid2_reg_794;
+        exitcond_flatten_reg_785 <= exitcond_flatten_fu_575_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & (exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+        i_i_mid2_reg_799 <= i_i_mid2_fu_601_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (exitcond_flatten_fu_575_p2 == ap_const_lv1_0))) begin
+        j_i_mid2_reg_794 <= j_i_mid2_fu_593_p3;
+        tmp_1_reg_805 <= tmp_1_fu_607_p1;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (exitcond_flatten_reg_785 == ap_const_lv1_0))) begin
+        max_val_reg_837 <= max_val_fu_666_p3;
+    end
+end
+
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_B_0_ce0) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        B_0_ce0 = grp_inference_add_1_10_s_fu_416_B_0_ce0;
+        B_0_ce0 = grp_inference_add_1_10_s_fu_552_B_0_ce0;
     end else begin
         B_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_0_0_address0 or grp_inference_softmax_1_10_s_fu_430_A_0_0_address0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_0_0_address0 = grp_inference_softmax_1_10_s_fu_430_A_0_0_address0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_0_0_address0 or newIndex4_i_fu_621_p1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_0_0_address0 = newIndex4_i_fu_621_p1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_0_0_address0 = grp_inference_add_1_10_s_fu_416_C_0_0_address0;
+        S_0_0_address0 = grp_inference_add_1_10_s_fu_552_C_0_0_address0;
     end else begin
         S_0_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_0_0_ce0 or grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_0_0_ce0 = grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_0_0_ce0) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_0_0_ce0 = ap_const_logic_1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_0_0_ce0 = grp_inference_add_1_10_s_fu_416_C_0_0_ce0;
+        S_0_0_ce0 = grp_inference_add_1_10_s_fu_552_C_0_0_ce0;
     end else begin
         S_0_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_0_0_we0 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_0_0_we0) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_0_0_we0 = grp_inference_add_1_10_s_fu_416_C_0_0_we0;
+        S_0_0_we0 = grp_inference_add_1_10_s_fu_552_C_0_0_we0;
     end else begin
         S_0_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_1_0_address0 or grp_inference_softmax_1_10_s_fu_430_A_1_0_address0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_1_0_address0 = grp_inference_softmax_1_10_s_fu_430_A_1_0_address0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_1_0_address0 or newIndex4_i_fu_621_p1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_1_0_address0 = newIndex4_i_fu_621_p1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_1_0_address0 = grp_inference_add_1_10_s_fu_416_C_1_0_address0;
+        S_1_0_address0 = grp_inference_add_1_10_s_fu_552_C_1_0_address0;
     end else begin
         S_1_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_1_0_ce0 or grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_1_0_ce0 = grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_1_0_ce0) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_1_0_ce0 = ap_const_logic_1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_1_0_ce0 = grp_inference_add_1_10_s_fu_416_C_1_0_ce0;
+        S_1_0_ce0 = grp_inference_add_1_10_s_fu_552_C_1_0_ce0;
     end else begin
         S_1_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_1_0_we0 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_1_0_we0) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_1_0_we0 = grp_inference_add_1_10_s_fu_416_C_1_0_we0;
+        S_1_0_we0 = grp_inference_add_1_10_s_fu_552_C_1_0_we0;
     end else begin
         S_1_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_2_0_address0 or grp_inference_softmax_1_10_s_fu_430_A_2_0_address0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_2_0_address0 = grp_inference_softmax_1_10_s_fu_430_A_2_0_address0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_2_0_address0 or newIndex4_i_fu_621_p1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_2_0_address0 = newIndex4_i_fu_621_p1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_2_0_address0 = grp_inference_add_1_10_s_fu_416_C_2_0_address0;
+        S_2_0_address0 = grp_inference_add_1_10_s_fu_552_C_2_0_address0;
     end else begin
         S_2_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_2_0_ce0 or grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_2_0_ce0 = grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_2_0_ce0) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_2_0_ce0 = ap_const_logic_1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_2_0_ce0 = grp_inference_add_1_10_s_fu_416_C_2_0_ce0;
+        S_2_0_ce0 = grp_inference_add_1_10_s_fu_552_C_2_0_ce0;
     end else begin
         S_2_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_2_0_we0 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_2_0_we0) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_2_0_we0 = grp_inference_add_1_10_s_fu_416_C_2_0_we0;
+        S_2_0_we0 = grp_inference_add_1_10_s_fu_552_C_2_0_we0;
     end else begin
         S_2_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_3_0_address0 or grp_inference_softmax_1_10_s_fu_430_A_3_0_address0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_3_0_address0 = grp_inference_softmax_1_10_s_fu_430_A_3_0_address0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_3_0_address0 or newIndex4_i_fu_621_p1) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_3_0_address0 = newIndex4_i_fu_621_p1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_3_0_address0 = grp_inference_add_1_10_s_fu_416_C_3_0_address0;
+        S_3_0_address0 = grp_inference_add_1_10_s_fu_552_C_3_0_address0;
     end else begin
         S_3_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_3_0_ce0 or grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0 or ap_sig_cseq_ST_st4_fsm_3 or ap_sig_cseq_ST_st6_fsm_5) begin
-    if ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5)) begin
-        S_3_0_ce0 = grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0;
+always @ (ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it0 or ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_3_0_ce0) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it0))) begin
+        S_3_0_ce0 = ap_const_logic_1;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_3_0_ce0 = grp_inference_add_1_10_s_fu_416_C_3_0_ce0;
+        S_3_0_ce0 = grp_inference_add_1_10_s_fu_552_C_3_0_ce0;
     end else begin
         S_3_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_add_1_10_s_fu_416_C_3_0_we0 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_add_1_10_s_fu_552_C_3_0_we0) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        S_3_0_we0 = grp_inference_add_1_10_s_fu_416_C_3_0_we0;
+        S_3_0_we0 = grp_inference_add_1_10_s_fu_552_C_3_0_we0;
     end else begin
         S_3_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0 or grp_inference_add_1_10_s_fu_416_A_0_0_address0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0 or grp_inference_add_1_10_s_fu_552_A_0_0_address0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_0_0_address0 = grp_inference_add_1_10_s_fu_416_A_0_0_address0;
+        T_0_0_address0 = grp_inference_add_1_10_s_fu_552_A_0_0_address0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_0_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0;
+        T_0_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0;
     end else begin
         T_0_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0 or grp_inference_add_1_10_s_fu_416_A_0_0_ce0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0 or grp_inference_add_1_10_s_fu_552_A_0_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_0_0_ce0 = grp_inference_add_1_10_s_fu_416_A_0_0_ce0;
+        T_0_0_ce0 = grp_inference_add_1_10_s_fu_552_A_0_0_ce0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_0_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0;
+        T_0_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0;
     end else begin
         T_0_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_0_0_we0 = grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0;
+        T_0_0_we0 = grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0;
     end else begin
         T_0_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0 or grp_inference_add_1_10_s_fu_416_A_1_0_address0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0 or grp_inference_add_1_10_s_fu_552_A_1_0_address0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_1_0_address0 = grp_inference_add_1_10_s_fu_416_A_1_0_address0;
+        T_1_0_address0 = grp_inference_add_1_10_s_fu_552_A_1_0_address0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_1_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0;
+        T_1_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0;
     end else begin
         T_1_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0 or grp_inference_add_1_10_s_fu_416_A_1_0_ce0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0 or grp_inference_add_1_10_s_fu_552_A_1_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_1_0_ce0 = grp_inference_add_1_10_s_fu_416_A_1_0_ce0;
+        T_1_0_ce0 = grp_inference_add_1_10_s_fu_552_A_1_0_ce0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_1_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0;
+        T_1_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0;
     end else begin
         T_1_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_1_0_we0 = grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0;
+        T_1_0_we0 = grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0;
     end else begin
         T_1_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0 or grp_inference_add_1_10_s_fu_416_A_2_0_address0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0 or grp_inference_add_1_10_s_fu_552_A_2_0_address0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_2_0_address0 = grp_inference_add_1_10_s_fu_416_A_2_0_address0;
+        T_2_0_address0 = grp_inference_add_1_10_s_fu_552_A_2_0_address0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_2_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0;
+        T_2_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0;
     end else begin
         T_2_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0 or grp_inference_add_1_10_s_fu_416_A_2_0_ce0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0 or grp_inference_add_1_10_s_fu_552_A_2_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_2_0_ce0 = grp_inference_add_1_10_s_fu_416_A_2_0_ce0;
+        T_2_0_ce0 = grp_inference_add_1_10_s_fu_552_A_2_0_ce0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_2_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0;
+        T_2_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0;
     end else begin
         T_2_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_2_0_we0 = grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0;
+        T_2_0_we0 = grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0;
     end else begin
         T_2_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0 or grp_inference_add_1_10_s_fu_416_A_3_0_address0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0 or grp_inference_add_1_10_s_fu_552_A_3_0_address0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_3_0_address0 = grp_inference_add_1_10_s_fu_416_A_3_0_address0;
+        T_3_0_address0 = grp_inference_add_1_10_s_fu_552_A_3_0_address0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_3_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0;
+        T_3_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0;
     end else begin
         T_3_0_address0 = 'bx;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0 or grp_inference_add_1_10_s_fu_416_A_3_0_ce0 or ap_sig_cseq_ST_st2_fsm_1 or ap_sig_cseq_ST_st4_fsm_3) begin
+always @ (ap_sig_cseq_ST_st4_fsm_3 or grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0 or grp_inference_add_1_10_s_fu_552_A_3_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st4_fsm_3)) begin
-        T_3_0_ce0 = grp_inference_add_1_10_s_fu_416_A_3_0_ce0;
+        T_3_0_ce0 = grp_inference_add_1_10_s_fu_552_A_3_0_ce0;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_3_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0;
+        T_3_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0;
     end else begin
         T_3_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        T_3_0_we0 = grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0;
+        T_3_0_we0 = grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0;
     end else begin
         T_3_0_we0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_0_ce0;
+        W_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_0_ce0;
     end else begin
         W_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_10_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_10_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_10_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_10_ce0;
+        W_10_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_10_ce0;
     end else begin
         W_10_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_11_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_11_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_11_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_11_ce0;
+        W_11_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_11_ce0;
     end else begin
         W_11_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_12_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_12_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_12_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_12_ce0;
+        W_12_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_12_ce0;
     end else begin
         W_12_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_13_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_13_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_13_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_13_ce0;
+        W_13_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_13_ce0;
     end else begin
         W_13_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_14_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_14_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_14_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_14_ce0;
+        W_14_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_14_ce0;
     end else begin
         W_14_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_15_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_15_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_15_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_15_ce0;
+        W_15_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_15_ce0;
     end else begin
         W_15_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_16_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_16_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_16_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_16_ce0;
+        W_16_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_16_ce0;
     end else begin
         W_16_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_17_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_17_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_17_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_17_ce0;
+        W_17_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_17_ce0;
     end else begin
         W_17_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_18_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_18_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_18_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_18_ce0;
+        W_18_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_18_ce0;
     end else begin
         W_18_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_19_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_19_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_19_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_19_ce0;
+        W_19_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_19_ce0;
     end else begin
         W_19_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_1_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_1_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_1_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_1_ce0;
+        W_1_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_1_ce0;
     end else begin
         W_1_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_20_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_20_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_20_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_20_ce0;
+        W_20_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_20_ce0;
     end else begin
         W_20_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_21_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_21_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_21_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_21_ce0;
+        W_21_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_21_ce0;
     end else begin
         W_21_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_22_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_22_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_22_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_22_ce0;
+        W_22_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_22_ce0;
     end else begin
         W_22_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_23_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_23_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_23_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_23_ce0;
+        W_23_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_23_ce0;
     end else begin
         W_23_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_24_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_24_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_24_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_24_ce0;
+        W_24_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_24_ce0;
     end else begin
         W_24_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_25_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_25_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_25_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_25_ce0;
+        W_25_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_25_ce0;
     end else begin
         W_25_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_26_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_26_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_26_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_26_ce0;
+        W_26_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_26_ce0;
     end else begin
         W_26_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_27_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_27_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_27_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_27_ce0;
+        W_27_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_27_ce0;
     end else begin
         W_27_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_28_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_28_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_28_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_28_ce0;
+        W_28_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_28_ce0;
     end else begin
         W_28_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_29_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_29_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_29_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_29_ce0;
+        W_29_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_29_ce0;
     end else begin
         W_29_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_2_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_2_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_2_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_2_ce0;
+        W_2_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_2_ce0;
     end else begin
         W_2_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_30_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_30_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_30_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_30_ce0;
+        W_30_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_30_ce0;
     end else begin
         W_30_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_31_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_31_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_31_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_31_ce0;
+        W_31_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_31_ce0;
     end else begin
         W_31_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_32_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_32_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_32_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_32_ce0;
+        W_32_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_32_ce0;
     end else begin
         W_32_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_33_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_33_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_33_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_33_ce0;
+        W_33_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_33_ce0;
     end else begin
         W_33_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_34_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_34_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_34_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_34_ce0;
+        W_34_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_34_ce0;
     end else begin
         W_34_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_35_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_35_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_35_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_35_ce0;
+        W_35_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_35_ce0;
     end else begin
         W_35_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_36_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_36_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_36_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_36_ce0;
+        W_36_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_36_ce0;
     end else begin
         W_36_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_37_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_37_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_37_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_37_ce0;
+        W_37_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_37_ce0;
     end else begin
         W_37_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_38_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_38_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_38_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_38_ce0;
+        W_38_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_38_ce0;
     end else begin
         W_38_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_39_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_39_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_39_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_39_ce0;
+        W_39_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_39_ce0;
     end else begin
         W_39_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_3_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_3_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_3_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_3_ce0;
+        W_3_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_3_ce0;
     end else begin
         W_3_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_40_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_40_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_40_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_40_ce0;
+        W_40_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_40_ce0;
     end else begin
         W_40_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_41_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_41_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_41_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_41_ce0;
+        W_41_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_41_ce0;
     end else begin
         W_41_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_42_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_42_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_42_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_42_ce0;
+        W_42_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_42_ce0;
     end else begin
         W_42_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_43_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_43_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_43_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_43_ce0;
+        W_43_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_43_ce0;
     end else begin
         W_43_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_44_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_44_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_44_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_44_ce0;
+        W_44_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_44_ce0;
     end else begin
         W_44_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_45_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_45_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_45_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_45_ce0;
+        W_45_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_45_ce0;
     end else begin
         W_45_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_46_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_46_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_46_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_46_ce0;
+        W_46_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_46_ce0;
     end else begin
         W_46_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_47_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_47_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_47_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_47_ce0;
+        W_47_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_47_ce0;
     end else begin
         W_47_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_48_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_48_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_48_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_48_ce0;
+        W_48_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_48_ce0;
     end else begin
         W_48_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_49_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_49_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_49_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_49_ce0;
+        W_49_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_49_ce0;
     end else begin
         W_49_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_4_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_4_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_4_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_4_ce0;
+        W_4_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_4_ce0;
     end else begin
         W_4_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_50_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_50_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_50_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_50_ce0;
+        W_50_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_50_ce0;
     end else begin
         W_50_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_51_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_51_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_51_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_51_ce0;
+        W_51_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_51_ce0;
     end else begin
         W_51_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_52_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_52_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_52_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_52_ce0;
+        W_52_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_52_ce0;
     end else begin
         W_52_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_53_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_53_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_53_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_53_ce0;
+        W_53_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_53_ce0;
     end else begin
         W_53_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_54_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_54_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_54_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_54_ce0;
+        W_54_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_54_ce0;
     end else begin
         W_54_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_55_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_55_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_55_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_55_ce0;
+        W_55_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_55_ce0;
     end else begin
         W_55_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_56_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_56_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_56_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_56_ce0;
+        W_56_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_56_ce0;
     end else begin
         W_56_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_57_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_57_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_57_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_57_ce0;
+        W_57_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_57_ce0;
     end else begin
         W_57_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_58_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_58_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_58_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_58_ce0;
+        W_58_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_58_ce0;
     end else begin
         W_58_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_59_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_59_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_59_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_59_ce0;
+        W_59_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_59_ce0;
     end else begin
         W_59_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_5_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_5_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_5_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_5_ce0;
+        W_5_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_5_ce0;
     end else begin
         W_5_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_60_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_60_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_60_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_60_ce0;
+        W_60_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_60_ce0;
     end else begin
         W_60_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_61_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_61_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_61_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_61_ce0;
+        W_61_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_61_ce0;
     end else begin
         W_61_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_62_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_62_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_62_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_62_ce0;
+        W_62_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_62_ce0;
     end else begin
         W_62_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_63_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_63_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_63_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_63_ce0;
+        W_63_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_63_ce0;
     end else begin
         W_63_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_64_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_64_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_64_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_64_ce0;
+        W_64_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_64_ce0;
     end else begin
         W_64_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_65_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_65_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_65_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_65_ce0;
+        W_65_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_65_ce0;
     end else begin
         W_65_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_66_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_66_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_66_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_66_ce0;
+        W_66_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_66_ce0;
     end else begin
         W_66_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_67_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_67_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_67_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_67_ce0;
+        W_67_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_67_ce0;
     end else begin
         W_67_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_68_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_68_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_68_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_68_ce0;
+        W_68_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_68_ce0;
     end else begin
         W_68_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_69_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_69_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_69_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_69_ce0;
+        W_69_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_69_ce0;
     end else begin
         W_69_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_6_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_6_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_6_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_6_ce0;
+        W_6_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_6_ce0;
     end else begin
         W_6_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_70_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_70_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_70_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_70_ce0;
+        W_70_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_70_ce0;
     end else begin
         W_70_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_71_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_71_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_71_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_71_ce0;
+        W_71_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_71_ce0;
     end else begin
         W_71_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_72_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_72_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_72_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_72_ce0;
+        W_72_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_72_ce0;
     end else begin
         W_72_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_73_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_73_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_73_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_73_ce0;
+        W_73_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_73_ce0;
     end else begin
         W_73_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_74_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_74_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_74_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_74_ce0;
+        W_74_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_74_ce0;
     end else begin
         W_74_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_75_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_75_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_75_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_75_ce0;
+        W_75_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_75_ce0;
     end else begin
         W_75_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_76_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_76_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_76_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_76_ce0;
+        W_76_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_76_ce0;
     end else begin
         W_76_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_77_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_77_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_77_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_77_ce0;
+        W_77_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_77_ce0;
     end else begin
         W_77_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_78_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_78_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_78_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_78_ce0;
+        W_78_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_78_ce0;
     end else begin
         W_78_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_79_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_79_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_79_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_79_ce0;
+        W_79_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_79_ce0;
     end else begin
         W_79_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_7_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_7_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_7_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_7_ce0;
+        W_7_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_7_ce0;
     end else begin
         W_7_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_80_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_80_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_80_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_80_ce0;
+        W_80_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_80_ce0;
     end else begin
         W_80_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_81_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_81_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_81_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_81_ce0;
+        W_81_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_81_ce0;
     end else begin
         W_81_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_82_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_82_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_82_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_82_ce0;
+        W_82_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_82_ce0;
     end else begin
         W_82_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_83_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_83_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_83_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_83_ce0;
+        W_83_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_83_ce0;
     end else begin
         W_83_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_8_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_8_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_8_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_8_ce0;
+        W_8_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_8_ce0;
     end else begin
         W_8_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_B_9_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_B_9_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        W_9_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_B_9_ce0;
+        W_9_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_B_9_ce0;
     end else begin
         W_9_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_0_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0;
+        X_0_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0;
     end else begin
         X_0_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_0_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1;
+        X_0_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1;
     end else begin
         X_0_0_ce1 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_1_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0;
+        X_1_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0;
     end else begin
         X_1_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_1_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1;
+        X_1_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1;
     end else begin
         X_1_0_ce1 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_2_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0;
+        X_2_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0;
     end else begin
         X_2_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_2_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1;
+        X_2_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1;
     end else begin
         X_2_0_ce1 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_3_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0;
+        X_3_0_ce0 = grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0;
     end else begin
         X_3_0_ce0 = ap_const_logic_0;
     end
 end
 
-always @ (grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
+always @ (grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1 or ap_sig_cseq_ST_st2_fsm_1) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st2_fsm_1)) begin
-        X_3_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1;
+        X_3_0_ce1 = grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1;
     end else begin
         X_3_0_ce1 = ap_const_logic_0;
     end
 end
 
-always @ (ap_done_reg or grp_inference_softmax_1_10_s_fu_430_ap_done or ap_sig_cseq_ST_st6_fsm_5) begin
-    if (((ap_const_logic_1 == ap_done_reg) | ((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5) & ~(ap_const_logic_0 == grp_inference_softmax_1_10_s_fu_430_ap_done)))) begin
+always @ (ap_done_reg or ap_sig_cseq_ST_st8_fsm_5) begin
+    if (((ap_const_logic_1 == ap_done_reg) | (ap_const_logic_1 == ap_sig_cseq_ST_st8_fsm_5))) begin
         ap_done = ap_const_logic_1;
     end else begin
         ap_done = ap_const_logic_0;
@@ -2632,11 +2742,19 @@ always @ (ap_start or ap_sig_cseq_ST_st1_fsm_0) begin
     end
 end
 
-always @ (grp_inference_softmax_1_10_s_fu_430_ap_done or ap_sig_cseq_ST_st6_fsm_5) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5) & ~(ap_const_logic_0 == grp_inference_softmax_1_10_s_fu_430_ap_done))) begin
+always @ (ap_sig_cseq_ST_st8_fsm_5) begin
+    if ((ap_const_logic_1 == ap_sig_cseq_ST_st8_fsm_5)) begin
         ap_ready = ap_const_logic_1;
     end else begin
         ap_ready = ap_const_logic_0;
+    end
+end
+
+always @ (ap_sig_bdd_593) begin
+    if (ap_sig_bdd_593) begin
+        ap_sig_cseq_ST_pp0_stg0_fsm_4 = ap_const_logic_1;
+    end else begin
+        ap_sig_cseq_ST_pp0_stg0_fsm_4 = ap_const_logic_0;
     end
 end
 
@@ -2648,50 +2766,58 @@ always @ (ap_sig_bdd_25) begin
     end
 end
 
-always @ (ap_sig_bdd_1024) begin
-    if (ap_sig_bdd_1024) begin
+always @ (ap_sig_bdd_1075) begin
+    if (ap_sig_bdd_1075) begin
         ap_sig_cseq_ST_st2_fsm_1 = ap_const_logic_1;
     end else begin
         ap_sig_cseq_ST_st2_fsm_1 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_bdd_1033) begin
-    if (ap_sig_bdd_1033) begin
+always @ (ap_sig_bdd_1084) begin
+    if (ap_sig_bdd_1084) begin
         ap_sig_cseq_ST_st3_fsm_2 = ap_const_logic_1;
     end else begin
         ap_sig_cseq_ST_st3_fsm_2 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_bdd_1040) begin
-    if (ap_sig_bdd_1040) begin
+always @ (ap_sig_bdd_639) begin
+    if (ap_sig_bdd_639) begin
         ap_sig_cseq_ST_st4_fsm_3 = ap_const_logic_1;
     end else begin
         ap_sig_cseq_ST_st4_fsm_3 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_bdd_1049) begin
-    if (ap_sig_bdd_1049) begin
-        ap_sig_cseq_ST_st5_fsm_4 = ap_const_logic_1;
+always @ (ap_sig_bdd_1237) begin
+    if (ap_sig_bdd_1237) begin
+        ap_sig_cseq_ST_st8_fsm_5 = ap_const_logic_1;
     end else begin
-        ap_sig_cseq_ST_st5_fsm_4 = ap_const_logic_0;
+        ap_sig_cseq_ST_st8_fsm_5 = ap_const_logic_0;
     end
 end
 
-always @ (ap_sig_bdd_1056) begin
-    if (ap_sig_bdd_1056) begin
-        ap_sig_cseq_ST_st6_fsm_5 = ap_const_logic_1;
+always @ (ap_reg_ppiten_pp0_it2 or tmp_8_fu_758_p2) begin
+    if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it2) & ~(ap_const_lv1_0 == tmp_8_fu_758_p2))) begin
+        argmax_ap_vld = ap_const_logic_1;
     end else begin
-        ap_sig_cseq_ST_st6_fsm_5 = ap_const_logic_0;
+        argmax_ap_vld = ap_const_logic_0;
     end
 end
-always @ (ap_CS_fsm or grp_inference_mult_1_84_84_10_s_fu_228_ap_done or grp_inference_add_1_10_s_fu_416_ap_done or grp_inference_softmax_1_10_s_fu_430_ap_done or ap_sig_bdd_1016) begin
+
+always @ (i_i_reg_342 or exitcond_flatten_reg_785 or ap_sig_cseq_ST_pp0_stg0_fsm_4 or ap_reg_ppiten_pp0_it1 or i_i_mid2_reg_799) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_pp0_stg0_fsm_4) & (ap_const_logic_1 == ap_reg_ppiten_pp0_it1) & (exitcond_flatten_reg_785 == ap_const_lv1_0))) begin
+        i_i_phi_fu_346_p4 = i_i_mid2_reg_799;
+    end else begin
+        i_i_phi_fu_346_p4 = i_i_reg_342;
+    end
+end
+always @ (ap_CS_fsm or exitcond_flatten_fu_575_p2 or ap_reg_ppiten_pp0_it0 or ap_reg_ppiten_pp0_it1 or ap_reg_ppiten_pp0_it2 or grp_inference_add_1_10_s_fu_552_ap_done or grp_inference_mult_1_84_84_10_s_fu_364_ap_done or ap_sig_bdd_1067) begin
     case (ap_CS_fsm)
         ap_ST_st1_fsm_0 : 
         begin
-            if (~ap_sig_bdd_1016) begin
+            if (~ap_sig_bdd_1067) begin
                 ap_NS_fsm = ap_ST_st2_fsm_1;
             end else begin
                 ap_NS_fsm = ap_ST_st1_fsm_0;
@@ -2699,7 +2825,7 @@ always @ (ap_CS_fsm or grp_inference_mult_1_84_84_10_s_fu_228_ap_done or grp_inf
         end
         ap_ST_st2_fsm_1 : 
         begin
-            if (~(ap_const_logic_0 == grp_inference_mult_1_84_84_10_s_fu_228_ap_done)) begin
+            if (~(ap_const_logic_0 == grp_inference_mult_1_84_84_10_s_fu_364_ap_done)) begin
                 ap_NS_fsm = ap_ST_st3_fsm_2;
             end else begin
                 ap_NS_fsm = ap_ST_st2_fsm_1;
@@ -2711,23 +2837,25 @@ always @ (ap_CS_fsm or grp_inference_mult_1_84_84_10_s_fu_228_ap_done or grp_inf
         end
         ap_ST_st4_fsm_3 : 
         begin
-            if (~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_416_ap_done)) begin
-                ap_NS_fsm = ap_ST_st5_fsm_4;
+            if (~(ap_const_logic_0 == grp_inference_add_1_10_s_fu_552_ap_done)) begin
+                ap_NS_fsm = ap_ST_pp0_stg0_fsm_4;
             end else begin
                 ap_NS_fsm = ap_ST_st4_fsm_3;
             end
         end
-        ap_ST_st5_fsm_4 : 
+        ap_ST_pp0_stg0_fsm_4 : 
         begin
-            ap_NS_fsm = ap_ST_st6_fsm_5;
-        end
-        ap_ST_st6_fsm_5 : 
-        begin
-            if (~(ap_const_logic_0 == grp_inference_softmax_1_10_s_fu_430_ap_done)) begin
-                ap_NS_fsm = ap_ST_st1_fsm_0;
+            if ((~((ap_const_logic_1 == ap_reg_ppiten_pp0_it2) & ~(ap_const_logic_1 == ap_reg_ppiten_pp0_it1)) & ~((ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & ~(exitcond_flatten_fu_575_p2 == ap_const_lv1_0) & ~(ap_const_logic_1 == ap_reg_ppiten_pp0_it1)))) begin
+                ap_NS_fsm = ap_ST_pp0_stg0_fsm_4;
+            end else if (((ap_const_logic_1 == ap_reg_ppiten_pp0_it0) & ~(exitcond_flatten_fu_575_p2 == ap_const_lv1_0) & ~(ap_const_logic_1 == ap_reg_ppiten_pp0_it1))) begin
+                ap_NS_fsm = ap_ST_st8_fsm_5;
             end else begin
-                ap_NS_fsm = ap_ST_st6_fsm_5;
+                ap_NS_fsm = ap_ST_st8_fsm_5;
             end
+        end
+        ap_ST_st8_fsm_5 : 
+        begin
+            ap_NS_fsm = ap_ST_st1_fsm_0;
         end
         default : 
         begin
@@ -2737,236 +2865,226 @@ always @ (ap_CS_fsm or grp_inference_mult_1_84_84_10_s_fu_228_ap_done or grp_inf
 end
 
 
-assign B_0_address0 = grp_inference_add_1_10_s_fu_416_B_0_address0;
+assign B_0_address0 = grp_inference_add_1_10_s_fu_552_B_0_address0;
 
-assign S_0_0_d0 = grp_inference_add_1_10_s_fu_416_C_0_0_d0;
+assign S_0_0_d0 = grp_inference_add_1_10_s_fu_552_C_0_0_d0;
 
-assign S_1_0_d0 = grp_inference_add_1_10_s_fu_416_C_1_0_d0;
+assign S_1_0_d0 = grp_inference_add_1_10_s_fu_552_C_1_0_d0;
 
-assign S_2_0_d0 = grp_inference_add_1_10_s_fu_416_C_2_0_d0;
+assign S_2_0_d0 = grp_inference_add_1_10_s_fu_552_C_2_0_d0;
 
-assign S_3_0_d0 = grp_inference_add_1_10_s_fu_416_C_3_0_d0;
+assign S_3_0_d0 = grp_inference_add_1_10_s_fu_552_C_3_0_d0;
 
-assign T_0_0_d0 = grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0;
+assign T_0_0_d0 = grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0;
 
-assign T_1_0_d0 = grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0;
+assign T_1_0_d0 = grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0;
 
-assign T_2_0_d0 = grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0;
+assign T_2_0_d0 = grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0;
 
-assign T_3_0_d0 = grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0;
+assign T_3_0_d0 = grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0;
 
-assign W_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_0_address0;
+assign W_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_0_address0;
 
-assign W_10_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_10_address0;
+assign W_10_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_10_address0;
 
-assign W_11_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_11_address0;
+assign W_11_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_11_address0;
 
-assign W_12_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_12_address0;
+assign W_12_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_12_address0;
 
-assign W_13_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_13_address0;
+assign W_13_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_13_address0;
 
-assign W_14_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_14_address0;
+assign W_14_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_14_address0;
 
-assign W_15_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_15_address0;
+assign W_15_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_15_address0;
 
-assign W_16_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_16_address0;
+assign W_16_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_16_address0;
 
-assign W_17_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_17_address0;
+assign W_17_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_17_address0;
 
-assign W_18_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_18_address0;
+assign W_18_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_18_address0;
 
-assign W_19_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_19_address0;
+assign W_19_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_19_address0;
 
-assign W_1_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_1_address0;
+assign W_1_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_1_address0;
 
-assign W_20_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_20_address0;
+assign W_20_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_20_address0;
 
-assign W_21_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_21_address0;
+assign W_21_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_21_address0;
 
-assign W_22_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_22_address0;
+assign W_22_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_22_address0;
 
-assign W_23_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_23_address0;
+assign W_23_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_23_address0;
 
-assign W_24_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_24_address0;
+assign W_24_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_24_address0;
 
-assign W_25_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_25_address0;
+assign W_25_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_25_address0;
 
-assign W_26_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_26_address0;
+assign W_26_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_26_address0;
 
-assign W_27_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_27_address0;
+assign W_27_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_27_address0;
 
-assign W_28_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_28_address0;
+assign W_28_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_28_address0;
 
-assign W_29_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_29_address0;
+assign W_29_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_29_address0;
 
-assign W_2_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_2_address0;
+assign W_2_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_2_address0;
 
-assign W_30_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_30_address0;
+assign W_30_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_30_address0;
 
-assign W_31_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_31_address0;
+assign W_31_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_31_address0;
 
-assign W_32_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_32_address0;
+assign W_32_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_32_address0;
 
-assign W_33_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_33_address0;
+assign W_33_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_33_address0;
 
-assign W_34_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_34_address0;
+assign W_34_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_34_address0;
 
-assign W_35_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_35_address0;
+assign W_35_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_35_address0;
 
-assign W_36_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_36_address0;
+assign W_36_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_36_address0;
 
-assign W_37_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_37_address0;
+assign W_37_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_37_address0;
 
-assign W_38_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_38_address0;
+assign W_38_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_38_address0;
 
-assign W_39_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_39_address0;
+assign W_39_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_39_address0;
 
-assign W_3_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_3_address0;
+assign W_3_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_3_address0;
 
-assign W_40_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_40_address0;
+assign W_40_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_40_address0;
 
-assign W_41_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_41_address0;
+assign W_41_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_41_address0;
 
-assign W_42_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_42_address0;
+assign W_42_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_42_address0;
 
-assign W_43_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_43_address0;
+assign W_43_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_43_address0;
 
-assign W_44_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_44_address0;
+assign W_44_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_44_address0;
 
-assign W_45_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_45_address0;
+assign W_45_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_45_address0;
 
-assign W_46_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_46_address0;
+assign W_46_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_46_address0;
 
-assign W_47_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_47_address0;
+assign W_47_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_47_address0;
 
-assign W_48_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_48_address0;
+assign W_48_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_48_address0;
 
-assign W_49_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_49_address0;
+assign W_49_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_49_address0;
 
-assign W_4_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_4_address0;
+assign W_4_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_4_address0;
 
-assign W_50_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_50_address0;
+assign W_50_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_50_address0;
 
-assign W_51_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_51_address0;
+assign W_51_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_51_address0;
 
-assign W_52_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_52_address0;
+assign W_52_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_52_address0;
 
-assign W_53_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_53_address0;
+assign W_53_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_53_address0;
 
-assign W_54_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_54_address0;
+assign W_54_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_54_address0;
 
-assign W_55_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_55_address0;
+assign W_55_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_55_address0;
 
-assign W_56_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_56_address0;
+assign W_56_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_56_address0;
 
-assign W_57_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_57_address0;
+assign W_57_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_57_address0;
 
-assign W_58_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_58_address0;
+assign W_58_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_58_address0;
 
-assign W_59_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_59_address0;
+assign W_59_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_59_address0;
 
-assign W_5_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_5_address0;
+assign W_5_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_5_address0;
 
-assign W_60_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_60_address0;
+assign W_60_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_60_address0;
 
-assign W_61_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_61_address0;
+assign W_61_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_61_address0;
 
-assign W_62_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_62_address0;
+assign W_62_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_62_address0;
 
-assign W_63_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_63_address0;
+assign W_63_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_63_address0;
 
-assign W_64_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_64_address0;
+assign W_64_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_64_address0;
 
-assign W_65_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_65_address0;
+assign W_65_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_65_address0;
 
-assign W_66_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_66_address0;
+assign W_66_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_66_address0;
 
-assign W_67_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_67_address0;
+assign W_67_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_67_address0;
 
-assign W_68_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_68_address0;
+assign W_68_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_68_address0;
 
-assign W_69_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_69_address0;
+assign W_69_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_69_address0;
 
-assign W_6_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_6_address0;
+assign W_6_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_6_address0;
 
-assign W_70_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_70_address0;
+assign W_70_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_70_address0;
 
-assign W_71_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_71_address0;
+assign W_71_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_71_address0;
 
-assign W_72_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_72_address0;
+assign W_72_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_72_address0;
 
-assign W_73_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_73_address0;
+assign W_73_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_73_address0;
 
-assign W_74_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_74_address0;
+assign W_74_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_74_address0;
 
-assign W_75_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_75_address0;
+assign W_75_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_75_address0;
 
-assign W_76_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_76_address0;
+assign W_76_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_76_address0;
 
-assign W_77_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_77_address0;
+assign W_77_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_77_address0;
 
-assign W_78_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_78_address0;
+assign W_78_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_78_address0;
 
-assign W_79_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_79_address0;
+assign W_79_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_79_address0;
 
-assign W_7_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_7_address0;
+assign W_7_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_7_address0;
 
-assign W_80_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_80_address0;
+assign W_80_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_80_address0;
 
-assign W_81_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_81_address0;
+assign W_81_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_81_address0;
 
-assign W_82_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_82_address0;
+assign W_82_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_82_address0;
 
-assign W_83_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_83_address0;
+assign W_83_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_83_address0;
 
-assign W_8_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_8_address0;
+assign W_8_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_8_address0;
 
-assign W_9_address0 = grp_inference_mult_1_84_84_10_s_fu_228_B_9_address0;
+assign W_9_address0 = grp_inference_mult_1_84_84_10_s_fu_364_B_9_address0;
 
-assign X_0_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0;
+assign X_0_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0;
 
-assign X_0_0_address1 = grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1;
+assign X_0_0_address1 = grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1;
 
-assign X_1_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0;
+assign X_1_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0;
 
-assign X_1_0_address1 = grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1;
+assign X_1_0_address1 = grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1;
 
-assign X_2_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0;
+assign X_2_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0;
 
-assign X_2_0_address1 = grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1;
+assign X_2_0_address1 = grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1;
 
-assign X_3_0_address0 = grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0;
+assign X_3_0_address0 = grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0;
 
-assign X_3_0_address1 = grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1;
+assign X_3_0_address1 = grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1;
 
 
 always @ (ap_start or ap_done_reg) begin
-    ap_sig_bdd_1016 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
+    ap_sig_bdd_1067 = ((ap_start == ap_const_logic_0) | (ap_done_reg == ap_const_logic_1));
 end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_1024 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
+    ap_sig_bdd_1075 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_1]);
 end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_1033 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
+    ap_sig_bdd_1084 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_2]);
 end
 
 
 always @ (ap_CS_fsm) begin
-    ap_sig_bdd_1040 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_3]);
-end
-
-
-always @ (ap_CS_fsm) begin
-    ap_sig_bdd_1049 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_4]);
-end
-
-
-always @ (ap_CS_fsm) begin
-    ap_sig_bdd_1056 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_5]);
+    ap_sig_bdd_1237 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_5]);
 end
 
 
@@ -2974,219 +3092,279 @@ always @ (ap_CS_fsm) begin
     ap_sig_bdd_25 = (ap_CS_fsm[ap_const_lv32_0] == ap_const_lv1_1);
 end
 
-assign argmax_TDATA = grp_inference_softmax_1_10_s_fu_430_argmax_TDATA;
 
-assign argmax_TVALID = grp_inference_softmax_1_10_s_fu_430_argmax_TVALID;
+always @ (ap_CS_fsm) begin
+    ap_sig_bdd_593 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_4]);
+end
 
-assign grp_inference_add_1_10_s_fu_416_A_0_0_q0 = T_0_0_q0;
 
-assign grp_inference_add_1_10_s_fu_416_A_1_0_q0 = T_1_0_q0;
+always @ (ap_CS_fsm) begin
+    ap_sig_bdd_639 = (ap_const_lv1_1 == ap_CS_fsm[ap_const_lv32_3]);
+end
 
-assign grp_inference_add_1_10_s_fu_416_A_2_0_q0 = T_2_0_q0;
+assign argmax = tmp_4_i_fu_764_p2;
 
-assign grp_inference_add_1_10_s_fu_416_A_3_0_q0 = T_3_0_q0;
+assign exitcond_flatten_fu_575_p2 = (indvar_flatten_reg_331 == ap_const_lv4_A? 1'b1: 1'b0);
 
-assign grp_inference_add_1_10_s_fu_416_B_0_q0 = B_0_q0;
+assign exitcond_i_fu_587_p2 = (j_i_reg_353 == ap_const_lv4_A? 1'b1: 1'b0);
 
-assign grp_inference_add_1_10_s_fu_416_ap_start = grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg;
+assign grp_inference_add_1_10_s_fu_552_A_0_0_q0 = T_0_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0 = X_0_0_q0;
+assign grp_inference_add_1_10_s_fu_552_A_1_0_q0 = T_1_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1 = X_0_0_q1;
+assign grp_inference_add_1_10_s_fu_552_A_2_0_q0 = T_2_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0 = X_1_0_q0;
+assign grp_inference_add_1_10_s_fu_552_A_3_0_q0 = T_3_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1 = X_1_0_q1;
+assign grp_inference_add_1_10_s_fu_552_B_0_q0 = B_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0 = X_2_0_q0;
+assign grp_inference_add_1_10_s_fu_552_ap_start = grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1 = X_2_0_q1;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0 = X_0_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0 = X_3_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1 = X_0_0_q1;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1 = X_3_0_q1;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0 = X_1_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_0_q0 = W_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1 = X_1_0_q1;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_10_q0 = W_10_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0 = X_2_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_11_q0 = W_11_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1 = X_2_0_q1;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_12_q0 = W_12_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0 = X_3_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_13_q0 = W_13_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1 = X_3_0_q1;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_14_q0 = W_14_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_0_q0 = W_0_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_15_q0 = W_15_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_10_q0 = W_10_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_16_q0 = W_16_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_11_q0 = W_11_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_17_q0 = W_17_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_12_q0 = W_12_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_18_q0 = W_18_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_13_q0 = W_13_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_19_q0 = W_19_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_14_q0 = W_14_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_1_q0 = W_1_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_15_q0 = W_15_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_20_q0 = W_20_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_16_q0 = W_16_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_21_q0 = W_21_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_17_q0 = W_17_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_22_q0 = W_22_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_18_q0 = W_18_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_23_q0 = W_23_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_19_q0 = W_19_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_24_q0 = W_24_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_1_q0 = W_1_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_25_q0 = W_25_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_20_q0 = W_20_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_26_q0 = W_26_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_21_q0 = W_21_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_27_q0 = W_27_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_22_q0 = W_22_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_28_q0 = W_28_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_23_q0 = W_23_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_29_q0 = W_29_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_24_q0 = W_24_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_2_q0 = W_2_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_25_q0 = W_25_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_30_q0 = W_30_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_26_q0 = W_26_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_31_q0 = W_31_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_27_q0 = W_27_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_32_q0 = W_32_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_28_q0 = W_28_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_33_q0 = W_33_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_29_q0 = W_29_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_34_q0 = W_34_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_2_q0 = W_2_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_35_q0 = W_35_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_30_q0 = W_30_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_36_q0 = W_36_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_31_q0 = W_31_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_37_q0 = W_37_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_32_q0 = W_32_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_38_q0 = W_38_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_33_q0 = W_33_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_39_q0 = W_39_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_34_q0 = W_34_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_3_q0 = W_3_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_35_q0 = W_35_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_40_q0 = W_40_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_36_q0 = W_36_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_41_q0 = W_41_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_37_q0 = W_37_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_42_q0 = W_42_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_38_q0 = W_38_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_43_q0 = W_43_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_39_q0 = W_39_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_44_q0 = W_44_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_3_q0 = W_3_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_45_q0 = W_45_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_40_q0 = W_40_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_46_q0 = W_46_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_41_q0 = W_41_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_47_q0 = W_47_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_42_q0 = W_42_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_48_q0 = W_48_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_43_q0 = W_43_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_49_q0 = W_49_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_44_q0 = W_44_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_4_q0 = W_4_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_45_q0 = W_45_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_50_q0 = W_50_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_46_q0 = W_46_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_51_q0 = W_51_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_47_q0 = W_47_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_52_q0 = W_52_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_48_q0 = W_48_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_53_q0 = W_53_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_49_q0 = W_49_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_54_q0 = W_54_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_4_q0 = W_4_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_55_q0 = W_55_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_50_q0 = W_50_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_56_q0 = W_56_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_51_q0 = W_51_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_57_q0 = W_57_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_52_q0 = W_52_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_58_q0 = W_58_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_53_q0 = W_53_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_59_q0 = W_59_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_54_q0 = W_54_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_5_q0 = W_5_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_55_q0 = W_55_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_60_q0 = W_60_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_56_q0 = W_56_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_61_q0 = W_61_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_57_q0 = W_57_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_62_q0 = W_62_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_58_q0 = W_58_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_63_q0 = W_63_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_59_q0 = W_59_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_64_q0 = W_64_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_5_q0 = W_5_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_65_q0 = W_65_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_60_q0 = W_60_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_66_q0 = W_66_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_61_q0 = W_61_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_67_q0 = W_67_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_62_q0 = W_62_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_68_q0 = W_68_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_63_q0 = W_63_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_69_q0 = W_69_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_64_q0 = W_64_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_6_q0 = W_6_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_65_q0 = W_65_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_70_q0 = W_70_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_66_q0 = W_66_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_71_q0 = W_71_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_67_q0 = W_67_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_72_q0 = W_72_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_68_q0 = W_68_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_73_q0 = W_73_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_69_q0 = W_69_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_74_q0 = W_74_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_6_q0 = W_6_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_75_q0 = W_75_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_70_q0 = W_70_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_76_q0 = W_76_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_71_q0 = W_71_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_77_q0 = W_77_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_72_q0 = W_72_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_78_q0 = W_78_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_73_q0 = W_73_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_79_q0 = W_79_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_74_q0 = W_74_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_7_q0 = W_7_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_75_q0 = W_75_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_80_q0 = W_80_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_76_q0 = W_76_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_81_q0 = W_81_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_77_q0 = W_77_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_82_q0 = W_82_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_78_q0 = W_78_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_83_q0 = W_83_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_79_q0 = W_79_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_8_q0 = W_8_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_7_q0 = W_7_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_B_9_q0 = W_9_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_80_q0 = W_80_q0;
 
-assign grp_inference_mult_1_84_84_10_s_fu_228_ap_start = grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_81_q0 = W_81_q0;
 
-assign grp_inference_softmax_1_10_s_fu_430_A_0_0_q0 = S_0_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_82_q0 = W_82_q0;
 
-assign grp_inference_softmax_1_10_s_fu_430_A_1_0_q0 = S_1_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_83_q0 = W_83_q0;
 
-assign grp_inference_softmax_1_10_s_fu_430_A_2_0_q0 = S_2_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_8_q0 = W_8_q0;
 
-assign grp_inference_softmax_1_10_s_fu_430_A_3_0_q0 = S_3_0_q0;
+assign grp_inference_mult_1_84_84_10_s_fu_364_B_9_q0 = W_9_q0;
 
-assign grp_inference_softmax_1_10_s_fu_430_ap_start = grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg;
+assign grp_inference_mult_1_84_84_10_s_fu_364_ap_start = grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg;
 
-assign grp_inference_softmax_1_10_s_fu_430_argmax_TREADY = argmax_TREADY;
+assign i_cast6_i_fu_678_p1 = ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1;
+
+assign i_i_mid2_fu_601_p2 = (exitcond_i_fu_587_p2 | i_i_phi_fu_346_p4);
+
+assign indvar_flatten_next_fu_581_p2 = (indvar_flatten_reg_331 + ap_const_lv4_1);
+
+assign j_fu_629_p2 = (j_i_mid2_fu_593_p3 + ap_const_lv4_1);
+
+assign j_i_mid2_fu_593_p3 = ((exitcond_i_fu_587_p2[0:0] === 1'b1) ? ap_const_lv4_0 : j_i_reg_353);
+
+assign max_val_1_i_to_int_fu_698_p1 = max_val_1_fu_244;
+
+assign max_val_3_i_to_int_fu_681_p1 = max_val_reg_837;
+
+assign max_val_fu_666_p3 = ((sel_tmp4_i_fu_661_p2[0:0] === 1'b1) ? S_2_0_q0 : sel_tmp3_i_fu_653_p3);
+
+assign newIndex4_i_fu_621_p1 = newIndex_i_fu_611_p4;
+
+assign newIndex_i_fu_611_p4 = {{j_i_mid2_fu_593_p3[ap_const_lv32_3 : ap_const_lv32_2]}};
+
+assign notlhs1_fu_734_p2 = (tmp_2_fu_702_p4 != ap_const_lv8_FF? 1'b1: 1'b0);
+
+assign notlhs_fu_716_p2 = (tmp_fu_684_p4 != ap_const_lv8_FF? 1'b1: 1'b0);
+
+assign notrhs2_fu_740_p2 = (tmp_9_fu_712_p1 == ap_const_lv23_0? 1'b1: 1'b0);
+
+assign notrhs_fu_722_p2 = (tmp_3_fu_694_p1 == ap_const_lv23_0? 1'b1: 1'b0);
+
+assign sel_tmp1_i_fu_640_p3 = ((sel_tmp_i_fu_635_p2[0:0] === 1'b1) ? S_0_0_q0 : S_3_0_q0);
+
+assign sel_tmp2_i_fu_648_p2 = (tmp_1_reg_805 == ap_const_lv2_1? 1'b1: 1'b0);
+
+assign sel_tmp3_i_fu_653_p3 = ((sel_tmp2_i_fu_648_p2[0:0] === 1'b1) ? S_1_0_q0 : sel_tmp1_i_fu_640_p3);
+
+assign sel_tmp4_i_fu_661_p2 = (tmp_1_reg_805 == ap_const_lv2_2? 1'b1: 1'b0);
+
+assign sel_tmp_i_fu_635_p2 = (tmp_1_reg_805 == ap_const_lv2_0? 1'b1: 1'b0);
+
+assign tmp_1_fu_607_p1 = j_i_mid2_fu_593_p3[1:0];
+
+assign tmp_2_fu_702_p4 = {{max_val_1_i_to_int_fu_698_p1[ap_const_lv32_1E : ap_const_lv32_17]}};
+
+assign tmp_3_fu_694_p1 = max_val_3_i_to_int_fu_681_p1[22:0];
+
+assign tmp_4_fu_728_p2 = (notrhs_fu_722_p2 | notlhs_fu_716_p2);
+
+assign tmp_4_i_fu_764_p2 = (ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1 + i_cast6_i_fu_678_p1);
+
+assign tmp_5_fu_746_p2 = (notrhs2_fu_740_p2 | notlhs1_fu_734_p2);
+
+assign tmp_6_fu_752_p2 = (tmp_4_fu_728_p2 & tmp_5_fu_746_p2);
+
+assign tmp_7_fu_566_opcode = ap_const_lv5_2;
+
+assign tmp_8_fu_758_p2 = (tmp_6_fu_752_p2 & tmp_7_fu_566_p2);
+
+assign tmp_9_fu_712_p1 = max_val_1_i_to_int_fu_698_p1[22:0];
+
+assign tmp_fu_684_p4 = {{max_val_3_i_to_int_fu_681_p1[ap_const_lv32_1E : ap_const_lv32_17]}};
 
 
 endmodule //inference_sm

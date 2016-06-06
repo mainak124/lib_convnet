@@ -6,7 +6,7 @@
 <Project Version="7" Minor="10" Path="/home/sakthi/lenet_multi_input/lib_convnet/convnet_cpp/solution1/impl/verilog/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="68ee78da50f845c1ae6e4be7c448ed24"/>
+    <Option Name="Id" Val="982d50fa675e4705828309f4d2099351"/>
     <Option Name="Part" Val="xc7vx690tffg1761-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
@@ -2520,13 +2520,6 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/FIFO_inference_poolOut2_0_0_5.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/inference_softmax_1_10_s.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

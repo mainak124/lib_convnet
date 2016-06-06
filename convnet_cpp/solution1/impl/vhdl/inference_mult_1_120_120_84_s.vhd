@@ -1030,7 +1030,7 @@ architecture behav of inference_mult_1_120_120_84_s is
     signal ap_reg_ppiten_pp0_it482 : STD_LOGIC := '0';
     signal ap_reg_ppiten_pp0_it483 : STD_LOGIC := '0';
     signal ap_reg_ppiten_pp0_it484 : STD_LOGIC := '0';
-    signal j_3_fu_3720_p2 : STD_LOGIC_VECTOR (6 downto 0);
+    signal j_2_fu_3720_p2 : STD_LOGIC_VECTOR (6 downto 0);
     signal tmp_s_fu_3726_p1 : STD_LOGIC_VECTOR (63 downto 0);
     signal tmp_s_reg_4361 : STD_LOGIC_VECTOR (63 downto 0);
     signal ap_reg_ppstg_tmp_s_reg_4361_pp0_it1 : STD_LOGIC_VECTOR (63 downto 0);
@@ -13299,7 +13299,7 @@ begin
             if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not((ap_start = ap_const_logic_0)))) then 
                 j_reg_2742 <= ap_const_lv7_0;
             elsif (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond1_fu_3714_p2 = ap_const_lv1_0))) then 
-                j_reg_2742 <= j_3_fu_3720_p2;
+                j_reg_2742 <= j_2_fu_3720_p2;
             end if; 
         end if;
     end process;
@@ -17495,7 +17495,7 @@ begin
     grp_fu_3702_ce <= ap_const_logic_1;
     grp_fu_3706_ce <= ap_const_logic_1;
     grp_fu_3710_ce <= ap_const_logic_1;
-    j_3_fu_3720_p2 <= std_logic_vector(unsigned(j_reg_2742) + unsigned(ap_const_lv7_1));
+    j_2_fu_3720_p2 <= std_logic_vector(unsigned(j_reg_2742) + unsigned(ap_const_lv7_1));
     newIndex3_fu_3745_p1 <= std_logic_vector(resize(unsigned(ap_reg_ppstg_newIndex_reg_4493_pp0_it483),64));
     tmp_fu_3731_p1 <= j_reg_2742(2 - 1 downto 0);
     tmp_s_fu_3726_p1 <= std_logic_vector(resize(unsigned(j_reg_2742),64));
