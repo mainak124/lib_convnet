@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
+# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+# Start of session at: Sun Jun  5 17:42:50 2016
+# Process ID: 28116
+# Current directory: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/synth_1
+# Command line: vivado -log VC709_Gen3x4If128.vds -mode batch -messageDb vivado.pb -notrace -source VC709_Gen3x4If128.tcl
+# Log file: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/synth_1/VC709_Gen3x4If128.vds
+# Journal file: /home/sakthi/lib_convnet/RIFFA_BUILDER/user/Output/FPGA_PRJ/prj/VC709_Gen3x4If128.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source VC709_Gen3x4If128.tcl -notrace
