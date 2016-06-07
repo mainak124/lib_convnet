@@ -34,18 +34,18 @@ bld.host_template_type = 'Common'
 bld.performance_counters = True
 bld.performance_counters_tick_div = 0  #0=no divide, 1= div by 2, 2= div by 4, 3= div by 8...
 bld.port_atrbs = [ \
-    'inference inputImage_TDATA float 784 debug',\
-    'inference Filter1_TDATA float 150 debug',\
-    'inference bias1_TDATA float 6 debug',\
-    'inference Filter2_TDATA float 2400 debug',\
-    'inference bias2_TDATA float 16 debug',\
-    'inference Filter3_TDATA float 48000 debug',\
-    'inference bias3_TDATA float 120 debug',\
-    'inference fcWeight_TDATA float 10080 debug',\
-    'inference fcBias_TDATA float 84 debug',\
-    'inference smWeight_TDATA float 840 debug',\
-    'inference smBias_TDATA float 10 debug',\
-    'inference outDigit_TDATA float 1 debug']
+    'inference inputImage_q0 float 784 debug',\
+    'inference Filter1_q0 float 150 debug',\
+    'inference bias1_q0 float 6 debug',\
+    'inference Filter2_q0 float 2400 debug',\
+    'inference bias2_q0 float 16 debug',\
+    'inference Filter3_q0 float 48000 debug',\
+    'inference bias3_q0 float 120 debug',\
+    'inference fcWeight_q0 float 10080 debug',\
+    'inference fcBias_q0 float 84 debug',\
+    'inference smWeight_q0 float 840 debug',\
+    'inference smBias_q0 float 10 debug',\
+    'inference outDigit float 1 debug']
 bld.host_debug_level = 3
 bld.hardware_timeout = 10000
 #User options end
