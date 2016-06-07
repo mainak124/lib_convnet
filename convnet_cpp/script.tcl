@@ -18,7 +18,7 @@ add_files -tb convnet_cpp/conv_test.cpp
 open_solution "solution1"
 set_part {xc7vx690tffg1761-2}
 create_clock -period 10 -name default
-source "convnet_cpp/directives.tcl"
+#source "convnet_cpp/directives.tcl"
 csim_design -clean
 csynth_design
 cosim_design

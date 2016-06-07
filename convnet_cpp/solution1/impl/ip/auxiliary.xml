@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="inference" xd:componentRef="inference" xd:initiationInterval="3731602" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="outDigit" xd:originalName="outDigit" xd:direction="out" xd:interfaceRef="outDigit" xd:busTypeRef="register" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:arg xd:name="inputImage_q0" xd:originalName="inputImage_q0" xd:direction="in" xd:interfaceRef="inputImage_q0" xd:busTypeRef="ap_memory" xd:arraySize="784" xd:dataWidth="32"/>
+  <xd:arg xd:name="Filter1_q0" xd:originalName="Filter1_q0" xd:direction="in" xd:interfaceRef="Filter1_q0" xd:busTypeRef="ap_memory" xd:arraySize="150" xd:dataWidth="32"/>
+  <xd:arg xd:name="bias1_q0" xd:originalName="bias1_q0" xd:direction="in" xd:interfaceRef="bias1_q0" xd:busTypeRef="ap_memory" xd:arraySize="6" xd:dataWidth="32"/>
+  <xd:arg xd:name="Filter2_q0" xd:originalName="Filter2_q0" xd:direction="in" xd:interfaceRef="Filter2_q0" xd:busTypeRef="ap_memory" xd:arraySize="2400" xd:dataWidth="32"/>
+  <xd:arg xd:name="bias2_q0" xd:originalName="bias2_q0" xd:direction="in" xd:interfaceRef="bias2_q0" xd:busTypeRef="ap_memory" xd:arraySize="16" xd:dataWidth="32"/>
+  <xd:arg xd:name="Filter3_q0" xd:originalName="Filter3_q0" xd:direction="in" xd:interfaceRef="Filter3_q0" xd:busTypeRef="ap_memory" xd:arraySize="48000" xd:dataWidth="32"/>
+  <xd:arg xd:name="bias3_q0" xd:originalName="bias3_q0" xd:direction="in" xd:interfaceRef="bias3_q0" xd:busTypeRef="ap_memory" xd:arraySize="120" xd:dataWidth="32"/>
+  <xd:arg xd:name="fcWeight_q0" xd:originalName="fcWeight_q0" xd:direction="in" xd:interfaceRef="fcWeight_q0" xd:busTypeRef="ap_memory" xd:arraySize="10080" xd:dataWidth="32"/>
+  <xd:arg xd:name="fcBias_q0" xd:originalName="fcBias_q0" xd:direction="in" xd:interfaceRef="fcBias_q0" xd:busTypeRef="ap_memory" xd:arraySize="84" xd:dataWidth="32"/>
+  <xd:arg xd:name="smWeight_q0" xd:originalName="smWeight_q0" xd:direction="in" xd:interfaceRef="smWeight_q0" xd:busTypeRef="ap_memory" xd:arraySize="840" xd:dataWidth="32"/>
+  <xd:arg xd:name="smBias_q0" xd:originalName="smBias_q0" xd:direction="in" xd:interfaceRef="smBias_q0" xd:busTypeRef="ap_memory" xd:arraySize="10" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="3731601" xd:worst-case="3731601" xd:average-case="3731601"/>
+  <xd:resourceEstimates xd:LUT="7226" xd:FF="6230" xd:BRAM="205" xd:DSP="36"/>
+</xd:acceleratorMap>
