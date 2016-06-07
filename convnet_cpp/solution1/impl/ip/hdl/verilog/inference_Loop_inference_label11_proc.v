@@ -583,7 +583,7 @@ inference_mux_4to1_sel2_32_1 #(
     .din4_WIDTH( 32 ),
     .din5_WIDTH( 2 ),
     .dout_WIDTH( 32 ))
-inference_mux_4to1_sel2_32_1_U1175(
+inference_mux_4to1_sel2_32_1_U1176(
     .din1( convOutput3_0_q0 ),
     .din2( convOutput3_1_q0 ),
     .din3( convOutput3_2_q0 ),

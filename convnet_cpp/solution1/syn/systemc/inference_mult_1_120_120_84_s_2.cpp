@@ -3425,7 +3425,7 @@ void inference_mult_1_120_120_84_s::thread_ap_clk_no_reset_() {
     } else if ((esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg0_fsm_1.read()) && 
                 esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it0.read()) && 
                 esl_seteq<1,1,1>(exitcond1_fu_3714_p2.read(), ap_const_lv1_0))) {
-        j_reg_2742 = j_3_fu_3720_p2.read();
+        j_reg_2742 = j_2_fu_3720_p2.read();
     }
     if (esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg0_fsm_1.read())) {
         W4_0_load_reg_4498 = W4_0_q0.read();

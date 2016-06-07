@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <limits.h>
 #include "matrixTemplate.h"
 using namespace std;
 

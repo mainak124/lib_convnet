@@ -114,7 +114,7 @@ void inference_maxPoolNxN::thread_ap_clk_no_reset_() {
         out_2_13_0_1_reg_7959 = out_2_13_0_1_fu_4107_p3.read();
         out_2_14_reg_7966 = out_2_14_fu_4156_p3.read();
         out_2_15_reg_7973 = out_2_15_fu_4206_p3.read();
-        tmp_241_reg_7914 = tmp_241_fu_3909_p3.read();
+        tmp_239_reg_7914 = tmp_239_fu_3909_p3.read();
     }
     if ((esl_seteq<1,1,1>(exitcond_flatten_reg_7521.read(), ap_const_lv1_0) && esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg15_fsm_16.read()))) {
         out_2_12_1_reg_8292 = out_2_12_1_fu_6864_p3.read();
@@ -162,8 +162,8 @@ void inference_maxPoolNxN::thread_ap_clk_no_reset_() {
     if ((esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg0_fsm_1.read()) && esl_seteq<1,1,1>(ap_const_lv1_0, exitcond_flatten_fu_1817_p2.read()))) {
         p_lshr_f2_reg_7540 = in_c_idx_mid2_fu_1841_p3.read().range(3, 1);
         p_lshr_f_cast_reg_7535 = in_r_idx_mid2_fu_1849_p3.read().range(3, 1);
-        tmp_229_reg_7567 = tmp_229_fu_1951_p2.read();
-        tmp_236_reg_7544 = tmp_236_fu_1937_p3.read();
+        tmp_227_reg_7567 = tmp_227_fu_1951_p2.read();
+        tmp_234_reg_7544 = tmp_234_fu_1937_p3.read();
     }
     if (((esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg1_fsm_2.read()) && 
   esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it0.read()) && 

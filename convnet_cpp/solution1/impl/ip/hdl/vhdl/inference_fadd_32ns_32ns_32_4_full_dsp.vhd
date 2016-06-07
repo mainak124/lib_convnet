@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity inference_fadd_32ns_32ns_32_4_full_dsp is
     generic (
-        ID         : integer := 28;
+        ID         : integer := 29;
         NUM_STAGE  : integer := 4;
         din0_WIDTH : integer := 32;
         din1_WIDTH : integer := 32;

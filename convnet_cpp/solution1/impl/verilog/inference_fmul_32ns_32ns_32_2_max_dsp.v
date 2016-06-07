@@ -10,7 +10,7 @@
 
 module inference_fmul_32ns_32ns_32_2_max_dsp
 #(parameter
-    ID         = 32,
+    ID         = 33,
     NUM_STAGE  = 2,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

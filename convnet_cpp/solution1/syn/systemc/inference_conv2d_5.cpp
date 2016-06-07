@@ -3094,7 +3094,7 @@ void inference_conv2d::thread_x_4_9_ce1() {
 }
 
 void inference_conv2d::thread_x_assign_1_fu_10994_p3() {
-    x_assign_1_fu_10994_p3 = (!tmp_719_fu_10988_p2.read()[0].is_01())? sc_lv<32>(): ((tmp_719_fu_10988_p2.read()[0].to_bool())? x_assign_reg_23309.read(): ap_const_lv32_0);
+    x_assign_1_fu_10994_p3 = (!tmp_717_fu_10988_p2.read()[0].is_01())? sc_lv<32>(): ((tmp_717_fu_10988_p2.read()[0].to_bool())? x_assign_reg_23309.read(): ap_const_lv32_0);
 }
 
 void inference_conv2d::thread_x_assign_to_int_fu_10953_p1() {

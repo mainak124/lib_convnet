@@ -145,13 +145,13 @@ const sc_lv<7> inference_Loop_inference_label11_proc::ap_const_lv7_78 = "1111000
 const sc_lv<32> inference_Loop_inference_label11_proc::ap_const_lv32_6 = "110";
 
 inference_Loop_inference_label11_proc::inference_Loop_inference_label11_proc(sc_module_name name) : sc_module(name), mVcdFile(0) {
-    inference_mux_4to1_sel2_32_1_U1175 = new inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>("inference_mux_4to1_sel2_32_1_U1175");
-    inference_mux_4to1_sel2_32_1_U1175->din1(convOutput3_0_q0);
-    inference_mux_4to1_sel2_32_1_U1175->din2(convOutput3_1_q0);
-    inference_mux_4to1_sel2_32_1_U1175->din3(convOutput3_2_q0);
-    inference_mux_4to1_sel2_32_1_U1175->din4(convOutput3_3_q0);
-    inference_mux_4to1_sel2_32_1_U1175->din5(tmp_reg_3296);
-    inference_mux_4to1_sel2_32_1_U1175->dout(fcIn_0_0_fu_854_p6);
+    inference_mux_4to1_sel2_32_1_U1176 = new inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>("inference_mux_4to1_sel2_32_1_U1176");
+    inference_mux_4to1_sel2_32_1_U1176->din1(convOutput3_0_q0);
+    inference_mux_4to1_sel2_32_1_U1176->din2(convOutput3_1_q0);
+    inference_mux_4to1_sel2_32_1_U1176->din3(convOutput3_2_q0);
+    inference_mux_4to1_sel2_32_1_U1176->din4(convOutput3_3_q0);
+    inference_mux_4to1_sel2_32_1_U1176->din5(tmp_reg_3296);
+    inference_mux_4to1_sel2_32_1_U1176->dout(fcIn_0_0_fu_854_p6);
 
     SC_METHOD(thread_ap_clk_no_reset_);
     dont_initialize();
@@ -1041,7 +1041,7 @@ inference_Loop_inference_label11_proc::~inference_Loop_inference_label11_proc() 
     if (mVcdFile) 
         sc_close_vcd_trace_file(mVcdFile);
 
-    delete inference_mux_4to1_sel2_32_1_U1175;
+    delete inference_mux_4to1_sel2_32_1_U1176;
 }
 
 void inference_Loop_inference_label11_proc::thread_ap_clk_no_reset_() {

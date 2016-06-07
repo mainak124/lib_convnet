@@ -454,7 +454,7 @@ architecture behav of inference_Loop_inference_label11_proc is
 
 
 begin
-    inference_mux_4to1_sel2_32_1_U1175 : component inference_mux_4to1_sel2_32_1
+    inference_mux_4to1_sel2_32_1_U1176 : component inference_mux_4to1_sel2_32_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,

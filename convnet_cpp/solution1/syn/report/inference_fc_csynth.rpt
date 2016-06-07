@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'inference_fc'
 ================================================================
-* Date:           Sun Jun 05 14:05:44 2016
+* Date:           Tue Jun  7 02:02:49 2016
 
 * Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
 * Project:        convnet_cpp
@@ -80,18 +80,18 @@
     |                   Instance                   |                 Module                 | BRAM_18K| DSP48E|   FF  |  LUT  |
     +----------------------------------------------+----------------------------------------+---------+-------+-------+-------+
     |grp_inference_add_1_84_s_fu_1885              |inference_add_1_84_s                    |        1|      2|    362|    287|
-    |inference_fadd_32ns_32ns_32_4_full_dsp_U1675  |inference_fadd_32ns_32ns_32_4_full_dsp  |        0|      2|    227|    214|
     |inference_fadd_32ns_32ns_32_4_full_dsp_U1676  |inference_fadd_32ns_32ns_32_4_full_dsp  |        0|      2|    227|    214|
     |inference_fadd_32ns_32ns_32_4_full_dsp_U1677  |inference_fadd_32ns_32ns_32_4_full_dsp  |        0|      2|    227|    214|
     |inference_fadd_32ns_32ns_32_4_full_dsp_U1678  |inference_fadd_32ns_32ns_32_4_full_dsp  |        0|      2|    227|    214|
-    |inference_fdiv_32ns_32ns_32_8_U1679           |inference_fdiv_32ns_32ns_32_8           |        0|      0|    359|    802|
+    |inference_fadd_32ns_32ns_32_4_full_dsp_U1679  |inference_fadd_32ns_32ns_32_4_full_dsp  |        0|      2|    227|    214|
     |inference_fdiv_32ns_32ns_32_8_U1680           |inference_fdiv_32ns_32ns_32_8           |        0|      0|    359|    802|
     |inference_fdiv_32ns_32ns_32_8_U1681           |inference_fdiv_32ns_32ns_32_8           |        0|      0|    359|    802|
     |inference_fdiv_32ns_32ns_32_8_U1682           |inference_fdiv_32ns_32ns_32_8           |        0|      0|    359|    802|
-    |inference_fexp_32ns_32ns_32_6_full_dsp_U1683  |inference_fexp_32ns_32ns_32_6_full_dsp  |        0|      7|    195|    877|
+    |inference_fdiv_32ns_32ns_32_8_U1683           |inference_fdiv_32ns_32ns_32_8           |        0|      0|    359|    802|
     |inference_fexp_32ns_32ns_32_6_full_dsp_U1684  |inference_fexp_32ns_32ns_32_6_full_dsp  |        0|      7|    195|    877|
     |inference_fexp_32ns_32ns_32_6_full_dsp_U1685  |inference_fexp_32ns_32ns_32_6_full_dsp  |        0|      7|    195|    877|
     |inference_fexp_32ns_32ns_32_6_full_dsp_U1686  |inference_fexp_32ns_32ns_32_6_full_dsp  |        0|      7|    195|    877|
+    |inference_fexp_32ns_32ns_32_6_full_dsp_U1687  |inference_fexp_32ns_32ns_32_6_full_dsp  |        0|      7|    195|    877|
     |grp_inference_mult_1_120_120_84_s_fu_1393     |inference_mult_1_120_120_84_s           |      120|    600|  54629|  42180|
     +----------------------------------------------+----------------------------------------+---------+-------+-------+-------+
     |Total                                         |                                        |      121|    638|  58115|  50039|

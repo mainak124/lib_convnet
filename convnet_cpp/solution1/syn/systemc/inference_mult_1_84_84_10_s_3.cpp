@@ -833,7 +833,7 @@ void inference_mult_1_84_84_10_s::thread_C_0_0_d0() {
 void inference_mult_1_84_84_10_s::thread_C_0_0_we0() {
     if (((esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it30.read()) && 
           esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg10_fsm_11.read()) && 
-          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_0)))) {
+          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_0)))) {
         C_0_0_we0 = ap_const_logic_1;
     } else {
         C_0_0_we0 = ap_const_logic_0;
@@ -860,7 +860,7 @@ void inference_mult_1_84_84_10_s::thread_C_1_0_d0() {
 void inference_mult_1_84_84_10_s::thread_C_1_0_we0() {
     if (((esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it30.read()) && 
           esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg10_fsm_11.read()) && 
-          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_1)))) {
+          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_1)))) {
         C_1_0_we0 = ap_const_logic_1;
     } else {
         C_1_0_we0 = ap_const_logic_0;
@@ -887,7 +887,7 @@ void inference_mult_1_84_84_10_s::thread_C_2_0_d0() {
 void inference_mult_1_84_84_10_s::thread_C_2_0_we0() {
     if (((esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it30.read()) && 
           esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg10_fsm_11.read()) && 
-          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_2)))) {
+          esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_2)))) {
         C_2_0_we0 = ap_const_logic_1;
     } else {
         C_2_0_we0 = ap_const_logic_0;
@@ -914,9 +914,9 @@ void inference_mult_1_84_84_10_s::thread_C_3_0_d0() {
 void inference_mult_1_84_84_10_s::thread_C_3_0_we0() {
     if (((esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it30.read()) && 
           esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg10_fsm_11.read()) && 
-          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_2) && 
-          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_1) && 
-          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_11_reg_2964_pp0_it30.read(), ap_const_lv2_0)))) {
+          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_2) && 
+          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_1) && 
+          !esl_seteq<1,2,2>(ap_reg_ppstg_tmp_10_reg_2964_pp0_it30.read(), ap_const_lv2_0)))) {
         C_3_0_we0 = ap_const_logic_1;
     } else {
         C_3_0_we0 = ap_const_logic_0;
@@ -3364,15 +3364,15 @@ void inference_mult_1_84_84_10_s::thread_grp_fu_2092_p1() {
     }
 }
 
-void inference_mult_1_84_84_10_s::thread_j_2_fu_2376_p2() {
-    j_2_fu_2376_p2 = (!j_phi_fu_2024_p4.read().is_01() || !ap_const_lv4_1.is_01())? sc_lv<4>(): (sc_biguint<4>(j_phi_fu_2024_p4.read()) + sc_biguint<4>(ap_const_lv4_1));
+void inference_mult_1_84_84_10_s::thread_j_1_fu_2376_p2() {
+    j_1_fu_2376_p2 = (!j_phi_fu_2024_p4.read().is_01() || !ap_const_lv4_1.is_01())? sc_lv<4>(): (sc_biguint<4>(j_phi_fu_2024_p4.read()) + sc_biguint<4>(ap_const_lv4_1));
 }
 
 void inference_mult_1_84_84_10_s::thread_j_phi_fu_2024_p4() {
     if ((esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ppiten_pp0_it1.read()) && 
          esl_seteq<1,1,1>(exitcond1_reg_2835.read(), ap_const_lv1_0) && 
          esl_seteq<1,1,1>(ap_const_logic_1, ap_sig_cseq_ST_pp0_stg0_fsm_1.read()))) {
-        j_phi_fu_2024_p4 = j_2_reg_2839.read();
+        j_phi_fu_2024_p4 = j_1_reg_2839.read();
     } else {
         j_phi_fu_2024_p4 = j_reg_2020.read();
     }
@@ -3382,8 +3382,8 @@ void inference_mult_1_84_84_10_s::thread_newIndex2_fu_2408_p1() {
     newIndex2_fu_2408_p1 = esl_zext<64,2>(ap_reg_ppstg_newIndex_reg_2968_pp0_it30.read());
 }
 
-void inference_mult_1_84_84_10_s::thread_tmp_11_fu_2394_p1() {
-    tmp_11_fu_2394_p1 = j_phi_fu_2024_p4.read().range(2-1, 0);
+void inference_mult_1_84_84_10_s::thread_tmp_10_fu_2394_p1() {
+    tmp_10_fu_2394_p1 = j_phi_fu_2024_p4.read().range(2-1, 0);
 }
 
 void inference_mult_1_84_84_10_s::thread_tmp_s_fu_2382_p1() {

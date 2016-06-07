@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="inference" xd:componentRef="inference" xd:initiationInterval="63301" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="inference" xd:componentRef="inference" xd:initiationInterval="63298" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
   <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
-  <xd:arg xd:name="inputImage[][][]" xd:originalName="inputImage" xd:direction="in" xd:interfaceRef="inputImage" xd:busTypeRef="axis" xd:arraySize="784" xd:dataWidth="32"/>
-  <xd:arg xd:name="outDigit" xd:originalName="outDigit" xd:direction="out" xd:interfaceRef="outDigit" xd:busTypeRef="axis" xd:dataWidth="32"/>
-  <xd:latencyEstimates xd:best-case="63300" xd:worst-case="63300" xd:average-case="63300"/>
-  <xd:resourceEstimates xd:LUT="300763" xd:FF="239647" xd:BRAM="698" xd:DSP="1458"/>
+  <xd:arg xd:name="outDigit" xd:originalName="outDigit" xd:direction="out" xd:interfaceRef="outDigit" xd:busTypeRef="register" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:arg xd:name="inputImage_d0" xd:originalName="inputImage_d0" xd:direction="out" xd:interfaceRef="inputImage_d0" xd:busTypeRef="ap_memory" xd:arraySize="784" xd:dataWidth="32"/>
+  <xd:arg xd:name="inputImage_q0" xd:originalName="inputImage_q0" xd:direction="in" xd:interfaceRef="inputImage_q0" xd:busTypeRef="ap_memory" xd:arraySize="784" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="63297" xd:worst-case="63297" xd:average-case="63297"/>
+  <xd:resourceEstimates xd:LUT="300736" xd:FF="239610" xd:BRAM="698" xd:DSP="1458"/>
 </xd:acceleratorMap>

@@ -64,8 +64,8 @@ struct inference_add_1_84_s : public sc_module {
     sc_trace_file* mVcdFile;
 
     inference_add_1_84_s_B4_0* B4_0_U;
-    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1664;
-    inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>* inference_mux_4to1_sel2_32_1_U1665;
+    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1665;
+    inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>* inference_mux_4to1_sel2_32_1_U1666;
     sc_signal< sc_lv<3> > ap_CS_fsm;
     sc_signal< sc_logic > ap_sig_cseq_ST_st1_fsm_0;
     sc_signal< bool > ap_sig_bdd_21;
@@ -83,14 +83,14 @@ struct inference_add_1_84_s : public sc_module {
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it4;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it5;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it6;
-    sc_signal< sc_lv<7> > j_4_fu_187_p2;
-    sc_signal< sc_lv<2> > tmp_1109_fu_198_p1;
-    sc_signal< sc_lv<2> > tmp_1109_reg_246;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1109_reg_246_pp0_it1;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1109_reg_246_pp0_it2;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1109_reg_246_pp0_it3;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1109_reg_246_pp0_it4;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1109_reg_246_pp0_it5;
+    sc_signal< sc_lv<7> > j_3_fu_187_p2;
+    sc_signal< sc_lv<2> > tmp_1101_fu_198_p1;
+    sc_signal< sc_lv<2> > tmp_1101_reg_246;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1101_reg_246_pp0_it1;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1101_reg_246_pp0_it2;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1101_reg_246_pp0_it3;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1101_reg_246_pp0_it4;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1101_reg_246_pp0_it5;
     sc_signal< sc_lv<5> > C_0_0_addr_reg_276;
     sc_signal< sc_lv<5> > ap_reg_ppstg_C_0_0_addr_reg_276_pp0_it1;
     sc_signal< sc_lv<5> > ap_reg_ppstg_C_0_0_addr_reg_276_pp0_it2;
@@ -184,10 +184,10 @@ struct inference_add_1_84_s : public sc_module {
     void thread_ap_sig_cseq_ST_st9_fsm_2();
     void thread_exitcond_fu_181_p2();
     void thread_grp_fu_177_ce();
-    void thread_j_4_fu_187_p2();
+    void thread_j_3_fu_187_p2();
     void thread_newIndex7_fu_212_p1();
     void thread_newIndex_fu_202_p4();
-    void thread_tmp_1109_fu_198_p1();
+    void thread_tmp_1101_fu_198_p1();
     void thread_tmp_s_fu_193_p1();
     void thread_ap_NS_fsm();
 };

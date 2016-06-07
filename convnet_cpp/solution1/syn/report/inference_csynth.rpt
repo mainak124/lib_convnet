@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'inference'
 ================================================================
-* Date:           Sun Jun 05 14:07:58 2016
+* Date:           Tue Jun  7 02:03:29 2016
 
 * Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
 * Project:        convnet_cpp
@@ -29,7 +29,7 @@
     |    Latency    |    Interval   | Pipeline |
     |  min  |  max  |  min  |  max  |   Type   |
     +-------+-------+-------+-------+----------+
-    |  63300|  63300|  33042|  33042| dataflow |
+    |  63297|  63297|  33042|  33042| dataflow |
     +-------+-------+-------+-------+----------+
 
     + Detail: 
@@ -38,15 +38,15 @@
         |                                                   |                                       |    Latency    |    Interval   | Pipeline|
         |                      Instance                     |                 Module                |  min  |  max  |  min  |  max  |   Type  |
         +---------------------------------------------------+---------------------------------------+-------+-------+-------+-------+---------+
-        |grp_inference_Loop_1_proc_fu_4069                  |inference_Loop_1_proc                  |    793|    793|    793|    793|   none  |
-        |grp_inference_conv2d_1_fu_3729                     |inference_conv2d_1                     |  33041|  33041|  33041|  33041|   none  |
-        |grp_inference_maxPoolNxN_1_fu_4028                 |inference_maxPoolNxN_1                 |   1181|   1181|   1181|   1181|   none  |
-        |grp_inference_conv2d_2_fu_3396                     |inference_conv2d_2                     |  24603|  24603|  24603|  24603|   none  |
-        |grp_inference_maxPoolNxN_fu_3942                   |inference_maxPoolNxN                   |    403|    403|    403|    403|   none  |
-        |grp_inference_conv2d_fu_2136                       |inference_conv2d                       |   1967|   1967|   1967|   1967|   none  |
-        |grp_inference_Loop_inference_label11_proc_fu_4061  |inference_Loop_inference_label11_proc  |    122|    122|    122|    122|   none  |
-        |grp_inference_fc_fu_3026                           |inference_fc                           |    705|    705|    705|    705|   none  |
-        |grp_inference_sm_fu_3762                           |inference_sm                           |    477|    477|    477|    477|   none  |
+        |grp_inference_Loop_1_proc_fu_4067                  |inference_Loop_1_proc                  |    793|    793|    793|    793|   none  |
+        |grp_inference_conv2d_2_fu_3727                     |inference_conv2d_2                     |  33041|  33041|  33041|  33041|   none  |
+        |grp_inference_maxPoolNxN_1_fu_4026                 |inference_maxPoolNxN_1                 |   1181|   1181|   1181|   1181|   none  |
+        |grp_inference_conv2d_1_fu_3394                     |inference_conv2d_1                     |  24603|  24603|  24603|  24603|   none  |
+        |grp_inference_maxPoolNxN_fu_3940                   |inference_maxPoolNxN                   |    403|    403|    403|    403|   none  |
+        |grp_inference_conv2d_fu_2134                       |inference_conv2d                       |   1967|   1967|   1967|   1967|   none  |
+        |grp_inference_Loop_inference_label11_proc_fu_4059  |inference_Loop_inference_label11_proc  |    122|    122|    122|    122|   none  |
+        |grp_inference_fc_fu_3024                           |inference_fc                           |    705|    705|    705|    705|   none  |
+        |grp_inference_sm_fu_3760                           |inference_sm                           |    474|    474|    474|    474|   none  |
         +---------------------------------------------------+---------------------------------------+-------+-------+-------+-------+---------+
 
         * Loop: 
@@ -64,12 +64,12 @@
 |DSP              |        -|      -|       -|       -|
 |Expression       |        -|      -|       0|       8|
 |FIFO             |        0|      -|     600|    5280|
-|Instance         |      522|   1458|  225461|  293795|
+|Instance         |      522|   1458|  225424|  293768|
 |Memory           |      176|      -|   13312|    1152|
 |Multiplexer      |        -|      -|       -|     528|
 |Register         |        -|      -|     274|       -|
 +-----------------+---------+-------+--------+--------+
-|Total            |      698|   1458|  239647|  300763|
+|Total            |      698|   1458|  239610|  300736|
 +-----------------+---------+-------+--------+--------+
 |Available        |     2940|   3600|  866400|  433200|
 +-----------------+---------+-------+--------+--------+
@@ -81,17 +81,17 @@
     +------------------------------------------+---------------------------------------+---------+-------+-------+--------+
     |                 Instance                 |                 Module                | BRAM_18K| DSP48E|   FF  |   LUT  |
     +------------------------------------------+---------------------------------------+---------+-------+-------+--------+
-    |inference_Loop_1_proc_U0                  |inference_Loop_1_proc                  |        0|      2|    255|     303|
+    |inference_Loop_1_proc_U0                  |inference_Loop_1_proc                  |        0|      2|    228|     280|
     |inference_Loop_inference_label11_proc_U0  |inference_Loop_inference_label11_proc  |        0|      0|   3863|      58|
     |inference_conv2d_U0                       |inference_conv2d                       |      401|    670|  99487|  177859|
-    |inference_conv2d_1_U0                     |inference_conv2d_1                     |        0|     48|   6582|   12138|
-    |inference_conv2d_2_U0                     |inference_conv2d_2                     |        0|     57|  38746|   36964|
+    |inference_conv2d_1_U0                     |inference_conv2d_1                     |        0|     57|  38746|   36964|
+    |inference_conv2d_2_U0                     |inference_conv2d_2                     |        0|     48|   6582|   12138|
     |inference_fc_U0                           |inference_fc                           |      121|    638|  59182|   50357|
     |inference_maxPoolNxN_U0                   |inference_maxPoolNxN                   |        0|      0|   1945|    5163|
     |inference_maxPoolNxN_1_U0                 |inference_maxPoolNxN_1                 |        0|      1|   1228|    2545|
-    |inference_sm_U0                           |inference_sm                           |        0|     42|  14173|    8408|
+    |inference_sm_U0                           |inference_sm                           |        0|     42|  14163|    8404|
     +------------------------------------------+---------------------------------------+---------+-------+-------+--------+
-    |Total                                     |                                       |      522|   1458| 225461|  293795|
+    |Total                                     |                                       |      522|   1458| 225424|  293768|
     +------------------------------------------+---------------------------------------+---------+-------+-------+--------+
 
     * DSP48: 
@@ -542,12 +542,12 @@
     |ap_chn_write_inference_Loop_inference_label11_proc_U0_fcIn_0_97     |   1|          2|    1|          2|
     |ap_chn_write_inference_Loop_inference_label11_proc_U0_fcIn_0_98     |   1|          2|    1|          2|
     |ap_chn_write_inference_Loop_inference_label11_proc_U0_fcIn_0_99     |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_1_U0_convOutput1_0                    |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_1_U0_convOutput1_1                    |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_1_U0_convOutput1_2                    |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_1_U0_convOutput1_3                    |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_2_U0_convOutput2_0                    |   1|          2|    1|          2|
-    |ap_chn_write_inference_conv2d_2_U0_convOutput2_1                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_1_U0_convOutput2_0                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_1_U0_convOutput2_1                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_2_U0_convOutput1_0                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_2_U0_convOutput1_1                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_2_U0_convOutput1_2                    |   1|          2|    1|          2|
+    |ap_chn_write_inference_conv2d_2_U0_convOutput1_3                    |   1|          2|    1|          2|
     |ap_chn_write_inference_conv2d_U0_convOutput3_0                      |   1|          2|    1|          2|
     |ap_chn_write_inference_conv2d_U0_convOutput3_1                      |   1|          2|    1|          2|
     |ap_chn_write_inference_conv2d_U0_convOutput3_2                      |   1|          2|    1|          2|
@@ -808,10 +808,10 @@
     |ap_sig_ready_inference_Loop_1_proc_U0_x_in_4_4_0_pipo_status        |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_1_U0_out_feature_0_pipo_status        |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_1_U0_out_feature_1_pipo_status        |   1|          2|    1|          2|
-    |ap_sig_ready_inference_conv2d_1_U0_out_feature_2_pipo_status        |   1|          2|    1|          2|
-    |ap_sig_ready_inference_conv2d_1_U0_out_feature_3_pipo_status        |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_2_U0_out_feature_0_pipo_status        |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_2_U0_out_feature_1_pipo_status        |   1|          2|    1|          2|
+    |ap_sig_ready_inference_conv2d_2_U0_out_feature_2_pipo_status        |   1|          2|    1|          2|
+    |ap_sig_ready_inference_conv2d_2_U0_out_feature_3_pipo_status        |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_U0_out_feature_0_pipo_status          |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_U0_out_feature_1_pipo_status          |   1|          2|    1|          2|
     |ap_sig_ready_inference_conv2d_U0_out_feature_2_pipo_status          |   1|          2|    1|          2|
@@ -1090,10 +1090,10 @@
     |ap_reg_ready_inference_Loop_1_proc_U0_x_in_4_4_0_pipo_status        |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_1_U0_out_feature_0_pipo_status        |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_1_U0_out_feature_1_pipo_status        |  1|   0|    1|          0|
-    |ap_reg_ready_inference_conv2d_1_U0_out_feature_2_pipo_status        |  1|   0|    1|          0|
-    |ap_reg_ready_inference_conv2d_1_U0_out_feature_3_pipo_status        |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_2_U0_out_feature_0_pipo_status        |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_2_U0_out_feature_1_pipo_status        |  1|   0|    1|          0|
+    |ap_reg_ready_inference_conv2d_2_U0_out_feature_2_pipo_status        |  1|   0|    1|          0|
+    |ap_reg_ready_inference_conv2d_2_U0_out_feature_3_pipo_status        |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_U0_out_feature_0_pipo_status          |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_U0_out_feature_1_pipo_status          |  1|   0|    1|          0|
     |ap_reg_ready_inference_conv2d_U0_out_feature_2_pipo_status          |  1|   0|    1|          0|
@@ -1217,20 +1217,21 @@
 == Interface
 ================================================================
 * Summary: 
-+-------------------+-----+-----+------------+--------------+--------------+
-|     RTL Ports     | Dir | Bits|  Protocol  | Source Object|    C Type    |
-+-------------------+-----+-----+------------+--------------+--------------+
-|ap_clk             |  in |    1| ap_ctrl_hs |   inference  | return value |
-|ap_rst_n           |  in |    1| ap_ctrl_hs |   inference  | return value |
-|ap_done            | out |    1| ap_ctrl_hs |   inference  | return value |
-|ap_start           |  in |    1| ap_ctrl_hs |   inference  | return value |
-|ap_idle            | out |    1| ap_ctrl_hs |   inference  | return value |
-|ap_ready           | out |    1| ap_ctrl_hs |   inference  | return value |
-|inputImage_TDATA   |  in |   32|    axis    |  inputImage  |    pointer   |
-|inputImage_TVALID  |  in |    1|    axis    |  inputImage  |    pointer   |
-|inputImage_TREADY  | out |    1|    axis    |  inputImage  |    pointer   |
-|outDigit_TDATA     | out |   32|    axis    |   outDigit   |    pointer   |
-|outDigit_TVALID    | out |    1|    axis    |   outDigit   |    pointer   |
-|outDigit_TREADY    |  in |    1|    axis    |   outDigit   |    pointer   |
-+-------------------+-----+-----+------------+--------------+--------------+
++---------------------+-----+-----+------------+--------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  | Source Object|    C Type    |
++---------------------+-----+-----+------------+--------------+--------------+
+|ap_clk               |  in |    1| ap_ctrl_hs |   inference  | return value |
+|ap_rst               |  in |    1| ap_ctrl_hs |   inference  | return value |
+|ap_done              | out |    1| ap_ctrl_hs |   inference  | return value |
+|ap_start             |  in |    1| ap_ctrl_hs |   inference  | return value |
+|ap_idle              | out |    1| ap_ctrl_hs |   inference  | return value |
+|ap_ready             | out |    1| ap_ctrl_hs |   inference  | return value |
+|inputImage_address0  | out |   10|  ap_memory |  inputImage  |     array    |
+|inputImage_ce0       | out |    1|  ap_memory |  inputImage  |     array    |
+|inputImage_d0        | out |   32|  ap_memory |  inputImage  |     array    |
+|inputImage_q0        |  in |   32|  ap_memory |  inputImage  |     array    |
+|inputImage_we0       | out |    1|  ap_memory |  inputImage  |     array    |
+|outDigit             | out |   32|   ap_vld   |   outDigit   |    pointer   |
+|outDigit_ap_vld      | out |    1|   ap_vld   |   outDigit   |    pointer   |
++---------------------+-----+-----+------------+--------------+--------------+
 

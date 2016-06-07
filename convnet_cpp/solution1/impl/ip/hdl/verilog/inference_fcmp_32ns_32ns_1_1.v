@@ -10,7 +10,7 @@
 
 module inference_fcmp_32ns_32ns_1_1
 #(parameter
-    ID         = 36,
+    ID         = 37,
     NUM_STAGE  = 1,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

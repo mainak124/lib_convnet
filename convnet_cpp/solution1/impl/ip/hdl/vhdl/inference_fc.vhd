@@ -1082,7 +1082,7 @@ begin
         C_3_0_we0 => grp_inference_add_1_84_s_fu_1885_C_3_0_we0,
         C_3_0_d0 => grp_inference_add_1_84_s_fu_1885_C_3_0_d0);
 
-    inference_fadd_32ns_32ns_32_4_full_dsp_U1675 : component inference_fadd_32ns_32ns_32_4_full_dsp
+    inference_fadd_32ns_32ns_32_4_full_dsp_U1676 : component inference_fadd_32ns_32ns_32_4_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 4,
@@ -1097,7 +1097,7 @@ begin
         ce => grp_fu_1899_ce,
         dout => grp_fu_1899_p2);
 
-    inference_fadd_32ns_32ns_32_4_full_dsp_U1676 : component inference_fadd_32ns_32ns_32_4_full_dsp
+    inference_fadd_32ns_32ns_32_4_full_dsp_U1677 : component inference_fadd_32ns_32ns_32_4_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 4,
@@ -1112,7 +1112,7 @@ begin
         ce => grp_fu_1904_ce,
         dout => grp_fu_1904_p2);
 
-    inference_fadd_32ns_32ns_32_4_full_dsp_U1677 : component inference_fadd_32ns_32ns_32_4_full_dsp
+    inference_fadd_32ns_32ns_32_4_full_dsp_U1678 : component inference_fadd_32ns_32ns_32_4_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 4,
@@ -1127,7 +1127,7 @@ begin
         ce => grp_fu_1909_ce,
         dout => grp_fu_1909_p2);
 
-    inference_fadd_32ns_32ns_32_4_full_dsp_U1678 : component inference_fadd_32ns_32ns_32_4_full_dsp
+    inference_fadd_32ns_32ns_32_4_full_dsp_U1679 : component inference_fadd_32ns_32ns_32_4_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 4,
@@ -1142,7 +1142,7 @@ begin
         ce => grp_fu_1914_ce,
         dout => grp_fu_1914_p2);
 
-    inference_fdiv_32ns_32ns_32_8_U1679 : component inference_fdiv_32ns_32ns_32_8
+    inference_fdiv_32ns_32ns_32_8_U1680 : component inference_fdiv_32ns_32ns_32_8
     generic map (
         ID => 1,
         NUM_STAGE => 8,
@@ -1157,7 +1157,7 @@ begin
         ce => grp_fu_1919_ce,
         dout => grp_fu_1919_p2);
 
-    inference_fdiv_32ns_32ns_32_8_U1680 : component inference_fdiv_32ns_32ns_32_8
+    inference_fdiv_32ns_32ns_32_8_U1681 : component inference_fdiv_32ns_32ns_32_8
     generic map (
         ID => 1,
         NUM_STAGE => 8,
@@ -1172,7 +1172,7 @@ begin
         ce => grp_fu_1924_ce,
         dout => grp_fu_1924_p2);
 
-    inference_fdiv_32ns_32ns_32_8_U1681 : component inference_fdiv_32ns_32ns_32_8
+    inference_fdiv_32ns_32ns_32_8_U1682 : component inference_fdiv_32ns_32ns_32_8
     generic map (
         ID => 1,
         NUM_STAGE => 8,
@@ -1187,7 +1187,7 @@ begin
         ce => grp_fu_1929_ce,
         dout => grp_fu_1929_p2);
 
-    inference_fdiv_32ns_32ns_32_8_U1682 : component inference_fdiv_32ns_32ns_32_8
+    inference_fdiv_32ns_32ns_32_8_U1683 : component inference_fdiv_32ns_32ns_32_8
     generic map (
         ID => 1,
         NUM_STAGE => 8,
@@ -1202,7 +1202,7 @@ begin
         ce => grp_fu_1934_ce,
         dout => grp_fu_1934_p2);
 
-    inference_fexp_32ns_32ns_32_6_full_dsp_U1683 : component inference_fexp_32ns_32ns_32_6_full_dsp
+    inference_fexp_32ns_32ns_32_6_full_dsp_U1684 : component inference_fexp_32ns_32ns_32_6_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 6,
@@ -1217,7 +1217,7 @@ begin
         ce => grp_fu_1939_ce,
         dout => grp_fu_1939_p2);
 
-    inference_fexp_32ns_32ns_32_6_full_dsp_U1684 : component inference_fexp_32ns_32ns_32_6_full_dsp
+    inference_fexp_32ns_32ns_32_6_full_dsp_U1685 : component inference_fexp_32ns_32ns_32_6_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 6,
@@ -1232,7 +1232,7 @@ begin
         ce => grp_fu_1944_ce,
         dout => grp_fu_1944_p2);
 
-    inference_fexp_32ns_32ns_32_6_full_dsp_U1685 : component inference_fexp_32ns_32ns_32_6_full_dsp
+    inference_fexp_32ns_32ns_32_6_full_dsp_U1686 : component inference_fexp_32ns_32ns_32_6_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 6,
@@ -1247,7 +1247,7 @@ begin
         ce => grp_fu_1949_ce,
         dout => grp_fu_1949_p2);
 
-    inference_fexp_32ns_32ns_32_6_full_dsp_U1686 : component inference_fexp_32ns_32ns_32_6_full_dsp
+    inference_fexp_32ns_32ns_32_6_full_dsp_U1687 : component inference_fexp_32ns_32ns_32_6_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 6,

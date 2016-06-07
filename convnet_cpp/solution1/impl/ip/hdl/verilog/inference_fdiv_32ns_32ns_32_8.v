@@ -10,7 +10,7 @@
 
 module inference_fdiv_32ns_32ns_32_8
 #(parameter
-    ID         = 1679,
+    ID         = 1680,
     NUM_STAGE  = 8,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

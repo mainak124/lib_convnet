@@ -17,13 +17,14 @@ void inference::thread_hdltv_gen() {
     while (1) {
         wait();
         const char* mComma = ap_cycleNo == 0 ? " " : ", " ;
-        mHdltvinHandle << mComma << "{"  <<  " \"ap_rst_n\" :  \"" << ap_rst_n.read() << "\" ";
-        mHdltvinHandle << " , " <<  " \"inputImage_TDATA\" :  \"" << inputImage_TDATA.read() << "\" ";
-        mHdltvoutHandle << mComma << "{"  <<  " \"outDigit_TDATA\" :  \"" << outDigit_TDATA.read() << "\" ";
-        mHdltvinHandle << " , " <<  " \"inputImage_TVALID\" :  \"" << inputImage_TVALID.read() << "\" ";
-        mHdltvoutHandle << " , " <<  " \"inputImage_TREADY\" :  \"" << inputImage_TREADY.read() << "\" ";
-        mHdltvoutHandle << " , " <<  " \"outDigit_TVALID\" :  \"" << outDigit_TVALID.read() << "\" ";
-        mHdltvinHandle << " , " <<  " \"outDigit_TREADY\" :  \"" << outDigit_TREADY.read() << "\" ";
+        mHdltvinHandle << mComma << "{"  <<  " \"ap_rst\" :  \"" << ap_rst.read() << "\" ";
+        mHdltvoutHandle << mComma << "{"  <<  " \"inputImage_address0\" :  \"" << inputImage_address0.read() << "\" ";
+        mHdltvoutHandle << " , " <<  " \"inputImage_ce0\" :  \"" << inputImage_ce0.read() << "\" ";
+        mHdltvoutHandle << " , " <<  " \"inputImage_d0\" :  \"" << inputImage_d0.read() << "\" ";
+        mHdltvinHandle << " , " <<  " \"inputImage_q0\" :  \"" << inputImage_q0.read() << "\" ";
+        mHdltvoutHandle << " , " <<  " \"inputImage_we0\" :  \"" << inputImage_we0.read() << "\" ";
+        mHdltvoutHandle << " , " <<  " \"outDigit\" :  \"" << outDigit.read() << "\" ";
+        mHdltvoutHandle << " , " <<  " \"outDigit_ap_vld\" :  \"" << outDigit_ap_vld.read() << "\" ";
         mHdltvoutHandle << " , " <<  " \"ap_done\" :  \"" << ap_done.read() << "\" ";
         mHdltvinHandle << " , " <<  " \"ap_start\" :  \"" << ap_start.read() << "\" ";
         mHdltvoutHandle << " , " <<  " \"ap_idle\" :  \"" << ap_idle.read() << "\" ";

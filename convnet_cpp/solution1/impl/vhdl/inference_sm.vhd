@@ -42,9 +42,8 @@ port (
     X_3_0_address1 : OUT STD_LOGIC_VECTOR (4 downto 0);
     X_3_0_ce1 : OUT STD_LOGIC;
     X_3_0_q1 : IN STD_LOGIC_VECTOR (31 downto 0);
-    argmax_TDATA : OUT STD_LOGIC_VECTOR (31 downto 0);
-    argmax_TVALID : OUT STD_LOGIC;
-    argmax_TREADY : IN STD_LOGIC );
+    argmax : OUT STD_LOGIC_VECTOR (31 downto 0);
+    argmax_ap_vld : OUT STD_LOGIC );
 end;
 
 
@@ -55,14 +54,28 @@ architecture behav of inference_sm is
     constant ap_ST_st2_fsm_1 : STD_LOGIC_VECTOR (5 downto 0) := "000010";
     constant ap_ST_st3_fsm_2 : STD_LOGIC_VECTOR (5 downto 0) := "000100";
     constant ap_ST_st4_fsm_3 : STD_LOGIC_VECTOR (5 downto 0) := "001000";
-    constant ap_ST_st5_fsm_4 : STD_LOGIC_VECTOR (5 downto 0) := "010000";
-    constant ap_ST_st6_fsm_5 : STD_LOGIC_VECTOR (5 downto 0) := "100000";
+    constant ap_ST_pp0_stg0_fsm_4 : STD_LOGIC_VECTOR (5 downto 0) := "010000";
+    constant ap_ST_st8_fsm_5 : STD_LOGIC_VECTOR (5 downto 0) := "100000";
     constant ap_const_lv32_0 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
     constant ap_const_lv1_1 : STD_LOGIC_VECTOR (0 downto 0) := "1";
+    constant ap_true : BOOLEAN := true;
+    constant ap_const_lv32_4 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000100";
+    constant ap_const_lv1_0 : STD_LOGIC_VECTOR (0 downto 0) := "0";
+    constant ap_const_lv32_3 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000011";
+    constant ap_const_lv4_0 : STD_LOGIC_VECTOR (3 downto 0) := "0000";
     constant ap_const_lv32_1 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000001";
     constant ap_const_lv32_2 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000010";
-    constant ap_const_lv32_3 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000011";
-    constant ap_const_lv32_4 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000100";
+    constant ap_const_lv32_CF000000 : STD_LOGIC_VECTOR (31 downto 0) := "11001111000000000000000000000000";
+    constant ap_const_lv4_A : STD_LOGIC_VECTOR (3 downto 0) := "1010";
+    constant ap_const_lv4_1 : STD_LOGIC_VECTOR (3 downto 0) := "0001";
+    constant ap_const_lv2_0 : STD_LOGIC_VECTOR (1 downto 0) := "00";
+    constant ap_const_lv2_1 : STD_LOGIC_VECTOR (1 downto 0) := "01";
+    constant ap_const_lv2_2 : STD_LOGIC_VECTOR (1 downto 0) := "10";
+    constant ap_const_lv32_17 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000010111";
+    constant ap_const_lv32_1E : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000011110";
+    constant ap_const_lv8_FF : STD_LOGIC_VECTOR (7 downto 0) := "11111111";
+    constant ap_const_lv23_0 : STD_LOGIC_VECTOR (22 downto 0) := "00000000000000000000000";
+    constant ap_const_lv5_2 : STD_LOGIC_VECTOR (4 downto 0) := "00010";
     constant ap_const_lv32_5 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000101";
 
     signal ap_done_reg : STD_LOGIC := '0';
@@ -71,6 +84,32 @@ architecture behav of inference_sm is
     attribute fsm_encoding of ap_CS_fsm : signal is "none";
     signal ap_sig_cseq_ST_st1_fsm_0 : STD_LOGIC;
     signal ap_sig_bdd_25 : BOOLEAN;
+    signal indvar_flatten_reg_331 : STD_LOGIC_VECTOR (3 downto 0);
+    signal i_i_reg_342 : STD_LOGIC_VECTOR (0 downto 0);
+    signal j_i_reg_353 : STD_LOGIC_VECTOR (3 downto 0);
+    signal exitcond_flatten_fu_575_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal exitcond_flatten_reg_785 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_sig_cseq_ST_pp0_stg0_fsm_4 : STD_LOGIC;
+    signal ap_sig_bdd_83 : BOOLEAN;
+    signal ap_reg_ppiten_pp0_it0 : STD_LOGIC := '0';
+    signal ap_reg_ppiten_pp0_it1 : STD_LOGIC := '0';
+    signal ap_reg_ppiten_pp0_it2 : STD_LOGIC := '0';
+    signal ap_reg_ppstg_exitcond_flatten_reg_785_pp0_it1 : STD_LOGIC_VECTOR (0 downto 0);
+    signal indvar_flatten_next_fu_581_p2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal j_i_mid2_fu_593_p3 : STD_LOGIC_VECTOR (3 downto 0);
+    signal j_i_mid2_reg_794 : STD_LOGIC_VECTOR (3 downto 0);
+    signal ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal i_i_mid2_fu_601_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal i_i_mid2_reg_799 : STD_LOGIC_VECTOR (0 downto 0);
+    signal ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_1_fu_607_p1 : STD_LOGIC_VECTOR (1 downto 0);
+    signal tmp_1_reg_805 : STD_LOGIC_VECTOR (1 downto 0);
+    signal j_fu_629_p2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal max_val_fu_666_p3 : STD_LOGIC_VECTOR (31 downto 0);
+    signal max_val_reg_837 : STD_LOGIC_VECTOR (31 downto 0);
+    signal ap_sig_cseq_ST_st4_fsm_3 : STD_LOGIC;
+    signal ap_sig_bdd_129 : BOOLEAN;
+    signal grp_inference_add_1_10_s_fu_552_ap_done : STD_LOGIC;
     signal T_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
     signal T_0_0_ce0 : STD_LOGIC;
     signal T_0_0_we0 : STD_LOGIC;
@@ -111,115 +150,118 @@ architecture behav of inference_sm is
     signal S_3_0_we0 : STD_LOGIC;
     signal S_3_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
     signal S_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_ap_start : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_ap_done : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_ap_idle : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_ap_ready : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0 : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_ap_start : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_ap_done : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_ap_idle : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_ap_ready : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_A_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_0_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_A_0_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_1_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_A_1_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_2_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_A_2_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_A_3_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_A_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_0_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_0_0_we0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_0_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_1_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_1_0_we0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_1_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_2_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_2_0_we0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_2_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_add_1_10_s_fu_416_C_3_0_ce0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_3_0_we0 : STD_LOGIC;
-    signal grp_inference_add_1_10_s_fu_416_C_3_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_ap_start : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_ap_done : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_ap_idle : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_ap_ready : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_A_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0 : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_A_0_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0 : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_A_1_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0 : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_A_2_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0 : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_A_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_argmax_TDATA : STD_LOGIC_VECTOR (31 downto 0);
-    signal grp_inference_softmax_1_10_s_fu_430_argmax_TVALID : STD_LOGIC;
-    signal grp_inference_softmax_1_10_s_fu_430_argmax_TREADY : STD_LOGIC;
-    signal grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg : STD_LOGIC := '0';
-    signal ap_sig_bdd_251 : BOOLEAN;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_ap_start : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_ap_done : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_ap_idle : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_ap_ready : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1 : STD_LOGIC_VECTOR (4 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0 : STD_LOGIC;
+    signal grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_ap_start : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_ap_idle : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_ap_ready : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_A_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_0_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_A_0_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_1_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_A_1_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_2_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_A_2_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_A_3_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_A_3_0_q0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_0_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_0_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_0_0_we0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_0_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_1_0_address0 : STD_LOGIC_VECTOR (1 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_1_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_1_0_we0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_1_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_2_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_2_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_2_0_we0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_2_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_3_0_address0 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_add_1_10_s_fu_552_C_3_0_ce0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_3_0_we0 : STD_LOGIC;
+    signal grp_inference_add_1_10_s_fu_552_C_3_0_d0 : STD_LOGIC_VECTOR (31 downto 0);
+    signal i_i_phi_fu_346_p4 : STD_LOGIC_VECTOR (0 downto 0);
+    signal grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg : STD_LOGIC := '0';
+    signal ap_sig_bdd_302 : BOOLEAN;
     signal ap_sig_cseq_ST_st2_fsm_1 : STD_LOGIC;
-    signal ap_sig_bdd_259 : BOOLEAN;
-    signal grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg : STD_LOGIC := '0';
+    signal ap_sig_bdd_310 : BOOLEAN;
+    signal grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg : STD_LOGIC := '0';
     signal ap_sig_cseq_ST_st3_fsm_2 : STD_LOGIC;
-    signal ap_sig_bdd_940 : BOOLEAN;
-    signal ap_sig_cseq_ST_st4_fsm_3 : STD_LOGIC;
-    signal ap_sig_bdd_947 : BOOLEAN;
-    signal grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg : STD_LOGIC := '0';
-    signal ap_sig_cseq_ST_st5_fsm_4 : STD_LOGIC;
-    signal ap_sig_bdd_964 : BOOLEAN;
-    signal ap_sig_cseq_ST_st6_fsm_5 : STD_LOGIC;
-    signal ap_sig_bdd_971 : BOOLEAN;
+    signal ap_sig_bdd_991 : BOOLEAN;
+    signal newIndex4_i_fu_621_p1 : STD_LOGIC_VECTOR (63 downto 0);
+    signal max_val_1_fu_244 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_8_fu_758_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal exitcond_i_fu_587_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal newIndex_i_fu_611_p4 : STD_LOGIC_VECTOR (1 downto 0);
+    signal sel_tmp_i_fu_635_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sel_tmp2_i_fu_648_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sel_tmp1_i_fu_640_p3 : STD_LOGIC_VECTOR (31 downto 0);
+    signal sel_tmp4_i_fu_661_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal sel_tmp3_i_fu_653_p3 : STD_LOGIC_VECTOR (31 downto 0);
+    signal max_val_3_i_to_int_fu_681_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal max_val_1_i_to_int_fu_698_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_fu_684_p4 : STD_LOGIC_VECTOR (7 downto 0);
+    signal tmp_3_fu_694_p1 : STD_LOGIC_VECTOR (22 downto 0);
+    signal notrhs_fu_722_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal notlhs_fu_716_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_2_fu_702_p4 : STD_LOGIC_VECTOR (7 downto 0);
+    signal tmp_9_fu_712_p1 : STD_LOGIC_VECTOR (22 downto 0);
+    signal notrhs2_fu_740_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal notlhs1_fu_734_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_4_fu_728_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_5_fu_746_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_6_fu_752_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_7_fu_566_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal i_cast6_i_fu_678_p1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal tmp_4_i_fu_764_p2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal tmp_7_fu_566_opcode : STD_LOGIC_VECTOR (4 downto 0);
+    signal ap_sig_cseq_ST_st8_fsm_5 : STD_LOGIC;
+    signal ap_sig_bdd_1152 : BOOLEAN;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (5 downto 0);
 
     component inference_mult_1_84_84_10_s IS
@@ -312,29 +354,18 @@ architecture behav of inference_sm is
     end component;
 
 
-    component inference_softmax_1_10_s IS
+    component inference_fcmp_32ns_32ns_1_1 IS
+    generic (
+        ID : INTEGER;
+        NUM_STAGE : INTEGER;
+        din0_WIDTH : INTEGER;
+        din1_WIDTH : INTEGER;
+        dout_WIDTH : INTEGER );
     port (
-        ap_clk : IN STD_LOGIC;
-        ap_rst : IN STD_LOGIC;
-        ap_start : IN STD_LOGIC;
-        ap_done : OUT STD_LOGIC;
-        ap_idle : OUT STD_LOGIC;
-        ap_ready : OUT STD_LOGIC;
-        A_0_0_address0 : OUT STD_LOGIC_VECTOR (1 downto 0);
-        A_0_0_ce0 : OUT STD_LOGIC;
-        A_0_0_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
-        A_1_0_address0 : OUT STD_LOGIC_VECTOR (1 downto 0);
-        A_1_0_ce0 : OUT STD_LOGIC;
-        A_1_0_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
-        A_2_0_address0 : OUT STD_LOGIC_VECTOR (0 downto 0);
-        A_2_0_ce0 : OUT STD_LOGIC;
-        A_2_0_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
-        A_3_0_address0 : OUT STD_LOGIC_VECTOR (0 downto 0);
-        A_3_0_ce0 : OUT STD_LOGIC;
-        A_3_0_q0 : IN STD_LOGIC_VECTOR (31 downto 0);
-        argmax_TDATA : OUT STD_LOGIC_VECTOR (31 downto 0);
-        argmax_TVALID : OUT STD_LOGIC;
-        argmax_TREADY : IN STD_LOGIC );
+        din0 : IN STD_LOGIC_VECTOR (31 downto 0);
+        din1 : IN STD_LOGIC_VECTOR (31 downto 0);
+        opcode : IN STD_LOGIC_VECTOR (4 downto 0);
+        dout : OUT STD_LOGIC_VECTOR (0 downto 0) );
     end component;
 
 
@@ -484,115 +515,104 @@ begin
         d0 => S_3_0_d0,
         q0 => S_3_0_q0);
 
-    grp_inference_mult_1_84_84_10_s_fu_228 : component inference_mult_1_84_84_10_s
+    grp_inference_mult_1_84_84_10_s_fu_364 : component inference_mult_1_84_84_10_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => grp_inference_mult_1_84_84_10_s_fu_228_ap_start,
-        ap_done => grp_inference_mult_1_84_84_10_s_fu_228_ap_done,
-        ap_idle => grp_inference_mult_1_84_84_10_s_fu_228_ap_idle,
-        ap_ready => grp_inference_mult_1_84_84_10_s_fu_228_ap_ready,
-        A_0_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0,
-        A_0_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0,
-        A_0_0_q0 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0,
-        A_0_0_address1 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1,
-        A_0_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1,
-        A_0_0_q1 => grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1,
-        A_1_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0,
-        A_1_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0,
-        A_1_0_q0 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0,
-        A_1_0_address1 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1,
-        A_1_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1,
-        A_1_0_q1 => grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1,
-        A_2_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0,
-        A_2_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0,
-        A_2_0_q0 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0,
-        A_2_0_address1 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1,
-        A_2_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1,
-        A_2_0_q1 => grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1,
-        A_3_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0,
-        A_3_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0,
-        A_3_0_q0 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0,
-        A_3_0_address1 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1,
-        A_3_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1,
-        A_3_0_q1 => grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1,
-        C_0_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0,
-        C_0_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0,
-        C_0_0_we0 => grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0,
-        C_0_0_d0 => grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0,
-        C_1_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0,
-        C_1_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0,
-        C_1_0_we0 => grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0,
-        C_1_0_d0 => grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0,
-        C_2_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0,
-        C_2_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0,
-        C_2_0_we0 => grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0,
-        C_2_0_d0 => grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0,
-        C_3_0_address0 => grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0,
-        C_3_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0,
-        C_3_0_we0 => grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0,
-        C_3_0_d0 => grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0);
+        ap_start => grp_inference_mult_1_84_84_10_s_fu_364_ap_start,
+        ap_done => grp_inference_mult_1_84_84_10_s_fu_364_ap_done,
+        ap_idle => grp_inference_mult_1_84_84_10_s_fu_364_ap_idle,
+        ap_ready => grp_inference_mult_1_84_84_10_s_fu_364_ap_ready,
+        A_0_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0,
+        A_0_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0,
+        A_0_0_q0 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0,
+        A_0_0_address1 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1,
+        A_0_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1,
+        A_0_0_q1 => grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1,
+        A_1_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0,
+        A_1_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0,
+        A_1_0_q0 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0,
+        A_1_0_address1 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1,
+        A_1_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1,
+        A_1_0_q1 => grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1,
+        A_2_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0,
+        A_2_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0,
+        A_2_0_q0 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0,
+        A_2_0_address1 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1,
+        A_2_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1,
+        A_2_0_q1 => grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1,
+        A_3_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0,
+        A_3_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0,
+        A_3_0_q0 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0,
+        A_3_0_address1 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1,
+        A_3_0_ce1 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1,
+        A_3_0_q1 => grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1,
+        C_0_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0,
+        C_0_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0,
+        C_0_0_we0 => grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0,
+        C_0_0_d0 => grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0,
+        C_1_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0,
+        C_1_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0,
+        C_1_0_we0 => grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0,
+        C_1_0_d0 => grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0,
+        C_2_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0,
+        C_2_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0,
+        C_2_0_we0 => grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0,
+        C_2_0_d0 => grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0,
+        C_3_0_address0 => grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0,
+        C_3_0_ce0 => grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0,
+        C_3_0_we0 => grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0,
+        C_3_0_d0 => grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0);
 
-    grp_inference_add_1_10_s_fu_416 : component inference_add_1_10_s
+    grp_inference_add_1_10_s_fu_552 : component inference_add_1_10_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => grp_inference_add_1_10_s_fu_416_ap_start,
-        ap_done => grp_inference_add_1_10_s_fu_416_ap_done,
-        ap_idle => grp_inference_add_1_10_s_fu_416_ap_idle,
-        ap_ready => grp_inference_add_1_10_s_fu_416_ap_ready,
-        A_0_0_address0 => grp_inference_add_1_10_s_fu_416_A_0_0_address0,
-        A_0_0_ce0 => grp_inference_add_1_10_s_fu_416_A_0_0_ce0,
-        A_0_0_q0 => grp_inference_add_1_10_s_fu_416_A_0_0_q0,
-        A_1_0_address0 => grp_inference_add_1_10_s_fu_416_A_1_0_address0,
-        A_1_0_ce0 => grp_inference_add_1_10_s_fu_416_A_1_0_ce0,
-        A_1_0_q0 => grp_inference_add_1_10_s_fu_416_A_1_0_q0,
-        A_2_0_address0 => grp_inference_add_1_10_s_fu_416_A_2_0_address0,
-        A_2_0_ce0 => grp_inference_add_1_10_s_fu_416_A_2_0_ce0,
-        A_2_0_q0 => grp_inference_add_1_10_s_fu_416_A_2_0_q0,
-        A_3_0_address0 => grp_inference_add_1_10_s_fu_416_A_3_0_address0,
-        A_3_0_ce0 => grp_inference_add_1_10_s_fu_416_A_3_0_ce0,
-        A_3_0_q0 => grp_inference_add_1_10_s_fu_416_A_3_0_q0,
-        C_0_0_address0 => grp_inference_add_1_10_s_fu_416_C_0_0_address0,
-        C_0_0_ce0 => grp_inference_add_1_10_s_fu_416_C_0_0_ce0,
-        C_0_0_we0 => grp_inference_add_1_10_s_fu_416_C_0_0_we0,
-        C_0_0_d0 => grp_inference_add_1_10_s_fu_416_C_0_0_d0,
-        C_1_0_address0 => grp_inference_add_1_10_s_fu_416_C_1_0_address0,
-        C_1_0_ce0 => grp_inference_add_1_10_s_fu_416_C_1_0_ce0,
-        C_1_0_we0 => grp_inference_add_1_10_s_fu_416_C_1_0_we0,
-        C_1_0_d0 => grp_inference_add_1_10_s_fu_416_C_1_0_d0,
-        C_2_0_address0 => grp_inference_add_1_10_s_fu_416_C_2_0_address0,
-        C_2_0_ce0 => grp_inference_add_1_10_s_fu_416_C_2_0_ce0,
-        C_2_0_we0 => grp_inference_add_1_10_s_fu_416_C_2_0_we0,
-        C_2_0_d0 => grp_inference_add_1_10_s_fu_416_C_2_0_d0,
-        C_3_0_address0 => grp_inference_add_1_10_s_fu_416_C_3_0_address0,
-        C_3_0_ce0 => grp_inference_add_1_10_s_fu_416_C_3_0_ce0,
-        C_3_0_we0 => grp_inference_add_1_10_s_fu_416_C_3_0_we0,
-        C_3_0_d0 => grp_inference_add_1_10_s_fu_416_C_3_0_d0);
+        ap_start => grp_inference_add_1_10_s_fu_552_ap_start,
+        ap_done => grp_inference_add_1_10_s_fu_552_ap_done,
+        ap_idle => grp_inference_add_1_10_s_fu_552_ap_idle,
+        ap_ready => grp_inference_add_1_10_s_fu_552_ap_ready,
+        A_0_0_address0 => grp_inference_add_1_10_s_fu_552_A_0_0_address0,
+        A_0_0_ce0 => grp_inference_add_1_10_s_fu_552_A_0_0_ce0,
+        A_0_0_q0 => grp_inference_add_1_10_s_fu_552_A_0_0_q0,
+        A_1_0_address0 => grp_inference_add_1_10_s_fu_552_A_1_0_address0,
+        A_1_0_ce0 => grp_inference_add_1_10_s_fu_552_A_1_0_ce0,
+        A_1_0_q0 => grp_inference_add_1_10_s_fu_552_A_1_0_q0,
+        A_2_0_address0 => grp_inference_add_1_10_s_fu_552_A_2_0_address0,
+        A_2_0_ce0 => grp_inference_add_1_10_s_fu_552_A_2_0_ce0,
+        A_2_0_q0 => grp_inference_add_1_10_s_fu_552_A_2_0_q0,
+        A_3_0_address0 => grp_inference_add_1_10_s_fu_552_A_3_0_address0,
+        A_3_0_ce0 => grp_inference_add_1_10_s_fu_552_A_3_0_ce0,
+        A_3_0_q0 => grp_inference_add_1_10_s_fu_552_A_3_0_q0,
+        C_0_0_address0 => grp_inference_add_1_10_s_fu_552_C_0_0_address0,
+        C_0_0_ce0 => grp_inference_add_1_10_s_fu_552_C_0_0_ce0,
+        C_0_0_we0 => grp_inference_add_1_10_s_fu_552_C_0_0_we0,
+        C_0_0_d0 => grp_inference_add_1_10_s_fu_552_C_0_0_d0,
+        C_1_0_address0 => grp_inference_add_1_10_s_fu_552_C_1_0_address0,
+        C_1_0_ce0 => grp_inference_add_1_10_s_fu_552_C_1_0_ce0,
+        C_1_0_we0 => grp_inference_add_1_10_s_fu_552_C_1_0_we0,
+        C_1_0_d0 => grp_inference_add_1_10_s_fu_552_C_1_0_d0,
+        C_2_0_address0 => grp_inference_add_1_10_s_fu_552_C_2_0_address0,
+        C_2_0_ce0 => grp_inference_add_1_10_s_fu_552_C_2_0_ce0,
+        C_2_0_we0 => grp_inference_add_1_10_s_fu_552_C_2_0_we0,
+        C_2_0_d0 => grp_inference_add_1_10_s_fu_552_C_2_0_d0,
+        C_3_0_address0 => grp_inference_add_1_10_s_fu_552_C_3_0_address0,
+        C_3_0_ce0 => grp_inference_add_1_10_s_fu_552_C_3_0_ce0,
+        C_3_0_we0 => grp_inference_add_1_10_s_fu_552_C_3_0_we0,
+        C_3_0_d0 => grp_inference_add_1_10_s_fu_552_C_3_0_d0);
 
-    grp_inference_softmax_1_10_s_fu_430 : component inference_softmax_1_10_s
+    inference_fcmp_32ns_32ns_1_1_U1931 : component inference_fcmp_32ns_32ns_1_1
+    generic map (
+        ID => 1,
+        NUM_STAGE => 1,
+        din0_WIDTH => 32,
+        din1_WIDTH => 32,
+        dout_WIDTH => 1)
     port map (
-        ap_clk => ap_clk,
-        ap_rst => ap_rst,
-        ap_start => grp_inference_softmax_1_10_s_fu_430_ap_start,
-        ap_done => grp_inference_softmax_1_10_s_fu_430_ap_done,
-        ap_idle => grp_inference_softmax_1_10_s_fu_430_ap_idle,
-        ap_ready => grp_inference_softmax_1_10_s_fu_430_ap_ready,
-        A_0_0_address0 => grp_inference_softmax_1_10_s_fu_430_A_0_0_address0,
-        A_0_0_ce0 => grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0,
-        A_0_0_q0 => grp_inference_softmax_1_10_s_fu_430_A_0_0_q0,
-        A_1_0_address0 => grp_inference_softmax_1_10_s_fu_430_A_1_0_address0,
-        A_1_0_ce0 => grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0,
-        A_1_0_q0 => grp_inference_softmax_1_10_s_fu_430_A_1_0_q0,
-        A_2_0_address0 => grp_inference_softmax_1_10_s_fu_430_A_2_0_address0,
-        A_2_0_ce0 => grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0,
-        A_2_0_q0 => grp_inference_softmax_1_10_s_fu_430_A_2_0_q0,
-        A_3_0_address0 => grp_inference_softmax_1_10_s_fu_430_A_3_0_address0,
-        A_3_0_ce0 => grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0,
-        A_3_0_q0 => grp_inference_softmax_1_10_s_fu_430_A_3_0_q0,
-        argmax_TDATA => grp_inference_softmax_1_10_s_fu_430_argmax_TDATA,
-        argmax_TVALID => grp_inference_softmax_1_10_s_fu_430_argmax_TVALID,
-        argmax_TREADY => grp_inference_softmax_1_10_s_fu_430_argmax_TREADY);
+        din0 => max_val_reg_837,
+        din1 => max_val_1_fu_244,
+        opcode => tmp_7_fu_566_opcode,
+        dout => tmp_7_fu_566_p2);
 
 
 
@@ -620,7 +640,7 @@ begin
             else
                 if ((ap_const_logic_1 = ap_continue)) then 
                     ap_done_reg <= ap_const_logic_0;
-                elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and not((ap_const_logic_0 = grp_inference_softmax_1_10_s_fu_430_ap_done)))) then 
+                elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_5)) then 
                     ap_done_reg <= ap_const_logic_1;
                 end if; 
             end if;
@@ -628,69 +648,191 @@ begin
     end process;
 
 
-    -- grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg assign process. --
-    grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg_assign_proc : process(ap_clk)
+    -- ap_reg_ppiten_pp0_it0 assign process. --
+    ap_reg_ppiten_pp0_it0_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst = '1') then
-                grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_0;
+                ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+            else
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and not((exitcond_flatten_fu_575_p2 = ap_const_lv1_0)))) then 
+                    ap_reg_ppiten_pp0_it0 <= ap_const_logic_0;
+                elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3) and not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done)))) then 
+                    ap_reg_ppiten_pp0_it0 <= ap_const_logic_1;
+                end if; 
+            end if;
+        end if;
+    end process;
+
+
+    -- ap_reg_ppiten_pp0_it1 assign process. --
+    ap_reg_ppiten_pp0_it1_assign_proc : process(ap_clk)
+    begin
+        if (ap_clk'event and ap_clk =  '1') then
+            if (ap_rst = '1') then
+                ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+            else
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (exitcond_flatten_fu_575_p2 = ap_const_lv1_0))) then 
+                    ap_reg_ppiten_pp0_it1 <= ap_const_logic_1;
+                elsif ((((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3) and not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done))) or ((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and not((exitcond_flatten_fu_575_p2 = ap_const_lv1_0))))) then 
+                    ap_reg_ppiten_pp0_it1 <= ap_const_logic_0;
+                end if; 
+            end if;
+        end if;
+    end process;
+
+
+    -- ap_reg_ppiten_pp0_it2 assign process. --
+    ap_reg_ppiten_pp0_it2_assign_proc : process(ap_clk)
+    begin
+        if (ap_clk'event and ap_clk =  '1') then
+            if (ap_rst = '1') then
+                ap_reg_ppiten_pp0_it2 <= ap_const_logic_0;
+            else
+                ap_reg_ppiten_pp0_it2 <= ap_reg_ppiten_pp0_it1;
+            end if;
+        end if;
+    end process;
+
+
+    -- grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg assign process. --
+    grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg_assign_proc : process(ap_clk)
+    begin
+        if (ap_clk'event and ap_clk =  '1') then
+            if (ap_rst = '1') then
+                grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_0;
             else
                 if ((ap_const_logic_1 = ap_sig_cseq_ST_st3_fsm_2)) then 
-                    grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_1;
-                elsif ((ap_const_logic_1 = grp_inference_add_1_10_s_fu_416_ap_ready)) then 
-                    grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg <= ap_const_logic_0;
+                    grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_1;
+                elsif ((ap_const_logic_1 = grp_inference_add_1_10_s_fu_552_ap_ready)) then 
+                    grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
     end process;
 
 
-    -- grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg assign process. --
-    grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg_assign_proc : process(ap_clk)
+    -- grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg assign process. --
+    grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg_assign_proc : process(ap_clk)
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst = '1') then
-                grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_0;
+                grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_0;
             else
-                if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_251))) then 
-                    grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_1;
-                elsif ((ap_const_logic_1 = grp_inference_mult_1_84_84_10_s_fu_228_ap_ready)) then 
-                    grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg <= ap_const_logic_0;
+                if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_302))) then 
+                    grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_1;
+                elsif ((ap_const_logic_1 = grp_inference_mult_1_84_84_10_s_fu_364_ap_ready)) then 
+                    grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg <= ap_const_logic_0;
                 end if; 
             end if;
         end if;
     end process;
 
 
-    -- grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg assign process. --
-    grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg_assign_proc : process(ap_clk)
+    -- i_i_reg_342 assign process. --
+    i_i_reg_342_assign_proc : process (ap_clk)
     begin
-        if (ap_clk'event and ap_clk =  '1') then
-            if (ap_rst = '1') then
-                grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_0;
-            else
-                if ((ap_const_logic_1 = ap_sig_cseq_ST_st5_fsm_4)) then 
-                    grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_1;
-                elsif ((ap_const_logic_1 = grp_inference_softmax_1_10_s_fu_430_ap_ready)) then 
-                    grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg <= ap_const_logic_0;
-                end if; 
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it1) and (exitcond_flatten_reg_785 = ap_const_lv1_0))) then 
+                i_i_reg_342 <= i_i_mid2_reg_799;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3) and not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done)))) then 
+                i_i_reg_342 <= ap_const_lv1_0;
+            end if; 
+        end if;
+    end process;
+
+    -- indvar_flatten_reg_331 assign process. --
+    indvar_flatten_reg_331_assign_proc : process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_flatten_fu_575_p2 = ap_const_lv1_0))) then 
+                indvar_flatten_reg_331 <= indvar_flatten_next_fu_581_p2;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3) and not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done)))) then 
+                indvar_flatten_reg_331 <= ap_const_lv4_0;
+            end if; 
+        end if;
+    end process;
+
+    -- j_i_reg_353 assign process. --
+    j_i_reg_353_assign_proc : process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_flatten_fu_575_p2 = ap_const_lv1_0))) then 
+                j_i_reg_353 <= j_fu_629_p2;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3) and not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done)))) then 
+                j_i_reg_353 <= ap_const_lv4_0;
+            end if; 
+        end if;
+    end process;
+
+    -- max_val_1_fu_244 assign process. --
+    max_val_1_fu_244_assign_proc : process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_reg_ppiten_pp0_it2) and not((ap_const_lv1_0 = tmp_8_fu_758_p2)))) then 
+                max_val_1_fu_244 <= max_val_reg_837;
+            elsif (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not(ap_sig_bdd_302))) then 
+                max_val_1_fu_244 <= ap_const_lv32_CF000000;
+            end if; 
+        end if;
+    end process;
+
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if ((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4)) then
+                ap_reg_ppstg_exitcond_flatten_reg_785_pp0_it1 <= exitcond_flatten_reg_785;
+                ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1 <= i_i_mid2_reg_799;
+                ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1 <= j_i_mid2_reg_794;
+                exitcond_flatten_reg_785 <= exitcond_flatten_fu_575_p2;
             end if;
         end if;
     end process;
 
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_flatten_fu_575_p2 = ap_const_lv1_0))) then
+                i_i_mid2_reg_799 <= i_i_mid2_fu_601_p2;
+            end if;
+        end if;
+    end process;
+
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (exitcond_flatten_fu_575_p2 = ap_const_lv1_0))) then
+                j_i_mid2_reg_794 <= j_i_mid2_fu_593_p3;
+                tmp_1_reg_805 <= tmp_1_fu_607_p1;
+            end if;
+        end if;
+    end process;
+
+    -- assign process. --
+    process (ap_clk)
+    begin
+        if (ap_clk'event and ap_clk = '1') then
+            if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (exitcond_flatten_reg_785 = ap_const_lv1_0))) then
+                max_val_reg_837 <= max_val_fu_666_p3;
+            end if;
+        end if;
+    end process;
 
     -- the next state (ap_NS_fsm) of the state machine. --
-    ap_NS_fsm_assign_proc : process (ap_CS_fsm, grp_inference_mult_1_84_84_10_s_fu_228_ap_done, grp_inference_add_1_10_s_fu_416_ap_done, grp_inference_softmax_1_10_s_fu_430_ap_done, ap_sig_bdd_251)
+    ap_NS_fsm_assign_proc : process (ap_CS_fsm, exitcond_flatten_fu_575_p2, ap_reg_ppiten_pp0_it0, ap_reg_ppiten_pp0_it1, ap_reg_ppiten_pp0_it2, grp_inference_add_1_10_s_fu_552_ap_done, grp_inference_mult_1_84_84_10_s_fu_364_ap_done, ap_sig_bdd_302)
     begin
         case ap_CS_fsm is
             when ap_ST_st1_fsm_0 => 
-                if (not(ap_sig_bdd_251)) then
+                if (not(ap_sig_bdd_302)) then
                     ap_NS_fsm <= ap_ST_st2_fsm_1;
                 else
                     ap_NS_fsm <= ap_ST_st1_fsm_0;
                 end if;
             when ap_ST_st2_fsm_1 => 
-                if (not((ap_const_logic_0 = grp_inference_mult_1_84_84_10_s_fu_228_ap_done))) then
+                if (not((ap_const_logic_0 = grp_inference_mult_1_84_84_10_s_fu_364_ap_done))) then
                     ap_NS_fsm <= ap_ST_st3_fsm_2;
                 else
                     ap_NS_fsm <= ap_ST_st2_fsm_1;
@@ -698,31 +840,33 @@ begin
             when ap_ST_st3_fsm_2 => 
                 ap_NS_fsm <= ap_ST_st4_fsm_3;
             when ap_ST_st4_fsm_3 => 
-                if (not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_416_ap_done))) then
-                    ap_NS_fsm <= ap_ST_st5_fsm_4;
+                if (not((ap_const_logic_0 = grp_inference_add_1_10_s_fu_552_ap_done))) then
+                    ap_NS_fsm <= ap_ST_pp0_stg0_fsm_4;
                 else
                     ap_NS_fsm <= ap_ST_st4_fsm_3;
                 end if;
-            when ap_ST_st5_fsm_4 => 
-                ap_NS_fsm <= ap_ST_st6_fsm_5;
-            when ap_ST_st6_fsm_5 => 
-                if (not((ap_const_logic_0 = grp_inference_softmax_1_10_s_fu_430_ap_done))) then
-                    ap_NS_fsm <= ap_ST_st1_fsm_0;
+            when ap_ST_pp0_stg0_fsm_4 => 
+                if ((not(((ap_const_logic_1 = ap_reg_ppiten_pp0_it2) and not((ap_const_logic_1 = ap_reg_ppiten_pp0_it1)))) and not(((ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and not((exitcond_flatten_fu_575_p2 = ap_const_lv1_0)) and not((ap_const_logic_1 = ap_reg_ppiten_pp0_it1)))))) then
+                    ap_NS_fsm <= ap_ST_pp0_stg0_fsm_4;
+                elsif (((ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and not((exitcond_flatten_fu_575_p2 = ap_const_lv1_0)) and not((ap_const_logic_1 = ap_reg_ppiten_pp0_it1)))) then
+                    ap_NS_fsm <= ap_ST_st8_fsm_5;
                 else
-                    ap_NS_fsm <= ap_ST_st6_fsm_5;
+                    ap_NS_fsm <= ap_ST_st8_fsm_5;
                 end if;
+            when ap_ST_st8_fsm_5 => 
+                ap_NS_fsm <= ap_ST_st1_fsm_0;
             when others =>  
                 ap_NS_fsm <= "XXXXXX";
         end case;
     end process;
 
     -- S_0_0_address0 assign process. --
-    S_0_0_address0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_0_0_address0, grp_inference_softmax_1_10_s_fu_430_A_0_0_address0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_0_0_address0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_0_0_address0, newIndex4_i_fu_621_p1)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_0_0_address0 <= grp_inference_softmax_1_10_s_fu_430_A_0_0_address0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_0_0_address0 <= newIndex4_i_fu_621_p1(2 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_0_0_address0 <= grp_inference_add_1_10_s_fu_416_C_0_0_address0;
+            S_0_0_address0 <= grp_inference_add_1_10_s_fu_552_C_0_0_address0;
         else 
             S_0_0_address0 <= "XX";
         end if; 
@@ -730,24 +874,24 @@ begin
 
 
     -- S_0_0_ce0 assign process. --
-    S_0_0_ce0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_0_0_ce0, grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_0_0_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_0_0_ce0)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_0_0_ce0 <= grp_inference_softmax_1_10_s_fu_430_A_0_0_ce0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_0_0_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_0_0_ce0 <= grp_inference_add_1_10_s_fu_416_C_0_0_ce0;
+            S_0_0_ce0 <= grp_inference_add_1_10_s_fu_552_C_0_0_ce0;
         else 
             S_0_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    S_0_0_d0 <= grp_inference_add_1_10_s_fu_416_C_0_0_d0;
+    S_0_0_d0 <= grp_inference_add_1_10_s_fu_552_C_0_0_d0;
 
     -- S_0_0_we0 assign process. --
-    S_0_0_we0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_0_0_we0, ap_sig_cseq_ST_st4_fsm_3)
+    S_0_0_we0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_0_0_we0)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_0_0_we0 <= grp_inference_add_1_10_s_fu_416_C_0_0_we0;
+            S_0_0_we0 <= grp_inference_add_1_10_s_fu_552_C_0_0_we0;
         else 
             S_0_0_we0 <= ap_const_logic_0;
         end if; 
@@ -755,12 +899,12 @@ begin
 
 
     -- S_1_0_address0 assign process. --
-    S_1_0_address0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_1_0_address0, grp_inference_softmax_1_10_s_fu_430_A_1_0_address0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_1_0_address0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_1_0_address0, newIndex4_i_fu_621_p1)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_1_0_address0 <= grp_inference_softmax_1_10_s_fu_430_A_1_0_address0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_1_0_address0 <= newIndex4_i_fu_621_p1(2 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_1_0_address0 <= grp_inference_add_1_10_s_fu_416_C_1_0_address0;
+            S_1_0_address0 <= grp_inference_add_1_10_s_fu_552_C_1_0_address0;
         else 
             S_1_0_address0 <= "XX";
         end if; 
@@ -768,24 +912,24 @@ begin
 
 
     -- S_1_0_ce0 assign process. --
-    S_1_0_ce0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_1_0_ce0, grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_1_0_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_1_0_ce0)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_1_0_ce0 <= grp_inference_softmax_1_10_s_fu_430_A_1_0_ce0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_1_0_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_1_0_ce0 <= grp_inference_add_1_10_s_fu_416_C_1_0_ce0;
+            S_1_0_ce0 <= grp_inference_add_1_10_s_fu_552_C_1_0_ce0;
         else 
             S_1_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    S_1_0_d0 <= grp_inference_add_1_10_s_fu_416_C_1_0_d0;
+    S_1_0_d0 <= grp_inference_add_1_10_s_fu_552_C_1_0_d0;
 
     -- S_1_0_we0 assign process. --
-    S_1_0_we0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_1_0_we0, ap_sig_cseq_ST_st4_fsm_3)
+    S_1_0_we0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_1_0_we0)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_1_0_we0 <= grp_inference_add_1_10_s_fu_416_C_1_0_we0;
+            S_1_0_we0 <= grp_inference_add_1_10_s_fu_552_C_1_0_we0;
         else 
             S_1_0_we0 <= ap_const_logic_0;
         end if; 
@@ -793,12 +937,12 @@ begin
 
 
     -- S_2_0_address0 assign process. --
-    S_2_0_address0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_2_0_address0, grp_inference_softmax_1_10_s_fu_430_A_2_0_address0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_2_0_address0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_2_0_address0, newIndex4_i_fu_621_p1)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_2_0_address0 <= grp_inference_softmax_1_10_s_fu_430_A_2_0_address0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_2_0_address0 <= newIndex4_i_fu_621_p1(1 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_2_0_address0 <= grp_inference_add_1_10_s_fu_416_C_2_0_address0;
+            S_2_0_address0 <= grp_inference_add_1_10_s_fu_552_C_2_0_address0;
         else 
             S_2_0_address0 <= "X";
         end if; 
@@ -806,24 +950,24 @@ begin
 
 
     -- S_2_0_ce0 assign process. --
-    S_2_0_ce0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_2_0_ce0, grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_2_0_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_2_0_ce0)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_2_0_ce0 <= grp_inference_softmax_1_10_s_fu_430_A_2_0_ce0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_2_0_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_2_0_ce0 <= grp_inference_add_1_10_s_fu_416_C_2_0_ce0;
+            S_2_0_ce0 <= grp_inference_add_1_10_s_fu_552_C_2_0_ce0;
         else 
             S_2_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    S_2_0_d0 <= grp_inference_add_1_10_s_fu_416_C_2_0_d0;
+    S_2_0_d0 <= grp_inference_add_1_10_s_fu_552_C_2_0_d0;
 
     -- S_2_0_we0 assign process. --
-    S_2_0_we0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_2_0_we0, ap_sig_cseq_ST_st4_fsm_3)
+    S_2_0_we0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_2_0_we0)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_2_0_we0 <= grp_inference_add_1_10_s_fu_416_C_2_0_we0;
+            S_2_0_we0 <= grp_inference_add_1_10_s_fu_552_C_2_0_we0;
         else 
             S_2_0_we0 <= ap_const_logic_0;
         end if; 
@@ -831,12 +975,12 @@ begin
 
 
     -- S_3_0_address0 assign process. --
-    S_3_0_address0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_3_0_address0, grp_inference_softmax_1_10_s_fu_430_A_3_0_address0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_3_0_address0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_3_0_address0, newIndex4_i_fu_621_p1)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_3_0_address0 <= grp_inference_softmax_1_10_s_fu_430_A_3_0_address0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_3_0_address0 <= newIndex4_i_fu_621_p1(1 - 1 downto 0);
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_3_0_address0 <= grp_inference_add_1_10_s_fu_416_C_3_0_address0;
+            S_3_0_address0 <= grp_inference_add_1_10_s_fu_552_C_3_0_address0;
         else 
             S_3_0_address0 <= "X";
         end if; 
@@ -844,24 +988,24 @@ begin
 
 
     -- S_3_0_ce0 assign process. --
-    S_3_0_ce0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_3_0_ce0, grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0, ap_sig_cseq_ST_st4_fsm_3, ap_sig_cseq_ST_st6_fsm_5)
+    S_3_0_ce0_assign_proc : process(ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it0, ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_3_0_ce0)
     begin
-        if ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5)) then 
-            S_3_0_ce0 <= grp_inference_softmax_1_10_s_fu_430_A_3_0_ce0;
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0))) then 
+            S_3_0_ce0 <= ap_const_logic_1;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_3_0_ce0 <= grp_inference_add_1_10_s_fu_416_C_3_0_ce0;
+            S_3_0_ce0 <= grp_inference_add_1_10_s_fu_552_C_3_0_ce0;
         else 
             S_3_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    S_3_0_d0 <= grp_inference_add_1_10_s_fu_416_C_3_0_d0;
+    S_3_0_d0 <= grp_inference_add_1_10_s_fu_552_C_3_0_d0;
 
     -- S_3_0_we0 assign process. --
-    S_3_0_we0_assign_proc : process(grp_inference_add_1_10_s_fu_416_C_3_0_we0, ap_sig_cseq_ST_st4_fsm_3)
+    S_3_0_we0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_add_1_10_s_fu_552_C_3_0_we0)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            S_3_0_we0 <= grp_inference_add_1_10_s_fu_416_C_3_0_we0;
+            S_3_0_we0 <= grp_inference_add_1_10_s_fu_552_C_3_0_we0;
         else 
             S_3_0_we0 <= ap_const_logic_0;
         end if; 
@@ -869,12 +1013,12 @@ begin
 
 
     -- T_0_0_address0 assign process. --
-    T_0_0_address0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0, grp_inference_add_1_10_s_fu_416_A_0_0_address0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_0_0_address0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0, grp_inference_add_1_10_s_fu_552_A_0_0_address0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_0_0_address0 <= grp_inference_add_1_10_s_fu_416_A_0_0_address0;
+            T_0_0_address0 <= grp_inference_add_1_10_s_fu_552_A_0_0_address0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_0_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_address0;
+            T_0_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_address0;
         else 
             T_0_0_address0 <= "XX";
         end if; 
@@ -882,24 +1026,24 @@ begin
 
 
     -- T_0_0_ce0 assign process. --
-    T_0_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0, grp_inference_add_1_10_s_fu_416_A_0_0_ce0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_0_0_ce0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0, grp_inference_add_1_10_s_fu_552_A_0_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_0_0_ce0 <= grp_inference_add_1_10_s_fu_416_A_0_0_ce0;
+            T_0_0_ce0 <= grp_inference_add_1_10_s_fu_552_A_0_0_ce0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_0_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_ce0;
+            T_0_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_ce0;
         else 
             T_0_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    T_0_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_d0;
+    T_0_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_d0;
 
     -- T_0_0_we0 assign process. --
-    T_0_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0, ap_sig_cseq_ST_st2_fsm_1)
+    T_0_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_0_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_0_0_we0;
+            T_0_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_0_0_we0;
         else 
             T_0_0_we0 <= ap_const_logic_0;
         end if; 
@@ -907,12 +1051,12 @@ begin
 
 
     -- T_1_0_address0 assign process. --
-    T_1_0_address0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0, grp_inference_add_1_10_s_fu_416_A_1_0_address0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_1_0_address0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0, grp_inference_add_1_10_s_fu_552_A_1_0_address0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_1_0_address0 <= grp_inference_add_1_10_s_fu_416_A_1_0_address0;
+            T_1_0_address0 <= grp_inference_add_1_10_s_fu_552_A_1_0_address0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_1_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_address0;
+            T_1_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_address0;
         else 
             T_1_0_address0 <= "XX";
         end if; 
@@ -920,24 +1064,24 @@ begin
 
 
     -- T_1_0_ce0 assign process. --
-    T_1_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0, grp_inference_add_1_10_s_fu_416_A_1_0_ce0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_1_0_ce0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0, grp_inference_add_1_10_s_fu_552_A_1_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_1_0_ce0 <= grp_inference_add_1_10_s_fu_416_A_1_0_ce0;
+            T_1_0_ce0 <= grp_inference_add_1_10_s_fu_552_A_1_0_ce0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_1_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_ce0;
+            T_1_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_ce0;
         else 
             T_1_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    T_1_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_d0;
+    T_1_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_d0;
 
     -- T_1_0_we0 assign process. --
-    T_1_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0, ap_sig_cseq_ST_st2_fsm_1)
+    T_1_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_1_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_1_0_we0;
+            T_1_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_1_0_we0;
         else 
             T_1_0_we0 <= ap_const_logic_0;
         end if; 
@@ -945,12 +1089,12 @@ begin
 
 
     -- T_2_0_address0 assign process. --
-    T_2_0_address0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0, grp_inference_add_1_10_s_fu_416_A_2_0_address0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_2_0_address0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0, grp_inference_add_1_10_s_fu_552_A_2_0_address0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_2_0_address0 <= grp_inference_add_1_10_s_fu_416_A_2_0_address0;
+            T_2_0_address0 <= grp_inference_add_1_10_s_fu_552_A_2_0_address0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_2_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_address0;
+            T_2_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_address0;
         else 
             T_2_0_address0 <= "X";
         end if; 
@@ -958,24 +1102,24 @@ begin
 
 
     -- T_2_0_ce0 assign process. --
-    T_2_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0, grp_inference_add_1_10_s_fu_416_A_2_0_ce0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_2_0_ce0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0, grp_inference_add_1_10_s_fu_552_A_2_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_2_0_ce0 <= grp_inference_add_1_10_s_fu_416_A_2_0_ce0;
+            T_2_0_ce0 <= grp_inference_add_1_10_s_fu_552_A_2_0_ce0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_2_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_ce0;
+            T_2_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_ce0;
         else 
             T_2_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    T_2_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_d0;
+    T_2_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_d0;
 
     -- T_2_0_we0 assign process. --
-    T_2_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0, ap_sig_cseq_ST_st2_fsm_1)
+    T_2_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_2_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_2_0_we0;
+            T_2_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_2_0_we0;
         else 
             T_2_0_we0 <= ap_const_logic_0;
         end if; 
@@ -983,12 +1127,12 @@ begin
 
 
     -- T_3_0_address0 assign process. --
-    T_3_0_address0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0, grp_inference_add_1_10_s_fu_416_A_3_0_address0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_3_0_address0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0, grp_inference_add_1_10_s_fu_552_A_3_0_address0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_3_0_address0 <= grp_inference_add_1_10_s_fu_416_A_3_0_address0;
+            T_3_0_address0 <= grp_inference_add_1_10_s_fu_552_A_3_0_address0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_3_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_address0;
+            T_3_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_address0;
         else 
             T_3_0_address0 <= "X";
         end if; 
@@ -996,37 +1140,37 @@ begin
 
 
     -- T_3_0_ce0 assign process. --
-    T_3_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0, grp_inference_add_1_10_s_fu_416_A_3_0_ce0, ap_sig_cseq_ST_st2_fsm_1, ap_sig_cseq_ST_st4_fsm_3)
+    T_3_0_ce0_assign_proc : process(ap_sig_cseq_ST_st4_fsm_3, grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0, grp_inference_add_1_10_s_fu_552_A_3_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st4_fsm_3)) then 
-            T_3_0_ce0 <= grp_inference_add_1_10_s_fu_416_A_3_0_ce0;
+            T_3_0_ce0 <= grp_inference_add_1_10_s_fu_552_A_3_0_ce0;
         elsif ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_3_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_ce0;
+            T_3_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_ce0;
         else 
             T_3_0_ce0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    T_3_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_d0;
+    T_3_0_d0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_d0;
 
     -- T_3_0_we0 assign process. --
-    T_3_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0, ap_sig_cseq_ST_st2_fsm_1)
+    T_3_0_we0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            T_3_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_228_C_3_0_we0;
+            T_3_0_we0 <= grp_inference_mult_1_84_84_10_s_fu_364_C_3_0_we0;
         else 
             T_3_0_we0 <= ap_const_logic_0;
         end if; 
     end process;
 
-    X_0_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address0;
-    X_0_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_address1;
+    X_0_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address0;
+    X_0_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_address1;
 
     -- X_0_0_ce0 assign process. --
-    X_0_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
+    X_0_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_0_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce0;
+            X_0_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce0;
         else 
             X_0_0_ce0 <= ap_const_logic_0;
         end if; 
@@ -1034,23 +1178,23 @@ begin
 
 
     -- X_0_0_ce1 assign process. --
-    X_0_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
+    X_0_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_0_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_ce1;
+            X_0_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_ce1;
         else 
             X_0_0_ce1 <= ap_const_logic_0;
         end if; 
     end process;
 
-    X_1_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address0;
-    X_1_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_address1;
+    X_1_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address0;
+    X_1_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_address1;
 
     -- X_1_0_ce0 assign process. --
-    X_1_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
+    X_1_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_1_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce0;
+            X_1_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce0;
         else 
             X_1_0_ce0 <= ap_const_logic_0;
         end if; 
@@ -1058,23 +1202,23 @@ begin
 
 
     -- X_1_0_ce1 assign process. --
-    X_1_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
+    X_1_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_1_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_ce1;
+            X_1_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_ce1;
         else 
             X_1_0_ce1 <= ap_const_logic_0;
         end if; 
     end process;
 
-    X_2_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address0;
-    X_2_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_address1;
+    X_2_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address0;
+    X_2_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_address1;
 
     -- X_2_0_ce0 assign process. --
-    X_2_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
+    X_2_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_2_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce0;
+            X_2_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce0;
         else 
             X_2_0_ce0 <= ap_const_logic_0;
         end if; 
@@ -1082,23 +1226,23 @@ begin
 
 
     -- X_2_0_ce1 assign process. --
-    X_2_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
+    X_2_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_2_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_ce1;
+            X_2_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_ce1;
         else 
             X_2_0_ce1 <= ap_const_logic_0;
         end if; 
     end process;
 
-    X_3_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address0;
-    X_3_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_address1;
+    X_3_0_address0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address0;
+    X_3_0_address1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_address1;
 
     -- X_3_0_ce0 assign process. --
-    X_3_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
+    X_3_0_ce0_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_3_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce0;
+            X_3_0_ce0 <= grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce0;
         else 
             X_3_0_ce0 <= ap_const_logic_0;
         end if; 
@@ -1106,10 +1250,10 @@ begin
 
 
     -- X_3_0_ce1 assign process. --
-    X_3_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
+    X_3_0_ce1_assign_proc : process(grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1, ap_sig_cseq_ST_st2_fsm_1)
     begin
         if ((ap_const_logic_1 = ap_sig_cseq_ST_st2_fsm_1)) then 
-            X_3_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_ce1;
+            X_3_0_ce1 <= grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_ce1;
         else 
             X_3_0_ce1 <= ap_const_logic_0;
         end if; 
@@ -1117,9 +1261,9 @@ begin
 
 
     -- ap_done assign process. --
-    ap_done_assign_proc : process(ap_done_reg, grp_inference_softmax_1_10_s_fu_430_ap_done, ap_sig_cseq_ST_st6_fsm_5)
+    ap_done_assign_proc : process(ap_done_reg, ap_sig_cseq_ST_st8_fsm_5)
     begin
-        if (((ap_const_logic_1 = ap_done_reg) or ((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and not((ap_const_logic_0 = grp_inference_softmax_1_10_s_fu_430_ap_done))))) then 
+        if (((ap_const_logic_1 = ap_done_reg) or (ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_5))) then 
             ap_done <= ap_const_logic_1;
         else 
             ap_done <= ap_const_logic_0;
@@ -1139,13 +1283,27 @@ begin
 
 
     -- ap_ready assign process. --
-    ap_ready_assign_proc : process(grp_inference_softmax_1_10_s_fu_430_ap_done, ap_sig_cseq_ST_st6_fsm_5)
+    ap_ready_assign_proc : process(ap_sig_cseq_ST_st8_fsm_5)
     begin
-        if (((ap_const_logic_1 = ap_sig_cseq_ST_st6_fsm_5) and not((ap_const_logic_0 = grp_inference_softmax_1_10_s_fu_430_ap_done)))) then 
+        if ((ap_const_logic_1 = ap_sig_cseq_ST_st8_fsm_5)) then 
             ap_ready <= ap_const_logic_1;
         else 
             ap_ready <= ap_const_logic_0;
         end if; 
+    end process;
+
+
+    -- ap_sig_bdd_1152 assign process. --
+    ap_sig_bdd_1152_assign_proc : process(ap_CS_fsm)
+    begin
+                ap_sig_bdd_1152 <= (ap_const_lv1_1 = ap_CS_fsm(5 downto 5));
+    end process;
+
+
+    -- ap_sig_bdd_129 assign process. --
+    ap_sig_bdd_129_assign_proc : process(ap_CS_fsm)
+    begin
+                ap_sig_bdd_129 <= (ap_const_lv1_1 = ap_CS_fsm(3 downto 3));
     end process;
 
 
@@ -1156,45 +1314,42 @@ begin
     end process;
 
 
-    -- ap_sig_bdd_251 assign process. --
-    ap_sig_bdd_251_assign_proc : process(ap_start, ap_done_reg)
+    -- ap_sig_bdd_302 assign process. --
+    ap_sig_bdd_302_assign_proc : process(ap_start, ap_done_reg)
     begin
-                ap_sig_bdd_251 <= ((ap_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
+                ap_sig_bdd_302 <= ((ap_start = ap_const_logic_0) or (ap_done_reg = ap_const_logic_1));
     end process;
 
 
-    -- ap_sig_bdd_259 assign process. --
-    ap_sig_bdd_259_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_bdd_310 assign process. --
+    ap_sig_bdd_310_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_bdd_259 <= (ap_const_lv1_1 = ap_CS_fsm(1 downto 1));
+                ap_sig_bdd_310 <= (ap_const_lv1_1 = ap_CS_fsm(1 downto 1));
     end process;
 
 
-    -- ap_sig_bdd_940 assign process. --
-    ap_sig_bdd_940_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_bdd_83 assign process. --
+    ap_sig_bdd_83_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_bdd_940 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
+                ap_sig_bdd_83 <= (ap_const_lv1_1 = ap_CS_fsm(4 downto 4));
     end process;
 
 
-    -- ap_sig_bdd_947 assign process. --
-    ap_sig_bdd_947_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_bdd_991 assign process. --
+    ap_sig_bdd_991_assign_proc : process(ap_CS_fsm)
     begin
-                ap_sig_bdd_947 <= (ap_const_lv1_1 = ap_CS_fsm(3 downto 3));
+                ap_sig_bdd_991 <= (ap_const_lv1_1 = ap_CS_fsm(2 downto 2));
     end process;
 
 
-    -- ap_sig_bdd_964 assign process. --
-    ap_sig_bdd_964_assign_proc : process(ap_CS_fsm)
+    -- ap_sig_cseq_ST_pp0_stg0_fsm_4 assign process. --
+    ap_sig_cseq_ST_pp0_stg0_fsm_4_assign_proc : process(ap_sig_bdd_83)
     begin
-                ap_sig_bdd_964 <= (ap_const_lv1_1 = ap_CS_fsm(4 downto 4));
-    end process;
-
-
-    -- ap_sig_bdd_971 assign process. --
-    ap_sig_bdd_971_assign_proc : process(ap_CS_fsm)
-    begin
-                ap_sig_bdd_971 <= (ap_const_lv1_1 = ap_CS_fsm(5 downto 5));
+        if (ap_sig_bdd_83) then 
+            ap_sig_cseq_ST_pp0_stg0_fsm_4 <= ap_const_logic_1;
+        else 
+            ap_sig_cseq_ST_pp0_stg0_fsm_4 <= ap_const_logic_0;
+        end if; 
     end process;
 
 
@@ -1210,9 +1365,9 @@ begin
 
 
     -- ap_sig_cseq_ST_st2_fsm_1 assign process. --
-    ap_sig_cseq_ST_st2_fsm_1_assign_proc : process(ap_sig_bdd_259)
+    ap_sig_cseq_ST_st2_fsm_1_assign_proc : process(ap_sig_bdd_310)
     begin
-        if (ap_sig_bdd_259) then 
+        if (ap_sig_bdd_310) then 
             ap_sig_cseq_ST_st2_fsm_1 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st2_fsm_1 <= ap_const_logic_0;
@@ -1221,9 +1376,9 @@ begin
 
 
     -- ap_sig_cseq_ST_st3_fsm_2 assign process. --
-    ap_sig_cseq_ST_st3_fsm_2_assign_proc : process(ap_sig_bdd_940)
+    ap_sig_cseq_ST_st3_fsm_2_assign_proc : process(ap_sig_bdd_991)
     begin
-        if (ap_sig_bdd_940) then 
+        if (ap_sig_bdd_991) then 
             ap_sig_cseq_ST_st3_fsm_2 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st3_fsm_2 <= ap_const_logic_0;
@@ -1232,9 +1387,9 @@ begin
 
 
     -- ap_sig_cseq_ST_st4_fsm_3 assign process. --
-    ap_sig_cseq_ST_st4_fsm_3_assign_proc : process(ap_sig_bdd_947)
+    ap_sig_cseq_ST_st4_fsm_3_assign_proc : process(ap_sig_bdd_129)
     begin
-        if (ap_sig_bdd_947) then 
+        if (ap_sig_bdd_129) then 
             ap_sig_cseq_ST_st4_fsm_3 <= ap_const_logic_1;
         else 
             ap_sig_cseq_ST_st4_fsm_3 <= ap_const_logic_0;
@@ -1242,47 +1397,91 @@ begin
     end process;
 
 
-    -- ap_sig_cseq_ST_st5_fsm_4 assign process. --
-    ap_sig_cseq_ST_st5_fsm_4_assign_proc : process(ap_sig_bdd_964)
+    -- ap_sig_cseq_ST_st8_fsm_5 assign process. --
+    ap_sig_cseq_ST_st8_fsm_5_assign_proc : process(ap_sig_bdd_1152)
     begin
-        if (ap_sig_bdd_964) then 
-            ap_sig_cseq_ST_st5_fsm_4 <= ap_const_logic_1;
+        if (ap_sig_bdd_1152) then 
+            ap_sig_cseq_ST_st8_fsm_5 <= ap_const_logic_1;
         else 
-            ap_sig_cseq_ST_st5_fsm_4 <= ap_const_logic_0;
+            ap_sig_cseq_ST_st8_fsm_5 <= ap_const_logic_0;
         end if; 
     end process;
 
+    argmax <= std_logic_vector(resize(unsigned(tmp_4_i_fu_764_p2),32));
 
-    -- ap_sig_cseq_ST_st6_fsm_5 assign process. --
-    ap_sig_cseq_ST_st6_fsm_5_assign_proc : process(ap_sig_bdd_971)
+    -- argmax_ap_vld assign process. --
+    argmax_ap_vld_assign_proc : process(ap_reg_ppiten_pp0_it2, tmp_8_fu_758_p2)
     begin
-        if (ap_sig_bdd_971) then 
-            ap_sig_cseq_ST_st6_fsm_5 <= ap_const_logic_1;
+        if (((ap_const_logic_1 = ap_reg_ppiten_pp0_it2) and not((ap_const_lv1_0 = tmp_8_fu_758_p2)))) then 
+            argmax_ap_vld <= ap_const_logic_1;
         else 
-            ap_sig_cseq_ST_st6_fsm_5 <= ap_const_logic_0;
+            argmax_ap_vld <= ap_const_logic_0;
         end if; 
     end process;
 
-    argmax_TDATA <= grp_inference_softmax_1_10_s_fu_430_argmax_TDATA;
-    argmax_TVALID <= grp_inference_softmax_1_10_s_fu_430_argmax_TVALID;
-    grp_inference_add_1_10_s_fu_416_A_0_0_q0 <= T_0_0_q0;
-    grp_inference_add_1_10_s_fu_416_A_1_0_q0 <= T_1_0_q0;
-    grp_inference_add_1_10_s_fu_416_A_2_0_q0 <= T_2_0_q0;
-    grp_inference_add_1_10_s_fu_416_A_3_0_q0 <= T_3_0_q0;
-    grp_inference_add_1_10_s_fu_416_ap_start <= grp_inference_add_1_10_s_fu_416_ap_start_ap_start_reg;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q0 <= X_0_0_q0;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_0_0_q1 <= X_0_0_q1;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q0 <= X_1_0_q0;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_1_0_q1 <= X_1_0_q1;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q0 <= X_2_0_q0;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_2_0_q1 <= X_2_0_q1;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q0 <= X_3_0_q0;
-    grp_inference_mult_1_84_84_10_s_fu_228_A_3_0_q1 <= X_3_0_q1;
-    grp_inference_mult_1_84_84_10_s_fu_228_ap_start <= grp_inference_mult_1_84_84_10_s_fu_228_ap_start_ap_start_reg;
-    grp_inference_softmax_1_10_s_fu_430_A_0_0_q0 <= S_0_0_q0;
-    grp_inference_softmax_1_10_s_fu_430_A_1_0_q0 <= S_1_0_q0;
-    grp_inference_softmax_1_10_s_fu_430_A_2_0_q0 <= S_2_0_q0;
-    grp_inference_softmax_1_10_s_fu_430_A_3_0_q0 <= S_3_0_q0;
-    grp_inference_softmax_1_10_s_fu_430_ap_start <= grp_inference_softmax_1_10_s_fu_430_ap_start_ap_start_reg;
-    grp_inference_softmax_1_10_s_fu_430_argmax_TREADY <= argmax_TREADY;
+    exitcond_flatten_fu_575_p2 <= "1" when (indvar_flatten_reg_331 = ap_const_lv4_A) else "0";
+    exitcond_i_fu_587_p2 <= "1" when (j_i_reg_353 = ap_const_lv4_A) else "0";
+    grp_inference_add_1_10_s_fu_552_A_0_0_q0 <= T_0_0_q0;
+    grp_inference_add_1_10_s_fu_552_A_1_0_q0 <= T_1_0_q0;
+    grp_inference_add_1_10_s_fu_552_A_2_0_q0 <= T_2_0_q0;
+    grp_inference_add_1_10_s_fu_552_A_3_0_q0 <= T_3_0_q0;
+    grp_inference_add_1_10_s_fu_552_ap_start <= grp_inference_add_1_10_s_fu_552_ap_start_ap_start_reg;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q0 <= X_0_0_q0;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_0_0_q1 <= X_0_0_q1;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q0 <= X_1_0_q0;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_1_0_q1 <= X_1_0_q1;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q0 <= X_2_0_q0;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_2_0_q1 <= X_2_0_q1;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q0 <= X_3_0_q0;
+    grp_inference_mult_1_84_84_10_s_fu_364_A_3_0_q1 <= X_3_0_q1;
+    grp_inference_mult_1_84_84_10_s_fu_364_ap_start <= grp_inference_mult_1_84_84_10_s_fu_364_ap_start_ap_start_reg;
+    i_cast6_i_fu_678_p1 <= std_logic_vector(resize(unsigned(ap_reg_ppstg_i_i_mid2_reg_799_pp0_it1),4));
+    i_i_mid2_fu_601_p2 <= (exitcond_i_fu_587_p2 or i_i_phi_fu_346_p4);
+
+    -- i_i_phi_fu_346_p4 assign process. --
+    i_i_phi_fu_346_p4_assign_proc : process(i_i_reg_342, exitcond_flatten_reg_785, ap_sig_cseq_ST_pp0_stg0_fsm_4, ap_reg_ppiten_pp0_it1, i_i_mid2_reg_799)
+    begin
+        if (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_4) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it1) and (exitcond_flatten_reg_785 = ap_const_lv1_0))) then 
+            i_i_phi_fu_346_p4 <= i_i_mid2_reg_799;
+        else 
+            i_i_phi_fu_346_p4 <= i_i_reg_342;
+        end if; 
+    end process;
+
+    indvar_flatten_next_fu_581_p2 <= std_logic_vector(unsigned(indvar_flatten_reg_331) + unsigned(ap_const_lv4_1));
+    j_fu_629_p2 <= std_logic_vector(unsigned(j_i_mid2_fu_593_p3) + unsigned(ap_const_lv4_1));
+    j_i_mid2_fu_593_p3 <= 
+        ap_const_lv4_0 when (exitcond_i_fu_587_p2(0) = '1') else 
+        j_i_reg_353;
+    max_val_1_i_to_int_fu_698_p1 <= max_val_1_fu_244;
+    max_val_3_i_to_int_fu_681_p1 <= max_val_reg_837;
+    max_val_fu_666_p3 <= 
+        S_2_0_q0 when (sel_tmp4_i_fu_661_p2(0) = '1') else 
+        sel_tmp3_i_fu_653_p3;
+    newIndex4_i_fu_621_p1 <= std_logic_vector(resize(unsigned(newIndex_i_fu_611_p4),64));
+    newIndex_i_fu_611_p4 <= j_i_mid2_fu_593_p3(3 downto 2);
+    notlhs1_fu_734_p2 <= "0" when (tmp_2_fu_702_p4 = ap_const_lv8_FF) else "1";
+    notlhs_fu_716_p2 <= "0" when (tmp_fu_684_p4 = ap_const_lv8_FF) else "1";
+    notrhs2_fu_740_p2 <= "1" when (tmp_9_fu_712_p1 = ap_const_lv23_0) else "0";
+    notrhs_fu_722_p2 <= "1" when (tmp_3_fu_694_p1 = ap_const_lv23_0) else "0";
+    sel_tmp1_i_fu_640_p3 <= 
+        S_0_0_q0 when (sel_tmp_i_fu_635_p2(0) = '1') else 
+        S_3_0_q0;
+    sel_tmp2_i_fu_648_p2 <= "1" when (tmp_1_reg_805 = ap_const_lv2_1) else "0";
+    sel_tmp3_i_fu_653_p3 <= 
+        S_1_0_q0 when (sel_tmp2_i_fu_648_p2(0) = '1') else 
+        sel_tmp1_i_fu_640_p3;
+    sel_tmp4_i_fu_661_p2 <= "1" when (tmp_1_reg_805 = ap_const_lv2_2) else "0";
+    sel_tmp_i_fu_635_p2 <= "1" when (tmp_1_reg_805 = ap_const_lv2_0) else "0";
+    tmp_1_fu_607_p1 <= j_i_mid2_fu_593_p3(2 - 1 downto 0);
+    tmp_2_fu_702_p4 <= max_val_1_i_to_int_fu_698_p1(30 downto 23);
+    tmp_3_fu_694_p1 <= max_val_3_i_to_int_fu_681_p1(23 - 1 downto 0);
+    tmp_4_fu_728_p2 <= (notrhs_fu_722_p2 or notlhs_fu_716_p2);
+    tmp_4_i_fu_764_p2 <= std_logic_vector(unsigned(ap_reg_ppstg_j_i_mid2_reg_794_pp0_it1) + unsigned(i_cast6_i_fu_678_p1));
+    tmp_5_fu_746_p2 <= (notrhs2_fu_740_p2 or notlhs1_fu_734_p2);
+    tmp_6_fu_752_p2 <= (tmp_4_fu_728_p2 and tmp_5_fu_746_p2);
+    tmp_7_fu_566_opcode <= ap_const_lv5_2;
+    tmp_8_fu_758_p2 <= (tmp_6_fu_752_p2 and tmp_7_fu_566_p2);
+    tmp_9_fu_712_p1 <= max_val_1_i_to_int_fu_698_p1(23 - 1 downto 0);
+    tmp_fu_684_p4 <= max_val_3_i_to_int_fu_681_p1(30 downto 23);
 end behav;

@@ -1165,51 +1165,51 @@ void inference::thread_ap_chn_write_inference_Loop_inference_label11_proc_U0_fcI
     }
 }
 
-void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput1_0() {
+void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput2_0() {
     if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_1_U0_out_feature_0_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_0 = ap_const_logic_0;
+        ap_chn_write_inference_conv2d_1_U0_convOutput2_0 = ap_const_logic_0;
     } else {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_0 = inference_conv2d_1_U0_ap_done.read();
+        ap_chn_write_inference_conv2d_1_U0_convOutput2_0 = inference_conv2d_1_U0_ap_done.read();
     }
 }
 
-void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput1_1() {
+void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput2_1() {
     if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_1_U0_out_feature_1_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_1 = ap_const_logic_0;
+        ap_chn_write_inference_conv2d_1_U0_convOutput2_1 = ap_const_logic_0;
     } else {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_1 = inference_conv2d_1_U0_ap_done.read();
+        ap_chn_write_inference_conv2d_1_U0_convOutput2_1 = inference_conv2d_1_U0_ap_done.read();
     }
 }
 
-void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput1_2() {
-    if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_1_U0_out_feature_2_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_2 = ap_const_logic_0;
-    } else {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_2 = inference_conv2d_1_U0_ap_done.read();
-    }
-}
-
-void inference::thread_ap_chn_write_inference_conv2d_1_U0_convOutput1_3() {
-    if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_1_U0_out_feature_3_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_3 = ap_const_logic_0;
-    } else {
-        ap_chn_write_inference_conv2d_1_U0_convOutput1_3 = inference_conv2d_1_U0_ap_done.read();
-    }
-}
-
-void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput2_0() {
+void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput1_0() {
     if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_2_U0_out_feature_0_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_2_U0_convOutput2_0 = ap_const_logic_0;
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_0 = ap_const_logic_0;
     } else {
-        ap_chn_write_inference_conv2d_2_U0_convOutput2_0 = inference_conv2d_2_U0_ap_done.read();
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_0 = inference_conv2d_2_U0_ap_done.read();
     }
 }
 
-void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput2_1() {
+void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput1_1() {
     if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_2_U0_out_feature_1_pipo_status.read())) {
-        ap_chn_write_inference_conv2d_2_U0_convOutput2_1 = ap_const_logic_0;
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_1 = ap_const_logic_0;
     } else {
-        ap_chn_write_inference_conv2d_2_U0_convOutput2_1 = inference_conv2d_2_U0_ap_done.read();
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_1 = inference_conv2d_2_U0_ap_done.read();
+    }
+}
+
+void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput1_2() {
+    if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_2_U0_out_feature_2_pipo_status.read())) {
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_2 = ap_const_logic_0;
+    } else {
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_2 = inference_conv2d_2_U0_ap_done.read();
+    }
+}
+
+void inference::thread_ap_chn_write_inference_conv2d_2_U0_convOutput1_3() {
+    if (esl_seteq<1,1,1>(ap_const_logic_1, ap_reg_ready_inference_conv2d_2_U0_out_feature_3_pipo_status.read())) {
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_3 = ap_const_logic_0;
+    } else {
+        ap_chn_write_inference_conv2d_2_U0_convOutput1_3 = inference_conv2d_2_U0_ap_done.read();
     }
 }
 
@@ -2123,9 +2123,9 @@ void inference::thread_ap_done() {
 
 void inference::thread_ap_idle() {
     if ((esl_seteq<1,1,1>(ap_const_logic_1, inference_Loop_1_proc_U0_ap_idle.read()) && 
-         esl_seteq<1,1,1>(ap_const_logic_1, inference_conv2d_1_U0_ap_idle.read()) && 
-         esl_seteq<1,1,1>(ap_const_logic_1, inference_maxPoolNxN_1_U0_ap_idle.read()) && 
          esl_seteq<1,1,1>(ap_const_logic_1, inference_conv2d_2_U0_ap_idle.read()) && 
+         esl_seteq<1,1,1>(ap_const_logic_1, inference_maxPoolNxN_1_U0_ap_idle.read()) && 
+         esl_seteq<1,1,1>(ap_const_logic_1, inference_conv2d_1_U0_ap_idle.read()) && 
          esl_seteq<1,1,1>(ap_const_logic_1, inference_maxPoolNxN_U0_ap_idle.read()) && 
          esl_seteq<1,1,1>(ap_const_logic_1, inference_conv2d_U0_ap_idle.read()) && 
          esl_seteq<1,1,1>(ap_const_logic_1, inference_Loop_inference_label11_proc_U0_ap_idle.read()) && 
@@ -2403,10 +2403,6 @@ void inference::thread_ap_idle() {
 
 void inference::thread_ap_ready() {
     ap_ready = ap_sig_top_allready.read();
-}
-
-void inference::thread_ap_rst_n_inv() {
-    ap_rst_n_inv =  (sc_logic) (~ap_rst_n.read());
 }
 
 void inference::thread_ap_sig_hs_continue() {
@@ -3398,7 +3394,7 @@ void inference::thread_ap_sig_ready_inference_Loop_1_proc_U0_x_in_0_1_0_pipo_sta
 }
 
 void inference::thread_ap_sig_ready_inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status() {
-    if (esl_seteq<1,1,1>(ap_reg_ready_inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status.read(), ap_const_logic_0)) {
+    if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status.read())) {
         ap_sig_ready_inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status = inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status.read();
     } else {
         ap_sig_ready_inference_Loop_1_proc_U0_x_in_0_2_0_pipo_status = ap_const_logic_1;
@@ -3597,22 +3593,6 @@ void inference::thread_ap_sig_ready_inference_conv2d_1_U0_out_feature_1_pipo_sta
     }
 }
 
-void inference::thread_ap_sig_ready_inference_conv2d_1_U0_out_feature_2_pipo_status() {
-    if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_conv2d_1_U0_out_feature_2_pipo_status.read())) {
-        ap_sig_ready_inference_conv2d_1_U0_out_feature_2_pipo_status = inference_conv2d_1_U0_out_feature_2_pipo_status.read();
-    } else {
-        ap_sig_ready_inference_conv2d_1_U0_out_feature_2_pipo_status = ap_const_logic_1;
-    }
-}
-
-void inference::thread_ap_sig_ready_inference_conv2d_1_U0_out_feature_3_pipo_status() {
-    if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_conv2d_1_U0_out_feature_3_pipo_status.read())) {
-        ap_sig_ready_inference_conv2d_1_U0_out_feature_3_pipo_status = inference_conv2d_1_U0_out_feature_3_pipo_status.read();
-    } else {
-        ap_sig_ready_inference_conv2d_1_U0_out_feature_3_pipo_status = ap_const_logic_1;
-    }
-}
-
 void inference::thread_ap_sig_ready_inference_conv2d_2_U0_out_feature_0_pipo_status() {
     if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_conv2d_2_U0_out_feature_0_pipo_status.read())) {
         ap_sig_ready_inference_conv2d_2_U0_out_feature_0_pipo_status = inference_conv2d_2_U0_out_feature_0_pipo_status.read();
@@ -3626,6 +3606,22 @@ void inference::thread_ap_sig_ready_inference_conv2d_2_U0_out_feature_1_pipo_sta
         ap_sig_ready_inference_conv2d_2_U0_out_feature_1_pipo_status = inference_conv2d_2_U0_out_feature_1_pipo_status.read();
     } else {
         ap_sig_ready_inference_conv2d_2_U0_out_feature_1_pipo_status = ap_const_logic_1;
+    }
+}
+
+void inference::thread_ap_sig_ready_inference_conv2d_2_U0_out_feature_2_pipo_status() {
+    if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_conv2d_2_U0_out_feature_2_pipo_status.read())) {
+        ap_sig_ready_inference_conv2d_2_U0_out_feature_2_pipo_status = inference_conv2d_2_U0_out_feature_2_pipo_status.read();
+    } else {
+        ap_sig_ready_inference_conv2d_2_U0_out_feature_2_pipo_status = ap_const_logic_1;
+    }
+}
+
+void inference::thread_ap_sig_ready_inference_conv2d_2_U0_out_feature_3_pipo_status() {
+    if (esl_seteq<1,1,1>(ap_const_logic_0, ap_reg_ready_inference_conv2d_2_U0_out_feature_3_pipo_status.read())) {
+        ap_sig_ready_inference_conv2d_2_U0_out_feature_3_pipo_status = inference_conv2d_2_U0_out_feature_3_pipo_status.read();
+    } else {
+        ap_sig_ready_inference_conv2d_2_U0_out_feature_3_pipo_status = ap_const_logic_1;
     }
 }
 
@@ -4542,7 +4538,7 @@ void inference::thread_convOutput1_0_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput1_0_i_address0() {
-    convOutput1_0_i_address0 = inference_conv2d_1_U0_out_feature_0_address0.read();
+    convOutput1_0_i_address0 = inference_conv2d_2_U0_out_feature_0_address0.read();
 }
 
 void inference::thread_convOutput1_0_i_address1() {
@@ -4550,7 +4546,7 @@ void inference::thread_convOutput1_0_i_address1() {
 }
 
 void inference::thread_convOutput1_0_i_ce0() {
-    convOutput1_0_i_ce0 = inference_conv2d_1_U0_out_feature_0_ce0.read();
+    convOutput1_0_i_ce0 = inference_conv2d_2_U0_out_feature_0_ce0.read();
 }
 
 void inference::thread_convOutput1_0_i_ce1() {
@@ -4558,15 +4554,15 @@ void inference::thread_convOutput1_0_i_ce1() {
 }
 
 void inference::thread_convOutput1_0_i_d0() {
-    convOutput1_0_i_d0 = inference_conv2d_1_U0_out_feature_0_d0.read();
+    convOutput1_0_i_d0 = inference_conv2d_2_U0_out_feature_0_d0.read();
 }
 
 void inference::thread_convOutput1_0_i_we0() {
-    convOutput1_0_i_we0 = inference_conv2d_1_U0_out_feature_0_we0.read();
+    convOutput1_0_i_we0 = inference_conv2d_2_U0_out_feature_0_we0.read();
 }
 
 void inference::thread_convOutput1_0_i_write() {
-    convOutput1_0_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput1_0.read();
+    convOutput1_0_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput1_0.read();
 }
 
 void inference::thread_convOutput1_0_t_address0() {
@@ -4610,7 +4606,7 @@ void inference::thread_convOutput1_1_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput1_1_i_address0() {
-    convOutput1_1_i_address0 = inference_conv2d_1_U0_out_feature_1_address0.read();
+    convOutput1_1_i_address0 = inference_conv2d_2_U0_out_feature_1_address0.read();
 }
 
 void inference::thread_convOutput1_1_i_address1() {
@@ -4618,7 +4614,7 @@ void inference::thread_convOutput1_1_i_address1() {
 }
 
 void inference::thread_convOutput1_1_i_ce0() {
-    convOutput1_1_i_ce0 = inference_conv2d_1_U0_out_feature_1_ce0.read();
+    convOutput1_1_i_ce0 = inference_conv2d_2_U0_out_feature_1_ce0.read();
 }
 
 void inference::thread_convOutput1_1_i_ce1() {
@@ -4626,15 +4622,15 @@ void inference::thread_convOutput1_1_i_ce1() {
 }
 
 void inference::thread_convOutput1_1_i_d0() {
-    convOutput1_1_i_d0 = inference_conv2d_1_U0_out_feature_1_d0.read();
+    convOutput1_1_i_d0 = inference_conv2d_2_U0_out_feature_1_d0.read();
 }
 
 void inference::thread_convOutput1_1_i_we0() {
-    convOutput1_1_i_we0 = inference_conv2d_1_U0_out_feature_1_we0.read();
+    convOutput1_1_i_we0 = inference_conv2d_2_U0_out_feature_1_we0.read();
 }
 
 void inference::thread_convOutput1_1_i_write() {
-    convOutput1_1_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput1_1.read();
+    convOutput1_1_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput1_1.read();
 }
 
 void inference::thread_convOutput1_1_t_address0() {
@@ -4678,7 +4674,7 @@ void inference::thread_convOutput1_2_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput1_2_i_address0() {
-    convOutput1_2_i_address0 = inference_conv2d_1_U0_out_feature_2_address0.read();
+    convOutput1_2_i_address0 = inference_conv2d_2_U0_out_feature_2_address0.read();
 }
 
 void inference::thread_convOutput1_2_i_address1() {
@@ -4686,7 +4682,7 @@ void inference::thread_convOutput1_2_i_address1() {
 }
 
 void inference::thread_convOutput1_2_i_ce0() {
-    convOutput1_2_i_ce0 = inference_conv2d_1_U0_out_feature_2_ce0.read();
+    convOutput1_2_i_ce0 = inference_conv2d_2_U0_out_feature_2_ce0.read();
 }
 
 void inference::thread_convOutput1_2_i_ce1() {
@@ -4694,15 +4690,15 @@ void inference::thread_convOutput1_2_i_ce1() {
 }
 
 void inference::thread_convOutput1_2_i_d0() {
-    convOutput1_2_i_d0 = inference_conv2d_1_U0_out_feature_2_d0.read();
+    convOutput1_2_i_d0 = inference_conv2d_2_U0_out_feature_2_d0.read();
 }
 
 void inference::thread_convOutput1_2_i_we0() {
-    convOutput1_2_i_we0 = inference_conv2d_1_U0_out_feature_2_we0.read();
+    convOutput1_2_i_we0 = inference_conv2d_2_U0_out_feature_2_we0.read();
 }
 
 void inference::thread_convOutput1_2_i_write() {
-    convOutput1_2_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput1_2.read();
+    convOutput1_2_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput1_2.read();
 }
 
 void inference::thread_convOutput1_2_t_address0() {
@@ -4746,7 +4742,7 @@ void inference::thread_convOutput1_3_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput1_3_i_address0() {
-    convOutput1_3_i_address0 = inference_conv2d_1_U0_out_feature_3_address0.read();
+    convOutput1_3_i_address0 = inference_conv2d_2_U0_out_feature_3_address0.read();
 }
 
 void inference::thread_convOutput1_3_i_address1() {
@@ -4754,7 +4750,7 @@ void inference::thread_convOutput1_3_i_address1() {
 }
 
 void inference::thread_convOutput1_3_i_ce0() {
-    convOutput1_3_i_ce0 = inference_conv2d_1_U0_out_feature_3_ce0.read();
+    convOutput1_3_i_ce0 = inference_conv2d_2_U0_out_feature_3_ce0.read();
 }
 
 void inference::thread_convOutput1_3_i_ce1() {
@@ -4762,15 +4758,15 @@ void inference::thread_convOutput1_3_i_ce1() {
 }
 
 void inference::thread_convOutput1_3_i_d0() {
-    convOutput1_3_i_d0 = inference_conv2d_1_U0_out_feature_3_d0.read();
+    convOutput1_3_i_d0 = inference_conv2d_2_U0_out_feature_3_d0.read();
 }
 
 void inference::thread_convOutput1_3_i_we0() {
-    convOutput1_3_i_we0 = inference_conv2d_1_U0_out_feature_3_we0.read();
+    convOutput1_3_i_we0 = inference_conv2d_2_U0_out_feature_3_we0.read();
 }
 
 void inference::thread_convOutput1_3_i_write() {
-    convOutput1_3_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput1_3.read();
+    convOutput1_3_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput1_3.read();
 }
 
 void inference::thread_convOutput1_3_t_address0() {
@@ -4814,7 +4810,7 @@ void inference::thread_convOutput2_0_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput2_0_i_address0() {
-    convOutput2_0_i_address0 = inference_conv2d_2_U0_out_feature_0_address0.read();
+    convOutput2_0_i_address0 = inference_conv2d_1_U0_out_feature_0_address0.read();
 }
 
 void inference::thread_convOutput2_0_i_address1() {
@@ -4822,7 +4818,7 @@ void inference::thread_convOutput2_0_i_address1() {
 }
 
 void inference::thread_convOutput2_0_i_ce0() {
-    convOutput2_0_i_ce0 = inference_conv2d_2_U0_out_feature_0_ce0.read();
+    convOutput2_0_i_ce0 = inference_conv2d_1_U0_out_feature_0_ce0.read();
 }
 
 void inference::thread_convOutput2_0_i_ce1() {
@@ -4830,15 +4826,15 @@ void inference::thread_convOutput2_0_i_ce1() {
 }
 
 void inference::thread_convOutput2_0_i_d0() {
-    convOutput2_0_i_d0 = inference_conv2d_2_U0_out_feature_0_d0.read();
+    convOutput2_0_i_d0 = inference_conv2d_1_U0_out_feature_0_d0.read();
 }
 
 void inference::thread_convOutput2_0_i_we0() {
-    convOutput2_0_i_we0 = inference_conv2d_2_U0_out_feature_0_we0.read();
+    convOutput2_0_i_we0 = inference_conv2d_1_U0_out_feature_0_we0.read();
 }
 
 void inference::thread_convOutput2_0_i_write() {
-    convOutput2_0_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput2_0.read();
+    convOutput2_0_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput2_0.read();
 }
 
 void inference::thread_convOutput2_0_t_address0() {
@@ -4882,7 +4878,7 @@ void inference::thread_convOutput2_1_U_ap_dummy_ce() {
 }
 
 void inference::thread_convOutput2_1_i_address0() {
-    convOutput2_1_i_address0 = inference_conv2d_2_U0_out_feature_1_address0.read();
+    convOutput2_1_i_address0 = inference_conv2d_1_U0_out_feature_1_address0.read();
 }
 
 void inference::thread_convOutput2_1_i_address1() {
@@ -4890,7 +4886,7 @@ void inference::thread_convOutput2_1_i_address1() {
 }
 
 void inference::thread_convOutput2_1_i_ce0() {
-    convOutput2_1_i_ce0 = inference_conv2d_2_U0_out_feature_1_ce0.read();
+    convOutput2_1_i_ce0 = inference_conv2d_1_U0_out_feature_1_ce0.read();
 }
 
 void inference::thread_convOutput2_1_i_ce1() {
@@ -4898,15 +4894,15 @@ void inference::thread_convOutput2_1_i_ce1() {
 }
 
 void inference::thread_convOutput2_1_i_d0() {
-    convOutput2_1_i_d0 = inference_conv2d_2_U0_out_feature_1_d0.read();
+    convOutput2_1_i_d0 = inference_conv2d_1_U0_out_feature_1_d0.read();
 }
 
 void inference::thread_convOutput2_1_i_we0() {
-    convOutput2_1_i_we0 = inference_conv2d_2_U0_out_feature_1_we0.read();
+    convOutput2_1_i_we0 = inference_conv2d_1_U0_out_feature_1_we0.read();
 }
 
 void inference::thread_convOutput2_1_i_write() {
-    convOutput2_1_i_write = ap_chn_write_inference_conv2d_2_U0_convOutput2_1.read();
+    convOutput2_1_i_write = ap_chn_write_inference_conv2d_1_U0_convOutput2_1.read();
 }
 
 void inference::thread_convOutput2_1_t_address0() {
@@ -6395,6 +6391,10 @@ void inference::thread_fcIn_0_63_din() {
 
 void inference::thread_fcIn_0_63_read() {
     fcIn_0_63_read = inference_fc_U0_ap_ready.read();
+}
+
+void inference::thread_fcIn_0_63_write() {
+    fcIn_0_63_write = ap_chn_write_inference_Loop_inference_label11_proc_U0_fcIn_0_63.read();
 }
 
 }

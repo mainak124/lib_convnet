@@ -10,7 +10,7 @@
 
 module inference_fexp_32ns_32ns_32_6_full_dsp
 #(parameter
-    ID         = 1683,
+    ID         = 1684,
     NUM_STAGE  = 6,
     din0_WIDTH = 32,
     din1_WIDTH = 32,

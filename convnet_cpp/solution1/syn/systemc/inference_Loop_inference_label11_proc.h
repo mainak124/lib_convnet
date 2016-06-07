@@ -166,7 +166,7 @@ struct inference_Loop_inference_label11_proc : public sc_module {
 
     sc_trace_file* mVcdFile;
 
-    inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>* inference_mux_4to1_sel2_32_1_U1175;
+    inference_mux_4to1_sel2_32_1<1,1,32,32,32,32,2,32>* inference_mux_4to1_sel2_32_1_U1176;
     sc_signal< sc_logic > ap_done_reg;
     sc_signal< sc_lv<3> > ap_CS_fsm;
     sc_signal< sc_logic > ap_sig_cseq_ST_st1_fsm_0;

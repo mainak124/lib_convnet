@@ -63,7 +63,7 @@ struct inference_add_1_10_s : public sc_module {
     sc_trace_file* mVcdFile;
 
     inference_add_1_10_s_B5_0* B5_0_U;
-    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1920;
+    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1921;
     sc_signal< sc_lv<3> > ap_CS_fsm;
     sc_signal< sc_logic > ap_sig_cseq_ST_st1_fsm_0;
     sc_signal< bool > ap_sig_bdd_21;
@@ -81,14 +81,14 @@ struct inference_add_1_10_s : public sc_module {
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it4;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it5;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it6;
-    sc_signal< sc_lv<4> > j_5_fu_185_p2;
-    sc_signal< sc_lv<2> > tmp_1110_fu_196_p1;
-    sc_signal< sc_lv<2> > tmp_1110_reg_270;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1110_reg_270_pp0_it1;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1110_reg_270_pp0_it2;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1110_reg_270_pp0_it3;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1110_reg_270_pp0_it4;
-    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1110_reg_270_pp0_it5;
+    sc_signal< sc_lv<4> > j_4_fu_185_p2;
+    sc_signal< sc_lv<2> > tmp_1102_fu_196_p1;
+    sc_signal< sc_lv<2> > tmp_1102_reg_270;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1102_reg_270_pp0_it1;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1102_reg_270_pp0_it2;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1102_reg_270_pp0_it3;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1102_reg_270_pp0_it4;
+    sc_signal< sc_lv<2> > ap_reg_ppstg_tmp_1102_reg_270_pp0_it5;
     sc_signal< sc_lv<2> > C_0_0_addr_reg_302;
     sc_signal< sc_lv<2> > ap_reg_ppstg_C_0_0_addr_reg_302_pp0_it1;
     sc_signal< sc_lv<2> > ap_reg_ppstg_C_0_0_addr_reg_302_pp0_it2;
@@ -188,7 +188,7 @@ struct inference_add_1_10_s : public sc_module {
     void thread_ap_sig_cseq_ST_st9_fsm_2();
     void thread_exitcond_fu_179_p2();
     void thread_grp_fu_175_ce();
-    void thread_j_5_fu_185_p2();
+    void thread_j_4_fu_185_p2();
     void thread_newIndex7_fu_210_p1();
     void thread_newIndex_fu_200_p4();
     void thread_sel_tmp1_fu_227_p3();
@@ -196,7 +196,7 @@ struct inference_add_1_10_s : public sc_module {
     void thread_sel_tmp3_fu_240_p3();
     void thread_sel_tmp4_fu_248_p2();
     void thread_sel_tmp_fu_222_p2();
-    void thread_tmp_1110_fu_196_p1();
+    void thread_tmp_1102_fu_196_p1();
     void thread_tmp_s_fu_191_p1();
     void thread_ap_NS_fsm();
 };

@@ -4,10 +4,10 @@
   Build 1412921 on Wed Nov 18 09:58:55 AM 2015
   Copyright (C) 2015 Xilinx Inc. All rights reserved.
 ================================================================
-@I [HLS-10] Running 'C:/Xilinx/Vivado_HLS/2015.4/bin/unwrapped/win64.o/vivado_hls.exe'
-            for user 'sakthi' on host 'sakthi' (Windows NT_amd64 version 6.2) on Sun Jun 05 15:03:57 -0700 2016
-            in directory 'C:/Users/Vikasini/Documents/GitHub/lib_convnet'
-@I [HLS-10] Opening project 'C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp'.
+@I [HLS-10] Running '/opt/Xilinx/Vivado_HLS/2015.4/bin/unwrapped/lnx64.o/vivado_hls'
+            for user 'sakthi' on host 'archetype' (Linux_x86_64 version 3.13.0-24-generic) on Tue Jun 07 02:22:20 PDT 2016
+            in directory '/home/sakthi/lenet_single_input_bram/lib_convnet'
+@I [HLS-10] Opening project '/home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp'.
 @I [HLS-10] Adding design file 'convnet_cpp/weights.h' to the project
 @I [HLS-10] Adding design file 'convnet_cpp/sm_module.h' to the project
 @I [HLS-10] Adding design file 'convnet_cpp/myutils.h' to the project
@@ -18,40 +18,39 @@
 @I [HLS-10] Adding design file 'convnet_cpp/conv.h' to the project
 @I [HLS-10] Adding design file 'convnet_cpp/cnn.h' to the project
 @I [HLS-10] Adding test bench file 'convnet_cpp/conv_test.cpp' to the project
-@I [HLS-10] Opening solution 'C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1'.
+@I [HLS-10] Opening solution '/home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1'.
 @I [SYN-201] Setting up clock 'default' with a period of 10ns.
 @I [HLS-10] Setting target device to 'xc7vx690tffg1761-2'
 @I [IMPL-8] Exporting RTL as an IP in IP-XACT.
 
 ****** Vivado v2015.4 (64-bit)
-  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
   **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
     ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 
 source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.4/data/ip'.
-INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fadd_2_full_dsp_32'...
-INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fadd_2_full_dsp_32'...
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fcmp_0_no_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fcmp_0_no_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fdiv_6_no_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fdiv_6_no_dsp_32'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fadd_2_full_dsp_32'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fadd_2_full_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fexp_4_full_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fexp_4_full_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inference_ap_fmul_0_max_dsp_32'...
 INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fmul_0_max_dsp_32'...
 ****** Webtalk v2015.4 (64-bit)
-  **** SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+  **** SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
   **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
     ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 
-source C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Sun Jun 05 15:06:12 2016...
+source /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Tue Jun  7 02:22:35 2016...
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2015.4/data/ip'.
-ipx::archive_core: Time (s): cpu = 00:00:03 ; elapsed = 00:00:23 . Memory (MB): peak = 275.383 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Sun Jun 05 15:06:47 2016...
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Jun  7 02:22:39 2016...
 [2Kvivado_hls> [12C

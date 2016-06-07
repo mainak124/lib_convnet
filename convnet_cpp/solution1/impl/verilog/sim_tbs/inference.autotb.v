@@ -20,12 +20,11 @@
 `define LENGTH_inputImage 784
 `define LENGTH_outDigit 1
 
-`define   AESL_DEPTH_inputImage 1
+`define	AESL_MEM_inputImage AESL_automem_inputImage
+`define	AESL_MEM_INST_inputImage mem_inst_inputImage
 `define   AESL_DEPTH_outDigit 1
 `define AUTOTB_TVIN_inputImage  "./c.inference.autotvin_inputImage.dat"
-`define AUTOTB_TVIN_outDigit  "./c.inference.autotvin_outDigit.dat"
 `define AUTOTB_TVIN_inputImage_out_wrapc  "./rtl.inference.autotvin_inputImage.dat"
-`define AUTOTB_TVIN_outDigit_out_wrapc  "./rtl.inference.autotvin_outDigit.dat"
 `define AUTOTB_TVOUT_outDigit  "./c.inference.autotvout_outDigit.dat"
 `define AUTOTB_TVOUT_outDigit_out_wrapc  "./impl_rtl.inference.autotvout_outDigit.dat"
 
@@ -33,7 +32,7 @@ module `AUTOTB_TOP;
 
 task read_token;
     input integer fp;
-    output reg [159 : 0] token;
+    output reg [175 : 0] token;
     reg [7:0] c;
     reg intoken;
     reg done;
@@ -62,10 +61,10 @@ endtask
 task post_check;
     input integer fp1;
     input integer fp2;
-    reg [159 : 0] token1;
-    reg [159 : 0] token2;
-    reg [159 : 0] golden;
-    reg [159 : 0] result;
+    reg [175 : 0] token1;
+    reg [175 : 0] token2;
+    reg [175 : 0] golden;
+    reg [175 : 0] result;
     integer ret;
     begin
         read_token(fp1, token1);
@@ -139,12 +138,13 @@ reg [17 - 1 : 0] AESL_clk_done[0 : `AUTOTB_TRANSACTION_NUM + 1];
 
 reg reported_stuck = 0;
 reg reported_stuck_cnt = 0;
-wire [31 : 0] inputImage_TDATA;
-wire [31 : 0] outDigit_TDATA;
-wire  inputImage_TVALID;
-wire  inputImage_TREADY;
-wire  outDigit_TVALID;
-wire  outDigit_TREADY;
+wire [9 : 0] inputImage_address0;
+wire  inputImage_ce0;
+wire [31 : 0] inputImage_d0;
+wire [31 : 0] inputImage_q0;
+wire  inputImage_we0;
+wire [31 : 0] outDigit;
+wire  outDigit_ap_vld;
 wire ap_done;
 wire ap_start;
 wire ap_idle;
@@ -161,13 +161,14 @@ reg interface_done = 0;
 
 `AUTOTB_DUT `AUTOTB_DUT_INST(
 	.ap_clk(ap_clk),
-	.ap_rst_n(ap_rst_n),
-	.inputImage_TDATA(inputImage_TDATA),
-	.outDigit_TDATA(outDigit_TDATA),
-	.inputImage_TVALID(inputImage_TVALID),
-	.inputImage_TREADY(inputImage_TREADY),
-	.outDigit_TVALID(outDigit_TVALID),
-	.outDigit_TREADY(outDigit_TREADY),
+	.ap_rst(ap_rst),
+	.inputImage_address0(inputImage_address0),
+	.inputImage_ce0(inputImage_ce0),
+	.inputImage_d0(inputImage_d0),
+	.inputImage_q0(inputImage_q0),
+	.inputImage_we0(inputImage_we0),
+	.outDigit(outDigit),
+	.outDigit_ap_vld(outDigit_ap_vld),
 	.ap_done(ap_done),
 	.ap_start(ap_start),
 	.ap_idle(ap_idle),
@@ -175,8 +176,8 @@ reg interface_done = 0;
 
 // Assignment for control signal
 assign ap_clk = AESL_clock;
-assign ap_rst_n = AESL_reset;
-assign ap_rst_n_n = ~AESL_reset;
+assign ap_rst = AESL_reset;
+assign ap_rst_n = ~AESL_reset;
 assign AESL_reset = rst;
 assign AESL_done = ap_done;
 assign ap_start = AESL_start;
@@ -186,7 +187,7 @@ assign AESL_ready = ap_ready;
 assign AESL_ce = ce;
 assign AESL_continue = continue;
 	always @(posedge AESL_clock) begin
-		if (AESL_reset === 0) begin
+		if (AESL_reset) begin
 		end else begin
 			if (AESL_done !== 1 && AESL_done !== 0) begin
 				$display("ERROR: Control signal AESL_done is invalid!");
@@ -195,7 +196,7 @@ assign AESL_continue = continue;
 		end
 	end
 	always @(posedge AESL_clock) begin
-		if (AESL_reset === 0) begin
+		if (AESL_reset) begin
 		end else begin
 			if (AESL_ready !== 1 && AESL_ready !== 0) begin
 				$display("ERROR: Control signal AESL_ready is invalid!");
@@ -203,85 +204,100 @@ assign AESL_continue = continue;
 			end
 		end
 	end
+//------------------------arrayinputImage Instantiation--------------
+
+// The input and output of arrayinputImage
+wire    arrayinputImage_ce0, arrayinputImage_ce1;
+wire	arrayinputImage_we0, arrayinputImage_we1;
+wire    [9 : 0]	arrayinputImage_address0, arrayinputImage_address1;
+wire	[31 : 0]	arrayinputImage_din0, arrayinputImage_din1;
+wire    [31 : 0]	arrayinputImage_dout0, arrayinputImage_dout1;
+wire	arrayinputImage_ready;
+wire	arrayinputImage_done;
+
+`AESL_MEM_inputImage `AESL_MEM_INST_inputImage(
+    .clk        (AESL_clock),
+    .rst        (AESL_reset),
+    .ce0        (arrayinputImage_ce0),
+    .we0        (arrayinputImage_we0),
+    .address0   (arrayinputImage_address0),
+    .din0       (arrayinputImage_din0),
+    .dout0      (arrayinputImage_dout0),
+    .ce1        (arrayinputImage_ce1),
+    .we1        (arrayinputImage_we1),
+    .address1   (arrayinputImage_address1),
+    .din1       (arrayinputImage_din1),
+    .dout1      (arrayinputImage_dout1),
+    .ready	  (arrayinputImage_ready),
+    .done	(arrayinputImage_done)
+);
+
+// Assignment between dut and arrayinputImage
+assign arrayinputImage_address0 = inputImage_address0;
+assign arrayinputImage_ce0 = inputImage_ce0;
+assign inputImage_q0 = arrayinputImage_dout0;
+assign arrayinputImage_we0 = 0;
+assign arrayinputImage_din0 = 0;
+assign arrayinputImage_ready=	ready;
+assign arrayinputImage_done = 0;
 
 
-reg [31:0] ap_c_n_tvin_trans_num_inputImage;
-reg inputImage_ready_reg; // for self-sync
-
-wire inputImage_ready;
-wire inputImage_done;
-wire [31:0] inputImage_transaction;
-wire axi_s_inputImage_TVALID;
-wire axi_s_inputImage_TREADY;
-
-AESL_axi_s_inputImage AESL_AXI_S_inputImage(
-	.clk(AESL_clock),
-	.reset(AESL_reset),
-	.TRAN_inputImage_TDATA(inputImage_TDATA),
-	.TRAN_inputImage_TVALID(axi_s_inputImage_TVALID),
-	.TRAN_inputImage_TREADY(axi_s_inputImage_TREADY),
-	.ready(inputImage_ready),
-	.done(inputImage_done),
-	.transaction(inputImage_transaction));
-
-assign inputImage_ready = ready;
-assign inputImage_done = 0;
-
-reg reg_inputImage_TVALID;
-initial begin : gen_reg_inputImage_TVALID_process
-	integer rand;
-	reg_inputImage_TVALID = axi_s_inputImage_TVALID;
-	while (1) begin
-		@ (axi_s_inputImage_TVALID);
-		reg_inputImage_TVALID = axi_s_inputImage_TVALID;
-	end
-end
-
-
-assign inputImage_TVALID = reg_inputImage_TVALID;
-
-assign axi_s_inputImage_TREADY = inputImage_TREADY;
-reg [31:0] ap_c_n_tvin_trans_num_outDigit;
-reg outDigit_ready_reg; // for self-sync
-
-wire outDigit_ready;
-wire outDigit_done;
-wire [31:0] outDigit_transaction;
-wire axi_s_outDigit_TVALID;
-wire axi_s_outDigit_TREADY;
-
-AESL_axi_s_outDigit AESL_AXI_S_outDigit(
-	.clk(AESL_clock),
-	.reset(AESL_reset),
-	.TRAN_outDigit_TDATA(outDigit_TDATA),
-	.TRAN_outDigit_TVALID(axi_s_outDigit_TVALID),
-	.TRAN_outDigit_TREADY(axi_s_outDigit_TREADY),
-	.ready(outDigit_ready),
-	.done(outDigit_done),
-	.transaction(outDigit_transaction));
-
-assign outDigit_ready = 0;
-assign outDigit_done = AESL_done;
-
-assign axi_s_outDigit_TVALID = outDigit_TVALID;
-
-reg reg_outDigit_TREADY;
-initial begin : gen_reg_outDigit_TREADY_process
-    integer rand;
-    reg_outDigit_TREADY = 0;
-    while(1)
-    begin
-        @(axi_s_outDigit_TREADY);
-        reg_outDigit_TREADY = axi_s_outDigit_TREADY;
+reg AESL_REG_outDigit_ap_vld = 0;
+// The signal of port outDigit
+reg [31: 0] AESL_REG_outDigit = 0;
+always @(posedge AESL_clock)
+begin
+    if(AESL_reset)
+        AESL_REG_outDigit = 0; 
+    else if(outDigit_ap_vld) begin
+        AESL_REG_outDigit <= outDigit;
+        AESL_REG_outDigit_ap_vld <= 1;
     end
+end 
+
+initial begin : write_file_process_outDigit
+	integer fp;
+	integer fp_size;
+	integer err;
+	integer ret;
+	integer i;
+	integer hls_stream_size;
+	integer rand;
+	integer outDigit_count;
+	reg [175:0] token;
+	integer transaction_idx;
+	reg [8 * 5:1] str;
+    wait(AESL_reset === 0);
+	fp = $fopen(`AUTOTB_TVOUT_outDigit_out_wrapc,"w");
+	if(fp == 0) begin       // Failed to open file
+		$display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_outDigit_out_wrapc);
+		$display("ERROR: Simulation using HLS TB failed.");
+		$finish;
+	end
+	$fdisplay(fp,"[[[runtime]]]");
+	transaction_idx = 0;
+	while (transaction_idx != `AUTOTB_TRANSACTION_NUM) begin
+        @(posedge AESL_clock);
+	      while(AESL_done !== 1) begin
+	          @(posedge AESL_clock);
+	      end
+        # 0.4;
+        $fdisplay(fp,"[[transaction]] %d", transaction_idx);
+        if(AESL_REG_outDigit_ap_vld)  begin
+	      $fdisplay(fp,"0x%x", AESL_REG_outDigit);
+        AESL_REG_outDigit_ap_vld = 0;
+        end
+    transaction_idx = transaction_idx + 1;
+	  $fdisplay(fp,"[[/transaction]]");
+    end
+    $fdisplay(fp,"[[[/runtime]]]");
+    $fclose(fp);
 end
 
-
-assign outDigit_TREADY = reg_outDigit_TREADY;
 
 initial begin : generate_AESL_ready_cnt_proc
     AESL_ready_cnt = 0;
-    wait(AESL_reset === 1);
+    wait(AESL_reset === 0);
     while(AESL_ready_cnt != `AUTOTB_TRANSACTION_NUM) begin
         while(AESL_ready !== 1) begin
             @(posedge AESL_clock);
@@ -298,7 +314,7 @@ end
 	
 	initial begin : gen_ready_cnt
 		ready_cnt = 0;
-		wait (AESL_reset === 1);
+		wait (AESL_reset === 0);
 		forever begin
 			@ (posedge AESL_clock);
 			if (ready == 1) begin
@@ -314,7 +330,7 @@ end
 	
 	// done_cnt
 	always @ (posedge AESL_clock) begin
-		if (~AESL_reset) begin
+		if (AESL_reset) begin
 			done_cnt <= 0;
 		end else begin
 			if (AESL_done == 1) begin
@@ -363,17 +379,17 @@ reg [31:0] size_outDigit;
 
 initial begin : initial_process
     integer rand;
-    rst = 0;
+    rst = 1;
     # 100;
 	  repeat(3) @(posedge AESL_clock);
-    rst = 1;
+    rst = 0;
 end
 
 initial begin : start_process
 	integer rand;
 	start = 0;
 	ce = 1;
-	wait (AESL_reset === 1);
+	wait (AESL_reset === 0);
 	@ (posedge AESL_clock);
 	start = 1;
 	while (ready_cnt < `AUTOTB_TRANSACTION_NUM + 1) begin
@@ -397,7 +413,7 @@ end
 
 always @(posedge AESL_clock)
 begin
-    if(AESL_reset === 0)
+    if(AESL_reset)
       AESL_ready_delay = 0;
   else
       AESL_ready_delay = AESL_ready;
@@ -411,7 +427,7 @@ end
 
 always @(posedge AESL_clock)
 begin
-    if(AESL_reset === 0)
+    if(AESL_reset)
       ready_delay_last_n = 0;
   else
       ready_delay_last_n <= ready_last_n;
@@ -428,7 +444,7 @@ end
 
 always @(posedge AESL_clock)
 begin
-    if(AESL_reset === 0)
+    if(AESL_reset)
   begin
       AESL_done_delay <= 0;
       AESL_done_delay2 <= 0;
@@ -440,7 +456,7 @@ begin
 end
 always @(posedge AESL_clock)
 begin
-    if(AESL_reset === 0)
+    if(AESL_reset)
       interface_done = 0;
   else begin
       # 0.01;
@@ -452,118 +468,8 @@ begin
           interface_done = 0;
   end
 end
-	
-	initial begin : proc_gen_axis_internal_ready_inputImage
-		inputImage_ready_reg = 0;
-		@ (posedge ready_initial);
-		forever begin
-			@ (ap_c_n_tvin_trans_num_inputImage or inputImage_transaction);
-			if (ap_c_n_tvin_trans_num_inputImage > inputImage_transaction) begin
-				inputImage_ready_reg = 1;
-			end else begin
-				inputImage_ready_reg = 0;
-			end
-		end
-	end
-	`define STREAM_SIZE_IN_inputImage "./stream_size_in_inputImage.dat"
-	
-	initial begin : gen_ap_c_n_tvin_trans_num_inputImage
-		integer fp_inputImage;
-		reg [127:0] token_inputImage;
-		integer ret;
-		
-		ap_c_n_tvin_trans_num_inputImage = 0;
-		end_inputImage = 0;
-		wait (AESL_reset === 1);
-		
-		fp_inputImage = $fopen(`AUTOTB_TVIN_inputImage, "r");
-		if(fp_inputImage == 0) begin
-			$display("Failed to open file \"%s\"!", `AUTOTB_TVIN_inputImage);
-			$finish;
-		end
-		read_token(fp_inputImage, token_inputImage); // should be [[[runtime]]]
-		if (token_inputImage != "[[[runtime]]]") begin
-			$display("ERROR: token_inputImage != \"[[[runtime]]]\"");
-			$finish;
-		end
-		ap_c_n_tvin_trans_num_inputImage = ap_c_n_tvin_trans_num_inputImage + 1;
-		read_token(fp_inputImage, token_inputImage); // should be [[transaction]] or [[[/runtime]]]
-		if (token_inputImage == "[[[/runtime]]]") begin
-			$fclose(fp_inputImage);
-			end_inputImage = 1;
-		end else begin
-			end_inputImage = 0;
-			read_token(fp_inputImage, token_inputImage); // should be transaction number
-			read_token(fp_inputImage, token_inputImage);
-		end
-		while (token_inputImage == "[[/transaction]]" && end_inputImage == 0) begin
-			ap_c_n_tvin_trans_num_inputImage = ap_c_n_tvin_trans_num_inputImage + 1;
-			read_token(fp_inputImage, token_inputImage); // should be [[transaction]] or [[[/runtime]]]
-			if (token_inputImage == "[[[/runtime]]]") begin
-				$fclose(fp_inputImage);
-				end_inputImage = 1;
-			end else begin
-				end_inputImage = 0;
-				read_token(fp_inputImage, token_inputImage); // should be transaction number
-				read_token(fp_inputImage, token_inputImage);
-			end
-		end
-		forever begin
-			@ (posedge AESL_clock);
-			if (end_inputImage == 0) begin
-				if (inputImage_TREADY == 1) begin
-					read_token(fp_inputImage, token_inputImage);
-					while (token_inputImage == "[[/transaction]]" && end_inputImage == 0) begin
-						ap_c_n_tvin_trans_num_inputImage = ap_c_n_tvin_trans_num_inputImage + 1;
-						read_token(fp_inputImage, token_inputImage); // should be [[transaction]] or [[[/runtime]]]
-						if (token_inputImage == "[[[/runtime]]]") begin
-							$fclose(fp_inputImage);
-							end_inputImage = 1;
-						end else begin
-							end_inputImage = 0;
-							read_token(fp_inputImage, token_inputImage); // should be transaction number
-							read_token(fp_inputImage, token_inputImage);
-						end
-					end
-				end
-			end else begin
-				ap_c_n_tvin_trans_num_inputImage = ap_c_n_tvin_trans_num_inputImage + 1;
-			end
-		end
-	end
-	
-
-reg dump_tvout_finish_outDigit;
-
-initial begin : dump_tvout_runtime_sign_outDigit
-	integer fp;
-	dump_tvout_finish_outDigit = 0;
-	fp = $fopen(`AUTOTB_TVOUT_outDigit_out_wrapc, "w");
-	if (fp == 0) begin
-		$display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_outDigit_out_wrapc);
-		$display("ERROR: Simulation using HLS TB failed.");
-		$finish;
-	end
-	$fdisplay(fp,"[[[runtime]]]");
-	$fclose(fp);
-	wait (done_cnt == `AUTOTB_TRANSACTION_NUM);
-	// last transaction is saved at negedge right after last done
-	@ (posedge AESL_clock);
-	@ (posedge AESL_clock);
-	@ (posedge AESL_clock);
-	fp = $fopen(`AUTOTB_TVOUT_outDigit_out_wrapc, "a");
-	if (fp == 0) begin
-		$display("Failed to open file \"%s\"!", `AUTOTB_TVOUT_outDigit_out_wrapc);
-		$display("ERROR: Simulation using HLS TB failed.");
-		$finish;
-	end
-	$fdisplay(fp,"[[[/runtime]]]");
-	$fclose(fp);
-	dump_tvout_finish_outDigit = 1;
-end
-
 always @ (negedge AESL_clock) begin
-    if(AESL_reset === 0)
+    if(AESL_reset)
     begin
         AESL_clk_counter <= 0;
     end 
@@ -572,8 +478,8 @@ always @ (negedge AESL_clock) begin
     end
 end
 
-always @ (posedge AESL_clock or negedge AESL_reset) begin
-	if (~AESL_reset) begin
+always @ (posedge AESL_clock or posedge AESL_reset) begin
+	if (AESL_reset) begin
 		AESL_mLatCnterOut_addr = 0;
 		AESL_mLatCnterOut[AESL_mLatCnterOut_addr] = AESL_clk_counter + 1;
 	end else if (AESL_done && AESL_mLatCnterOut_addr < `AUTOTB_TRANSACTION_NUM + 1) begin
@@ -581,14 +487,15 @@ always @ (posedge AESL_clock or negedge AESL_reset) begin
 		AESL_mLatCnterOut_addr = AESL_mLatCnterOut_addr + 1;
 	end
 end
-always @ (posedge AESL_clock or negedge AESL_reset) begin
-	if (~AESL_reset) begin
+
+always @ (posedge AESL_clock or posedge AESL_reset) begin
+	if (AESL_reset) begin
 		reported_stuck_cnt <= 0;
 	end else if (AESL_done && AESL_mLatCnterOut_addr < `AUTOTB_TRANSACTION_NUM + 1) begin
 		reported_stuck <= 0;
 	end else if (reported_stuck == 0 && reported_stuck_cnt < 4) begin
 		if (AESL_mLatCnterIn_addr > AESL_mLatCnterOut_addr) begin
-			if (AESL_clk_counter - AESL_mLatCnterIn[AESL_mLatCnterOut_addr] > 10000 && AESL_clk_counter - AESL_mLatCnterIn[AESL_mLatCnterOut_addr] > 10 * 63300) begin
+			if (AESL_clk_counter - AESL_mLatCnterIn[AESL_mLatCnterOut_addr] > 10000 && AESL_clk_counter - AESL_mLatCnterIn[AESL_mLatCnterOut_addr] > 10 * 63297) begin
 				$display("WARNING: The latency is much larger than expected. Simulation may stuck.");
 				reported_stuck <= 1;
 				reported_stuck_cnt <= reported_stuck_cnt + 1;
@@ -596,8 +503,8 @@ always @ (posedge AESL_clock or negedge AESL_reset) begin
 		end
 	end
 end
-always @ (posedge AESL_clock or negedge AESL_reset) begin
-	if (~AESL_reset) begin
+always @ (posedge AESL_clock or posedge AESL_reset) begin
+	if (AESL_reset) begin
 		AESL_mLatCnterIn_addr = 0;
 	end else begin
 		if (AESL_start && AESL_mLatCnterIn_addr == 0) begin
@@ -644,7 +551,7 @@ initial begin : performance_check
 
 	@(negedge AESL_clock);
 
-	@(posedge AESL_reset);
+	@(negedge AESL_reset);
 	while (done_cnt < `AUTOTB_TRANSACTION_NUM) begin
 		@(posedge AESL_clock);
 	end

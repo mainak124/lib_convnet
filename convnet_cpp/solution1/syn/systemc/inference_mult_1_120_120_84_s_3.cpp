@@ -2575,8 +2575,8 @@ void inference_mult_1_120_120_84_s::thread_grp_fu_3710_ce() {
     grp_fu_3710_ce = ap_const_logic_1;
 }
 
-void inference_mult_1_120_120_84_s::thread_j_3_fu_3720_p2() {
-    j_3_fu_3720_p2 = (!j_reg_2742.read().is_01() || !ap_const_lv7_1.is_01())? sc_lv<7>(): (sc_biguint<7>(j_reg_2742.read()) + sc_biguint<7>(ap_const_lv7_1));
+void inference_mult_1_120_120_84_s::thread_j_2_fu_3720_p2() {
+    j_2_fu_3720_p2 = (!j_reg_2742.read().is_01() || !ap_const_lv7_1.is_01())? sc_lv<7>(): (sc_biguint<7>(j_reg_2742.read()) + sc_biguint<7>(ap_const_lv7_1));
 }
 
 void inference_mult_1_120_120_84_s::thread_newIndex3_fu_3745_p1() {

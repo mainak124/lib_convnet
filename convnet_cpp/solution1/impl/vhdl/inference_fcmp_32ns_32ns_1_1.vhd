@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity inference_fcmp_32ns_32ns_1_1 is
     generic (
-        ID         : integer := 36;
+        ID         : integer := 37;
         NUM_STAGE  : integer := 1;
         din0_WIDTH : integer := 32;
         din1_WIDTH : integer := 32;

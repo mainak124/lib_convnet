@@ -87,14 +87,14 @@ architecture behav of inference_add_1_84_s is
     signal ap_reg_ppiten_pp0_it4 : STD_LOGIC := '0';
     signal ap_reg_ppiten_pp0_it5 : STD_LOGIC := '0';
     signal ap_reg_ppiten_pp0_it6 : STD_LOGIC := '0';
-    signal j_4_fu_187_p2 : STD_LOGIC_VECTOR (6 downto 0);
-    signal tmp_1109_fu_198_p1 : STD_LOGIC_VECTOR (1 downto 0);
-    signal tmp_1109_reg_246 : STD_LOGIC_VECTOR (1 downto 0);
-    signal ap_reg_ppstg_tmp_1109_reg_246_pp0_it1 : STD_LOGIC_VECTOR (1 downto 0);
-    signal ap_reg_ppstg_tmp_1109_reg_246_pp0_it2 : STD_LOGIC_VECTOR (1 downto 0);
-    signal ap_reg_ppstg_tmp_1109_reg_246_pp0_it3 : STD_LOGIC_VECTOR (1 downto 0);
-    signal ap_reg_ppstg_tmp_1109_reg_246_pp0_it4 : STD_LOGIC_VECTOR (1 downto 0);
-    signal ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 : STD_LOGIC_VECTOR (1 downto 0);
+    signal j_3_fu_187_p2 : STD_LOGIC_VECTOR (6 downto 0);
+    signal tmp_1101_fu_198_p1 : STD_LOGIC_VECTOR (1 downto 0);
+    signal tmp_1101_reg_246 : STD_LOGIC_VECTOR (1 downto 0);
+    signal ap_reg_ppstg_tmp_1101_reg_246_pp0_it1 : STD_LOGIC_VECTOR (1 downto 0);
+    signal ap_reg_ppstg_tmp_1101_reg_246_pp0_it2 : STD_LOGIC_VECTOR (1 downto 0);
+    signal ap_reg_ppstg_tmp_1101_reg_246_pp0_it3 : STD_LOGIC_VECTOR (1 downto 0);
+    signal ap_reg_ppstg_tmp_1101_reg_246_pp0_it4 : STD_LOGIC_VECTOR (1 downto 0);
+    signal ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 : STD_LOGIC_VECTOR (1 downto 0);
     signal C_0_0_addr_reg_276 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_reg_ppstg_C_0_0_addr_reg_276_pp0_it1 : STD_LOGIC_VECTOR (4 downto 0);
     signal ap_reg_ppstg_C_0_0_addr_reg_276_pp0_it2 : STD_LOGIC_VECTOR (4 downto 0);
@@ -197,7 +197,7 @@ begin
         ce0 => B4_0_ce0,
         q0 => B4_0_q0);
 
-    inference_fadd_32ns_32ns_32_4_full_dsp_U1664 : component inference_fadd_32ns_32ns_32_4_full_dsp
+    inference_fadd_32ns_32ns_32_4_full_dsp_U1665 : component inference_fadd_32ns_32ns_32_4_full_dsp
     generic map (
         ID => 1,
         NUM_STAGE => 4,
@@ -212,7 +212,7 @@ begin
         ce => grp_fu_177_ce,
         dout => grp_fu_177_p2);
 
-    inference_mux_4to1_sel2_32_1_U1665 : component inference_mux_4to1_sel2_32_1
+    inference_mux_4to1_sel2_32_1_U1666 : component inference_mux_4to1_sel2_32_1
     generic map (
         ID => 1,
         NUM_STAGE => 1,
@@ -227,7 +227,7 @@ begin
         din2 => A_1_q0,
         din3 => A_2_q0,
         din4 => A_3_q0,
-        din5 => tmp_1109_reg_246,
+        din5 => tmp_1101_reg_246,
         dout => tmp_fu_224_p6);
 
 
@@ -353,7 +353,7 @@ begin
             if (((ap_const_logic_1 = ap_sig_cseq_ST_st1_fsm_0) and not((ap_start = ap_const_logic_0)))) then 
                 j_reg_166 <= ap_const_lv7_0;
             elsif (((ap_const_logic_1 = ap_sig_cseq_ST_pp0_stg0_fsm_1) and (ap_const_logic_1 = ap_reg_ppiten_pp0_it0) and (exitcond_fu_181_p2 = ap_const_lv1_0))) then 
-                j_reg_166 <= j_4_fu_187_p2;
+                j_reg_166 <= j_3_fu_187_p2;
             end if; 
         end if;
     end process;
@@ -368,7 +368,7 @@ begin
                 ap_reg_ppstg_C_1_0_addr_reg_281_pp0_it1 <= C_1_0_addr_reg_281;
                 ap_reg_ppstg_C_2_0_addr_reg_286_pp0_it1 <= C_2_0_addr_reg_286;
                 ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it1 <= C_3_0_addr_reg_291;
-                ap_reg_ppstg_tmp_1109_reg_246_pp0_it1 <= tmp_1109_reg_246;
+                ap_reg_ppstg_tmp_1101_reg_246_pp0_it1 <= tmp_1101_reg_246;
                 tmp_reg_296 <= tmp_fu_224_p6;
             end if;
         end if;
@@ -383,7 +383,7 @@ begin
                 C_1_0_addr_reg_281 <= newIndex7_fu_212_p1(5 - 1 downto 0);
                 C_2_0_addr_reg_286 <= newIndex7_fu_212_p1(5 - 1 downto 0);
                 C_3_0_addr_reg_291 <= newIndex7_fu_212_p1(5 - 1 downto 0);
-                tmp_1109_reg_246 <= tmp_1109_fu_198_p1;
+                tmp_1101_reg_246 <= tmp_1101_fu_198_p1;
             end if;
         end if;
     end process;
@@ -409,10 +409,10 @@ begin
                 ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it3 <= ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it2;
                 ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it4 <= ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it3;
                 ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it5 <= ap_reg_ppstg_C_3_0_addr_reg_291_pp0_it4;
-                ap_reg_ppstg_tmp_1109_reg_246_pp0_it2 <= ap_reg_ppstg_tmp_1109_reg_246_pp0_it1;
-                ap_reg_ppstg_tmp_1109_reg_246_pp0_it3 <= ap_reg_ppstg_tmp_1109_reg_246_pp0_it2;
-                ap_reg_ppstg_tmp_1109_reg_246_pp0_it4 <= ap_reg_ppstg_tmp_1109_reg_246_pp0_it3;
-                ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 <= ap_reg_ppstg_tmp_1109_reg_246_pp0_it4;
+                ap_reg_ppstg_tmp_1101_reg_246_pp0_it2 <= ap_reg_ppstg_tmp_1101_reg_246_pp0_it1;
+                ap_reg_ppstg_tmp_1101_reg_246_pp0_it3 <= ap_reg_ppstg_tmp_1101_reg_246_pp0_it2;
+                ap_reg_ppstg_tmp_1101_reg_246_pp0_it4 <= ap_reg_ppstg_tmp_1101_reg_246_pp0_it3;
+                ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 <= ap_reg_ppstg_tmp_1101_reg_246_pp0_it4;
                 tmp_6_reg_306 <= grp_fu_177_p2;
             end if;
         end if;
@@ -517,9 +517,9 @@ begin
     C_0_0_d0 <= tmp_6_reg_306;
 
     -- C_0_0_we0 assign process. --
-    C_0_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1109_reg_246_pp0_it5)
+    C_0_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1101_reg_246_pp0_it5)
     begin
-        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_0)))) then 
+        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_0)))) then 
             C_0_0_we0 <= ap_const_logic_1;
         else 
             C_0_0_we0 <= ap_const_logic_0;
@@ -541,9 +541,9 @@ begin
     C_1_0_d0 <= tmp_6_reg_306;
 
     -- C_1_0_we0 assign process. --
-    C_1_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1109_reg_246_pp0_it5)
+    C_1_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1101_reg_246_pp0_it5)
     begin
-        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_1)))) then 
+        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_1)))) then 
             C_1_0_we0 <= ap_const_logic_1;
         else 
             C_1_0_we0 <= ap_const_logic_0;
@@ -565,9 +565,9 @@ begin
     C_2_0_d0 <= tmp_6_reg_306;
 
     -- C_2_0_we0 assign process. --
-    C_2_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1109_reg_246_pp0_it5)
+    C_2_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1101_reg_246_pp0_it5)
     begin
-        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_2)))) then 
+        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and (ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_2)))) then 
             C_2_0_we0 <= ap_const_logic_1;
         else 
             C_2_0_we0 <= ap_const_logic_0;
@@ -589,9 +589,9 @@ begin
     C_3_0_d0 <= tmp_6_reg_306;
 
     -- C_3_0_we0 assign process. --
-    C_3_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1109_reg_246_pp0_it5)
+    C_3_0_we0_assign_proc : process(ap_reg_ppiten_pp0_it6, ap_reg_ppstg_tmp_1101_reg_246_pp0_it5)
     begin
-        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and not((ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_2)) and not((ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_1)) and not((ap_reg_ppstg_tmp_1109_reg_246_pp0_it5 = ap_const_lv2_0))))) then 
+        if ((((ap_const_logic_1 = ap_reg_ppiten_pp0_it6) and not((ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_2)) and not((ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_1)) and not((ap_reg_ppstg_tmp_1101_reg_246_pp0_it5 = ap_const_lv2_0))))) then 
             C_3_0_we0 <= ap_const_logic_1;
         else 
             C_3_0_we0 <= ap_const_logic_0;
@@ -687,9 +687,9 @@ begin
 
     exitcond_fu_181_p2 <= "1" when (j_reg_166 = ap_const_lv7_54) else "0";
     grp_fu_177_ce <= ap_const_logic_1;
-    j_4_fu_187_p2 <= std_logic_vector(unsigned(j_reg_166) + unsigned(ap_const_lv7_1));
+    j_3_fu_187_p2 <= std_logic_vector(unsigned(j_reg_166) + unsigned(ap_const_lv7_1));
     newIndex7_fu_212_p1 <= std_logic_vector(resize(unsigned(newIndex_fu_202_p4),64));
     newIndex_fu_202_p4 <= j_reg_166(6 downto 2);
-    tmp_1109_fu_198_p1 <= j_reg_166(2 - 1 downto 0);
+    tmp_1101_fu_198_p1 <= j_reg_166(2 - 1 downto 0);
     tmp_s_fu_193_p1 <= std_logic_vector(resize(unsigned(j_reg_166),64));
 end behav;

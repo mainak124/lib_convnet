@@ -1,12 +1,12 @@
 #-----------------------------------------------------------
 # Webtalk v2015.4 (64-bit)
-# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Sun Jun 05 15:06:11 2016
-# Process ID: 2588
-# Current directory: C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip
-# Command line: wbtcv.exe -mode batch -source C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-# Log file: C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip/webtalk.log
-# Journal file: C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip\webtalk.jou
+# Start of session at: Tue Jun  7 02:22:35 2016
+# Process ID: 14332
+# Current directory: /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip
+# Command line: wbtcv -mode batch -source /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+# Log file: /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip/webtalk.log
+# Journal file: /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip/webtalk.jou
 #-----------------------------------------------------------
-source C:/Users/Vikasini/Documents/GitHub/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+source /home/sakthi/lenet_single_input_bram/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace

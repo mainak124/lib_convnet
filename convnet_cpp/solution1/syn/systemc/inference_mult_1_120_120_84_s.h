@@ -410,7 +410,6 @@ struct inference_mult_1_120_120_84_s : public sc_module {
     inference_mult_1_120_120_84_s_W4_116* W4_116_U;
     inference_mult_1_120_120_84_s_W4_117* W4_117_U;
     inference_mult_1_120_120_84_s_W4_118* W4_118_U;
-    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1180;
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1181;
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1182;
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1183;
@@ -530,7 +529,7 @@ struct inference_mult_1_120_120_84_s : public sc_module {
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1297;
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1298;
     inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1299;
-    inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1300;
+    inference_fadd_32ns_32ns_32_4_full_dsp<1,4,32,32,32>* inference_fadd_32ns_32ns_32_4_full_dsp_U1300;
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1301;
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1302;
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1303;
@@ -650,6 +649,7 @@ struct inference_mult_1_120_120_84_s : public sc_module {
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1417;
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1418;
     inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1419;
+    inference_fmul_32ns_32ns_32_2_max_dsp<1,2,32,32,32>* inference_fmul_32ns_32ns_32_2_max_dsp_U1420;
     sc_signal< sc_lv<3> > ap_CS_fsm;
     sc_signal< sc_logic > ap_sig_cseq_ST_st1_fsm_0;
     sc_signal< bool > ap_sig_bdd_21;
@@ -1502,7 +1502,7 @@ struct inference_mult_1_120_120_84_s : public sc_module {
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it482;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it483;
     sc_signal< sc_logic > ap_reg_ppiten_pp0_it484;
-    sc_signal< sc_lv<7> > j_3_fu_3720_p2;
+    sc_signal< sc_lv<7> > j_2_fu_3720_p2;
     sc_signal< sc_lv<64> > tmp_s_fu_3726_p1;
     sc_signal< sc_lv<64> > tmp_s_reg_4361;
     sc_signal< sc_lv<64> > ap_reg_ppstg_tmp_s_reg_4361_pp0_it1;
@@ -4323,7 +4323,7 @@ struct inference_mult_1_120_120_84_s : public sc_module {
     void thread_grp_fu_3702_ce();
     void thread_grp_fu_3706_ce();
     void thread_grp_fu_3710_ce();
-    void thread_j_3_fu_3720_p2();
+    void thread_j_2_fu_3720_p2();
     void thread_newIndex3_fu_3745_p1();
     void thread_tmp_fu_3731_p1();
     void thread_tmp_s_fu_3726_p1();
