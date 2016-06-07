@@ -479,7 +479,7 @@ module VC709_Gen3x4If128
 
     //
     //CHNL 0 : GPIO
-    localparam C_GPIO_WIDTH = 923;
+    localparam C_GPIO_WIDTH = 560;
         wire [C_GPIO_WIDTH - 1:0] gpo;
         wire [C_GPIO_WIDTH - 1:0] gpi;
 
@@ -552,67 +552,45 @@ module VC709_Gen3x4If128
     //Clock, Reset and Scalar signals
     wire m0_ap_clk;
     wire m0_ap_rst;
-    wire [15:0] m0_inputImage_address0;
-    wire m0_inputImage_ce0;
-    wire [31:0] m0_inputImage_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_inputImage_q0;
-    wire m0_inputImage_we0;
-    wire [7:0] m0_Filter1_address0;
-    wire m0_Filter1_ce0;
-    wire [31:0] m0_Filter1_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter1_q0;
-    wire m0_Filter1_we0;
-    wire [7:0] m0_bias1_address0;
-    wire m0_bias1_ce0;
-    wire [31:0] m0_bias1_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias1_q0;
-    wire m0_bias1_we0;
-    wire [15:0] m0_Filter2_address0;
-    wire m0_Filter2_ce0;
-    wire [31:0] m0_Filter2_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter2_q0;
-    wire m0_Filter2_we0;
-    wire [7:0] m0_bias2_address0;
-    wire m0_bias2_ce0;
-    wire [31:0] m0_bias2_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias2_q0;
-    wire m0_bias2_we0;
-    wire [15:0] m0_Filter3_address0;
-    wire m0_Filter3_ce0;
-    wire [31:0] m0_Filter3_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter3_q0;
-    wire m0_Filter3_we0;
-    wire [7:0] m0_bias3_address0;
-    wire m0_bias3_ce0;
-    wire [31:0] m0_bias3_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias3_q0;
-    wire m0_bias3_we0;
-    wire [15:0] m0_fcWeight_address0;
-    wire m0_fcWeight_ce0;
-    wire [31:0] m0_fcWeight_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_fcWeight_q0;
-    wire m0_fcWeight_we0;
-    wire [7:0] m0_fcBias_address0;
-    wire m0_fcBias_ce0;
-    wire [31:0] m0_fcBias_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_fcBias_q0;
-    wire m0_fcBias_we0;
-    wire [15:0] m0_smWeight_address0;
-    wire m0_smWeight_ce0;
-    wire [31:0] m0_smWeight_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_smWeight_q0;
-    wire m0_smWeight_we0;
-    wire [7:0] m0_smBias_address0;
-    wire m0_smBias_ce0;
-    wire [31:0] m0_smBias_d0;
-    (* mark_debug = "true" *) wire [31:0] m0_smBias_q0;
-    wire m0_smBias_we0;
-    (* mark_debug = "true" *) wire [31:0] m0_outDigit;
-    wire m0_outDigit_ap_vld;
-    wire m0_ap_done;
     wire m0_ap_start;
+    wire m0_ap_done;
     wire m0_ap_idle;
     wire m0_ap_ready;
+    wire [15:0] m0_inputImage_address0;
+    wire m0_inputImage_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_inputImage_q0;
+    wire [7:0] m0_Filter1_address0;
+    wire m0_Filter1_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_Filter1_q0;
+    wire [7:0] m0_bias1_address0;
+    wire m0_bias1_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_bias1_q0;
+    wire [15:0] m0_Filter2_address0;
+    wire m0_Filter2_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_Filter2_q0;
+    wire [7:0] m0_bias2_address0;
+    wire m0_bias2_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_bias2_q0;
+    wire [15:0] m0_Filter3_address0;
+    wire m0_Filter3_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_Filter3_q0;
+    wire [7:0] m0_bias3_address0;
+    wire m0_bias3_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_bias3_q0;
+    wire [15:0] m0_fcWeight_address0;
+    wire m0_fcWeight_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_fcWeight_q0;
+    wire [7:0] m0_fcBias_address0;
+    wire m0_fcBias_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_fcBias_q0;
+    wire [15:0] m0_smWeight_address0;
+    wire m0_smWeight_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_smWeight_q0;
+    wire [7:0] m0_smBias_address0;
+    wire m0_smBias_ce0;
+    (* mark_debug = "true" *) wire [31:0] m0_smBias_q0;
+    (* mark_debug = "true" *) wire [31:0] m0_outDigit;
+    wire m0_outDigit_ap_vld;
     wire [31:0] m0_start_ticks;
     wire [31:0] m0_done_ticks;
     
@@ -621,74 +599,8 @@ module VC709_Gen3x4If128
     assign m0_ap_clk = MAIN_CLK;
     assign m0_ap_rst = MAIN_RSTN & ~gpo[0];
     assign gpi[0] = gpo[0];
-    assign gpi[10:1] = m0_inputImage_address0;
-    assign gpi[11] = m0_inputImage_ce0;
-    assign gpi[43:12] = m0_inputImage_d0;
-    assign m0_inputImage_q0 = gpo[75:44];
-    assign gpi[75:44] = gpo[75:44];
-    assign gpi[76] = m0_inputImage_we0;
-    assign gpi[84:77] = m0_Filter1_address0;
-    assign gpi[85] = m0_Filter1_ce0;
-    assign gpi[117:86] = m0_Filter1_d0;
-    assign m0_Filter1_q0 = gpo[149:118];
-    assign gpi[149:118] = gpo[149:118];
-    assign gpi[150] = m0_Filter1_we0;
-    assign gpi[153:151] = m0_bias1_address0;
-    assign gpi[154] = m0_bias1_ce0;
-    assign gpi[186:155] = m0_bias1_d0;
-    assign m0_bias1_q0 = gpo[218:187];
-    assign gpi[218:187] = gpo[218:187];
-    assign gpi[219] = m0_bias1_we0;
-    assign gpi[231:220] = m0_Filter2_address0;
-    assign gpi[232] = m0_Filter2_ce0;
-    assign gpi[264:233] = m0_Filter2_d0;
-    assign m0_Filter2_q0 = gpo[296:265];
-    assign gpi[296:265] = gpo[296:265];
-    assign gpi[297] = m0_Filter2_we0;
-    assign gpi[301:298] = m0_bias2_address0;
-    assign gpi[302] = m0_bias2_ce0;
-    assign gpi[334:303] = m0_bias2_d0;
-    assign m0_bias2_q0 = gpo[366:335];
-    assign gpi[366:335] = gpo[366:335];
-    assign gpi[367] = m0_bias2_we0;
-    assign gpi[383:368] = m0_Filter3_address0;
-    assign gpi[384] = m0_Filter3_ce0;
-    assign gpi[416:385] = m0_Filter3_d0;
-    assign m0_Filter3_q0 = gpo[448:417];
-    assign gpi[448:417] = gpo[448:417];
-    assign gpi[449] = m0_Filter3_we0;
-    assign gpi[456:450] = m0_bias3_address0;
-    assign gpi[457] = m0_bias3_ce0;
-    assign gpi[489:458] = m0_bias3_d0;
-    assign m0_bias3_q0 = gpo[521:490];
-    assign gpi[521:490] = gpo[521:490];
-    assign gpi[522] = m0_bias3_we0;
-    assign gpi[536:523] = m0_fcWeight_address0;
-    assign gpi[537] = m0_fcWeight_ce0;
-    assign gpi[569:538] = m0_fcWeight_d0;
-    assign m0_fcWeight_q0 = gpo[601:570];
-    assign gpi[601:570] = gpo[601:570];
-    assign gpi[602] = m0_fcWeight_we0;
-    assign gpi[609:603] = m0_fcBias_address0;
-    assign gpi[610] = m0_fcBias_ce0;
-    assign gpi[642:611] = m0_fcBias_d0;
-    assign m0_fcBias_q0 = gpo[674:643];
-    assign gpi[674:643] = gpo[674:643];
-    assign gpi[675] = m0_fcBias_we0;
-    assign gpi[685:676] = m0_smWeight_address0;
-    assign gpi[686] = m0_smWeight_ce0;
-    assign gpi[718:687] = m0_smWeight_d0;
-    assign m0_smWeight_q0 = gpo[750:719];
-    assign gpi[750:719] = gpo[750:719];
-    assign gpi[751] = m0_smWeight_we0;
-    assign gpi[755:752] = m0_smBias_address0;
-    assign gpi[756] = m0_smBias_ce0;
-    assign gpi[788:757] = m0_smBias_d0;
-    assign m0_smBias_q0 = gpo[820:789];
-    assign gpi[820:789] = gpo[820:789];
-    assign gpi[821] = m0_smBias_we0;
-    assign gpi[853:822] = m0_outDigit;
-    assign gpi[854] = m0_outDigit_ap_vld;
+    assign m0_ap_start = gpo[1];
+    assign gpi[1] = gpo[1];
 
     reg m0_ap_done_holder;
 
@@ -704,13 +616,57 @@ module VC709_Gen3x4If128
         end
     end
 
-    assign gpi[855] = m0_ap_done_holder;
-    assign m0_ap_start = gpo[856];
-    assign gpi[856] = gpo[856];
-    assign gpi[857] = m0_ap_idle;
-    assign gpi[858] = m0_ap_ready;
-    assign gpi[859+:32] = m0_start_ticks;
-    assign gpi[891+:32] = m0_done_ticks;
+    assign gpi[2] = m0_ap_done_holder;
+    assign gpi[3] = m0_ap_idle;
+    assign gpi[4] = m0_ap_ready;
+    assign gpi[14:5] = m0_inputImage_address0;
+    assign gpi[15] = m0_inputImage_ce0;
+    assign m0_inputImage_q0 = gpo[47:16];
+    assign gpi[47:16] = gpo[47:16];
+    assign gpi[55:48] = m0_Filter1_address0;
+    assign gpi[56] = m0_Filter1_ce0;
+    assign m0_Filter1_q0 = gpo[88:57];
+    assign gpi[88:57] = gpo[88:57];
+    assign gpi[91:89] = m0_bias1_address0;
+    assign gpi[92] = m0_bias1_ce0;
+    assign m0_bias1_q0 = gpo[124:93];
+    assign gpi[124:93] = gpo[124:93];
+    assign gpi[136:125] = m0_Filter2_address0;
+    assign gpi[137] = m0_Filter2_ce0;
+    assign m0_Filter2_q0 = gpo[169:138];
+    assign gpi[169:138] = gpo[169:138];
+    assign gpi[173:170] = m0_bias2_address0;
+    assign gpi[174] = m0_bias2_ce0;
+    assign m0_bias2_q0 = gpo[206:175];
+    assign gpi[206:175] = gpo[206:175];
+    assign gpi[222:207] = m0_Filter3_address0;
+    assign gpi[223] = m0_Filter3_ce0;
+    assign m0_Filter3_q0 = gpo[255:224];
+    assign gpi[255:224] = gpo[255:224];
+    assign gpi[262:256] = m0_bias3_address0;
+    assign gpi[263] = m0_bias3_ce0;
+    assign m0_bias3_q0 = gpo[295:264];
+    assign gpi[295:264] = gpo[295:264];
+    assign gpi[309:296] = m0_fcWeight_address0;
+    assign gpi[310] = m0_fcWeight_ce0;
+    assign m0_fcWeight_q0 = gpo[342:311];
+    assign gpi[342:311] = gpo[342:311];
+    assign gpi[349:343] = m0_fcBias_address0;
+    assign gpi[350] = m0_fcBias_ce0;
+    assign m0_fcBias_q0 = gpo[382:351];
+    assign gpi[382:351] = gpo[382:351];
+    assign gpi[392:383] = m0_smWeight_address0;
+    assign gpi[393] = m0_smWeight_ce0;
+    assign m0_smWeight_q0 = gpo[425:394];
+    assign gpi[425:394] = gpo[425:394];
+    assign gpi[429:426] = m0_smBias_address0;
+    assign gpi[430] = m0_smBias_ce0;
+    assign m0_smBias_q0 = gpo[462:431];
+    assign gpi[462:431] = gpo[462:431];
+    assign gpi[494:463] = m0_outDigit;
+    assign gpi[495] = m0_outDigit_ap_vld;
+    assign gpi[496+:32] = m0_start_ticks;
+    assign gpi[528+:32] = m0_done_ticks;
 
     pfm_counter #(
         .CHANNEL_NUM(2),
@@ -725,67 +681,45 @@ module VC709_Gen3x4If128
     inference m0_inference(
         .ap_clk              (m0_ap_clk),
         .ap_rst              (m0_ap_rst),
+        .ap_start            (m0_ap_start),
+        .ap_done             (m0_ap_done),
+        .ap_idle             (m0_ap_idle),
+        .ap_ready            (m0_ap_ready),
         .inputImage_address0 (m0_inputImage_address0),
         .inputImage_ce0      (m0_inputImage_ce0),
-        .inputImage_d0       (m0_inputImage_d0),
         .inputImage_q0       (m0_inputImage_q0),
-        .inputImage_we0      (m0_inputImage_we0),
         .Filter1_address0    (m0_Filter1_address0),
         .Filter1_ce0         (m0_Filter1_ce0),
-        .Filter1_d0          (m0_Filter1_d0),
         .Filter1_q0          (m0_Filter1_q0),
-        .Filter1_we0         (m0_Filter1_we0),
         .bias1_address0      (m0_bias1_address0),
         .bias1_ce0           (m0_bias1_ce0),
-        .bias1_d0            (m0_bias1_d0),
         .bias1_q0            (m0_bias1_q0),
-        .bias1_we0           (m0_bias1_we0),
         .Filter2_address0    (m0_Filter2_address0),
         .Filter2_ce0         (m0_Filter2_ce0),
-        .Filter2_d0          (m0_Filter2_d0),
         .Filter2_q0          (m0_Filter2_q0),
-        .Filter2_we0         (m0_Filter2_we0),
         .bias2_address0      (m0_bias2_address0),
         .bias2_ce0           (m0_bias2_ce0),
-        .bias2_d0            (m0_bias2_d0),
         .bias2_q0            (m0_bias2_q0),
-        .bias2_we0           (m0_bias2_we0),
         .Filter3_address0    (m0_Filter3_address0),
         .Filter3_ce0         (m0_Filter3_ce0),
-        .Filter3_d0          (m0_Filter3_d0),
         .Filter3_q0          (m0_Filter3_q0),
-        .Filter3_we0         (m0_Filter3_we0),
         .bias3_address0      (m0_bias3_address0),
         .bias3_ce0           (m0_bias3_ce0),
-        .bias3_d0            (m0_bias3_d0),
         .bias3_q0            (m0_bias3_q0),
-        .bias3_we0           (m0_bias3_we0),
         .fcWeight_address0   (m0_fcWeight_address0),
         .fcWeight_ce0        (m0_fcWeight_ce0),
-        .fcWeight_d0         (m0_fcWeight_d0),
         .fcWeight_q0         (m0_fcWeight_q0),
-        .fcWeight_we0        (m0_fcWeight_we0),
         .fcBias_address0     (m0_fcBias_address0),
         .fcBias_ce0          (m0_fcBias_ce0),
-        .fcBias_d0           (m0_fcBias_d0),
         .fcBias_q0           (m0_fcBias_q0),
-        .fcBias_we0          (m0_fcBias_we0),
         .smWeight_address0   (m0_smWeight_address0),
         .smWeight_ce0        (m0_smWeight_ce0),
-        .smWeight_d0         (m0_smWeight_d0),
         .smWeight_q0         (m0_smWeight_q0),
-        .smWeight_we0        (m0_smWeight_we0),
         .smBias_address0     (m0_smBias_address0),
         .smBias_ce0          (m0_smBias_ce0),
-        .smBias_d0           (m0_smBias_d0),
         .smBias_q0           (m0_smBias_q0),
-        .smBias_we0          (m0_smBias_we0),
         .outDigit            (m0_outDigit),
-        .outDigit_ap_vld     (m0_outDigit_ap_vld),
-        .ap_done             (m0_ap_done),
-        .ap_start            (m0_ap_start),
-        .ap_idle             (m0_ap_idle),
-        .ap_ready            (m0_ap_ready));
+        .outDigit_ap_vld     (m0_outDigit_ap_vld));
 
 
 //RIFFA auto generated code end

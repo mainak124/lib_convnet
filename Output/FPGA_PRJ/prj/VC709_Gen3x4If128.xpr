@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="10" Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/RIFFA_BUILDER/riffa/fpga/xilinx/vc709/VC709_Gen3x4If128/prj/VC709_Gen3x4If128.xpr">
+<Project Version="7" Minor="10" Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/RIFFA_BUILDER/riffa/fpga/xilinx/vc709/VC709_Gen3x4If128/prj/VC709_Gen3x4If128.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="ee5dbb325de3470e81ad85e793306c9a"/>
@@ -83,77 +83,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0_3_0_memcore.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1_4_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_3_3_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0_0_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fcOut4_0_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_0_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput3_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0_0_0.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -167,13 +104,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_8_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_84_84_10_s.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -181,14 +111,21 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1_0_memcore.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1_0_0_memcore.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -202,28 +139,21 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_2_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label6_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b3.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -237,28 +167,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mux_6to1_sel3_32_1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_2_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput3_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_1_proc.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -279,42 +188,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_6_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_add_1_84_s.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mux_4to1_sel2_32_1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b3_memcore.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -328,28 +202,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_urem_4ns_4ns_4_8.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0_3_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fexp_32ns_32ns_32_6_full_dsp.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -363,14 +223,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label10_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label4_proc.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b1.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -384,28 +237,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label11_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_3_3_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_add_1_10_s.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -426,21 +258,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b2_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_120_120_84_s.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_4_proc.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -454,55 +272,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label8_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_inference_label2_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_urem_5ns_4ns_5_9.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0_0_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0_0_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1_0_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -510,49 +279,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_urem_7ns_4ns_7_11.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fcOut4_0_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_Loop_10_proc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4_0_memcore.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1_4.v">
+      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_0.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
