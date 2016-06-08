@@ -24,69 +24,137 @@ int main(int argc, char** argv) {
 
     GET_TIME_INIT(5);
     //User variables 
-    char ap_rst;
-    short inputImage_address0;
-    char inputImage_ce0;
-    float inputImage_q0;
-    char Filter1_address0;
-    char Filter1_ce0;
-    float Filter1_q0;
-    char bias1_address0;
-    char bias1_ce0;
-    float bias1_q0;
-    short Filter2_address0;
-    char Filter2_ce0;
-    float Filter2_q0;
-    char bias2_address0;
-    char bias2_ce0;
-    float bias2_q0;
-    short Filter3_address0;
-    char Filter3_ce0;
-    float Filter3_q0;
-    char bias3_address0;
-    char bias3_ce0;
-    float bias3_q0;
-    short fcWeight_address0;
-    char fcWeight_ce0;
-    float fcWeight_q0;
-    char fcBias_address0;
-    char fcBias_ce0;
-    float fcBias_q0;
-    short smWeight_address0;
-    char smWeight_ce0;
-    float smWeight_q0;
-    char smBias_address0;
-    char smBias_ce0;
-    float smBias_q0;
-    float outDigit;
-    char outDigit_ap_vld;
+    int* inputImage;
+    int* Filter1;
+    int* bias1;
+    int* Filter2;
+    int* bias2;
+    int* Filter3;
+    int* bias3;
+    int* fcWeight;
+    int* fcBias;
+    int* smWeight;
+    int* smBias;
+    float* outDigit;
 
     //Malloc user buffers
 
+    inputImage = (int *)malloc(784*4);
+    if (inputImage == NULL) {
+        printf("Can not alloc memory for the variable 'inputImage' for 3136 bytes");
+        return -1;
+    }
+
+    Filter1 = (int *)malloc(150*4);
+    if (Filter1 == NULL) {
+        printf("Can not alloc memory for the variable 'Filter1' for 600 bytes");
+        return -1;
+    }
+
+    bias1 = (int *)malloc(6*4);
+    if (bias1 == NULL) {
+        printf("Can not alloc memory for the variable 'bias1' for 24 bytes");
+        return -1;
+    }
+
+    Filter2 = (int *)malloc(2400*4);
+    if (Filter2 == NULL) {
+        printf("Can not alloc memory for the variable 'Filter2' for 9600 bytes");
+        return -1;
+    }
+
+    bias2 = (int *)malloc(16*4);
+    if (bias2 == NULL) {
+        printf("Can not alloc memory for the variable 'bias2' for 64 bytes");
+        return -1;
+    }
+
+    Filter3 = (int *)malloc(48000*4);
+    if (Filter3 == NULL) {
+        printf("Can not alloc memory for the variable 'Filter3' for 192000 bytes");
+        return -1;
+    }
+
+    bias3 = (int *)malloc(120*4);
+    if (bias3 == NULL) {
+        printf("Can not alloc memory for the variable 'bias3' for 480 bytes");
+        return -1;
+    }
+
+    fcWeight = (int *)malloc(10080*4);
+    if (fcWeight == NULL) {
+        printf("Can not alloc memory for the variable 'fcWeight' for 40320 bytes");
+        return -1;
+    }
+
+    fcBias = (int *)malloc(84*4);
+    if (fcBias == NULL) {
+        printf("Can not alloc memory for the variable 'fcBias' for 336 bytes");
+        return -1;
+    }
+
+    smWeight = (int *)malloc(840*4);
+    if (smWeight == NULL) {
+        printf("Can not alloc memory for the variable 'smWeight' for 3360 bytes");
+        return -1;
+    }
+
+    smBias = (int *)malloc(10*4);
+    if (smBias == NULL) {
+        printf("Can not alloc memory for the variable 'smBias' for 40 bytes");
+        return -1;
+    }
+
+    outDigit = (float *)malloc(1*4);
+    if (outDigit == NULL) {
+        printf("Can not alloc memory for the variable 'outDigit' for 4 bytes");
+        return -1;
+    }
+
     //TODO: Initial the input variables and arrays
-    ap_rst = 0;  //Only for example
+    for (i = 0; i < 784; i ++) {
+        inputImage[i] = i;  //Only for example
+    }
 
-    inputImage_q0 = 0;  //Only for example
+    for (i = 0; i < 150; i ++) {
+        Filter1[i] = i;  //Only for example
+    }
 
-    Filter1_q0 = 0;  //Only for example
+    for (i = 0; i < 6; i ++) {
+        bias1[i] = i;  //Only for example
+    }
 
-    bias1_q0 = 0;  //Only for example
+    for (i = 0; i < 2400; i ++) {
+        Filter2[i] = i;  //Only for example
+    }
 
-    Filter2_q0 = 0;  //Only for example
+    for (i = 0; i < 16; i ++) {
+        bias2[i] = i;  //Only for example
+    }
 
-    bias2_q0 = 0;  //Only for example
+    for (i = 0; i < 48000; i ++) {
+        Filter3[i] = i;  //Only for example
+    }
 
-    Filter3_q0 = 0;  //Only for example
+    for (i = 0; i < 120; i ++) {
+        bias3[i] = i;  //Only for example
+    }
 
-    bias3_q0 = 0;  //Only for example
+    for (i = 0; i < 10080; i ++) {
+        fcWeight[i] = i;  //Only for example
+    }
 
-    fcWeight_q0 = 0;  //Only for example
+    for (i = 0; i < 84; i ++) {
+        fcBias[i] = i;  //Only for example
+    }
 
-    fcBias_q0 = 0;  //Only for example
+    for (i = 0; i < 840; i ++) {
+        smWeight[i] = i;  //Only for example
+    }
 
-    smWeight_q0 = 0;  //Only for example
-
-    smBias_q0 = 0;  //Only for example
+    for (i = 0; i < 10; i ++) {
+        smBias[i] = i;  //Only for example
+    }
 
     fpga = fpga_open(id);
 
@@ -101,7 +169,7 @@ int main(int argc, char** argv) {
 
     //Call the user function 
     GET_TIME_VAL(0);
-    run_time_ms = inference(fpga, ap_rst, &inputImage_address0, &inputImage_ce0, inputImage_q0, &Filter1_address0, &Filter1_ce0, Filter1_q0, &bias1_address0, &bias1_ce0, bias1_q0, &Filter2_address0, &Filter2_ce0, Filter2_q0, &bias2_address0, &bias2_ce0, bias2_q0, &Filter3_address0, &Filter3_ce0, Filter3_q0, &bias3_address0, &bias3_ce0, bias3_q0, &fcWeight_address0, &fcWeight_ce0, fcWeight_q0, &fcBias_address0, &fcBias_ce0, fcBias_q0, &smWeight_address0, &smWeight_ce0, smWeight_q0, &smBias_address0, &smBias_ce0, smBias_q0, &outDigit, &outDigit_ap_vld, DEBUG_LEVEL);
+    run_time_ms = inference(fpga, inputImage, Filter1, bias1, Filter2, bias2, Filter3, bias3, fcWeight, fcBias, smWeight, smBias, outDigit, DEBUG_LEVEL);
 
     GET_TIME_VAL(1);
     printf("The FPGA module running costed %f ms\n", run_time_ms);
@@ -112,29 +180,9 @@ int main(int argc, char** argv) {
 
     //TODO: Process the output data
 
-    printf("inputImage_address0 = %d (0x%x)\n",inputImage_address0, inputImage_address0);
-    printf("inputImage_ce0 = %d (0x%x)\n",inputImage_ce0, inputImage_ce0);
-    printf("Filter1_address0 = %d (0x%x)\n",Filter1_address0, Filter1_address0);
-    printf("Filter1_ce0 = %d (0x%x)\n",Filter1_ce0, Filter1_ce0);
-    printf("bias1_address0 = %d (0x%x)\n",bias1_address0, bias1_address0);
-    printf("bias1_ce0 = %d (0x%x)\n",bias1_ce0, bias1_ce0);
-    printf("Filter2_address0 = %d (0x%x)\n",Filter2_address0, Filter2_address0);
-    printf("Filter2_ce0 = %d (0x%x)\n",Filter2_ce0, Filter2_ce0);
-    printf("bias2_address0 = %d (0x%x)\n",bias2_address0, bias2_address0);
-    printf("bias2_ce0 = %d (0x%x)\n",bias2_ce0, bias2_ce0);
-    printf("Filter3_address0 = %d (0x%x)\n",Filter3_address0, Filter3_address0);
-    printf("Filter3_ce0 = %d (0x%x)\n",Filter3_ce0, Filter3_ce0);
-    printf("bias3_address0 = %d (0x%x)\n",bias3_address0, bias3_address0);
-    printf("bias3_ce0 = %d (0x%x)\n",bias3_ce0, bias3_ce0);
-    printf("fcWeight_address0 = %d (0x%x)\n",fcWeight_address0, fcWeight_address0);
-    printf("fcWeight_ce0 = %d (0x%x)\n",fcWeight_ce0, fcWeight_ce0);
-    printf("fcBias_address0 = %d (0x%x)\n",fcBias_address0, fcBias_address0);
-    printf("fcBias_ce0 = %d (0x%x)\n",fcBias_ce0, fcBias_ce0);
-    printf("smWeight_address0 = %d (0x%x)\n",smWeight_address0, smWeight_address0);
-    printf("smWeight_ce0 = %d (0x%x)\n",smWeight_ce0, smWeight_ce0);
-    printf("smBias_address0 = %d (0x%x)\n",smBias_address0, smBias_address0);
-    printf("smBias_ce0 = %d (0x%x)\n",smBias_ce0, smBias_ce0);
-    printf("outDigit = %f (0x%x)\n",outDigit, outDigit);
-    printf("outDigit_ap_vld = %d (0x%x)\n",outDigit_ap_vld, outDigit_ap_vld);
+    for (i = 0; i < 1; i ++) {
+        printf("outDigit[%d] = %f (0x%x)\n",i, outDigit[i], outDigit[i]);
+    }
+
     return 0;
 }

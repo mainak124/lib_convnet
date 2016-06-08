@@ -49,7 +49,7 @@ module VC709_Gen3x4If128
 
 //
 //RIFFA auto generated code begin
-      parameter C_NUM_CHNL =2,
+      parameter C_NUM_CHNL =13,
 //RIFFA auto generated code end
       // Number of PCIe Lanes
       parameter C_NUM_LANES =  4,
@@ -479,7 +479,7 @@ module VC709_Gen3x4If128
 
     //
     //CHNL 0 : GPIO
-    localparam C_GPIO_WIDTH = 560;
+    localparam C_GPIO_WIDTH = 1253;
         wire [C_GPIO_WIDTH - 1:0] gpo;
         wire [C_GPIO_WIDTH - 1:0] gpi;
 
@@ -544,6 +544,538 @@ module VC709_Gen3x4If128
     
     //
     //RIFFA-AXIS
+
+    //
+    //CHNL 2 RX
+
+    wire [31:0] m0_inputImage_tdata;
+    wire m0_inputImage_tvalid;
+    wire m0_inputImage_tready;
+    wire m0_inputImage_tlast;
+    wire [31:0] m0_inputImage_start_ticks;
+    wire [31:0] m0_inputImage_end_ticks;
+    wire [31:0] m0_inputImage_data_bytes;
+
+    localparam C_M0_INPUTIMAGE_CHNL = 2;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am2 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_inputImage_tvalid),
+        .M_AXIS_TLAST        (m0_inputImage_tlast),
+        .M_AXIS_TREADY       (m0_inputImage_tready),
+        .M_AXIS_TDATA        (m0_inputImage_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_INPUTIMAGE_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_INPUTIMAGE_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_INPUTIMAGE_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_INPUTIMAGE_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_INPUTIMAGE_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_INPUTIMAGE_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_INPUTIMAGE_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_INPUTIMAGE_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_INPUTIMAGE_CHNL]),
+        .START_TICKS         (m0_inputImage_start_ticks),
+        .END_TICKS           (m0_inputImage_end_ticks),
+        .DATA_BYTES          (m0_inputImage_data_bytes));
+
+    //
+    //CHNL 3 RX
+
+    wire [31:0] m0_Filter1_tdata;
+    wire m0_Filter1_tvalid;
+    wire m0_Filter1_tready;
+    wire m0_Filter1_tlast;
+    wire [31:0] m0_Filter1_start_ticks;
+    wire [31:0] m0_Filter1_end_ticks;
+    wire [31:0] m0_Filter1_data_bytes;
+
+    localparam C_M0_FILTER1_CHNL = 3;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am3 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_Filter1_tvalid),
+        .M_AXIS_TLAST        (m0_Filter1_tlast),
+        .M_AXIS_TREADY       (m0_Filter1_tready),
+        .M_AXIS_TDATA        (m0_Filter1_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_FILTER1_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_FILTER1_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_FILTER1_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_FILTER1_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_FILTER1_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_FILTER1_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_FILTER1_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_FILTER1_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_FILTER1_CHNL]),
+        .START_TICKS         (m0_Filter1_start_ticks),
+        .END_TICKS           (m0_Filter1_end_ticks),
+        .DATA_BYTES          (m0_Filter1_data_bytes));
+
+    //
+    //CHNL 4 RX
+
+    wire [31:0] m0_bias1_tdata;
+    wire m0_bias1_tvalid;
+    wire m0_bias1_tready;
+    wire m0_bias1_tlast;
+    wire [31:0] m0_bias1_start_ticks;
+    wire [31:0] m0_bias1_end_ticks;
+    wire [31:0] m0_bias1_data_bytes;
+
+    localparam C_M0_BIAS1_CHNL = 4;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am4 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_bias1_tvalid),
+        .M_AXIS_TLAST        (m0_bias1_tlast),
+        .M_AXIS_TREADY       (m0_bias1_tready),
+        .M_AXIS_TDATA        (m0_bias1_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_BIAS1_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_BIAS1_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_BIAS1_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_BIAS1_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_BIAS1_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_BIAS1_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_BIAS1_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_BIAS1_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_BIAS1_CHNL]),
+        .START_TICKS         (m0_bias1_start_ticks),
+        .END_TICKS           (m0_bias1_end_ticks),
+        .DATA_BYTES          (m0_bias1_data_bytes));
+
+    //
+    //CHNL 5 RX
+
+    wire [31:0] m0_Filter2_tdata;
+    wire m0_Filter2_tvalid;
+    wire m0_Filter2_tready;
+    wire m0_Filter2_tlast;
+    wire [31:0] m0_Filter2_start_ticks;
+    wire [31:0] m0_Filter2_end_ticks;
+    wire [31:0] m0_Filter2_data_bytes;
+
+    localparam C_M0_FILTER2_CHNL = 5;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am5 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_Filter2_tvalid),
+        .M_AXIS_TLAST        (m0_Filter2_tlast),
+        .M_AXIS_TREADY       (m0_Filter2_tready),
+        .M_AXIS_TDATA        (m0_Filter2_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_FILTER2_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_FILTER2_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_FILTER2_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_FILTER2_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_FILTER2_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_FILTER2_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_FILTER2_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_FILTER2_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_FILTER2_CHNL]),
+        .START_TICKS         (m0_Filter2_start_ticks),
+        .END_TICKS           (m0_Filter2_end_ticks),
+        .DATA_BYTES          (m0_Filter2_data_bytes));
+
+    //
+    //CHNL 6 RX
+
+    wire [31:0] m0_bias2_tdata;
+    wire m0_bias2_tvalid;
+    wire m0_bias2_tready;
+    wire m0_bias2_tlast;
+    wire [31:0] m0_bias2_start_ticks;
+    wire [31:0] m0_bias2_end_ticks;
+    wire [31:0] m0_bias2_data_bytes;
+
+    localparam C_M0_BIAS2_CHNL = 6;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am6 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_bias2_tvalid),
+        .M_AXIS_TLAST        (m0_bias2_tlast),
+        .M_AXIS_TREADY       (m0_bias2_tready),
+        .M_AXIS_TDATA        (m0_bias2_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_BIAS2_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_BIAS2_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_BIAS2_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_BIAS2_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_BIAS2_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_BIAS2_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_BIAS2_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_BIAS2_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_BIAS2_CHNL]),
+        .START_TICKS         (m0_bias2_start_ticks),
+        .END_TICKS           (m0_bias2_end_ticks),
+        .DATA_BYTES          (m0_bias2_data_bytes));
+
+    //
+    //CHNL 7 RX
+
+    wire [31:0] m0_Filter3_tdata;
+    wire m0_Filter3_tvalid;
+    wire m0_Filter3_tready;
+    wire m0_Filter3_tlast;
+    wire [31:0] m0_Filter3_start_ticks;
+    wire [31:0] m0_Filter3_end_ticks;
+    wire [31:0] m0_Filter3_data_bytes;
+
+    localparam C_M0_FILTER3_CHNL = 7;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am7 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_Filter3_tvalid),
+        .M_AXIS_TLAST        (m0_Filter3_tlast),
+        .M_AXIS_TREADY       (m0_Filter3_tready),
+        .M_AXIS_TDATA        (m0_Filter3_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_FILTER3_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_FILTER3_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_FILTER3_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_FILTER3_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_FILTER3_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_FILTER3_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_FILTER3_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_FILTER3_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_FILTER3_CHNL]),
+        .START_TICKS         (m0_Filter3_start_ticks),
+        .END_TICKS           (m0_Filter3_end_ticks),
+        .DATA_BYTES          (m0_Filter3_data_bytes));
+
+    //
+    //CHNL 8 RX
+
+    wire [31:0] m0_bias3_tdata;
+    wire m0_bias3_tvalid;
+    wire m0_bias3_tready;
+    wire m0_bias3_tlast;
+    wire [31:0] m0_bias3_start_ticks;
+    wire [31:0] m0_bias3_end_ticks;
+    wire [31:0] m0_bias3_data_bytes;
+
+    localparam C_M0_BIAS3_CHNL = 8;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am8 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_bias3_tvalid),
+        .M_AXIS_TLAST        (m0_bias3_tlast),
+        .M_AXIS_TREADY       (m0_bias3_tready),
+        .M_AXIS_TDATA        (m0_bias3_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_BIAS3_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_BIAS3_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_BIAS3_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_BIAS3_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_BIAS3_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_BIAS3_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_BIAS3_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_BIAS3_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_BIAS3_CHNL]),
+        .START_TICKS         (m0_bias3_start_ticks),
+        .END_TICKS           (m0_bias3_end_ticks),
+        .DATA_BYTES          (m0_bias3_data_bytes));
+
+    //
+    //CHNL 9 RX
+
+    wire [31:0] m0_fcWeight_tdata;
+    wire m0_fcWeight_tvalid;
+    wire m0_fcWeight_tready;
+    wire m0_fcWeight_tlast;
+    wire [31:0] m0_fcWeight_start_ticks;
+    wire [31:0] m0_fcWeight_end_ticks;
+    wire [31:0] m0_fcWeight_data_bytes;
+
+    localparam C_M0_FCWEIGHT_CHNL = 9;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am9 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_fcWeight_tvalid),
+        .M_AXIS_TLAST        (m0_fcWeight_tlast),
+        .M_AXIS_TREADY       (m0_fcWeight_tready),
+        .M_AXIS_TDATA        (m0_fcWeight_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_FCWEIGHT_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_FCWEIGHT_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_FCWEIGHT_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_FCWEIGHT_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_FCWEIGHT_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_FCWEIGHT_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_FCWEIGHT_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_FCWEIGHT_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_FCWEIGHT_CHNL]),
+        .START_TICKS         (m0_fcWeight_start_ticks),
+        .END_TICKS           (m0_fcWeight_end_ticks),
+        .DATA_BYTES          (m0_fcWeight_data_bytes));
+
+    //
+    //CHNL 10 RX
+
+    wire [31:0] m0_fcBias_tdata;
+    wire m0_fcBias_tvalid;
+    wire m0_fcBias_tready;
+    wire m0_fcBias_tlast;
+    wire [31:0] m0_fcBias_start_ticks;
+    wire [31:0] m0_fcBias_end_ticks;
+    wire [31:0] m0_fcBias_data_bytes;
+
+    localparam C_M0_FCBIAS_CHNL = 10;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am10 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_fcBias_tvalid),
+        .M_AXIS_TLAST        (m0_fcBias_tlast),
+        .M_AXIS_TREADY       (m0_fcBias_tready),
+        .M_AXIS_TDATA        (m0_fcBias_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_FCBIAS_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_FCBIAS_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_FCBIAS_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_FCBIAS_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_FCBIAS_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_FCBIAS_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_FCBIAS_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_FCBIAS_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_FCBIAS_CHNL]),
+        .START_TICKS         (m0_fcBias_start_ticks),
+        .END_TICKS           (m0_fcBias_end_ticks),
+        .DATA_BYTES          (m0_fcBias_data_bytes));
+
+    //
+    //CHNL 11 RX
+
+    wire [31:0] m0_smWeight_tdata;
+    wire m0_smWeight_tvalid;
+    wire m0_smWeight_tready;
+    wire m0_smWeight_tlast;
+    wire [31:0] m0_smWeight_start_ticks;
+    wire [31:0] m0_smWeight_end_ticks;
+    wire [31:0] m0_smWeight_data_bytes;
+
+    localparam C_M0_SMWEIGHT_CHNL = 11;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am11 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_smWeight_tvalid),
+        .M_AXIS_TLAST        (m0_smWeight_tlast),
+        .M_AXIS_TREADY       (m0_smWeight_tready),
+        .M_AXIS_TDATA        (m0_smWeight_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_SMWEIGHT_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_SMWEIGHT_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_SMWEIGHT_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_SMWEIGHT_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_SMWEIGHT_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_SMWEIGHT_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_SMWEIGHT_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_SMWEIGHT_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_SMWEIGHT_CHNL]),
+        .START_TICKS         (m0_smWeight_start_ticks),
+        .END_TICKS           (m0_smWeight_end_ticks),
+        .DATA_BYTES          (m0_smWeight_data_bytes));
+
+    //
+    //CHNL 12 RX
+
+    wire [31:0] m0_smBias_tdata;
+    wire m0_smBias_tvalid;
+    wire m0_smBias_tready;
+    wire m0_smBias_tlast;
+    wire [31:0] m0_smBias_start_ticks;
+    wire [31:0] m0_smBias_end_ticks;
+    wire [31:0] m0_smBias_data_bytes;
+
+    localparam C_M0_SMBIAS_CHNL = 12;
+    riffa_axis_m #(
+        .C_AXIS_DATA_WIDTH   (32),
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    am12 (
+        .M_AXIS_RSTN         (MAIN_RSTN),
+        .M_AXIS_CLK          (MAIN_CLK),
+        .M_AXIS_TVALID       (m0_smBias_tvalid),
+        .M_AXIS_TLAST        (m0_smBias_tlast),
+        .M_AXIS_TREADY       (m0_smBias_tready),
+        .M_AXIS_TDATA        (m0_smBias_tdata),
+        .CHNL_RX_CLK         (chnl_rx_clk[C_M0_SMBIAS_CHNL]),
+        .CHNL_RX             (chnl_rx[C_M0_SMBIAS_CHNL]),
+        .CHNL_RX_ACK         (chnl_rx_ack[C_M0_SMBIAS_CHNL]),
+        .CHNL_RX_LAST        (chnl_rx_last[C_M0_SMBIAS_CHNL]),
+        .CHNL_RX_LEN         (chnl_rx_len[`SIG_CHNL_LENGTH_W*C_M0_SMBIAS_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_RX_OFF         (chnl_rx_off[`SIG_CHNL_OFFSET_W*C_M0_SMBIAS_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_RX_DATA        (chnl_rx_data[C_PCI_DATA_WIDTH*C_M0_SMBIAS_CHNL+:C_PCI_DATA_WIDTH]),
+        .CHNL_RX_DATA_VALID  (chnl_rx_data_valid[C_M0_SMBIAS_CHNL]),
+        .CHNL_RX_DATA_REN    (chnl_rx_data_ren[C_M0_SMBIAS_CHNL]),
+        .START_TICKS         (m0_smBias_start_ticks),
+        .END_TICKS           (m0_smBias_end_ticks),
+        .DATA_BYTES          (m0_smBias_data_bytes));
+
+    //
+    //CHNL 2 TX
+
+    (* mark_debug = "true" *) wire [31:0] m0_outDigit_tdata;
+    (* mark_debug = "true" *) wire m0_outDigit_tvalid;
+    (* mark_debug = "true" *) wire m0_outDigit_tready;
+    (* mark_debug = "true" *) wire m0_outDigit_tlast;
+    wire [31:0] m0_outDigit_start_ticks;
+    wire [31:0] m0_outDigit_end_ticks;
+    wire [31:0] m0_outDigit_data_bytes;
+    (* mark_debug = "true" *) wire [31:0] m0_outDigit_len;
+
+    localparam C_M0_OUTDIGIT_CHNL=2;
+
+    riffa_axis_s #(
+        .C_AXIS_DATA_WIDTH(32) ,
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    as2 (
+        .S_AXIS_RSTN         (MAIN_RSTN),
+        .S_AXIS_CLK          (MAIN_CLK),
+        .S_AXIS_TVALID       (m0_outDigit_tvalid),
+        .S_AXIS_TLAST        (m0_outDigit_tlast),
+        .S_AXIS_TREADY       (m0_outDigit_tready),
+        .S_AXIS_TDATA        (m0_outDigit_tdata),
+        .S_AXIS_LEN          (m0_outDigit_len),
+        .CHNL_TX_CLK         (chnl_tx_clk[C_M0_OUTDIGIT_CHNL]),
+        .CHNL_TX             (chnl_tx[C_M0_OUTDIGIT_CHNL]),
+        .CHNL_TX_ACK         (chnl_tx_ack[C_M0_OUTDIGIT_CHNL]),
+        .CHNL_TX_LAST        (chnl_tx_last[C_M0_OUTDIGIT_CHNL]),
+        .CHNL_TX_LEN         (chnl_tx_len[`SIG_CHNL_LENGTH_W*C_M0_OUTDIGIT_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_TX_OFF         (chnl_tx_off[`SIG_CHNL_OFFSET_W*C_M0_OUTDIGIT_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_TX_DATA        (chnl_tx_data[C_PCI_DATA_WIDTH*C_M0_OUTDIGIT_CHNL +:C_PCI_DATA_WIDTH]),
+        .CHNL_TX_DATA_VALID  (chnl_tx_data_valid[C_M0_OUTDIGIT_CHNL]),
+        .CHNL_TX_DATA_REN    (chnl_tx_data_ren[C_M0_OUTDIGIT_CHNL]),
+        .START_TICKS         (m0_outDigit_start_ticks),
+        .END_TICKS           (m0_outDigit_end_ticks),
+        .DATA_BYTES          (m0_outDigit_data_bytes));
+    
+    //
+    //Unused TX CHNLs
+    assign chnl_tx_clk[3] = MAIN_CLK;
+    assign chnl_tx[3] = 1'b0;
+    assign chnl_tx_last[3] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*3+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*3+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*3+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[3] = 1'b0;
+    assign chnl_tx_clk[4] = MAIN_CLK;
+    assign chnl_tx[4] = 1'b0;
+    assign chnl_tx_last[4] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*4+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*4+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*4+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[4] = 1'b0;
+    assign chnl_tx_clk[5] = MAIN_CLK;
+    assign chnl_tx[5] = 1'b0;
+    assign chnl_tx_last[5] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*5+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*5+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*5+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[5] = 1'b0;
+    assign chnl_tx_clk[6] = MAIN_CLK;
+    assign chnl_tx[6] = 1'b0;
+    assign chnl_tx_last[6] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*6+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*6+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*6+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[6] = 1'b0;
+    assign chnl_tx_clk[7] = MAIN_CLK;
+    assign chnl_tx[7] = 1'b0;
+    assign chnl_tx_last[7] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*7+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*7+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*7+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[7] = 1'b0;
+    assign chnl_tx_clk[8] = MAIN_CLK;
+    assign chnl_tx[8] = 1'b0;
+    assign chnl_tx_last[8] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*8+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*8+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*8+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[8] = 1'b0;
+    assign chnl_tx_clk[9] = MAIN_CLK;
+    assign chnl_tx[9] = 1'b0;
+    assign chnl_tx_last[9] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*9+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*9+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*9+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[9] = 1'b0;
+    assign chnl_tx_clk[10] = MAIN_CLK;
+    assign chnl_tx[10] = 1'b0;
+    assign chnl_tx_last[10] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*10+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*10+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*10+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[10] = 1'b0;
+    assign chnl_tx_clk[11] = MAIN_CLK;
+    assign chnl_tx[11] = 1'b0;
+    assign chnl_tx_last[11] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*11+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*11+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*11+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[11] = 1'b0;
+    assign chnl_tx_clk[12] = MAIN_CLK;
+    assign chnl_tx[12] = 1'b0;
+    assign chnl_tx_last[12] = 1'b0;
+    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*12+:`SIG_CHNL_LENGTH_W] = 'b0;
+    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*12+:`SIG_CHNL_OFFSET_W] = 'b0;
+    assign chnl_tx_data[C_PCI_DATA_WIDTH*12+:C_PCI_DATA_WIDTH] = 'b0;
+    assign chnl_tx_data_valid[12] = 1'b0;
     
     //
     //BlockRAMs
@@ -551,56 +1083,59 @@ module VC709_Gen3x4If128
     //
     //Clock, Reset and Scalar signals
     wire m0_ap_clk;
-    wire m0_ap_rst;
+    wire m0_ap_rst_n;
     wire m0_ap_start;
     wire m0_ap_done;
     wire m0_ap_idle;
     wire m0_ap_ready;
-    wire [15:0] m0_inputImage_address0;
-    wire m0_inputImage_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_inputImage_q0;
-    wire [7:0] m0_Filter1_address0;
-    wire m0_Filter1_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter1_q0;
-    wire [7:0] m0_bias1_address0;
-    wire m0_bias1_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias1_q0;
-    wire [15:0] m0_Filter2_address0;
-    wire m0_Filter2_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter2_q0;
-    wire [7:0] m0_bias2_address0;
-    wire m0_bias2_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias2_q0;
-    wire [15:0] m0_Filter3_address0;
-    wire m0_Filter3_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_Filter3_q0;
-    wire [7:0] m0_bias3_address0;
-    wire m0_bias3_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_bias3_q0;
-    wire [15:0] m0_fcWeight_address0;
-    wire m0_fcWeight_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_fcWeight_q0;
-    wire [7:0] m0_fcBias_address0;
-    wire m0_fcBias_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_fcBias_q0;
-    wire [15:0] m0_smWeight_address0;
-    wire m0_smWeight_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_smWeight_q0;
-    wire [7:0] m0_smBias_address0;
-    wire m0_smBias_ce0;
-    (* mark_debug = "true" *) wire [31:0] m0_smBias_q0;
-    (* mark_debug = "true" *) wire [31:0] m0_outDigit;
-    wire m0_outDigit_ap_vld;
     wire [31:0] m0_start_ticks;
     wire [31:0] m0_done_ticks;
     
     //
     //GPIO connections
+    assign gpi[0+:32] = m0_inputImage_start_ticks;
+    assign gpi[32+:32] = m0_inputImage_end_ticks;
+    assign gpi[64+:32] = m0_inputImage_data_bytes;
+    assign gpi[96+:32] = m0_Filter1_start_ticks;
+    assign gpi[128+:32] = m0_Filter1_end_ticks;
+    assign gpi[160+:32] = m0_Filter1_data_bytes;
+    assign gpi[192+:32] = m0_bias1_start_ticks;
+    assign gpi[224+:32] = m0_bias1_end_ticks;
+    assign gpi[256+:32] = m0_bias1_data_bytes;
+    assign gpi[288+:32] = m0_Filter2_start_ticks;
+    assign gpi[320+:32] = m0_Filter2_end_ticks;
+    assign gpi[352+:32] = m0_Filter2_data_bytes;
+    assign gpi[384+:32] = m0_bias2_start_ticks;
+    assign gpi[416+:32] = m0_bias2_end_ticks;
+    assign gpi[448+:32] = m0_bias2_data_bytes;
+    assign gpi[480+:32] = m0_Filter3_start_ticks;
+    assign gpi[512+:32] = m0_Filter3_end_ticks;
+    assign gpi[544+:32] = m0_Filter3_data_bytes;
+    assign gpi[576+:32] = m0_bias3_start_ticks;
+    assign gpi[608+:32] = m0_bias3_end_ticks;
+    assign gpi[640+:32] = m0_bias3_data_bytes;
+    assign gpi[672+:32] = m0_fcWeight_start_ticks;
+    assign gpi[704+:32] = m0_fcWeight_end_ticks;
+    assign gpi[736+:32] = m0_fcWeight_data_bytes;
+    assign gpi[768+:32] = m0_fcBias_start_ticks;
+    assign gpi[800+:32] = m0_fcBias_end_ticks;
+    assign gpi[832+:32] = m0_fcBias_data_bytes;
+    assign gpi[864+:32] = m0_smWeight_start_ticks;
+    assign gpi[896+:32] = m0_smWeight_end_ticks;
+    assign gpi[928+:32] = m0_smWeight_data_bytes;
+    assign gpi[960+:32] = m0_smBias_start_ticks;
+    assign gpi[992+:32] = m0_smBias_end_ticks;
+    assign gpi[1024+:32] = m0_smBias_data_bytes;
+    assign m0_outDigit_len = (gpo[1087:1056])? gpo[1087:1056] : 1;
+    assign gpi[1087:1056] = gpo[1087:1056];
+    assign gpi[1088+:32] = m0_outDigit_start_ticks;
+    assign gpi[1120+:32] = m0_outDigit_end_ticks;
+    assign gpi[1152+:32] = m0_outDigit_data_bytes;
     assign m0_ap_clk = MAIN_CLK;
-    assign m0_ap_rst = MAIN_RSTN & ~gpo[0];
-    assign gpi[0] = gpo[0];
-    assign m0_ap_start = gpo[1];
-    assign gpi[1] = gpo[1];
+    assign m0_ap_rst_n = MAIN_RSTN & ~gpo[1184];
+    assign gpi[1184] = gpo[1184];
+    assign m0_ap_start = gpo[1185];
+    assign gpi[1185] = gpo[1185];
 
     reg m0_ap_done_holder;
 
@@ -616,57 +1151,11 @@ module VC709_Gen3x4If128
         end
     end
 
-    assign gpi[2] = m0_ap_done_holder;
-    assign gpi[3] = m0_ap_idle;
-    assign gpi[4] = m0_ap_ready;
-    assign gpi[14:5] = m0_inputImage_address0;
-    assign gpi[15] = m0_inputImage_ce0;
-    assign m0_inputImage_q0 = gpo[47:16];
-    assign gpi[47:16] = gpo[47:16];
-    assign gpi[55:48] = m0_Filter1_address0;
-    assign gpi[56] = m0_Filter1_ce0;
-    assign m0_Filter1_q0 = gpo[88:57];
-    assign gpi[88:57] = gpo[88:57];
-    assign gpi[91:89] = m0_bias1_address0;
-    assign gpi[92] = m0_bias1_ce0;
-    assign m0_bias1_q0 = gpo[124:93];
-    assign gpi[124:93] = gpo[124:93];
-    assign gpi[136:125] = m0_Filter2_address0;
-    assign gpi[137] = m0_Filter2_ce0;
-    assign m0_Filter2_q0 = gpo[169:138];
-    assign gpi[169:138] = gpo[169:138];
-    assign gpi[173:170] = m0_bias2_address0;
-    assign gpi[174] = m0_bias2_ce0;
-    assign m0_bias2_q0 = gpo[206:175];
-    assign gpi[206:175] = gpo[206:175];
-    assign gpi[222:207] = m0_Filter3_address0;
-    assign gpi[223] = m0_Filter3_ce0;
-    assign m0_Filter3_q0 = gpo[255:224];
-    assign gpi[255:224] = gpo[255:224];
-    assign gpi[262:256] = m0_bias3_address0;
-    assign gpi[263] = m0_bias3_ce0;
-    assign m0_bias3_q0 = gpo[295:264];
-    assign gpi[295:264] = gpo[295:264];
-    assign gpi[309:296] = m0_fcWeight_address0;
-    assign gpi[310] = m0_fcWeight_ce0;
-    assign m0_fcWeight_q0 = gpo[342:311];
-    assign gpi[342:311] = gpo[342:311];
-    assign gpi[349:343] = m0_fcBias_address0;
-    assign gpi[350] = m0_fcBias_ce0;
-    assign m0_fcBias_q0 = gpo[382:351];
-    assign gpi[382:351] = gpo[382:351];
-    assign gpi[392:383] = m0_smWeight_address0;
-    assign gpi[393] = m0_smWeight_ce0;
-    assign m0_smWeight_q0 = gpo[425:394];
-    assign gpi[425:394] = gpo[425:394];
-    assign gpi[429:426] = m0_smBias_address0;
-    assign gpi[430] = m0_smBias_ce0;
-    assign m0_smBias_q0 = gpo[462:431];
-    assign gpi[462:431] = gpo[462:431];
-    assign gpi[494:463] = m0_outDigit;
-    assign gpi[495] = m0_outDigit_ap_vld;
-    assign gpi[496+:32] = m0_start_ticks;
-    assign gpi[528+:32] = m0_done_ticks;
+    assign gpi[1186] = m0_ap_done_holder;
+    assign gpi[1187] = m0_ap_idle;
+    assign gpi[1188] = m0_ap_ready;
+    assign gpi[1189+:32] = m0_start_ticks;
+    assign gpi[1221+:32] = m0_done_ticks;
 
     pfm_counter #(
         .CHANNEL_NUM(2),
@@ -679,48 +1168,50 @@ module VC709_Gen3x4If128
         .mark ({m0_start_ticks, m0_done_ticks}));
 
     inference m0_inference(
+        .inputImage_TDATA    (m0_inputImage_tdata),
+        .inputImage_TVALID   (m0_inputImage_tvalid),
+        .inputImage_TREADY   (m0_inputImage_tready),
+        .Filter1_TDATA       (m0_Filter1_tdata),
+        .Filter1_TVALID      (m0_Filter1_tvalid),
+        .Filter1_TREADY      (m0_Filter1_tready),
+        .bias1_TDATA         (m0_bias1_tdata),
+        .bias1_TVALID        (m0_bias1_tvalid),
+        .bias1_TREADY        (m0_bias1_tready),
+        .Filter2_TDATA       (m0_Filter2_tdata),
+        .Filter2_TVALID      (m0_Filter2_tvalid),
+        .Filter2_TREADY      (m0_Filter2_tready),
+        .bias2_TDATA         (m0_bias2_tdata),
+        .bias2_TVALID        (m0_bias2_tvalid),
+        .bias2_TREADY        (m0_bias2_tready),
+        .Filter3_TDATA       (m0_Filter3_tdata),
+        .Filter3_TVALID      (m0_Filter3_tvalid),
+        .Filter3_TREADY      (m0_Filter3_tready),
+        .bias3_TDATA         (m0_bias3_tdata),
+        .bias3_TVALID        (m0_bias3_tvalid),
+        .bias3_TREADY        (m0_bias3_tready),
+        .fcWeight_TDATA      (m0_fcWeight_tdata),
+        .fcWeight_TVALID     (m0_fcWeight_tvalid),
+        .fcWeight_TREADY     (m0_fcWeight_tready),
+        .fcBias_TDATA        (m0_fcBias_tdata),
+        .fcBias_TVALID       (m0_fcBias_tvalid),
+        .fcBias_TREADY       (m0_fcBias_tready),
+        .smWeight_TDATA      (m0_smWeight_tdata),
+        .smWeight_TVALID     (m0_smWeight_tvalid),
+        .smWeight_TREADY     (m0_smWeight_tready),
+        .smBias_TDATA        (m0_smBias_tdata),
+        .smBias_TVALID       (m0_smBias_tvalid),
+        .smBias_TREADY       (m0_smBias_tready),
+        .outDigit_TDATA      (m0_outDigit_tdata),
+        .outDigit_TVALID     (m0_outDigit_tvalid),
+        .outDigit_TREADY     (m0_outDigit_tready),
         .ap_clk              (m0_ap_clk),
-        .ap_rst              (m0_ap_rst),
+        .ap_rst_n            (m0_ap_rst_n),
         .ap_start            (m0_ap_start),
         .ap_done             (m0_ap_done),
         .ap_idle             (m0_ap_idle),
-        .ap_ready            (m0_ap_ready),
-        .inputImage_address0 (m0_inputImage_address0),
-        .inputImage_ce0      (m0_inputImage_ce0),
-        .inputImage_q0       (m0_inputImage_q0),
-        .Filter1_address0    (m0_Filter1_address0),
-        .Filter1_ce0         (m0_Filter1_ce0),
-        .Filter1_q0          (m0_Filter1_q0),
-        .bias1_address0      (m0_bias1_address0),
-        .bias1_ce0           (m0_bias1_ce0),
-        .bias1_q0            (m0_bias1_q0),
-        .Filter2_address0    (m0_Filter2_address0),
-        .Filter2_ce0         (m0_Filter2_ce0),
-        .Filter2_q0          (m0_Filter2_q0),
-        .bias2_address0      (m0_bias2_address0),
-        .bias2_ce0           (m0_bias2_ce0),
-        .bias2_q0            (m0_bias2_q0),
-        .Filter3_address0    (m0_Filter3_address0),
-        .Filter3_ce0         (m0_Filter3_ce0),
-        .Filter3_q0          (m0_Filter3_q0),
-        .bias3_address0      (m0_bias3_address0),
-        .bias3_ce0           (m0_bias3_ce0),
-        .bias3_q0            (m0_bias3_q0),
-        .fcWeight_address0   (m0_fcWeight_address0),
-        .fcWeight_ce0        (m0_fcWeight_ce0),
-        .fcWeight_q0         (m0_fcWeight_q0),
-        .fcBias_address0     (m0_fcBias_address0),
-        .fcBias_ce0          (m0_fcBias_ce0),
-        .fcBias_q0           (m0_fcBias_q0),
-        .smWeight_address0   (m0_smWeight_address0),
-        .smWeight_ce0        (m0_smWeight_ce0),
-        .smWeight_q0         (m0_smWeight_q0),
-        .smBias_address0     (m0_smBias_address0),
-        .smBias_ce0          (m0_smBias_ce0),
-        .smBias_q0           (m0_smBias_q0),
-        .outDigit            (m0_outDigit),
-        .outDigit_ap_vld     (m0_outDigit_ap_vld));
+        .ap_ready            (m0_ap_ready));
 
+    assign m0_outDigit_tlast = 1'b0;
 
 //RIFFA auto generated code end
 endmodule
