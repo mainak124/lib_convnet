@@ -17,18 +17,18 @@ void inference(
 	const DTYPE_T smBias[SM_B_H][SM_B_W],
 	int& outDigit
 	){
-//#pragma HLS INTERFACE axis port=outDigit
-//#pragma HLS INTERFACE axis port=inputImage
-//#pragma HLS INTERFACE axis port=Filter1
-//#pragma HLS INTERFACE axis port=bias1
-//#pragma HLS INTERFACE axis port=Filter2
-//#pragma HLS INTERFACE axis port=bias2
-//#pragma HLS INTERFACE axis port=Filter3
-//#pragma HLS INTERFACE axis port=bias3
-//#pragma HLS INTERFACE axis port=fcWeight
-//#pragma HLS INTERFACE axis port=fcBias
-//#pragma HLS INTERFACE axis port=smWeight
-//#pragma HLS INTERFACE axis port=smBias
+#pragma HLS INTERFACE axis depth=5 port=outDigit
+#pragma HLS INTERFACE axis port=inputImage
+#pragma HLS INTERFACE axis port=Filter1
+#pragma HLS INTERFACE axis port=bias1
+#pragma HLS INTERFACE axis port=Filter2
+#pragma HLS INTERFACE axis port=bias2
+#pragma HLS INTERFACE axis port=Filter3
+#pragma HLS INTERFACE axis port=bias3
+#pragma HLS INTERFACE axis port=fcWeight
+#pragma HLS INTERFACE axis port=fcBias
+#pragma HLS INTERFACE axis port=smWeight
+#pragma HLS INTERFACE axis port=smBias
 
 	DTYPE_T x_in[IN_H][IN_W][IN_C];
 	DTYPE_T f1[F1_H][F1_W][F1_C][F1_N];

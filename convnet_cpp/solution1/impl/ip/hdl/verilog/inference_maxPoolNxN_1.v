@@ -129,9 +129,9 @@ wire   [2:0] p_lshr_f_cast_fu_189_p4;
 wire   [4:0] tmp_s_fu_203_p3;
 wire   [5:0] tmp_cast_fu_199_p1;
 wire   [5:0] p_shl_cast_fu_211_p1;
-wire   [2:0] tmp_4_fu_227_p4;
+wire   [2:0] tmp_7_fu_227_p4;
 wire   [5:0] tmp_3_cast_fu_237_p1;
-wire   [5:0] tmp_7_fu_241_p2;
+wire   [5:0] tmp_4_fu_241_p2;
 wire   [9:0] tmp_4_cast_fu_276_p1;
 wire   [9:0] tmp_9_fu_280_p2;
 wire   [3:0] r_idx_cast2_fu_296_p1;
@@ -543,7 +543,7 @@ assign tmp_13_fu_374_p2 = (tmp_12_reg_541 + tmp_9_cast_fu_370_p1);
 
 assign tmp_14_fu_387_p2 = (tmp_31_cast_fu_379_p3 + tmp_4_cast1_reg_518);
 
-assign tmp_15_cast_fu_246_p3 = {{tmp_7_fu_241_p2}, {ap_const_lv4_0}};
+assign tmp_15_cast_fu_246_p3 = {{tmp_4_fu_241_p2}, {ap_const_lv4_0}};
 
 assign tmp_15_fu_411_p1 = out_4_to_int_fu_397_p1[22:0];
 
@@ -571,7 +571,7 @@ assign tmp_31_cast_fu_379_p3 = {{tmp_13_fu_374_p2}, {ap_const_lv4_0}};
 
 assign tmp_32_cast_fu_392_p1 = tmp_14_fu_387_p2;
 
-assign tmp_3_cast_fu_237_p1 = tmp_4_fu_227_p4;
+assign tmp_3_cast_fu_237_p1 = tmp_7_fu_227_p4;
 
 assign tmp_3_fu_215_p2 = (tmp_cast_fu_199_p1 + p_shl_cast_fu_211_p1);
 
@@ -579,11 +579,11 @@ assign tmp_4_cast1_fu_272_p1 = out_ch_idx_reg_119;
 
 assign tmp_4_cast_fu_276_p1 = out_ch_idx_reg_119;
 
-assign tmp_4_fu_227_p4 = {{in_c_idx_reg_107[ap_const_lv32_3 : ap_const_lv32_1]}};
+assign tmp_4_fu_241_p2 = (tmp_3_reg_492 + tmp_3_cast_fu_237_p1);
 
 assign tmp_6_fu_312_p2 = (r_idx_cast2_fu_296_p1 + in_r_idx_reg_95);
 
-assign tmp_7_fu_241_p2 = (tmp_3_reg_492 + tmp_3_cast_fu_237_p1);
+assign tmp_7_fu_227_p4 = {{in_c_idx_reg_107[ap_const_lv32_3 : ap_const_lv32_1]}};
 
 assign tmp_8_fu_364_p2 = (c_idx_cast1_fu_348_p1 + in_c_idx_reg_107);
 

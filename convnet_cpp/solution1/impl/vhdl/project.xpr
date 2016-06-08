@@ -6,7 +6,7 @@
 <Project Version="7" Minor="10" Path="/home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/vhdl/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="ec70aeca08364ad9a848b4a8918282d8"/>
+    <Option Name="Id" Val="0667ff1b9f4b45e399b033c79f68c631"/>
     <Option Name="Part" Val="xc7vx690tffg1761-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
@@ -113,6 +113,12 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/inference_fc_T_0.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/inference_softmax_1_10_s.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>

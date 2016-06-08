@@ -140,8 +140,8 @@ reg    ap_sig_cseq_ST_st4_fsm_3;
 reg    ap_sig_bdd_110;
 wire   [4:0] in_c_idx_fu_336_p2;
 reg   [4:0] in_c_idx_reg_701;
-wire   [13:0] tmp_99_fu_381_p2;
-reg   [13:0] tmp_99_reg_706;
+wire   [13:0] tmp_100_fu_381_p2;
+reg   [13:0] tmp_100_reg_706;
 reg    ap_sig_cseq_ST_st5_fsm_4;
 reg    ap_sig_bdd_121;
 wire   [0:0] in_ch_idx_phi_fu_182_p4;
@@ -149,11 +149,11 @@ wire   [2:0] r_idx_4_fu_392_p2;
 reg   [2:0] r_idx_4_reg_714;
 reg    ap_sig_cseq_ST_st6_fsm_5;
 reg    ap_sig_bdd_134;
-wire   [5:0] tmp_101_fu_443_p2;
-reg   [5:0] tmp_101_reg_719;
+wire   [5:0] tmp_102_fu_443_p2;
+reg   [5:0] tmp_102_reg_719;
 wire   [0:0] exitcond1_fu_386_p2;
-wire   [10:0] tmp_104_fu_469_p2;
-reg   [10:0] tmp_104_reg_724;
+wire   [10:0] tmp_105_fu_469_p2;
+reg   [10:0] tmp_105_reg_724;
 wire   [0:0] tmp3_fu_475_p2;
 reg   [0:0] tmp3_reg_729;
 wire   [2:0] c_idx_4_fu_487_p2;
@@ -169,7 +169,7 @@ reg    ap_sig_cseq_ST_st8_fsm_7;
 reg    ap_sig_bdd_170;
 reg   [31:0] W_0_load_reg_762;
 wire   [31:0] grp_fu_242_p2;
-reg   [31:0] tmp_49_reg_767;
+reg   [31:0] tmp_48_reg_767;
 reg    ap_sig_cseq_ST_st10_fsm_9;
 reg    ap_sig_bdd_180;
 wire   [31:0] grp_fu_236_p2;
@@ -204,54 +204,54 @@ reg    ap_sig_bdd_262;
 reg    ap_sig_cseq_ST_st16_fsm_15;
 reg    ap_sig_bdd_269;
 wire   [9:0] tmp_s_fu_292_p3;
-wire   [6:0] tmp_95_fu_304_p3;
+wire   [6:0] tmp_96_fu_304_p3;
 wire   [10:0] p_shl_cast_fu_300_p1;
 wire   [10:0] p_shl1_cast_fu_312_p1;
-wire   [10:0] tmp_96_fu_316_p2;
-wire   [11:0] tmp_41_cast_fu_342_p1;
-wire   [11:0] tmp_97_fu_346_p2;
-wire   [10:0] tmp_70_fu_351_p1;
-wire   [12:0] tmp_71_fu_363_p3;
+wire   [10:0] tmp_97_fu_316_p2;
+wire   [11:0] tmp_39_cast_fu_342_p1;
+wire   [11:0] tmp_98_fu_346_p2;
+wire   [10:0] tmp_71_fu_351_p1;
+wire   [12:0] tmp_72_fu_363_p3;
 wire   [13:0] p_shl7_cast_fu_355_p3;
 wire  signed [13:0] p_shl8_cast_fu_371_p1;
-wire   [13:0] tmp_98_fu_375_p2;
+wire   [13:0] tmp_99_fu_375_p2;
 wire   [2:0] tmp1_fu_398_p2;
 wire  signed [5:0] tmp1_cast_fu_404_p1;
 wire   [5:0] slide_in_r_idx_fu_408_p2;
-wire   [4:0] tmp_100_fu_431_p3;
-wire   [5:0] tmp_44_cast_fu_427_p1;
+wire   [4:0] tmp_101_fu_431_p3;
+wire   [5:0] tmp_42_cast_fu_427_p1;
 wire   [5:0] p_shl4_cast_fu_439_p1;
-wire   [7:0] tmp_103_fu_457_p3;
-wire   [10:0] tmp_102_fu_449_p3;
+wire   [7:0] tmp_104_fu_457_p3;
+wire   [10:0] tmp_103_fu_449_p3;
 wire  signed [10:0] p_shl3_cast_fu_465_p1;
-wire   [0:0] tmp_72_fu_413_p3;
-wire   [0:0] tmp_43_fu_421_p2;
+wire   [0:0] tmp_73_fu_413_p3;
+wire   [0:0] tmp_41_fu_421_p2;
 wire   [2:0] tmp2_fu_493_p2;
 wire  signed [5:0] tmp2_cast_fu_499_p1;
 wire   [5:0] slide_in_c_idx_fu_503_p2;
-wire   [0:0] tmp_73_fu_508_p3;
-wire   [0:0] tmp_47_fu_516_p2;
+wire   [0:0] tmp_74_fu_508_p3;
+wire   [0:0] tmp_45_fu_516_p2;
 wire   [0:0] tmp4_fu_522_p2;
-wire  signed [10:0] tmp_cast_82_fu_533_p1;
-wire   [10:0] tmp_105_fu_537_p2;
-wire   [5:0] tmp_48_cast_fu_547_p1;
-wire   [5:0] tmp_106_fu_551_p2;
-wire   [6:0] tmp_74_fu_564_p3;
+wire  signed [10:0] tmp_46_cast_fu_533_p1;
+wire   [10:0] tmp_106_fu_537_p2;
+wire   [5:0] tmp_47_cast_fu_547_p1;
+wire   [5:0] tmp_107_fu_551_p2;
+wire   [6:0] tmp_75_fu_564_p3;
 wire   [8:0] p_shl5_cast_fu_556_p3;
 wire   [8:0] p_shl6_cast_fu_572_p1;
-wire   [8:0] tmp_107_fu_576_p2;
-wire   [8:0] tmp_108_fu_582_p2;
+wire   [8:0] tmp_108_fu_576_p2;
+wire   [8:0] tmp_109_fu_582_p2;
 wire   [31:0] x_assign_to_int_fu_599_p1;
-wire   [7:0] tmp_33_fu_602_p4;
-wire   [22:0] tmp_69_fu_612_p1;
+wire   [7:0] tmp_34_fu_602_p4;
+wire   [22:0] tmp_70_fu_612_p1;
 wire   [0:0] notrhs_fu_622_p2;
 wire   [0:0] notlhs_fu_616_p2;
-wire   [0:0] tmp_35_fu_628_p2;
-wire   [0:0] tmp_36_fu_246_p2;
-wire   [0:0] tmp_37_fu_634_p2;
+wire   [0:0] tmp_36_fu_628_p2;
+wire   [0:0] tmp_37_fu_246_p2;
+wire   [0:0] tmp_38_fu_634_p2;
 wire    grp_fu_236_ce;
 wire    grp_fu_242_ce;
-wire   [4:0] tmp_36_fu_246_opcode;
+wire   [4:0] tmp_37_fu_246_opcode;
 reg   [19:0] ap_NS_fsm;
 
 
@@ -294,8 +294,8 @@ inference_fcmp_32ns_32ns_1_1 #(
 inference_fcmp_32ns_32ns_1_1_U3(
     .din0( x_assign_reg_782 ),
     .din1( ap_const_lv32_0 ),
-    .opcode( tmp_36_fu_246_opcode ),
-    .dout( tmp_36_fu_246_p2 )
+    .opcode( tmp_37_fu_246_opcode ),
+    .dout( tmp_37_fu_246_p2 )
 );
 
 
@@ -442,8 +442,14 @@ end
 always @ (posedge ap_clk) begin
     if (((ap_const_logic_1 == ap_sig_cseq_ST_st6_fsm_5) & (ap_const_lv1_0 == exitcond1_fu_386_p2))) begin
         tmp3_reg_729 <= tmp3_fu_475_p2;
-        tmp_101_reg_719 <= tmp_101_fu_443_p2;
-        tmp_104_reg_724[10 : 2] <= tmp_104_fu_469_p2[10 : 2];
+        tmp_102_reg_719 <= tmp_102_fu_443_p2;
+        tmp_105_reg_724[10 : 2] <= tmp_105_fu_469_p2[10 : 2];
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((ap_const_logic_1 == ap_sig_cseq_ST_st5_fsm_4) & ~(ap_const_lv1_0 == in_ch_idx_phi_fu_182_p4))) begin
+        tmp_100_reg_706 <= tmp_100_fu_381_p2;
     end
 end
 
@@ -455,13 +461,7 @@ end
 
 always @ (posedge ap_clk) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st10_fsm_9)) begin
-        tmp_49_reg_767 <= grp_fu_242_p2;
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (((ap_const_logic_1 == ap_sig_cseq_ST_st5_fsm_4) & ~(ap_const_lv1_0 == in_ch_idx_phi_fu_182_p4))) begin
-        tmp_99_reg_706 <= tmp_99_fu_381_p2;
+        tmp_48_reg_767 <= grp_fu_242_p2;
     end
 end
 
@@ -641,11 +641,11 @@ always @ (out_reg_165 or out_2_reg_213 or ap_sig_cseq_ST_st11_fsm_10 or ap_sig_c
     end
 end
 
-always @ (tmp_49_reg_767 or b_load_reg_777 or ap_sig_cseq_ST_st11_fsm_10 or ap_sig_cseq_ST_st16_fsm_15) begin
+always @ (tmp_48_reg_767 or b_load_reg_777 or ap_sig_cseq_ST_st11_fsm_10 or ap_sig_cseq_ST_st16_fsm_15) begin
     if ((ap_const_logic_1 == ap_sig_cseq_ST_st16_fsm_15)) begin
         grp_fu_236_p1 = b_load_reg_777;
     end else if ((ap_const_logic_1 == ap_sig_cseq_ST_st11_fsm_10)) begin
-        grp_fu_236_p1 = tmp_49_reg_767;
+        grp_fu_236_p1 = tmp_48_reg_767;
     end else begin
         grp_fu_236_p1 = 'bx;
     end
@@ -897,9 +897,9 @@ assign in_r_idx_fu_286_p2 = (out_r_idx_reg_142 + ap_const_lv5_1);
 
 assign in_val2_fu_592_p3 = ((or_cond5_reg_742[0:0] === 1'b1) ? ap_const_lv32_0 : x_0_q0);
 
-assign notlhs_fu_616_p2 = (tmp_33_fu_602_p4 != ap_const_lv8_FF? 1'b1: 1'b0);
+assign notlhs_fu_616_p2 = (tmp_34_fu_602_p4 != ap_const_lv8_FF? 1'b1: 1'b0);
 
-assign notrhs_fu_622_p2 = (tmp_69_fu_612_p1 == ap_const_lv23_0? 1'b1: 1'b0);
+assign notrhs_fu_622_p2 = (tmp_70_fu_612_p1 == ap_const_lv23_0? 1'b1: 1'b0);
 
 assign or_cond5_fu_528_p2 = (tmp4_fu_522_p2 | tmp3_reg_729);
 
@@ -907,23 +907,23 @@ assign out_c_idx_cast_fu_326_p1 = out_c_idx_reg_153;
 
 assign out_feature_address0 = tmp_135_cast_fu_648_p1;
 
-assign out_feature_d0 = ((tmp_37_fu_634_p2[0:0] === 1'b1) ? x_assign_reg_782 : ap_const_lv32_0);
+assign out_feature_d0 = ((tmp_38_fu_634_p2[0:0] === 1'b1) ? x_assign_reg_782 : ap_const_lv32_0);
 
 assign out_r_idx_cast_fu_276_p1 = out_r_idx_reg_142;
 
-assign p_shl1_cast_fu_312_p1 = tmp_95_fu_304_p3;
+assign p_shl1_cast_fu_312_p1 = tmp_96_fu_304_p3;
 
-assign p_shl3_cast_fu_465_p1 = $signed(tmp_103_fu_457_p3);
+assign p_shl3_cast_fu_465_p1 = $signed(tmp_104_fu_457_p3);
 
-assign p_shl4_cast_fu_439_p1 = tmp_100_fu_431_p3;
+assign p_shl4_cast_fu_439_p1 = tmp_101_fu_431_p3;
 
-assign p_shl5_cast_fu_556_p3 = {{tmp_106_fu_551_p2}, {ap_const_lv3_0}};
+assign p_shl5_cast_fu_556_p3 = {{tmp_107_fu_551_p2}, {ap_const_lv3_0}};
 
-assign p_shl6_cast_fu_572_p1 = tmp_74_fu_564_p3;
+assign p_shl6_cast_fu_572_p1 = tmp_75_fu_564_p3;
 
-assign p_shl7_cast_fu_355_p3 = {{tmp_70_fu_351_p1}, {ap_const_lv3_0}};
+assign p_shl7_cast_fu_355_p3 = {{tmp_71_fu_351_p1}, {ap_const_lv3_0}};
 
-assign p_shl8_cast_fu_371_p1 = $signed(tmp_71_fu_363_p3);
+assign p_shl8_cast_fu_371_p1 = $signed(tmp_72_fu_363_p3);
 
 assign p_shl_cast_fu_300_p1 = tmp_s_fu_292_p3;
 
@@ -941,79 +941,79 @@ assign tmp2_cast_fu_499_p1 = $signed(tmp2_fu_493_p2);
 
 assign tmp2_fu_493_p2 = ($signed(c_idx_reg_225) + $signed(ap_const_lv3_6));
 
-assign tmp3_fu_475_p2 = (tmp_72_fu_413_p3 | tmp_43_fu_421_p2);
+assign tmp3_fu_475_p2 = (tmp_73_fu_413_p3 | tmp_41_fu_421_p2);
 
-assign tmp4_fu_522_p2 = (tmp_73_fu_508_p3 | tmp_47_fu_516_p2);
+assign tmp4_fu_522_p2 = (tmp_74_fu_508_p3 | tmp_45_fu_516_p2);
 
-assign tmp_100_fu_431_p3 = {{r_idx_reg_202}, {ap_const_lv2_0}};
+assign tmp_100_fu_381_p2 = (tmp_99_fu_375_p2 + tmp_cast_reg_665);
 
-assign tmp_101_fu_443_p2 = (tmp_44_cast_fu_427_p1 + p_shl4_cast_fu_439_p1);
+assign tmp_101_fu_431_p3 = {{r_idx_reg_202}, {ap_const_lv2_0}};
 
-assign tmp_102_fu_449_p3 = {{slide_in_r_idx_fu_408_p2}, {ap_const_lv5_0}};
+assign tmp_102_fu_443_p2 = (tmp_42_cast_fu_427_p1 + p_shl4_cast_fu_439_p1);
 
-assign tmp_103_fu_457_p3 = {{slide_in_r_idx_fu_408_p2}, {ap_const_lv2_0}};
+assign tmp_103_fu_449_p3 = {{slide_in_r_idx_fu_408_p2}, {ap_const_lv5_0}};
 
-assign tmp_104_fu_469_p2 = ($signed(tmp_102_fu_449_p3) - $signed(p_shl3_cast_fu_465_p1));
+assign tmp_104_fu_457_p3 = {{slide_in_r_idx_fu_408_p2}, {ap_const_lv2_0}};
 
-assign tmp_105_fu_537_p2 = ($signed(tmp_cast_82_fu_533_p1) + $signed(tmp_104_reg_724));
+assign tmp_105_fu_469_p2 = ($signed(tmp_103_fu_449_p3) - $signed(p_shl3_cast_fu_465_p1));
 
-assign tmp_106_fu_551_p2 = (tmp_48_cast_fu_547_p1 + tmp_101_reg_719);
+assign tmp_106_fu_537_p2 = ($signed(tmp_46_cast_fu_533_p1) + $signed(tmp_105_reg_724));
 
-assign tmp_107_fu_576_p2 = (p_shl5_cast_fu_556_p3 - p_shl6_cast_fu_572_p1);
+assign tmp_107_fu_551_p2 = (tmp_47_cast_fu_547_p1 + tmp_102_reg_719);
 
-assign tmp_108_fu_582_p2 = (tmp_cast9_reg_660 + tmp_107_fu_576_p2);
+assign tmp_108_fu_576_p2 = (p_shl5_cast_fu_556_p3 - p_shl6_cast_fu_572_p1);
 
-assign tmp_130_cast_fu_322_p1 = $signed(tmp_96_fu_316_p2);
+assign tmp_109_fu_582_p2 = (tmp_cast9_reg_660 + tmp_108_fu_576_p2);
 
-assign tmp_135_cast_fu_648_p1 = tmp_99_reg_706;
+assign tmp_130_cast_fu_322_p1 = $signed(tmp_97_fu_316_p2);
 
-assign tmp_141_cast_fu_542_p1 = $signed(tmp_105_fu_537_p2);
+assign tmp_135_cast_fu_648_p1 = tmp_100_reg_706;
 
-assign tmp_146_cast_fu_587_p1 = tmp_108_fu_582_p2;
+assign tmp_141_cast_fu_542_p1 = $signed(tmp_106_fu_537_p2);
 
-assign tmp_33_fu_602_p4 = {{x_assign_to_int_fu_599_p1[ap_const_lv32_1E : ap_const_lv32_17]}};
+assign tmp_146_cast_fu_587_p1 = tmp_109_fu_582_p2;
 
-assign tmp_35_fu_628_p2 = (notrhs_fu_622_p2 | notlhs_fu_616_p2);
+assign tmp_34_fu_602_p4 = {{x_assign_to_int_fu_599_p1[ap_const_lv32_1E : ap_const_lv32_17]}};
 
-assign tmp_36_fu_246_opcode = ap_const_lv5_2;
+assign tmp_36_fu_628_p2 = (notrhs_fu_622_p2 | notlhs_fu_616_p2);
 
-assign tmp_37_fu_634_p2 = (tmp_35_fu_628_p2 & tmp_36_fu_246_p2);
+assign tmp_37_fu_246_opcode = ap_const_lv5_2;
 
-assign tmp_41_cast_fu_342_p1 = out_c_idx_reg_153;
+assign tmp_38_fu_634_p2 = (tmp_36_fu_628_p2 & tmp_37_fu_246_p2);
 
-assign tmp_43_fu_421_p2 = ($signed(slide_in_r_idx_fu_408_p2) > $signed(6'b11011)? 1'b1: 1'b0);
+assign tmp_39_cast_fu_342_p1 = out_c_idx_reg_153;
 
-assign tmp_44_cast_fu_427_p1 = r_idx_reg_202;
+assign tmp_41_fu_421_p2 = ($signed(slide_in_r_idx_fu_408_p2) > $signed(6'b11011)? 1'b1: 1'b0);
 
-assign tmp_47_fu_516_p2 = ($signed(slide_in_c_idx_fu_503_p2) > $signed(6'b11011)? 1'b1: 1'b0);
+assign tmp_42_cast_fu_427_p1 = r_idx_reg_202;
 
-assign tmp_48_cast_fu_547_p1 = c_idx_reg_225;
+assign tmp_45_fu_516_p2 = ($signed(slide_in_c_idx_fu_503_p2) > $signed(6'b11011)? 1'b1: 1'b0);
 
-assign tmp_69_fu_612_p1 = x_assign_to_int_fu_599_p1[22:0];
+assign tmp_46_cast_fu_533_p1 = $signed(slide_in_c_idx_fu_503_p2);
 
-assign tmp_70_fu_351_p1 = tmp_97_fu_346_p2[10:0];
+assign tmp_47_cast_fu_547_p1 = c_idx_reg_225;
 
-assign tmp_71_fu_363_p3 = {{tmp_97_fu_346_p2}, {ap_const_lv1_0}};
+assign tmp_70_fu_612_p1 = x_assign_to_int_fu_599_p1[22:0];
 
-assign tmp_72_fu_413_p3 = slide_in_r_idx_fu_408_p2[ap_const_lv32_5];
+assign tmp_71_fu_351_p1 = tmp_98_fu_346_p2[10:0];
 
-assign tmp_73_fu_508_p3 = slide_in_c_idx_fu_503_p2[ap_const_lv32_5];
+assign tmp_72_fu_363_p3 = {{tmp_98_fu_346_p2}, {ap_const_lv1_0}};
 
-assign tmp_74_fu_564_p3 = {{tmp_106_fu_551_p2}, {ap_const_lv1_0}};
+assign tmp_73_fu_413_p3 = slide_in_r_idx_fu_408_p2[ap_const_lv32_5];
 
-assign tmp_95_fu_304_p3 = {{out_r_idx_reg_142}, {ap_const_lv2_0}};
+assign tmp_74_fu_508_p3 = slide_in_c_idx_fu_503_p2[ap_const_lv32_5];
 
-assign tmp_96_fu_316_p2 = (p_shl_cast_fu_300_p1 - p_shl1_cast_fu_312_p1);
+assign tmp_75_fu_564_p3 = {{tmp_107_fu_551_p2}, {ap_const_lv1_0}};
 
-assign tmp_97_fu_346_p2 = ($signed(tmp_130_cast_reg_688) + $signed(tmp_41_cast_fu_342_p1));
+assign tmp_96_fu_304_p3 = {{out_r_idx_reg_142}, {ap_const_lv2_0}};
 
-assign tmp_98_fu_375_p2 = ($signed(p_shl7_cast_fu_355_p3) - $signed(p_shl8_cast_fu_371_p1));
+assign tmp_97_fu_316_p2 = (p_shl_cast_fu_300_p1 - p_shl1_cast_fu_312_p1);
 
-assign tmp_99_fu_381_p2 = (tmp_98_fu_375_p2 + tmp_cast_reg_665);
+assign tmp_98_fu_346_p2 = ($signed(tmp_130_cast_reg_688) + $signed(tmp_39_cast_fu_342_p1));
+
+assign tmp_99_fu_375_p2 = ($signed(p_shl7_cast_fu_355_p3) - $signed(p_shl8_cast_fu_371_p1));
 
 assign tmp_cast9_fu_268_p1 = filter_idx_reg_131;
-
-assign tmp_cast_82_fu_533_p1 = $signed(slide_in_c_idx_fu_503_p2);
 
 assign tmp_cast_fu_272_p1 = filter_idx_reg_131;
 
@@ -1030,7 +1030,7 @@ always @ (posedge ap_clk) begin
     out_r_idx_cast_reg_675[5] <= 1'b0;
     tmp_130_cast_reg_688[1:0] <= 2'b00;
     out_c_idx_cast_reg_693[5] <= 1'b0;
-    tmp_104_reg_724[1:0] <= 2'b00;
+    tmp_105_reg_724[1:0] <= 2'b00;
 end
 
 
