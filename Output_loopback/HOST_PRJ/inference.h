@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* Filter2, int* bias2, int* Filter3, int* bias3, int* fcWeight, int* fcBias, int* smWeight, int* smBias, float* outDigit, short* outputImage_address0, char* outputImage_ce0, char* outputImage_we0, int* outputImage_d0, int debug_level);
+double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* Filter2, int* bias2, int* Filter3, int* bias3, int* fcWeight, int* fcBias, int* smWeight, int* smBias, int* outputImage, float* outDigit, int debug_level);
 
 #ifdef __cplusplus
 }

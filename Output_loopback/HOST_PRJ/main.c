@@ -35,11 +35,8 @@ int main(int argc, char** argv) {
     int* fcBias;
     int* smWeight;
     int* smBias;
+    int* outputImage;
     float* outDigit;
-    short outputImage_address0;
-    char outputImage_ce0;
-    char outputImage_we0;
-    int outputImage_d0;
 
     //Malloc user buffers
 
@@ -109,6 +106,12 @@ int main(int argc, char** argv) {
         return -1;
     }
 
+    outputImage = (int *)malloc(784*4);
+    if (outputImage == NULL) {
+        printf("Can not alloc memory for the variable 'outputImage' for 3136 bytes");
+        return -1;
+    }
+
     outDigit = (float *)malloc(1*4);
     if (outDigit == NULL) {
         printf("Can not alloc memory for the variable 'outDigit' for 4 bytes");
@@ -173,7 +176,7 @@ int main(int argc, char** argv) {
 
     //Call the user function 
     GET_TIME_VAL(0);
-    run_time_ms = inference(fpga, inputImage, Filter1, bias1, Filter2, bias2, Filter3, bias3, fcWeight, fcBias, smWeight, smBias, outDigit, &outputImage_address0, &outputImage_ce0, &outputImage_we0, &outputImage_d0, DEBUG_LEVEL);
+    run_time_ms = inference(fpga, inputImage, Filter1, bias1, Filter2, bias2, Filter3, bias3, fcWeight, fcBias, smWeight, smBias, outputImage, outDigit, DEBUG_LEVEL);
 
     GET_TIME_VAL(1);
     printf("The FPGA module running costed %f ms\n", run_time_ms);
@@ -184,10 +187,10 @@ int main(int argc, char** argv) {
 
     //TODO: Process the output data
 
-    printf("outputImage_address0 = %d (0x%x)\n",outputImage_address0, outputImage_address0);
-    printf("outputImage_ce0 = %d (0x%x)\n",outputImage_ce0, outputImage_ce0);
-    printf("outputImage_we0 = %d (0x%x)\n",outputImage_we0, outputImage_we0);
-    printf("outputImage_d0 = %d (0x%x)\n",outputImage_d0, outputImage_d0);
+    for (i = 0; i < 10; i ++) {
+        printf("outputImage[%d] = %d (0x%x)\n",i, outputImage[i], outputImage[i]);
+    }
+
     for (i = 0; i < 1; i ++) {
         printf("outDigit[%d] = %f (0x%x)\n",i, outDigit[i], outDigit[i]);
     }

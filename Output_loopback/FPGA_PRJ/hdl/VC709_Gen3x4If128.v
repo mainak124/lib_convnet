@@ -479,7 +479,7 @@ module VC709_Gen3x4If128
 
     //
     //CHNL 0 : GPIO
-    localparam C_GPIO_WIDTH = 1297;
+    localparam C_GPIO_WIDTH = 1381;
         wire [C_GPIO_WIDTH - 1:0] gpo;
         wire [C_GPIO_WIDTH - 1:0] gpi;
 
@@ -966,6 +966,47 @@ module VC709_Gen3x4If128
     //
     //CHNL 2 TX
 
+    wire [31:0] m0_outputImage_tdata;
+    wire m0_outputImage_tvalid;
+    wire m0_outputImage_tready;
+    wire m0_outputImage_tlast;
+    wire [31:0] m0_outputImage_start_ticks;
+    wire [31:0] m0_outputImage_end_ticks;
+    wire [31:0] m0_outputImage_data_bytes;
+    wire [31:0] m0_outputImage_len;
+
+    localparam C_M0_OUTPUTIMAGE_CHNL=2;
+
+    riffa_axis_s #(
+        .C_AXIS_DATA_WIDTH(32) ,
+        .C_PCI_DATA_WIDTH    (C_PCI_DATA_WIDTH),
+        .C_COUNTER           (1),
+        .C_COUNTER_WIDTH     (32),
+        .C_COUNTER_DIV       (0))
+    as2 (
+        .S_AXIS_RSTN         (MAIN_RSTN),
+        .S_AXIS_CLK          (MAIN_CLK),
+        .S_AXIS_TVALID       (m0_outputImage_tvalid),
+        .S_AXIS_TLAST        (m0_outputImage_tlast),
+        .S_AXIS_TREADY       (m0_outputImage_tready),
+        .S_AXIS_TDATA        (m0_outputImage_tdata),
+        .S_AXIS_LEN          (m0_outputImage_len),
+        .CHNL_TX_CLK         (chnl_tx_clk[C_M0_OUTPUTIMAGE_CHNL]),
+        .CHNL_TX             (chnl_tx[C_M0_OUTPUTIMAGE_CHNL]),
+        .CHNL_TX_ACK         (chnl_tx_ack[C_M0_OUTPUTIMAGE_CHNL]),
+        .CHNL_TX_LAST        (chnl_tx_last[C_M0_OUTPUTIMAGE_CHNL]),
+        .CHNL_TX_LEN         (chnl_tx_len[`SIG_CHNL_LENGTH_W*C_M0_OUTPUTIMAGE_CHNL +:`SIG_CHNL_LENGTH_W]),
+        .CHNL_TX_OFF         (chnl_tx_off[`SIG_CHNL_OFFSET_W*C_M0_OUTPUTIMAGE_CHNL +:`SIG_CHNL_OFFSET_W]),
+        .CHNL_TX_DATA        (chnl_tx_data[C_PCI_DATA_WIDTH*C_M0_OUTPUTIMAGE_CHNL +:C_PCI_DATA_WIDTH]),
+        .CHNL_TX_DATA_VALID  (chnl_tx_data_valid[C_M0_OUTPUTIMAGE_CHNL]),
+        .CHNL_TX_DATA_REN    (chnl_tx_data_ren[C_M0_OUTPUTIMAGE_CHNL]),
+        .START_TICKS         (m0_outputImage_start_ticks),
+        .END_TICKS           (m0_outputImage_end_ticks),
+        .DATA_BYTES          (m0_outputImage_data_bytes));
+
+    //
+    //CHNL 3 TX
+
     (* mark_debug = "true" *) wire [31:0] m0_outDigit_tdata;
     (* mark_debug = "true" *) wire m0_outDigit_tvalid;
     (* mark_debug = "true" *) wire m0_outDigit_tready;
@@ -975,7 +1016,7 @@ module VC709_Gen3x4If128
     wire [31:0] m0_outDigit_data_bytes;
     (* mark_debug = "true" *) wire [31:0] m0_outDigit_len;
 
-    localparam C_M0_OUTDIGIT_CHNL=2;
+    localparam C_M0_OUTDIGIT_CHNL=3;
 
     riffa_axis_s #(
         .C_AXIS_DATA_WIDTH(32) ,
@@ -983,7 +1024,7 @@ module VC709_Gen3x4If128
         .C_COUNTER           (1),
         .C_COUNTER_WIDTH     (32),
         .C_COUNTER_DIV       (0))
-    as2 (
+    as3 (
         .S_AXIS_RSTN         (MAIN_RSTN),
         .S_AXIS_CLK          (MAIN_CLK),
         .S_AXIS_TVALID       (m0_outDigit_tvalid),
@@ -1006,13 +1047,6 @@ module VC709_Gen3x4If128
     
     //
     //Unused TX CHNLs
-    assign chnl_tx_clk[3] = MAIN_CLK;
-    assign chnl_tx[3] = 1'b0;
-    assign chnl_tx_last[3] = 1'b0;
-    assign chnl_tx_len[`SIG_CHNL_LENGTH_W*3+:`SIG_CHNL_LENGTH_W] = 'b0;
-    assign chnl_tx_off[`SIG_CHNL_OFFSET_W*3+:`SIG_CHNL_OFFSET_W] = 'b0;
-    assign chnl_tx_data[C_PCI_DATA_WIDTH*3+:C_PCI_DATA_WIDTH] = 'b0;
-    assign chnl_tx_data_valid[3] = 1'b0;
     assign chnl_tx_clk[4] = MAIN_CLK;
     assign chnl_tx[4] = 1'b0;
     assign chnl_tx_last[4] = 1'b0;
@@ -1088,10 +1122,6 @@ module VC709_Gen3x4If128
     wire m0_ap_done;
     wire m0_ap_idle;
     wire m0_ap_ready;
-    wire [15:0] m0_outputImage_address0;
-    wire m0_outputImage_ce0;
-    wire m0_outputImage_we0;
-    wire [31:0] m0_outputImage_d0;
     wire [31:0] m0_start_ticks;
     wire [31:0] m0_done_ticks;
     
@@ -1130,16 +1160,21 @@ module VC709_Gen3x4If128
     assign gpi[960+:32] = m0_smBias_start_ticks;
     assign gpi[992+:32] = m0_smBias_end_ticks;
     assign gpi[1024+:32] = m0_smBias_data_bytes;
-    assign m0_outDigit_len = (gpo[1087:1056])? gpo[1087:1056] : 1;
+    assign m0_outputImage_len = (gpo[1087:1056])? gpo[1087:1056] : 784;
     assign gpi[1087:1056] = gpo[1087:1056];
-    assign gpi[1088+:32] = m0_outDigit_start_ticks;
-    assign gpi[1120+:32] = m0_outDigit_end_ticks;
-    assign gpi[1152+:32] = m0_outDigit_data_bytes;
+    assign gpi[1088+:32] = m0_outputImage_start_ticks;
+    assign gpi[1120+:32] = m0_outputImage_end_ticks;
+    assign gpi[1152+:32] = m0_outputImage_data_bytes;
+    assign m0_outDigit_len = (gpo[1215:1184])? gpo[1215:1184] : 1;
+    assign gpi[1215:1184] = gpo[1215:1184];
+    assign gpi[1216+:32] = m0_outDigit_start_ticks;
+    assign gpi[1248+:32] = m0_outDigit_end_ticks;
+    assign gpi[1280+:32] = m0_outDigit_data_bytes;
     assign m0_ap_clk = MAIN_CLK;
-    assign m0_ap_rst_n = MAIN_RSTN & ~gpo[1184];
-    assign gpi[1184] = gpo[1184];
-    assign m0_ap_start = gpo[1185];
-    assign gpi[1185] = gpo[1185];
+    assign m0_ap_rst_n = MAIN_RSTN & ~gpo[1312];
+    assign gpi[1312] = gpo[1312];
+    assign m0_ap_start = gpo[1313];
+    assign gpi[1313] = gpo[1313];
 
     reg m0_ap_done_holder;
 
@@ -1155,15 +1190,11 @@ module VC709_Gen3x4If128
         end
     end
 
-    assign gpi[1186] = m0_ap_done_holder;
-    assign gpi[1187] = m0_ap_idle;
-    assign gpi[1188] = m0_ap_ready;
-    assign gpi[1198:1189] = m0_outputImage_address0;
-    assign gpi[1199] = m0_outputImage_ce0;
-    assign gpi[1200] = m0_outputImage_we0;
-    assign gpi[1232:1201] = m0_outputImage_d0;
-    assign gpi[1233+:32] = m0_start_ticks;
-    assign gpi[1265+:32] = m0_done_ticks;
+    assign gpi[1314] = m0_ap_done_holder;
+    assign gpi[1315] = m0_ap_idle;
+    assign gpi[1316] = m0_ap_ready;
+    assign gpi[1317+:32] = m0_start_ticks;
+    assign gpi[1349+:32] = m0_done_ticks;
 
     pfm_counter #(
         .CHANNEL_NUM(2),
@@ -1209,6 +1240,9 @@ module VC709_Gen3x4If128
         .smBias_TDATA        (m0_smBias_tdata),
         .smBias_TVALID       (m0_smBias_tvalid),
         .smBias_TREADY       (m0_smBias_tready),
+        .outputImage_TDATA   (m0_outputImage_tdata),
+        .outputImage_TVALID  (m0_outputImage_tvalid),
+        .outputImage_TREADY  (m0_outputImage_tready),
         .outDigit_TDATA      (m0_outDigit_tdata),
         .outDigit_TVALID     (m0_outDigit_tvalid),
         .outDigit_TREADY     (m0_outDigit_tready),
@@ -1217,12 +1251,9 @@ module VC709_Gen3x4If128
         .ap_start            (m0_ap_start),
         .ap_done             (m0_ap_done),
         .ap_idle             (m0_ap_idle),
-        .ap_ready            (m0_ap_ready),
-        .outputImage_address0(m0_outputImage_address0),
-        .outputImage_ce0     (m0_outputImage_ce0),
-        .outputImage_we0     (m0_outputImage_we0),
-        .outputImage_d0      (m0_outputImage_d0));
+        .ap_ready            (m0_ap_ready));
 
+    assign m0_outputImage_tlast = 1'b0;
     assign m0_outDigit_tlast = 1'b0;
 
 //RIFFA auto generated code end

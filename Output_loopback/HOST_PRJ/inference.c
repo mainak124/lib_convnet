@@ -15,7 +15,7 @@
 #define MAINCLK_DIV 2
 #define PFM_TICK_DIV 1
 
-double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* Filter2, int* bias2, int* Filter3, int* bias3, int* fcWeight, int* fcBias, int* smWeight, int* smBias, float* outDigit, short* outputImage_address0, char* outputImage_ce0, char* outputImage_we0, int* outputImage_d0, int debug_level) {
+double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* Filter2, int* bias2, int* Filter3, int* bias3, int* fcWeight, int* fcBias, int* smWeight, int* smBias, int* outputImage, float* outDigit, int debug_level) {
     int i;
     double run_time_ms;
     FPGA_PORT ports[FPGA_PORT_NUM];
@@ -187,11 +187,26 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr = &ports[11];
-    sprintf(ptr->port_name, "%s", "m0_outDigit");
+    sprintf(ptr->port_name, "%s", "m0_outputImage");
     ptr->style = PORT_AXIS;
     ptr->bit_pos = 1056;
     ptr->direction = DIR_OUT;
     ptr->channel = 2;
+    ptr->width = 32;
+    ptr->c_width = 32;
+    ptr->words = 784;
+    ptr->addr = 0;
+    ptr->last = 1;
+    ptr->off = 0;
+    ptr->timeout = 10000;
+    ptr->fpga = fpga;
+
+    ptr = &ports[12];
+    sprintf(ptr->port_name, "%s", "m0_outDigit");
+    ptr->style = PORT_AXIS;
+    ptr->bit_pos = 1184;
+    ptr->direction = DIR_OUT;
+    ptr->channel = 3;
     ptr->width = 32;
     ptr->c_width = 32;
     ptr->words = 1;
@@ -201,7 +216,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[12];
+    ptr = &ports[13];
     sprintf(ptr->port_name, "%s", "m0_ap_clk");
     ptr->direction = DIR_AP_UNKNOW;
     ptr->channel = 0;
@@ -214,10 +229,10 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[13];
+    ptr = &ports[14];
     sprintf(ptr->port_name, "%s", "m0_ap_rst_n");
     ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1184;
+    ptr->bit_pos = 1312;
     ptr->direction = DIR_AP_RST;
     ptr->channel = 0;
     ptr->width = 1;
@@ -229,10 +244,10 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[14];
+    ptr = &ports[15];
     sprintf(ptr->port_name, "%s", "m0_ap_start");
     ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1185;
+    ptr->bit_pos = 1313;
     ptr->direction = DIR_AP_START;
     ptr->channel = 0;
     ptr->width = 1;
@@ -244,10 +259,10 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[15];
+    ptr = &ports[16];
     sprintf(ptr->port_name, "%s", "m0_ap_done");
     ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1186;
+    ptr->bit_pos = 1314;
     ptr->direction = DIR_AP_DONE;
     ptr->channel = 0;
     ptr->width = 1;
@@ -259,10 +274,10 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[16];
+    ptr = &ports[17];
     sprintf(ptr->port_name, "%s", "m0_ap_idle");
     ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1187;
+    ptr->bit_pos = 1315;
     ptr->direction = DIR_AP_IDLE;
     ptr->channel = 0;
     ptr->width = 1;
@@ -274,10 +289,10 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[17];
+    ptr = &ports[18];
     sprintf(ptr->port_name, "%s", "m0_ap_ready");
     ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1188;
+    ptr->bit_pos = 1316;
     ptr->direction = DIR_AP_READY;
     ptr->channel = 0;
     ptr->width = 1;
@@ -289,29 +304,14 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[18];
-    sprintf(ptr->port_name, "%s", "m0_outputImage_address0");
-    ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1189;
-    ptr->direction = DIR_OUT;
-    ptr->channel = 0;
-    ptr->width = 10;
-    ptr->c_width = 16;
-    ptr->words = 1;
-    ptr->addr = 0;
-    ptr->last = 1;
-    ptr->off = 0;
-    ptr->timeout = 10000;
-    ptr->fpga = fpga;
-
     ptr = &ports[19];
-    sprintf(ptr->port_name, "%s", "m0_outputImage_ce0");
-    ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1199;
+    sprintf(ptr->port_name, "%s", "Module m0_inference start");
+    ptr->bit_pos = 1317;
+    ptr->style = PORT_PFM_COUNTER;
     ptr->direction = DIR_OUT;
     ptr->channel = 0;
-    ptr->width = 1;
-    ptr->c_width = 8;
+    ptr->width = 32;
+    ptr->c_width = 32;
     ptr->words = 1;
     ptr->addr = 0;
     ptr->last = 1;
@@ -320,13 +320,13 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr = &ports[20];
-    sprintf(ptr->port_name, "%s", "m0_outputImage_we0");
-    ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1200;
+    sprintf(ptr->port_name, "%s", "Module m0_inference done");
+    ptr->bit_pos = 1349;
+    ptr->style = PORT_PFM_COUNTER;
     ptr->direction = DIR_OUT;
     ptr->channel = 0;
-    ptr->width = 1;
-    ptr->c_width = 8;
+    ptr->width = 32;
+    ptr->c_width = 32;
     ptr->words = 1;
     ptr->addr = 0;
     ptr->last = 1;
@@ -335,51 +335,6 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr = &ports[21];
-    sprintf(ptr->port_name, "%s", "m0_outputImage_d0");
-    ptr->style = PORT_SCALAR;
-    ptr->bit_pos = 1201;
-    ptr->direction = DIR_OUT;
-    ptr->channel = 0;
-    ptr->width = 32;
-    ptr->c_width = 32;
-    ptr->words = 1;
-    ptr->addr = 0;
-    ptr->last = 1;
-    ptr->off = 0;
-    ptr->timeout = 10000;
-    ptr->fpga = fpga;
-
-    ptr = &ports[22];
-    sprintf(ptr->port_name, "%s", "Module m0_inference start");
-    ptr->bit_pos = 1233;
-    ptr->style = PORT_PFM_COUNTER;
-    ptr->direction = DIR_OUT;
-    ptr->channel = 0;
-    ptr->width = 32;
-    ptr->c_width = 32;
-    ptr->words = 1;
-    ptr->addr = 0;
-    ptr->last = 1;
-    ptr->off = 0;
-    ptr->timeout = 10000;
-    ptr->fpga = fpga;
-
-    ptr = &ports[23];
-    sprintf(ptr->port_name, "%s", "Module m0_inference done");
-    ptr->bit_pos = 1265;
-    ptr->style = PORT_PFM_COUNTER;
-    ptr->direction = DIR_OUT;
-    ptr->channel = 0;
-    ptr->width = 32;
-    ptr->c_width = 32;
-    ptr->words = 1;
-    ptr->addr = 0;
-    ptr->last = 1;
-    ptr->off = 0;
-    ptr->timeout = 10000;
-    ptr->fpga = fpga;
-
-    ptr = &ports[24];
     sprintf(ptr->port_name, "%s", "AXIS m0_inputImage start at");
     ptr->bit_pos = 0;
     ptr->style = PORT_PFM_COUNTER;
@@ -394,7 +349,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[25];
+    ptr = &ports[22];
     sprintf(ptr->port_name, "%s", "AXIS m0_inputImage end at");
     ptr->bit_pos = 32;
     ptr->style = PORT_PFM_COUNTER;
@@ -409,7 +364,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[26];
+    ptr = &ports[23];
     sprintf(ptr->port_name, "%s", "AXIS m0_inputImage transferred bytes");
     ptr->bit_pos = 64;
     ptr->style = PORT_PFM_COUNTER;
@@ -425,7 +380,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[27];
+    ptr = &ports[24];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter1 start at");
     ptr->bit_pos = 96;
     ptr->style = PORT_PFM_COUNTER;
@@ -440,7 +395,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[28];
+    ptr = &ports[25];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter1 end at");
     ptr->bit_pos = 128;
     ptr->style = PORT_PFM_COUNTER;
@@ -455,7 +410,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[29];
+    ptr = &ports[26];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter1 transferred bytes");
     ptr->bit_pos = 160;
     ptr->style = PORT_PFM_COUNTER;
@@ -471,7 +426,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[30];
+    ptr = &ports[27];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias1 start at");
     ptr->bit_pos = 192;
     ptr->style = PORT_PFM_COUNTER;
@@ -486,7 +441,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[31];
+    ptr = &ports[28];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias1 end at");
     ptr->bit_pos = 224;
     ptr->style = PORT_PFM_COUNTER;
@@ -501,7 +456,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[32];
+    ptr = &ports[29];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias1 transferred bytes");
     ptr->bit_pos = 256;
     ptr->style = PORT_PFM_COUNTER;
@@ -517,7 +472,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[33];
+    ptr = &ports[30];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter2 start at");
     ptr->bit_pos = 288;
     ptr->style = PORT_PFM_COUNTER;
@@ -532,7 +487,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[34];
+    ptr = &ports[31];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter2 end at");
     ptr->bit_pos = 320;
     ptr->style = PORT_PFM_COUNTER;
@@ -547,7 +502,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[35];
+    ptr = &ports[32];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter2 transferred bytes");
     ptr->bit_pos = 352;
     ptr->style = PORT_PFM_COUNTER;
@@ -563,7 +518,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[36];
+    ptr = &ports[33];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias2 start at");
     ptr->bit_pos = 384;
     ptr->style = PORT_PFM_COUNTER;
@@ -578,7 +533,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[37];
+    ptr = &ports[34];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias2 end at");
     ptr->bit_pos = 416;
     ptr->style = PORT_PFM_COUNTER;
@@ -593,7 +548,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[38];
+    ptr = &ports[35];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias2 transferred bytes");
     ptr->bit_pos = 448;
     ptr->style = PORT_PFM_COUNTER;
@@ -609,7 +564,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[39];
+    ptr = &ports[36];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter3 start at");
     ptr->bit_pos = 480;
     ptr->style = PORT_PFM_COUNTER;
@@ -624,7 +579,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[40];
+    ptr = &ports[37];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter3 end at");
     ptr->bit_pos = 512;
     ptr->style = PORT_PFM_COUNTER;
@@ -639,7 +594,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[41];
+    ptr = &ports[38];
     sprintf(ptr->port_name, "%s", "AXIS m0_Filter3 transferred bytes");
     ptr->bit_pos = 544;
     ptr->style = PORT_PFM_COUNTER;
@@ -655,7 +610,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[42];
+    ptr = &ports[39];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias3 start at");
     ptr->bit_pos = 576;
     ptr->style = PORT_PFM_COUNTER;
@@ -670,7 +625,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[43];
+    ptr = &ports[40];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias3 end at");
     ptr->bit_pos = 608;
     ptr->style = PORT_PFM_COUNTER;
@@ -685,7 +640,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[44];
+    ptr = &ports[41];
     sprintf(ptr->port_name, "%s", "AXIS m0_bias3 transferred bytes");
     ptr->bit_pos = 640;
     ptr->style = PORT_PFM_COUNTER;
@@ -701,7 +656,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[45];
+    ptr = &ports[42];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcWeight start at");
     ptr->bit_pos = 672;
     ptr->style = PORT_PFM_COUNTER;
@@ -716,7 +671,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[46];
+    ptr = &ports[43];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcWeight end at");
     ptr->bit_pos = 704;
     ptr->style = PORT_PFM_COUNTER;
@@ -731,7 +686,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[47];
+    ptr = &ports[44];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcWeight transferred bytes");
     ptr->bit_pos = 736;
     ptr->style = PORT_PFM_COUNTER;
@@ -747,7 +702,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[48];
+    ptr = &ports[45];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcBias start at");
     ptr->bit_pos = 768;
     ptr->style = PORT_PFM_COUNTER;
@@ -762,7 +717,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[49];
+    ptr = &ports[46];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcBias end at");
     ptr->bit_pos = 800;
     ptr->style = PORT_PFM_COUNTER;
@@ -777,7 +732,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[50];
+    ptr = &ports[47];
     sprintf(ptr->port_name, "%s", "AXIS m0_fcBias transferred bytes");
     ptr->bit_pos = 832;
     ptr->style = PORT_PFM_COUNTER;
@@ -793,7 +748,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[51];
+    ptr = &ports[48];
     sprintf(ptr->port_name, "%s", "AXIS m0_smWeight start at");
     ptr->bit_pos = 864;
     ptr->style = PORT_PFM_COUNTER;
@@ -808,7 +763,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[52];
+    ptr = &ports[49];
     sprintf(ptr->port_name, "%s", "AXIS m0_smWeight end at");
     ptr->bit_pos = 896;
     ptr->style = PORT_PFM_COUNTER;
@@ -823,7 +778,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[53];
+    ptr = &ports[50];
     sprintf(ptr->port_name, "%s", "AXIS m0_smWeight transferred bytes");
     ptr->bit_pos = 928;
     ptr->style = PORT_PFM_COUNTER;
@@ -839,7 +794,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
-    ptr = &ports[54];
+    ptr = &ports[51];
     sprintf(ptr->port_name, "%s", "AXIS m0_smBias start at");
     ptr->bit_pos = 960;
     ptr->style = PORT_PFM_COUNTER;
@@ -854,7 +809,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[55];
+    ptr = &ports[52];
     sprintf(ptr->port_name, "%s", "AXIS m0_smBias end at");
     ptr->bit_pos = 992;
     ptr->style = PORT_PFM_COUNTER;
@@ -869,7 +824,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->timeout = 10000;
     ptr->fpga = fpga;
 
-    ptr = &ports[56];
+    ptr = &ports[53];
     sprintf(ptr->port_name, "%s", "AXIS m0_smBias transferred bytes");
     ptr->bit_pos = 1024;
     ptr->style = PORT_PFM_COUNTER;
@@ -885,9 +840,55 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->fpga = fpga;
 
     ptr->style = PORT_DATA_COUNTER;
+    ptr = &ports[54];
+    sprintf(ptr->port_name, "%s", "AXIS m0_outputImage start at");
+    ptr->bit_pos = 1088;
+    ptr->style = PORT_PFM_COUNTER;
+    ptr->direction = DIR_OUT;
+    ptr->channel = 0;
+    ptr->width = 32;
+    ptr->c_width = 32;
+    ptr->words = 1;
+    ptr->addr = 0;
+    ptr->last = 1;
+    ptr->off = 0;
+    ptr->timeout = 10000;
+    ptr->fpga = fpga;
+
+    ptr = &ports[55];
+    sprintf(ptr->port_name, "%s", "AXIS m0_outputImage end at");
+    ptr->bit_pos = 1120;
+    ptr->style = PORT_PFM_COUNTER;
+    ptr->direction = DIR_OUT;
+    ptr->channel = 0;
+    ptr->width = 32;
+    ptr->c_width = 32;
+    ptr->words = 1;
+    ptr->addr = 0;
+    ptr->last = 1;
+    ptr->off = 0;
+    ptr->timeout = 10000;
+    ptr->fpga = fpga;
+
+    ptr = &ports[56];
+    sprintf(ptr->port_name, "%s", "AXIS m0_outputImage transferred bytes");
+    ptr->bit_pos = 1152;
+    ptr->style = PORT_PFM_COUNTER;
+    ptr->direction = DIR_OUT;
+    ptr->channel = 0;
+    ptr->width = 32;
+    ptr->c_width = 32;
+    ptr->words = 1;
+    ptr->addr = 0;
+    ptr->last = 1;
+    ptr->off = 0;
+    ptr->timeout = 10000;
+    ptr->fpga = fpga;
+
+    ptr->style = PORT_DATA_COUNTER;
     ptr = &ports[57];
     sprintf(ptr->port_name, "%s", "AXIS m0_outDigit start at");
-    ptr->bit_pos = 1088;
+    ptr->bit_pos = 1216;
     ptr->style = PORT_PFM_COUNTER;
     ptr->direction = DIR_OUT;
     ptr->channel = 0;
@@ -902,7 +903,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
 
     ptr = &ports[58];
     sprintf(ptr->port_name, "%s", "AXIS m0_outDigit end at");
-    ptr->bit_pos = 1120;
+    ptr->bit_pos = 1248;
     ptr->style = PORT_PFM_COUNTER;
     ptr->direction = DIR_OUT;
     ptr->channel = 0;
@@ -917,7 +918,7 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
 
     ptr = &ports[59];
     sprintf(ptr->port_name, "%s", "AXIS m0_outDigit transferred bytes");
-    ptr->bit_pos = 1152;
+    ptr->bit_pos = 1280;
     ptr->style = PORT_PFM_COUNTER;
     ptr->direction = DIR_OUT;
     ptr->channel = 0;
@@ -976,22 +977,14 @@ double inference(fpga_t* fpga, int* inputImage, int* Filter1, int* bias1, int* F
     ptr->dma_running = 0;
 
     ptr = &ports[11];
+    ptr->buffer = (void *)(outputImage);
+    ptr->dma_running = 0;
+
+    ptr = &ports[12];
     ptr->buffer = (void *)(outDigit);
     ptr->dma_running = 0;
 
     run_time_ms = riffa_run(ports, FPGA_PORT_NUM, debug_level);
-
-    ptr = &ports[18];
-    *outputImage_address0 = ptr->data;
-
-    ptr = &ports[19];
-    *outputImage_ce0 = ptr->data;
-
-    ptr = &ports[20];
-    *outputImage_we0 = ptr->data;
-
-    ptr = &ports[21];
-    *outputImage_d0 = ptr->data;
 
     riffa_performance(ports, FPGA_PORT_NUM, debug_level);
 
