@@ -20,6 +20,7 @@ void inference(
 	){
 #pragma HLS INTERFACE axis depth=5 port=outDigit
 #pragma HLS INTERFACE axis port=inputImage
+#pragma HLS INTERFACE axis port=outputImage
 #pragma HLS INTERFACE axis port=Filter1
 #pragma HLS INTERFACE axis port=bias1
 #pragma HLS INTERFACE axis port=Filter2

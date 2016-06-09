@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="10" Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/RIFFA_BUILDER/riffa/fpga/xilinx/vc709/VC709_Gen3x4If128/prj/VC709_Gen3x4If128.xpr">
+<Project Version="7" Minor="10" Path="/home/sakthi/uOpt/lib_convnet/Output_loopback/FPGA_PRJ/prj/VC709_Gen3x4If128.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="ee5dbb325de3470e81ad85e793306c9a"/>
@@ -18,6 +18,7 @@
     <Option Name="BoardPart" Val="xilinx.com:vc709:part0:1.5"/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../../../convnet_cpp/solution1/impl/ip"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
     <Option Name="IPUserFilesDir" Val="$PPRDIR/VC709_Gen3x4If128.ip_user_files"/>
@@ -27,265 +28,6 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/../hdl/riffa_axis_m.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/riffa_axis_s.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/riffa_gpio.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/riffa_bram.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/riffa_bram_core.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/axis_tester.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../hdl/pfm_counter.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_84_84_10_s.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b3.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN_1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc_T_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fexp_32ns_32ns_32_6_full_dsp.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fmul_32ns_32ns_32_2_max_dsp.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fadd_32ns_32ns_32_4_full_dsp.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_2.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fdiv_32ns_32ns_32_8.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fcmp_32ns_32ns_1_1.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_120_120_84_s.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="/home/sakthi/Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_0.v">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../hdl/riffa_hdl/shiftreg.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -687,6 +429,27 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fcmp_0_no_dsp_32/inference_ap_fcmp_0_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fadd_2_full_dsp_32/inference_ap_fadd_2_full_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fmul_0_max_dsp_32/inference_ap_fmul_0_max_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../hdl/riffa_hdl/demux.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -825,6 +588,41 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fmul_32ns_32ns_32_2_max_dsp.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fadd_32ns_32ns_32_4_full_dsp.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fcmp_32ns_32ns_1_1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fdiv_6_no_dsp_32/inference_ap_fdiv_6_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fexp_4_full_dsp_32/inference_ap_fexp_4_full_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../hdl/riffa_hdl/riffa.vh">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -908,6 +706,55 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_0.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_120_120_84_s.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fexp_32ns_32ns_32_6_full_dsp.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_softmax_1_10_s.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_84_84_10_s.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc_T_0.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fdiv_32ns_32ns_32_8.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../hdl/riffa_hdl/engine_layer.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -916,6 +763,174 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/../hdl/riffa_hdl/riffa.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN_1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b3.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_1.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_2.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/riffa_axis_m.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/riffa_axis_s.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/riffa_gpio.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/pfm_counter.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -936,8 +951,279 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/../../../convnet_cpp/solution1/impl/ip/hdl/verilog/inference.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/../hdl/VC709_Gen3x4If128.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/riffa_bram.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/riffa_bram_core.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../hdl/axis_tester.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W4.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_84_84_10_s.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_W5.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_x_in_0.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b3.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_poolOut2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f3.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_maxPoolNxN_1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_f1_0.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc_T_0.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fexp_32ns_32ns_32_6_full_dsp.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_convOutput1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fmul_32ns_32ns_32_2_max_dsp.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_b1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fadd_32ns_32ns_32_4_full_dsp.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_conv2d_2.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fdiv_32ns_32ns_32_8.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fcmp_32ns_32ns_1_1.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_mult_1_120_120_84_s.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_fc.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../../../../../Documents/EmbImgPro/riffa_plus_cnn/lib_convnet/convnet_cpp/solution1/impl/ip/hdl/verilog/inference_sm_T_0.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -986,6 +1272,80 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="inference_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/inference_0">
+      <File Path="$PSRCDIR/sources_1/ip/inference_0/inference_0.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0.vho"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0.veo"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0.xml"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="synth/inference_0.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="constraints/inference_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="sim/inference_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/ip/inference_ap_fcmp_0_no_dsp_32.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/ip/inference_ap_fexp_4_full_dsp_32.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/ip/inference_ap_fdiv_6_no_dsp_32.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fmul_32ns_32ns_32_2_max_dsp.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/ip/inference_ap_fmul_0_max_dsp_32.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/ip/inference_ap_fadd_2_full_dsp_32.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_f3.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fc_T_0.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_b2.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_conv2d.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_conv2d_2.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fdiv_32ns_32ns_32_8.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_sm.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_f2.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_mult_1_120_120_84_s.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_convOutput2.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fadd_32ns_32ns_32_4_full_dsp.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_softmax_1_10_s.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fc.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fcmp_32ns_32ns_1_1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_b3.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_convOutput1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_maxPoolNxN.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_x_in_0.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_poolOut1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_mult_1_84_84_10_s.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_b1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_sm_T_0.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_poolOut2.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_W5.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_conv2d_1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_f1_0.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_maxPoolNxN_1.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_dsp48_multadd_v3_0_1/hdl/xbip_dsp48_multadd_v3_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_bram18k_v3_0_1/hdl/xbip_bram18k_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_bram18k_v3_0_1/hdl/xbip_bram18k_v3_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="mult_gen_v12_0_10/hdl/mult_gen_v12_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="mult_gen_v12_0_10/hdl/mult_gen_v12_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0_stub.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0_stub.vhdl"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0_sim_netlist.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="inference_0_sim_netlist.vhdl"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="misc/logo.png"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_utils_v3_0_5/hdl/xbip_utils_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="axi_utils_v2_0_1/hdl/axi_utils_v2_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_pipe_v3_0_1/hdl/xbip_pipe_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_pipe_v3_0_1/hdl/xbip_pipe_v3_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_dsp48_wrapper_v3_0_4/hdl/xbip_dsp48_wrapper_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_dsp48_multadd_v3_0_1/hdl/xbip_dsp48_multadd_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_dsp48_addsub_v3_0_1/hdl/xbip_dsp48_addsub_v3_0_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="xbip_dsp48_addsub_v3_0_1/hdl/xbip_dsp48_addsub_v3_0.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="floating_point_v7_1_1/hdl/floating_point_v7_1_vh_rfs.vhd"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_W4.v"/>
+        <CompFileExtendedInfo CompFileName="inference_0.xci" FileRelPathName="hdl/verilog/inference_fexp_32ns_32ns_32_6_full_dsp.v"/>
+      </File>
+      <Config>
+        <Option Name="TopModule" Val="inference_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -1023,6 +1383,15 @@
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
     </Run>
+    <Run Id="inference_0_synth_1" Type="Ft3:Synth" SrcSet="inference_0" Part="xc7vx690tffg1761-2" ConstrsSet="inference_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/inference_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2015">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+    </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7vx690tffg1761-2" ConstrsSet="constrs_1" Description="Vivado Implementation Defaults" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2014"/>
@@ -1041,6 +1410,22 @@
     <Run Id="PCIeGen3x4If128_impl_1" Type="Ft2:EntireDesign" Part="xc7vx690tffg1761-2" ConstrsSet="PCIeGen3x4If128" Description="Vivado Implementation Defaults" SynthRun="PCIeGen3x4If128_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+    </Run>
+    <Run Id="inference_0_impl_1" Type="Ft2:EntireDesign" Part="xc7vx690tffg1761-2" ConstrsSet="inference_0" Description="Vivado Implementation Defaults" SynthRun="inference_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2015">
+          <Desc>Vivado Implementation Defaults</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
