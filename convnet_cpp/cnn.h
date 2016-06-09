@@ -134,6 +134,7 @@ void inference(
 		const DTYPE_T fcBias[FC_B_H][FC_B_W],
 		const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
 		const DTYPE_T smBias[SM_B_H][SM_B_W],
+		DTYPE_T outputImage[IN_H][IN_W][IN_C],
 		int& outDigit
 );
 

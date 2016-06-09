@@ -15,6 +15,7 @@ void inference(
 	const DTYPE_T fcBias[FC_B_H][FC_B_W],
 	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
 	const DTYPE_T smBias[SM_B_H][SM_B_W],
+	DTYPE_T outputImage[IN_H][IN_W][IN_C],
 	int& outDigit
 	){
 #pragma HLS INTERFACE axis depth=5 port=outDigit
@@ -63,10 +64,14 @@ void inference(
 	DTYPE_T smOut5[SM_OUT_H][SM_OUT_W];
 
 
-	for (int i = 0; i< IN_H; i++)
-		for (int j = 0; j< IN_W; j++)
-			inference_label0:for (int k = 0; k< IN_C; k++)
+	for (int i = 0; i< IN_H; i++){
+		for (int j = 0; j< IN_W; j++){
+			for (int k = 0; k< IN_C; k++){
 				x_in[i][j][k] = inputImage[i][j][k];
+				outputImage[i][j][k] = inputImage[i][j][k];
+			}
+		}
+	}
 
 	for (int i = 0; i< F1_H; i++)
 		for (int j = 0; j< F1_W; j++)

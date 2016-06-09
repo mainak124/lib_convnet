@@ -9,6 +9,7 @@
 int main() {
 
 DTYPE_T x[IN_H][IN_W][IN_C];
+DTYPE_T outputImage[IN_H][IN_W][IN_C];
 DTYPE_T poolOut[P3_H][P3_W][P3_C];
 int smOut;
 
@@ -98,7 +99,7 @@ int smOut5;
 //		for (int j = 0; j< SM_B_W; j++)
 //				B5[i][j] = 0;
 
-	inference(x,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,smOut);
+	inference(x,f1,b1,f2,b2,f3,b3,W4,B4,W5,B5,outputImage,smOut);
       
 	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x, f1, b1, convOutput1, F1_S, F1_Z);
 	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);

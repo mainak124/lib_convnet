@@ -2,8 +2,8 @@
 # Vivado v2015.4 (64-bit)
 # SW Build 1412921 on Wed Nov 18 09:44:32 MST 2015
 # IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
-# Start of session at: Tue Jun  7 19:19:57 2016
-# Process ID: 13323
+# Start of session at: Wed Jun  8 19:23:16 2016
+# Process ID: 4292
 # Current directory: /home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/ip/vivado.log
@@ -29,8 +29,8 @@ INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inference_ap_fmul
     ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 
 source /home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Tue Jun  7 19:20:08 2016...
+INFO: [Common 17-206] Exiting Webtalk at Wed Jun  8 19:23:26 2016...
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2015.4/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Tue Jun  7 19:20:09 2016...
+INFO: [Common 17-206] Exiting Vivado at Wed Jun  8 19:23:27 2016...

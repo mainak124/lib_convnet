@@ -13,6 +13,7 @@
   <xd:arg xd:name="smWeight[][]" xd:originalName="smWeight" xd:direction="in" xd:interfaceRef="smWeight" xd:busTypeRef="axis" xd:arraySize="840" xd:dataWidth="32"/>
   <xd:arg xd:name="smBias[][]" xd:originalName="smBias" xd:direction="in" xd:interfaceRef="smBias" xd:busTypeRef="axis" xd:arraySize="10" xd:dataWidth="32"/>
   <xd:arg xd:name="outDigit" xd:originalName="outDigit" xd:direction="out" xd:interfaceRef="outDigit" xd:busTypeRef="axis" xd:arraySize="5" xd:dataWidth="32"/>
+  <xd:arg xd:name="outputImage_d0" xd:originalName="outputImage_d0" xd:direction="out" xd:interfaceRef="outputImage_d0" xd:busTypeRef="ap_memory" xd:arraySize="784" xd:dataWidth="32"/>
   <xd:latencyEstimates xd:best-case="3669112" xd:worst-case="3669112" xd:average-case="3669112"/>
   <xd:resourceEstimates xd:LUT="7221" xd:FF="6012" xd:BRAM="205" xd:DSP="36"/>
 </xd:acceleratorMap>
