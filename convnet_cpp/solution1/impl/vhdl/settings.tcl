@@ -8,12 +8,12 @@
 #
 # Settings for Vivado implementation flow
 #
-set top_module inference
+set top_module inference_3
 set language vhdl
-set family virtex7
-set device xc7vx690t
-set package ffg1761
-set speed -2
+set family zynq
+set device xc7z020
+set package clg484
+set speed -1
 set clock ap_clk
 set fsm_ext "off"
 

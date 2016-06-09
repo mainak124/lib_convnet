@@ -9,7 +9,7 @@ void inference_1(
 	const DTYPE_T bias1[O1_C],
 	const DTYPE_T Filter2[F2_H][F2_W][F2_C][F2_N],
 	const DTYPE_T bias2[O2_C],
-	DTYPE_T& poolOut2[P2_H][P2_W][P2_C]
+	DTYPE_T poolOut2[P2_H][P2_W][P2_C]
 	){
 #pragma HLS INTERFACE axis port=inputImage
 #pragma HLS INTERFACE axis port=Filter1
@@ -54,21 +54,6 @@ void inference_1(
 			inference_label4:for (int k = 0; k< O2_C; k++)
 				b2[k] = bias2[k];
 
-	for (int i = 0; i< FC_WT_H; i++)
-		inference_label7:for (int j = 0; j< FC_WT_W; j++)
-				W4[i][j] = fcWeight[i][j];
-
-	for (int i = 0; i< FC_B_H; i++)
-		inference_label8:for (int j = 0; j< FC_B_W; j++)
-				B4[i][j] = fcBias[i][j];
-
-	for (int i = 0; i< SM_WT_H; i++)
-		inference_label9:for (int j = 0; j< SM_WT_W; j++)
-				W5[i][j] = smWeight[i][j];
-
-	for (int i = 0; i< SM_B_H; i++)
-		inference_label10:for (int j = 0; j< SM_B_W; j++)
-				B5[i][j] = smBias[i][j];
 
 	conv2d<IN_H,IN_W,IN_C,F1_H,F1_W,O1_H,O1_W,O1_C,F1_N>(x_in, f1, b1, convOutput1, F1_S, F1_Z);
 	maxPoolNxN<O1_H,O1_W,O1_C,P1_H,P1_W,P1_C,P1_F,P1_S>(convOutput1,poolOut1);
@@ -78,17 +63,16 @@ void inference_1(
 
 }
 void inference_2(
-	const DTYPE_T poolOut2[P2_H][P2_W][P2_C],
+	DTYPE_T poolOut2[P2_H][P2_W][P2_C],
 	const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
-	const DTYPE_T bias3[O3_C]
-	DTYPE_T& poolOut3[P3_H][P3_W][P3_C]) {
+	const DTYPE_T bias3[O3_C],
+	DTYPE_T convOutput3[O3_H][O3_W][O3_C]) {
 #pragma HLS INTERFACE axis port=Filter3
 #pragma HLS INTERFACE axis port=bias3
 
 
 	DTYPE_T f3[F3_H][F3_W][F3_C][F3_N];
 	DTYPE_T b3[O3_C];
-	DTYPE_T convOutput3[O3_H][O3_W][O3_C];
 	DTYPE_T lrnOutput3[O3_H][O3_W][O3_C];
 
 	for (int i = 0; i< F3_H; i++)
@@ -105,7 +89,7 @@ void inference_2(
 }
 
 void inference_3(
-	const DTYPE_T poolOut3[P3_H][P3_W][P3_C],
+	DTYPE_T convOutput3[O3_H][O3_W][O3_C],
 	const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
 	const DTYPE_T fcBias[FC_B_H][FC_B_W],
 	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
@@ -133,6 +117,22 @@ void inference_3(
 		for(int j=0; j<O3_W; j++)
 			inference_label11:for(int k=0; k<O3_C; k++)
 				fcIn[0][i*O3_H+j*O3_W+k] = convOutput3[i][j][k];
+
+	for (int i = 0; i< FC_WT_H; i++)
+		inference_label7:for (int j = 0; j< FC_WT_W; j++)
+				W4[i][j] = fcWeight[i][j];
+
+	for (int i = 0; i< FC_B_H; i++)
+		inference_label8:for (int j = 0; j< FC_B_W; j++)
+				B4[i][j] = fcBias[i][j];
+
+	for (int i = 0; i< SM_WT_H; i++)
+		inference_label9:for (int j = 0; j< SM_WT_W; j++)
+				W5[i][j] = smWeight[i][j];
+
+	for (int i = 0; i< SM_B_H; i++)
+		inference_label10:for (int j = 0; j< SM_B_W; j++)
+				B5[i][j] = smBias[i][j];
 
     fc<FC_IN_H, FC_IN_W, FC_WT_H, FC_WT_W, FC_B_H, FC_B_W, FC_OUT_H, FC_OUT_W>(fcIn,W4,B4,fcOut4);
     sm<SM_IN_H, SM_IN_W, SM_WT_H, SM_WT_W, SM_B_H, SM_B_W, SM_OUT_H, SM_OUT_W>(fcOut4,W5,B5,outDigit);

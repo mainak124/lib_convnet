@@ -137,4 +137,25 @@ void inference(
 		int& outDigit
 );
 
+void inference_1(
+	const DTYPE_T inputImage[IN_H][IN_W][IN_C],
+	const DTYPE_T Filter1[F1_H][F1_W][F1_C][F1_N],
+	const DTYPE_T bias1[O1_C],
+	const DTYPE_T Filter2[F2_H][F2_W][F2_C][F2_N],
+	const DTYPE_T bias2[O2_C],
+	DTYPE_T poolOut2[P2_H][P2_W][P2_C]
+	);
 
+void inference_2(
+	DTYPE_T poolOut2[P2_H][P2_W][P2_C],
+	const DTYPE_T Filter3[F3_H][F3_W][F3_C][F3_N],
+	const DTYPE_T bias3[O3_C],
+	DTYPE_T poolOut3[P3_H][P3_W][P3_C]);
+ 
+void inference_3(
+	DTYPE_T poolOut3[P3_H][P3_W][P3_C],
+	const DTYPE_T fcWeight[FC_WT_H][FC_WT_W],
+	const DTYPE_T fcBias[FC_B_H][FC_B_W],
+	const DTYPE_T smWeight[SM_WT_H][SM_WT_W],
+	const DTYPE_T smBias[SM_B_H][SM_B_W],
+	int& outDigit);

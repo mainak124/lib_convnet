@@ -6,4 +6,4 @@
 # ==============================================================
 
 
-/opt/Xilinx/Vivado_HLS/2015.4/../../Vivado/2015.4/bin/vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7vx690tffg1761-2 ../xilinx_com_hls_inference_1_0.zip
+/opt/Xilinx/Vivado_HLS/2015.4/../../Vivado/2015.4/bin/vivado  -notrace -mode batch -source ipi_example.tcl -tclargs xc7z020clg484-1 ../xilinx_com_hls_inference_3_1_0.zip

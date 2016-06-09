@@ -4,5 +4,5 @@
   **** IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
     ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
 
-source /home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Tue Jun  7 19:20:08 2016...
+source /home/sakthi/uOpt_ZB/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Jun  8 17:34:48 2016...

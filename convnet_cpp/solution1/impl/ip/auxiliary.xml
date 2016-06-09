@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="inference" xd:componentRef="inference" xd:initiationInterval="3669113" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="inference_3" xd:componentRef="inference_3" xd:initiationInterval="124628" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
   <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
-  <xd:arg xd:name="inputImage[][][]" xd:originalName="inputImage" xd:direction="in" xd:interfaceRef="inputImage" xd:busTypeRef="axis" xd:arraySize="784" xd:dataWidth="32"/>
-  <xd:arg xd:name="Filter1[][][][]" xd:originalName="Filter1" xd:direction="in" xd:interfaceRef="Filter1" xd:busTypeRef="axis" xd:arraySize="150" xd:dataWidth="32"/>
-  <xd:arg xd:name="bias1[]" xd:originalName="bias1" xd:direction="in" xd:interfaceRef="bias1" xd:busTypeRef="axis" xd:arraySize="6" xd:dataWidth="32"/>
-  <xd:arg xd:name="Filter2[][][][]" xd:originalName="Filter2" xd:direction="in" xd:interfaceRef="Filter2" xd:busTypeRef="axis" xd:arraySize="2400" xd:dataWidth="32"/>
-  <xd:arg xd:name="bias2[]" xd:originalName="bias2" xd:direction="in" xd:interfaceRef="bias2" xd:busTypeRef="axis" xd:arraySize="16" xd:dataWidth="32"/>
-  <xd:arg xd:name="Filter3[][][][]" xd:originalName="Filter3" xd:direction="in" xd:interfaceRef="Filter3" xd:busTypeRef="axis" xd:arraySize="48000" xd:dataWidth="32"/>
-  <xd:arg xd:name="bias3[]" xd:originalName="bias3" xd:direction="in" xd:interfaceRef="bias3" xd:busTypeRef="axis" xd:arraySize="120" xd:dataWidth="32"/>
   <xd:arg xd:name="fcWeight[][]" xd:originalName="fcWeight" xd:direction="in" xd:interfaceRef="fcWeight" xd:busTypeRef="axis" xd:arraySize="10080" xd:dataWidth="32"/>
   <xd:arg xd:name="fcBias[][]" xd:originalName="fcBias" xd:direction="in" xd:interfaceRef="fcBias" xd:busTypeRef="axis" xd:arraySize="84" xd:dataWidth="32"/>
   <xd:arg xd:name="smWeight[][]" xd:originalName="smWeight" xd:direction="in" xd:interfaceRef="smWeight" xd:busTypeRef="axis" xd:arraySize="840" xd:dataWidth="32"/>
   <xd:arg xd:name="smBias[][]" xd:originalName="smBias" xd:direction="in" xd:interfaceRef="smBias" xd:busTypeRef="axis" xd:arraySize="10" xd:dataWidth="32"/>
   <xd:arg xd:name="outDigit" xd:originalName="outDigit" xd:direction="out" xd:interfaceRef="outDigit" xd:busTypeRef="axis" xd:arraySize="5" xd:dataWidth="32"/>
-  <xd:latencyEstimates xd:best-case="3669112" xd:worst-case="3669112" xd:average-case="3669112"/>
-  <xd:resourceEstimates xd:LUT="7221" xd:FF="6012" xd:BRAM="205" xd:DSP="36"/>
+  <xd:arg xd:name="convOutput3_q0" xd:originalName="convOutput3_q0" xd:direction="in" xd:interfaceRef="convOutput3_q0" xd:busTypeRef="ap_memory" xd:arraySize="120" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="124627" xd:worst-case="124627" xd:average-case="124627"/>
+  <xd:resourceEstimates xd:LUT="5145" xd:FF="3262" xd:BRAM="39" xd:DSP="21"/>
 </xd:acceleratorMap>

@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="10" Path="/home/sakthi/uOpt/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.xpr">
+<Project Version="7" Minor="10" Path="/home/sakthi/uOpt_ZB/lib_convnet/convnet_cpp/solution1/impl/ip/tmp.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="03d7483aa53f4d8dab2d2bc8083c8105"/>
+    <Option Name="Id" Val="0f0397a592024417ae32d65aa6b22a80"/>
     <Option Name="Part" Val="xc7vx485tffg1157-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
@@ -28,35 +28,35 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fcmp_0_no_dsp_32/inference_ap_fcmp_0_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/inference_3_ap_fmul_2_max_dsp_32/inference_3_ap_fmul_2_max_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fdiv_6_no_dsp_32/inference_ap_fdiv_6_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/inference_3_ap_fexp_7_full_dsp_32/inference_3_ap_fexp_7_full_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fadd_2_full_dsp_32/inference_ap_fadd_2_full_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/inference_3_ap_fadd_3_full_dsp_32/inference_3_ap_fadd_3_full_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fexp_4_full_dsp_32/inference_ap_fexp_4_full_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/inference_3_ap_fdiv_14_no_dsp_32/inference_3_ap_fdiv_14_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/inference_ap_fmul_0_max_dsp_32/inference_ap_fmul_0_max_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/inference_3_ap_fcmp_0_no_dsp_32/inference_3_ap_fcmp_0_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
